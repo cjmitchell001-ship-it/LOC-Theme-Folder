@@ -5736,11 +5736,7 @@ a:hover {
     color: var(--offblack);
 }
 
-/* SUMMARY COLUMN */
-.loc-step1-summary {
-    position: sticky;
-    top: 100px;
-}
+
 
 
 
@@ -5965,14 +5961,9 @@ a:hover {
         gap: 40px;
     }
 
-    .loc-step1-summary {
-        position: static;
-    }
-
     /* Cap the two panels so they don't stretch with the viewport */
     .loc-step1-skip-panel,
-    .loc-step1-price-guarantee,
-    .loc-step1-summary {
+    .loc-step1-price-guarantee {
         max-width: 600px;
         justify-self: center;
     }
@@ -7309,38 +7300,6 @@ a:hover {
 
 
 
-/* RESERVE BUTTON */
-.loc-step3-btn-reserve {
-    display: block;
-    width: 100%;
-    background: var(--gold);
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    padding: 18px 20px;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-    transition: background 0.2s;
-    position: relative;
-    margin-bottom: 12px;
-}
-
-.loc-step3-btn-reserve::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    right: -4px;
-    width: 100%;
-    height: 100%;
-    border: 2px solid rgba(201,150,12,0.35);
-    pointer-events: none;
-}
-
-.loc-step3-btn-reserve:hover { background: var(--gold-light); }
 
 
 
@@ -7996,9 +7955,6 @@ a:hover {
         font-size: 10px;
     }
 
-    .loc-step1-summary {
-        display: block;
-    }
 
     /* â”€â”€ STEP 2 â”€â”€ */
     .loc-step2-body {
@@ -8103,7 +8059,6 @@ a:hover {
         font-size: 26px;
     }
 
-    .loc-step3-btn-reserve,
     .loc-step3-reserve-subtext,
     .loc-step3-price-guarantee {
         display: none;
