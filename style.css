@@ -256,7 +256,7 @@ a:hover {
     z-index: var(--z-header);
     background: var(--white);
     border-bottom: 1px solid var(--border);
-    ox-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-sm);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -444,7 +444,7 @@ a:hover {
     right: 0;
     background: var(--white);
     border-bottom: 1px solid var(--border);
-    ox-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md);
     z-index: var(--z-nav);
 }
 
@@ -1052,7 +1052,7 @@ a:hover {
 }
 
 .loc-reserve__card:hover {
-    ox-shadow: var(--shadow-xl);
+    box-shadow: var(--shadow-xl);
     transform: translateY(-4px);
 }
 
@@ -1090,7 +1090,7 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    ox-shadow: var(--shadow-gold);
+    box-shadow: var(--shadow-gold);
 }
 
 /* STEP ICON */
@@ -1665,7 +1665,7 @@ a:hover {
 }
 
 .loc-hww__group:hover {
-    ox-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-lg);
     transform: translateY(-3px);
 }
 
@@ -2038,7 +2038,7 @@ a:hover {
 
 .loc-faq__item:hover {
     border-top-color: var(--gold);
-    ox-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md);
 }
 
 .loc-faq__q {
@@ -2967,7 +2967,7 @@ a:hover {
 
 .loc-about-values__card:hover {
     border-top-color: var(--gold);
-    ox-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md);
 }
 
 .loc-about-values__icon {
@@ -3290,7 +3290,7 @@ a:hover {
 }
 
 .loc-contact-method:hover {
-    ox-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md);
 }
 
 .loc-contact-method__icon {
@@ -3679,7 +3679,7 @@ a:hover {
 }
 
 .loc-biz-who__card:hover {
-    ox-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-lg);
     transform: translateY(-3px);
 }
 
@@ -3786,7 +3786,7 @@ a:hover {
     font-size: var(--text-ui-lg);
     color: var(--white);
     margin-bottom: var(--space-4);
-    ox-shadow: var(--shadow-gold);
+    box-shadow: var(--shadow-gold);
 }
 
 .loc-biz-how__step-title {
@@ -4737,7 +4737,7 @@ a:hover {
 }
 
 .loc-blog-card:hover {
-    ox-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-lg);
     transform: translateY(-2px);
 }
 
@@ -5286,7 +5286,7 @@ a:hover {
     background: var(--white);
     border-color: var(--gold);
     color: var(--blue);
-    ox-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-sm);
 }
 
 /* RESPONSIVE */
@@ -5327,7 +5327,7 @@ a:hover {
     z-index: var(--z-header);
     background: var(--white);
     border-bottom: 1px solid var(--border);
-    ox-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-sm);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -5578,14 +5578,14 @@ a:hover {
 
 .loc-appliance-card:hover {
     border-color: var(--blue);
-    ox-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-lg);
     transform: translateY(-2px);
 }
 
 .loc-appliance-card.is-selected {
     border-color: var(--blue);
     background: #EEF3FA;
-    ox-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-lg);
 }
 
 .loc-appliance-card.is-selected::after {
@@ -6088,7 +6088,7 @@ a:hover {
     top: 74px;
     left: 0;
     right: 0;
-    ox-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md);
     z-index: var(--z-fixed-bar);
 }
 
@@ -6465,7 +6465,7 @@ a:hover {
     flex-direction: column;
     gap: 0;
     z-index: var(--z-sticky);
-    ox-shadow: var(--shadow-up);
+    box-shadow: var(--shadow-up);
 }
 
 /* Show sticky bottom on mobile when is-visible class is added by JS */
@@ -6577,7 +6577,7 @@ a:hover {
     justify-content: space-between;
     gap: var(--space-3);
     z-index: var(--z-sticky);
-    ox-shadow: var(--shadow-up);
+    box-shadow: var(--shadow-up);
 }
 
 .loc-step1-sticky-bottom.is-visible {
@@ -7096,7 +7096,7 @@ a:hover {
     background: #EEF3FA;
     border-color: var(--blue);
     transform: translateY(-1px);
-    ox-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-sm);
 }
 
 
@@ -7646,7 +7646,7 @@ a:hover {
     align-items: center;
     justify-content: center;
     margin: 0 auto var(--space-6);
-    ox-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-lg);
 }
 
 .loc-step3-confirm-heading {
@@ -8092,7 +8092,7 @@ a:hover {
         justify-content: space-between;
         gap: var(--space-3);
         z-index: var(--z-fixed-bar);
-        ox-shadow: var(--shadow-up);
+        box-shadow: var(--shadow-up);
         transform: translateY(100%);
         transition: transform 0.3s ease;
     }
