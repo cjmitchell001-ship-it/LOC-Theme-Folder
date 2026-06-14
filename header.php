@@ -43,7 +43,6 @@
     <!-- MOBILE CONTROLS -->
     <div class="loc-header__mobile">
         <a href="/reserve-step-1" class="btn-primary btn-primary--small">Reserve</a>
-        <a href="tel:PLACEHOLDER" class="btn-ghost-blue btn-ghost-blue--small">Call</a>
         <button class="loc-hamburger" id="loc-hamburger" aria-label="Open menu">
             <span></span>
             <span></span>
@@ -57,6 +56,7 @@
             <li><a href="/about">About</a></li>
             <li><a href="/services">Services</a></li>
             <li><a href="/business-commercial">Business &amp; Commercial</a></li>
+            <li><a href="tel:PLACEHOLDER">Call Us</a></li>
         </ul>
     </div>
 
