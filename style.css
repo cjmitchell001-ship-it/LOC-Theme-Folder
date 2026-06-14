@@ -55,6 +55,47 @@ ul, ol {
   --lightgrey:  #F5F5F5;   /* Light Grey â€” alternate section background */
   --offblack:   #1C1C2E;   /* Off Black â€” body text (subtle blue undertone) */
   --border:     #e2e2e2;   /* Border / divider colour */
+
+  /* ---- SPACING SCALE (4px base; token number × 4 = px) ---- */
+  --space-1: 4px;   --space-2: 8px;   --space-3: 12px;  --space-4: 16px;
+  --space-5: 20px;  --space-6: 24px;  --space-7: 28px;  --space-8: 32px;
+  --space-10: 40px; --space-12: 48px; --space-14: 56px; --space-16: 64px;
+  --space-20: 80px; --space-30: 120px;
+
+  /* ---- TYPE SCALE (px; body base = --text-body 17px) ---- */
+  --text-fine: 11px; --text-xs: 12px;  --text-sm: 13px;  --text-ui: 14px;
+  --text-ui-lg: 15px; --text-body-sm: 16px; --text-body: 17px; --text-lead: 20px;
+  --text-h4: 24px;   --text-h3: 28px;  --text-h2: 32px;  --text-h1: 40px;
+  --text-display: 56px; --text-hero: 80px; --text-hero-xl: 120px;
+
+  /* ---- GREY SCALE (grey-100 = current --border, grey-50 = current --lightgrey) ---- */
+  --grey-700: #444; --grey-500: #666; --grey-400: #888; --grey-300: #aaa;
+  --grey-200: #ccc; --grey-100: #e2e2e2; --grey-50: #F5F5F5;
+
+  /* ---- BLUE TINTS ---- */
+  --blue-dark: #122d58;  --blue-darker: #0f2550;  --blue-pale: #eef3fa;
+
+  /* ---- WHITE OVERLAY ALPHA RAMP (glass panels on blue) ---- */
+  --white-a05: rgba(255,255,255,0.05); --white-a10: rgba(255,255,255,0.10);
+  --white-a15: rgba(255,255,255,0.15); --white-a35: rgba(255,255,255,0.35);
+  --white-a60: rgba(255,255,255,0.60); --white-a85: rgba(255,255,255,0.85);
+
+  /* ---- SHADOW / ELEVATION SCALE (brand-blue tinted) ---- */
+  --shadow-xs: 0 1px 2px rgba(26,58,110,0.06);
+  --shadow-sm: 0 2px 8px rgba(26,58,110,0.08);
+  --shadow-md: 0 4px 16px rgba(26,58,110,0.10);
+  --shadow-lg: 0 8px 28px rgba(26,58,110,0.12);
+  --shadow-xl: 0 12px 40px rgba(26,58,110,0.14);
+  --shadow-up: 0 -4px 20px rgba(0,0,0,0.20);
+  --shadow-gold: 0 4px 12px rgba(201,150,12,0.35);
+
+  /* ---- RADIUS SCALE ---- */
+  --radius-xs: 2px; --radius-sm: 4px; --radius-md: 8px;
+  --radius-lg: 16px; --radius-full: 50%;
+
+  /* ---- Z-INDEX LADDER ---- */
+  --z-base: 1; --z-raised: 2; --z-sticky: 100; --z-fixed-bar: 200;
+  --z-header: 700; --z-overlay: 1000; --z-modal: 1200; --z-modal-ui: 1210;
 }
 
 html, body {
