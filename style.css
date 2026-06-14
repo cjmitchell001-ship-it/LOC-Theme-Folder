@@ -1,15 +1,45 @@
 ﻿/*
-Theme Name:        Leicester Oven Cleaning Child
+Theme Name:        Leicester Oven Cleaning
 Theme URI:         https://leicesterovencleaning.co.uk
-Description:       Child theme for Leicester Oven Cleaning, built on GeneratePress.
+Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Template:          generatepress
-Version:           1.0.0
+Version:           2.0.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
 */
+
+/* ============================================================
+   CSS RESET
+   Minimal reset to replace what GeneratePress previously provided.
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+img, video, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+ul, ol {
+  list-style: none;
+}
 
 /* ============================================================
    BRAND CSS VARIABLES

@@ -1,29 +1,18 @@
 <?php
 /**
- * Leicester Oven Cleaning Child Theme — functions.php
+ * Leicester Oven Cleaning — functions.php
  *
- * This file does two things:
- *   1. Loads the GeneratePress parent theme stylesheet
- *   2. Loads Google Fonts (Montserrat + Open Sans) from the CDN
- *
- * Add any further custom PHP functions below the enqueue section.
+ * Standalone theme — no parent theme dependency.
+ * Loads Google Fonts and the theme stylesheet.
  */
 
 // ============================================================
-// ENQUEUE PARENT THEME STYLESHEET + GOOGLE FONTS
+// ENQUEUE GOOGLE FONTS + THEME STYLESHEET
 // ============================================================
 
 function loc_enqueue_styles() {
 
-    // 1. Load GeneratePress parent theme stylesheet first
-    wp_enqueue_style(
-        'generatepress-style',
-        get_template_directory_uri() . '/style.css',
-        array(),
-        wp_get_theme( 'generatepress' )->get( 'Version' )
-    );
-
-    // 2. Load Google Fonts — Montserrat (headings) + Open Sans (body)
+    // 1. Load Google Fonts — Montserrat (headings) + Open Sans (body)
     wp_enqueue_style(
         'loc-google-fonts',
         'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Open+Sans:wght@400;600&display=swap',
@@ -31,11 +20,11 @@ function loc_enqueue_styles() {
         null
     );
 
-    // 3. Load this child theme's stylesheet last (overrides parent)
+    // 2. Load theme stylesheet
     wp_enqueue_style(
-        'loc-child-style',
+        'loc-style',
         get_stylesheet_directory_uri() . '/style.css',
-        array( 'generatepress-style', 'loc-google-fonts' ),
+        array( 'loc-google-fonts' ),
         wp_get_theme()->get( 'Version' )
     );
 
