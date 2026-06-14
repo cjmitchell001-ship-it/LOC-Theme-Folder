@@ -1,0 +1,1381 @@
+<?php
+/**
+ * Leicester Oven Cleaning Child Theme — functions.php
+ *
+ * This file does two things:
+ *   1. Loads the GeneratePress parent theme stylesheet
+ *   2. Loads Google Fonts (Montserrat + Open Sans) from the CDN
+ *
+ * Add any further custom PHP functions below the enqueue section.
+ */
+
+// ============================================================
+// ENQUEUE PARENT THEME STYLESHEET + GOOGLE FONTS
+// ============================================================
+
+function loc_enqueue_styles() {
+
+    // 1. Load GeneratePress parent theme stylesheet first
+    wp_enqueue_style(
+        'generatepress-style',
+        get_template_directory_uri() . '/style.css',
+        array(),
+        wp_get_theme( 'generatepress' )->get( 'Version' )
+    );
+
+    // 2. Load Google Fonts — Montserrat (headings) + Open Sans (body)
+    wp_enqueue_style(
+        'loc-google-fonts',
+        'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Open+Sans:wght@400;600&display=swap',
+        array(),
+        null
+    );
+
+    // 3. Load this child theme's stylesheet last (overrides parent)
+    wp_enqueue_style(
+        'loc-child-style',
+        get_stylesheet_directory_uri() . '/style.css',
+        array( 'generatepress-style', 'loc-google-fonts' ),
+        wp_get_theme()->get( 'Version' )
+    );
+
+}
+add_action( 'wp_enqueue_scripts', 'loc_enqueue_styles' );
+
+
+// ============================================================
+// ADD CUSTOM FUNCTIONS BELOW THIS LINE
+// ============================================================
+
+// (Nothing else needed here yet — add template-specific
+//  functions as each page is built.)
+// Hamburger menu toggle
+function loc_hamburger_script() {
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var hamburger = document.getElementById('loc-hamburger');
+        var mobileMenu = document.getElementById('loc-mobile-menu');
+
+        if (hamburger && mobileMenu) {
+
+            // Click hamburger — toggle menu and X animation
+            hamburger.addEventListener('click', function() {
+                var isOpen = mobileMenu.classList.contains('is-open');
+
+                if (isOpen) {
+                    // Close
+                    mobileMenu.classList.remove('is-open');
+                    hamburger.classList.remove('is-open');
+                } else {
+                    // Open
+                    mobileMenu.classList.add('is-open');
+                    hamburger.classList.add('is-open');
+                }
+
+                // Remove focus from button immediately so it never persists highlighted
+                hamburger.blur();
+            });
+
+            // Click anywhere outside dropdown — close menu
+            document.addEventListener('click', function(event) {
+                var clickedInsideMenu = mobileMenu.contains(event.target);
+                var clickedHamburger = hamburger.contains(event.target);
+
+                if (!clickedInsideMenu && !clickedHamburger) {
+                    mobileMenu.classList.remove('is-open');
+                    hamburger.classList.remove('is-open');
+                    hamburger.blur();
+                }
+            });
+        }
+    });
+    </script>
+    <?php
+}
+add_action('wp_footer', 'loc_hamburger_script');
+// Hero carousel and rotating taglines
+function loc_hero_script() {
+    if ( ! is_front_page() ) return;
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // TAGLINES — edit these freely without touching anything else
+        var taglines = [
+            'Professional oven cleaning in Leicester & Leicestershire',
+            'Extractor hoods cleaned and degreased — same visit, same fixed price',
+            'Gas hobs restored to factory clean — no hidden extras',
+            'Ceramic and induction hobs — spotless without the scratches',
+            'Small business? We work around you — minimal disruption guaranteed',
+            'Staff kitchens and office facilities — ask about our business rates',
+            'Multiple appliances, single visit — enquire about our commercial service'
+        ];
+
+        var slides = document.querySelectorAll('.loc-hero__slide');
+        var tagline = document.getElementById('loc-hero-tagline');
+        var current = 0;
+
+        function goToSlide(index) {
+            // Remove active from current slide
+            slides[current].classList.remove('is-active');
+
+            // Fade out tagline
+            tagline.classList.add('is-fading');
+
+            // After tagline fades out, swap text and fade back in
+            setTimeout(function() {
+                current = index;
+                tagline.textContent = taglines[current];
+                tagline.classList.remove('is-fading');
+
+                // Fade in new slide
+                slides[current].classList.add('is-active');
+            }, 600);
+        }
+
+        function nextSlide() {
+            var next = (current + 1) % slides.length;
+            goToSlide(next);
+        }
+
+        // Auto advance every 5 seconds
+        var timer = setInterval(nextSlide, 5000);
+
+        // Pause on hover
+        var hero = document.getElementById('loc-hero');
+        if (hero) {
+            hero.addEventListener('mouseenter', function() {
+                clearInterval(timer);
+            });
+            hero.addEventListener('mouseleave', function() {
+                timer = setInterval(nextSlide, 5000);
+            });
+        }
+
+    });
+    </script>
+    <?php
+}
+add_action('wp_footer', 'loc_hero_script');
+// Contact page enquiry type selector
+function loc_contact_script() {
+    if (is_page('contact')) {
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.loc-enquiry-btn');
+        btns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                btns.forEach(function(b) {
+                    b.classList.remove('loc-enquiry-btn--selected');
+                });
+                btn.classList.add('loc-enquiry-btn--selected');
+            });
+        });
+    });
+    </script>
+    <?php
+    }
+}
+add_action('wp_footer', 'loc_contact_script');
+// Auto-assign legal page template by slug
+function loc_legal_template($template) {
+    $legal_slugs = [
+        'privacy-policy',
+        'terms-and-conditions',
+        'cancellation-policy',
+        'cookie-policy',
+    ];
+    if (is_page() && in_array(get_post_field('post_name', get_the_ID()), $legal_slugs)) {
+        $new_template = get_stylesheet_directory() . '/page-legal.php';
+        if (file_exists($new_template)) {
+            return $new_template;
+        }
+    }
+    return $template;
+}
+add_filter('template_include', 'loc_legal_template');
+// ============================================================
+// STEP 1 — APPLIANCE SELECTION SCRIPT
+// Paste this function into functions.php
+// ============================================================
+
+function loc_step1_script() {
+    if ( ! is_page( 'reserve-step-1' ) ) return;
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // ── STATE ──
+        var selections  = {};
+        var agaExpanded = false;
+        var isSkipped   = false;
+        var skipBtn     = document.getElementById('loc-skip-btn');
+
+        // ── STANDARD CARDS ──
+        var cards = document.querySelectorAll('.loc-appliance-card:not(.loc-appliance-card--aga)');
+        cards.forEach(function(card) {
+            card.addEventListener('click', function() {
+                var name  = card.dataset.name;
+                var price = parseInt(card.dataset.price, 10);
+                if (selections[name] !== undefined) {
+                    delete selections[name];
+                    card.classList.remove('is-selected');
+                } else {
+                    selections[name] = price;
+                    card.classList.add('is-selected');
+                }
+                updateSummary();
+            });
+        });
+
+        // ── AGA CARD ──
+        var agaCard     = document.getElementById('loc-aga-card');
+        var agaOptions  = document.getElementById('loc-aga-options');
+        var agaPrice    = document.getElementById('loc-aga-price');
+        var agaNote     = document.getElementById('loc-aga-note');
+        var agaVariant  = document.getElementById('loc-aga-variant');
+
+        agaCard.addEventListener('click', function() {
+            if (agaCard.classList.contains('is-selected')) { clearAga(); return; }
+            if (!agaExpanded) { expandAga(); }
+        });
+
+        var agaOptionBtns = agaOptions.querySelectorAll('.loc-aga-option');
+        agaOptionBtns.forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                selectAga(btn, btn.dataset.variant, parseInt(btn.dataset.price, 10));
+            });
+        });
+
+        agaOptions.querySelector('.loc-aga-cancel').addEventListener('click', function(e) {
+            e.stopPropagation();
+            cancelAga();
+        });
+
+        function expandAga() {
+            agaExpanded = true;
+            agaCard.classList.add('is-expanded');
+            agaOptions.classList.add('is-visible');
+        }
+
+        function selectAga(btn, variant, price) {
+            agaOptionBtns.forEach(function(b) { b.classList.remove('is-selected'); });
+            btn.classList.add('is-selected');
+            agaOptions.classList.remove('is-visible');
+            agaCard.classList.remove('is-expanded');
+            agaExpanded = false;
+            agaCard.classList.add('is-selected');
+            agaPrice.textContent   = '\u00a3' + price;
+            agaNote.textContent    = '';
+            agaVariant.textContent = variant;
+            selections['AGA / Large Range'] = { price: price, variant: variant };
+            updateSummary();
+        }
+
+        function cancelAga() {
+            agaOptions.classList.remove('is-visible');
+            agaCard.classList.remove('is-expanded');
+            agaExpanded = false;
+            agaPrice.textContent = 'Select type \u2193';
+            agaNote.textContent  = 'Tap to choose';
+        }
+
+        function clearAga() {
+            agaCard.classList.remove('is-selected', 'is-expanded');
+            agaOptions.classList.remove('is-visible');
+            agaOptionBtns.forEach(function(b) { b.classList.remove('is-selected'); });
+            agaExpanded            = false;
+            agaPrice.textContent   = 'Select type \u2193';
+            agaNote.textContent    = 'Tap to choose';
+            agaVariant.textContent = '';
+            delete selections['AGA / Large Range'];
+            updateSummary();
+        }
+
+        // ── SKIP BUTTON ──
+        function setSkipActive() {
+            isSkipped = true;
+            skipBtn.classList.add('is-active');
+            skipBtn.textContent = 'Undo \u2014 Select Appliances Instead';
+            sessionStorage.setItem('loc_skip', 'true');
+
+            selections  = {};
+            agaExpanded = false;
+
+            document.querySelectorAll('.loc-appliance-card').forEach(function(c) {
+                c.classList.remove('is-selected', 'is-expanded');
+            });
+            document.querySelectorAll('.loc-aga-option').forEach(function(b) {
+                b.classList.remove('is-selected');
+            });
+            document.querySelectorAll('.loc-aga-options').forEach(function(p) {
+                p.classList.remove('is-visible');
+            });
+
+            agaPrice.textContent   = 'Select type \u2193';
+            agaNote.textContent    = 'Tap to choose';
+            agaVariant.textContent = '';
+
+            var stickyTotal  = document.getElementById('loc-step1-sticky-total');
+            var stickyBtn    = document.getElementById('loc-step1-sticky-btn');
+            var stickyBar    = document.getElementById('loc-step1-sticky-bottom');
+            var inflowAmount = document.getElementById('loc-step1-inflow-amount');
+            var inflowBtn    = document.getElementById('loc-step1-inflow-btn');
+
+            if (stickyTotal)  stickyTotal.innerHTML = '<span>\u00a3</span>TBC';
+            if (inflowAmount) inflowAmount.innerHTML = '<span>\u00a3</span>TBC';
+            if (stickyBtn)    stickyBtn.classList.remove('loc-step1-sticky-bottom__btn--disabled');
+            if (inflowBtn)    inflowBtn.classList.remove('loc-step1-sticky-bottom__btn--disabled');
+            if (stickyBar)    stickyBar.classList.add('is-visible');
+            positionStep1StickyBar();
+
+        }
+
+        function setSkipInactive() {
+            isSkipped = false;
+            skipBtn.classList.remove('is-active');
+            skipBtn.textContent = 'Discuss on the Call Instead';
+            sessionStorage.removeItem('loc_skip');
+            updateSummary();
+        }
+
+        skipBtn.addEventListener('click', function() {
+            if (isSkipped) {
+                setSkipInactive();
+            } else {
+                setSkipActive();
+            }
+        });
+
+        // ── SUMMARY ──
+        function updateSummary() {
+            // Reset skip state if user manually selects an appliance
+            if (isSkipped) {
+                isSkipped = false;
+                skipBtn.classList.remove('is-active');
+                skipBtn.textContent = 'Discuss on the Call Instead';
+                sessionStorage.removeItem('loc_skip');
+            }
+
+            var stickyTotal  = document.getElementById('loc-step1-sticky-total');
+            var stickyBtn    = document.getElementById('loc-step1-sticky-btn');
+            var stickyBar    = document.getElementById('loc-step1-sticky-bottom');
+            var inflowAmount = document.getElementById('loc-step1-inflow-amount');
+            var inflowBtn    = document.getElementById('loc-step1-inflow-btn');
+            var keys         = Object.keys(selections);
+
+            if (keys.length === 0) {
+                if (stickyTotal)  stickyTotal.innerHTML = '<span>\u00a3</span>0';
+                if (inflowAmount) inflowAmount.innerHTML = '<span>\u00a3</span>0';
+                if (stickyBtn)    stickyBtn.classList.add('loc-step1-sticky-bottom__btn--disabled');
+                if (inflowBtn)    inflowBtn.classList.add('loc-step1-sticky-bottom__btn--disabled');
+                if (stickyBar)    stickyBar.classList.remove('is-visible');
+                hideScrollHint();
+                return;
+            }
+
+            var total = 0;
+            keys.forEach(function(name) {
+                var val   = selections[name];
+                var price = (typeof val === 'object') ? val.price : val;
+                total += price;
+            });
+
+            if (stickyTotal)  stickyTotal.innerHTML = '<span>\u00a3</span>' + total;
+            if (inflowAmount) inflowAmount.innerHTML = '<span>\u00a3</span>' + total;
+            if (stickyBtn)    stickyBtn.classList.remove('loc-step1-sticky-bottom__btn--disabled');
+            if (inflowBtn)    inflowBtn.classList.remove('loc-step1-sticky-bottom__btn--disabled');
+            if (stickyBar)    stickyBar.classList.add('is-visible');
+            positionStep1StickyBar();
+            showScrollHint();
+
+        }
+
+        // ── SESSION STORAGE HANDOFF ──
+        var confirmBtn   = document.getElementById('loc-step1-sticky-btn');
+        var inflowBtnEl  = document.getElementById('loc-step1-inflow-btn');
+
+        function handleConfirm(e) {
+            var btn = e.currentTarget;
+            if (btn.classList.contains('loc-step1-sticky-bottom__btn--disabled')) {
+                e.preventDefault();
+                return;
+            }
+
+            e.preventDefault();
+
+            if (isSkipped) {
+                sessionStorage.setItem('loc_skip', 'true');
+                sessionStorage.removeItem('loc_selections');
+                sessionStorage.removeItem('loc_total');
+                sessionStorage.setItem('loc_from_step1', 'true');
+            } else {
+                sessionStorage.removeItem('loc_skip');
+                var serialised = {};
+                Object.keys(selections).forEach(function(name) {
+                    var val = selections[name];
+                    if (name === 'AGA / Large Range') {
+                        serialised['AGA (' + val.variant + ')'] = val.price;
+                    } else {
+                        serialised[name] = val;
+                    }
+                });
+                var total = Object.values(serialised).reduce(function(sum, p) { return sum + p; }, 0);
+                sessionStorage.setItem('loc_selections', JSON.stringify(serialised));
+                sessionStorage.setItem('loc_total', total);
+                sessionStorage.setItem('loc_from_step1', 'true');
+            }
+
+            // Navigate after writing session storage
+            window.location.href = btn.getAttribute('href');
+        }
+
+        confirmBtn.addEventListener('click', handleConfirm);
+        if (inflowBtnEl) inflowBtnEl.addEventListener('click', handleConfirm);
+
+        // ── SCROLL HINT (601px+) ──
+        var scrollHint  = document.getElementById('loc-step1-scroll-hint');
+        var inflowPanel = document.getElementById('loc-step1-inflow-total');
+
+        function showScrollHint() {
+            if (!scrollHint || !inflowPanel) return;
+            if (window.innerWidth < 781) return;
+            var rect = inflowPanel.getBoundingClientRect();
+            // Hide once the panel is scrolled into view
+            if (rect.top < window.innerHeight - 40) {
+                scrollHint.classList.remove('is-visible');
+            } else {
+                scrollHint.classList.add('is-visible');
+            }
+        }
+
+        function hideScrollHint() {
+            if (scrollHint) scrollHint.classList.remove('is-visible');
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!scrollHint || !scrollHint.classList.contains('is-visible')) return;
+            showScrollHint();
+        });
+
+        scrollHint && scrollHint.addEventListener('click', function() {
+            inflowPanel && inflowPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        // ── STICKY BAR FOOTER-LIFT ──
+        function positionStep1StickyBar() {
+            var stickyBar = document.getElementById('loc-step1-sticky-bottom');
+            if (!stickyBar) return;
+            var footer = document.querySelector('.loc-footer');
+            if (!footer) return;
+            var footerTop    = footer.getBoundingClientRect().top;
+            var windowHeight = window.innerHeight;
+            if (footerTop <= windowHeight) {
+                stickyBar.style.position = 'absolute';
+                stickyBar.style.bottom   = 'auto';
+                stickyBar.style.top      = (window.scrollY + footerTop - stickyBar.offsetHeight - 8) + 'px';
+            } else {
+                stickyBar.style.position = 'fixed';
+                stickyBar.style.bottom   = '0';
+                stickyBar.style.top      = 'auto';
+            }
+        }
+        window.addEventListener('scroll', positionStep1StickyBar);
+
+    });
+    </script>
+    <?php
+}
+add_action('wp_footer', 'loc_step1_script');
+// ============================================================
+// STEP 2 — POSTCODE & AREAS SCRIPT
+// ============================================================
+
+function loc_step2_script() {
+    if ( ! is_page( 'reserve-step-2' ) ) return;
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        var postcodeInput  = document.getElementById('loc-postcode-input');
+        var confirmBtn     = document.getElementById('loc-confirm-btn');
+        var stickyBar      = document.getElementById('loc-sticky-bar');
+        var stickyAnchor   = document.getElementById('loc-sticky-anchor');
+        var confirmedBanner = document.getElementById('loc-confirmed-banner');
+        var confirmedText  = document.getElementById('loc-confirmed-text');
+        var inlineSection  = document.getElementById('loc-inline-section');
+        var continueWrap   = document.getElementById('loc-continue-wrap');
+        var fromStep1      = sessionStorage.getItem('loc_from_step1') === 'true';
+
+        // ── CARRIED-OVER TOTAL FROM STEP 1 (static continue bar) ──
+        (function () {
+            if (sessionStorage.getItem('loc_from_step1') !== 'true') return;
+            var totalEl = document.getElementById('loc-continue-total');
+            if (!totalEl) return;
+            if (sessionStorage.getItem('loc_skip') === 'true') {
+                totalEl.innerHTML = '<span>\u00a3</span>TBC';
+                return;
+            }
+            var total = parseInt(sessionStorage.getItem('loc_total'), 10) || 0;
+            totalEl.innerHTML = '<span>\u00a3</span>' + total;
+        })();
+
+
+        // ── STICKY BAR — activate on scroll past anchor ──
+        window.addEventListener('scroll', function() {
+            var anchorTop = stickyAnchor.getBoundingClientRect().top;
+            if (anchorTop <= 0) {
+                stickyBar.classList.add('is-sticky');
+            } else {
+                stickyBar.classList.remove('is-sticky');
+            }
+        });
+
+        // ── CLICKABLE AREA TAGS ──
+        var areaTags = document.querySelectorAll('.loc-step2-area-tags li');
+        areaTags.forEach(function(tag) {
+            tag.addEventListener('click', function() {
+                // Deselect all
+                areaTags.forEach(function(t) { t.classList.remove('is-selected'); });
+                // Select clicked
+                tag.classList.add('is-selected');
+                // Populate input
+                var newPostcode = tag.dataset.postcode;
+                postcodeInput.value = newPostcode;
+                // If postcode was already confirmed, keep sessionStorage in sync
+                if (continueWrap.style.display !== 'none' && continueWrap.style.display !== '' ||
+                    inlineSection.style.display !== 'none' && inlineSection.style.display !== '') {
+                    sessionStorage.setItem('loc_postcode', newPostcode);
+                    confirmedText.textContent = newPostcode + ' saved — we\'ll show you the best available dates for your area.';
+                    confirmedBanner.style.display = 'flex';
+                    var postcodeEl = document.getElementById('loc-continue-postcode');
+                    if (postcodeEl) postcodeEl.textContent = newPostcode;
+                    var inlinePostcodeEl = document.getElementById('loc-inline-postcode');
+                    if (inlinePostcodeEl) inlinePostcodeEl.textContent = newPostcode;
+                    var stickyPostcodeEl = document.getElementById('loc-step2-sticky-postcode');
+                    if (stickyPostcodeEl) stickyPostcodeEl.textContent = newPostcode;
+                }
+            });
+        });
+
+        // Clear area highlight and reset confirmed state when user types their own postcode
+        postcodeInput.addEventListener('input', function() {
+            areaTags.forEach(function(t) { t.classList.remove('is-selected'); });
+            sessionStorage.removeItem('loc_postcode');
+            confirmedBanner.style.display = 'none';
+            continueWrap.style.display = 'none';
+            inlineSection.style.display = 'none';
+        });
+
+        // ── CONFIRM POSTCODE ──
+        var UK_POSTCODE = /^([A-Z]{1,2}\d[A-Z\d]?)(\s?\d[A-Z]{2})?$/;
+
+        confirmBtn.addEventListener('click', function() {
+            var postcode = postcodeInput.value.trim().toUpperCase().replace(/\s+/g, ' ');
+            var errorEl  = document.getElementById('loc-postcode-error');
+
+            if (!postcode) { postcodeInput.focus(); return; }
+
+            if (!UK_POSTCODE.test(postcode)) {
+                if (errorEl) {
+                    errorEl.textContent = 'Please enter a valid UK postcode (e.g. LE2 7AB).';
+                    errorEl.style.display = 'block';
+                }
+                postcodeInput.focus();
+                return;
+            }
+            if (errorEl) errorEl.style.display = 'none';
+
+            // …existing save + routing code continues unchanged…
+
+            // Clear from session so refresh doesn't repopulate
+            sessionStorage.removeItem('loc_postcode');
+            // Save fresh
+            sessionStorage.setItem('loc_postcode', postcode);
+
+            // Show confirmed banner
+            confirmedText.textContent = postcode + ' saved — we\'ll show you the best available dates for your area.';
+            confirmedBanner.style.display = 'flex';
+
+            // Update location in all bars
+            var postcodeEl = document.getElementById('loc-continue-postcode');
+            if (postcodeEl) postcodeEl.textContent = postcode;
+            var inlinePostcodeEl = document.getElementById('loc-inline-postcode');
+            if (inlinePostcodeEl) inlinePostcodeEl.textContent = postcode;
+            var stickyPostcodeEl = document.getElementById('loc-step2-sticky-postcode');
+            if (stickyPostcodeEl) stickyPostcodeEl.textContent = postcode;
+
+            // Routing
+            if (fromStep1) {
+                continueWrap.style.display = 'block';
+                inlineSection.style.display = 'none';
+                continueWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                inlineSection.style.display = 'block';
+                inlineSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+
+        // Allow Enter key
+        postcodeInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') confirmBtn.click();
+        });
+
+        // ── INLINE APPLIANCE SELECTION ──
+        var inlineSelections = {};
+        var inlineAgaExpanded = false;
+
+        var inlineCards = document.querySelectorAll('.loc-appliance-card--inline:not(.loc-appliance-card--aga)');
+        inlineCards.forEach(function(card) {
+            card.addEventListener('click', function() {
+                var name  = card.dataset.name;
+                var price = parseInt(card.dataset.price, 10);
+                if (inlineSelections[name] !== undefined) {
+                    delete inlineSelections[name];
+                    card.classList.remove('is-selected');
+                } else {
+                    inlineSelections[name] = price;
+                    card.classList.add('is-selected');
+                }
+                updateInlineSummary();
+            });
+        });
+
+        // AGA inline
+        var agaCard    = document.getElementById('loc-aga-inline-card');
+        var agaOptions = document.getElementById('loc-aga-inline-options');
+        var agaPrice   = document.getElementById('loc-aga-inline-price');
+        var agaNote    = document.getElementById('loc-aga-inline-note');
+        var agaVariant = document.getElementById('loc-aga-inline-variant');
+        var agaBtns    = agaOptions.querySelectorAll('.loc-aga-option');
+
+        agaCard.addEventListener('click', function() {
+            if (agaCard.classList.contains('is-selected')) { clearAgaInline(); return; }
+            if (!inlineAgaExpanded) {
+                agaCard.classList.add('is-expanded');
+                agaOptions.classList.add('is-visible');
+                inlineAgaExpanded = true;
+            }
+        });
+
+        agaBtns.forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                var variant = btn.dataset.variant;
+                var price   = parseInt(btn.dataset.price, 10);
+                agaBtns.forEach(function(b) { b.classList.remove('is-selected'); });
+                btn.classList.add('is-selected');
+                agaOptions.classList.remove('is-visible');
+                agaCard.classList.remove('is-expanded');
+                agaCard.classList.add('is-selected');
+                inlineAgaExpanded = false;
+                agaPrice.textContent   = '£' + price;
+                agaNote.textContent    = '';
+                agaVariant.textContent = variant;
+                inlineSelections['AGA / Large Range'] = { price: price, variant: variant };
+                updateInlineSummary();
+            });
+        });
+
+        agaOptions.querySelector('.loc-aga-cancel').addEventListener('click', function(e) {
+            e.stopPropagation();
+            agaOptions.classList.remove('is-visible');
+            agaCard.classList.remove('is-expanded');
+            inlineAgaExpanded = false;
+            agaPrice.textContent = 'Select type \u2193';
+            agaNote.textContent  = 'Tap to choose';
+        });
+        // ── STEP 2 SKIP BUTTON ──
+            var step2SkipBtn = document.getElementById('loc-step2-skip-btn');
+            var isStep2Skipped = false;
+
+            if (step2SkipBtn) {
+                step2SkipBtn.addEventListener('click', function() {
+                    if (isStep2Skipped) {
+                        // Undo
+                        isStep2Skipped = false;
+                        step2SkipBtn.classList.remove('is-active');
+                        step2SkipBtn.textContent = 'Discuss on the Call Instead';
+                        sessionStorage.removeItem('loc_skip');
+                        updateInlineSummary();
+                    } else {
+                        // Activate skip
+                        isStep2Skipped = true;
+                        step2SkipBtn.classList.add('is-active');
+                        step2SkipBtn.textContent = 'Undo \u2014 Select Appliances Instead';
+                        sessionStorage.setItem('loc_skip', 'true');
+
+                        // Clear selections
+                        inlineSelections = {};
+                        inlineAgaExpanded = false;
+
+                        document.querySelectorAll('.loc-appliance-card--inline').forEach(function(c) {
+                            c.classList.remove('is-selected', 'is-expanded');
+                        });
+                        document.querySelectorAll('.loc-aga-option').forEach(function(b) {
+                            b.classList.remove('is-selected');
+                        });
+                        document.querySelectorAll('.loc-aga-options').forEach(function(p) {
+                            p.classList.remove('is-visible');
+                        });
+
+                        agaPrice.textContent   = 'Select type \u2193';
+                        agaNote.textContent    = 'Tap to choose';
+                        agaVariant.textContent = '';
+
+                        // Update summary
+                        var itemsEl    = document.getElementById('loc-inline-items');
+                        var totalEl    = document.getElementById('loc-inline-total');
+                        var proceedBtn = document.getElementById('loc-inline-proceed-btn');
+
+                        itemsEl.innerHTML = '<div class="loc-step2-inline-summary__item"><span class="loc-step2-inline-summary__item-name">To be discussed on the call</span><span class="loc-step2-inline-summary__item-price" style="color:rgba(255,255,255,0.4);">TBC</span></div>';
+                        totalEl.innerHTML = '<span>\u00a3</span>TBC';
+                        proceedBtn.classList.remove('loc-step2-btn-proceed--disabled');
+
+                        // Update sticky bar
+                        var stickyBar   = document.getElementById('loc-step2-sticky-bottom');
+                        var stickyTotal = document.getElementById('loc-step2-sticky-total');
+                        var stickyBtn   = document.getElementById('loc-step2-sticky-btn');
+                        if (stickyBar)   stickyBar.classList.add('is-visible');
+                        if (stickyBtn)   stickyBtn.classList.remove('loc-step2-sticky-bottom__btn--disabled');
+
+                        positionStep2StickyBar();   // ← add this
+                        
+                        if (stickyTotal) stickyTotal.innerHTML = '<span>\u00a3</span>TBC';
+                        if (stickyBtn)   stickyBtn.classList.remove('loc-step2-sticky-bottom__btn--disabled');
+                    }
+                });
+            }
+
+        function clearAgaInline() {
+            agaCard.classList.remove('is-selected', 'is-expanded');
+            agaOptions.classList.remove('is-visible');
+            agaBtns.forEach(function(b) { b.classList.remove('is-selected'); });
+            inlineAgaExpanded      = false;
+            agaPrice.textContent   = 'Select type \u2193';
+            agaNote.textContent    = 'Tap to choose';
+            agaVariant.textContent = '';
+            delete inlineSelections['AGA / Large Range'];
+            updateInlineSummary();
+        }
+
+        function updateInlineSummary() {
+            // Reset skip state if user manually selects
+            if (isStep2Skipped) {
+                isStep2Skipped = false;
+                if (step2SkipBtn) {
+                    step2SkipBtn.classList.remove('is-active');
+                    step2SkipBtn.textContent = 'Discuss on the Call Instead';
+                }
+                sessionStorage.removeItem('loc_skip');
+            }
+            // ... rest of function unchanged
+            var itemsEl    = document.getElementById('loc-inline-items');
+            var totalEl    = document.getElementById('loc-inline-total');
+            var proceedBtn = document.getElementById('loc-inline-proceed-btn');
+            var stickyBar  = document.getElementById('loc-step2-sticky-bottom');
+            var stickyTotal = document.getElementById('loc-step2-sticky-total');
+            var stickyBtn  = document.getElementById('loc-step2-sticky-btn');
+            var keys       = Object.keys(inlineSelections);
+
+            itemsEl.innerHTML = '';
+
+            if (keys.length === 0) {
+                itemsEl.innerHTML = '<p class="loc-step2-inline-summary__empty">No appliances selected yet</p>';
+                totalEl.innerHTML = '<span>\u00a3</span>0';
+                proceedBtn.classList.add('loc-step2-btn-proceed--disabled');
+                if (stickyBar)   stickyBar.classList.remove('is-visible');
+                if (stickyTotal) stickyTotal.innerHTML = '<span>\u00a3</span>0';
+                if (stickyBtn)   stickyBtn.classList.add('loc-step2-sticky-bottom__btn--disabled');
+                return;
+            }
+
+            var total = 0;
+            keys.forEach(function(name) {
+                var val         = inlineSelections[name];
+                var price       = (typeof val === 'object') ? val.price : val;
+                var displayName = (name === 'AGA / Large Range') ? 'AGA (' + val.variant + ')' : name;
+                total += price;
+                var div = document.createElement('div');
+                div.className = 'loc-step2-inline-summary__item';
+                div.innerHTML =
+                    '<span class="loc-step2-inline-summary__item-name">' + displayName + '</span>' +
+                    '<span class="loc-step2-inline-summary__item-price">\u00a3' + price + '</span>';
+                itemsEl.appendChild(div);
+            });
+
+            totalEl.innerHTML = '<span>\u00a3</span>' + total;
+            proceedBtn.classList.remove('loc-step2-btn-proceed--disabled');
+
+            if (stickyBar)   stickyBar.classList.add('is-visible');
+            if (stickyTotal) stickyTotal.innerHTML = '<span>\u00a3</span>' + total;
+            if (stickyBtn)   stickyBtn.classList.remove('loc-step2-sticky-bottom__btn--disabled');
+        }
+
+        // Session storage handoff (inline route)
+        var proceedBtn = document.getElementById('loc-inline-proceed-btn');
+        proceedBtn.addEventListener('click', function(e) {
+            if (proceedBtn.classList.contains('loc-step2-btn-proceed--disabled')) {
+                e.preventDefault();
+                return;
+            }
+            sessionStorage.removeItem('loc_skip');
+            var serialised = {};
+            Object.keys(inlineSelections).forEach(function(name) {
+                var val = inlineSelections[name];
+                if (name === 'AGA / Large Range') {
+                    serialised['AGA (' + val.variant + ')'] = val.price;
+                } else {
+                    serialised[name] = val;
+                }
+            });
+            var total = Object.values(serialised).reduce(function(sum, p) { return sum + p; }, 0);
+            sessionStorage.setItem('loc_selections', JSON.stringify(serialised));
+            sessionStorage.setItem('loc_total', total);
+        });
+
+        // ── STICKY BAR PROCEED — write storage on inline route (mobile) ──
+        var step2StickyBtn = document.getElementById('loc-step2-sticky-btn');
+        if (step2StickyBtn) {
+            step2StickyBtn.addEventListener('click', function(e) {
+                if (step2StickyBtn.classList.contains('loc-step2-sticky-bottom__btn--disabled')) {
+                    e.preventDefault();
+                    return;
+                }
+                if (isStep2Skipped) return;  // skip flag already set; Step 3 reads it
+                sessionStorage.removeItem('loc_skip');
+                var serialised = {};
+                Object.keys(inlineSelections).forEach(function(name) {
+                    var val = inlineSelections[name];
+                    if (name === 'AGA / Large Range') {
+                        serialised['AGA (' + val.variant + ')'] = val.price;
+                    } else {
+                        serialised[name] = val;
+                    }
+                });
+                var total = Object.values(serialised).reduce(function(sum, p) { return sum + p; }, 0);
+                sessionStorage.setItem('loc_selections', JSON.stringify(serialised));
+                sessionStorage.setItem('loc_total', total);
+            });
+        }
+            // Unstick Step 2 bottom bar near footer
+            function positionStep2StickyBar() {
+                var stickyBar = document.getElementById('loc-step2-sticky-bottom');
+                if (!stickyBar) return;
+                var footer = document.querySelector('.loc-footer');
+                if (!footer) return;
+                var footerTop    = footer.getBoundingClientRect().top;
+                var windowHeight = window.innerHeight;
+                if (footerTop <= windowHeight) {
+                    stickyBar.style.position = 'absolute';
+                    stickyBar.style.bottom   = 'auto';
+                    stickyBar.style.top      = (window.scrollY + footerTop - stickyBar.offsetHeight - 8) + 'px';
+                } else {
+                    stickyBar.style.position = 'fixed';
+                    stickyBar.style.bottom   = '0';
+                    stickyBar.style.top      = 'auto';
+                }
+            }
+            window.addEventListener('scroll', positionStep2StickyBar);
+            });
+    </script>
+    <?php
+}
+add_action('wp_footer', 'loc_step2_script');
+// ============================================================
+// STEP 3 — CALENDAR & RESERVATION SCRIPT
+// ============================================================
+
+function loc_step3_script() {
+    if ( ! is_page( 'reserve-step-3' ) ) return;
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // ── READ SESSION STORAGE ──
+        var selections = {};
+        var total = 0;
+
+        try {
+            var stored = sessionStorage.getItem('loc_selections');
+            if (stored) selections = JSON.parse(stored);
+            var isSkip = sessionStorage.getItem('loc_skip') === 'true';
+total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
+        } catch(e) {}
+
+        // ── POPULATE SUMMARY ──
+        var summaryItems = document.getElementById('loc-summary-items');
+        var summaryTotal = document.getElementById('loc-summary-total');
+
+        // Populate location from sessionStorage
+        var summaryPostcode = document.getElementById('loc-summary-postcode');
+        if (summaryPostcode) {
+            var storedPostcode = sessionStorage.getItem('loc_postcode');
+            summaryPostcode.textContent = storedPostcode ? storedPostcode : '—';
+        }
+
+        summaryItems.innerHTML = '';
+        var keys = Object.keys(selections);
+
+        if (keys.length === 0) {
+            summaryItems.innerHTML = '<p class="loc-step3-summary__empty">No selection found — <a href="/reserve-step-1" style="color:var(--gold);">go back to Step 1</a></p>';
+        } else {
+            keys.forEach(function(name) {
+                var price = selections[name];
+                var div = document.createElement('div');
+                div.className = 'loc-step3-summary__item';
+                div.innerHTML =
+                    '<span class="loc-step3-summary__item-name">' + name + '</span>' +
+                    '<span class="loc-step3-summary__item-price">\u00a3' + price + '</span>';
+                summaryItems.appendChild(div);
+            });
+        }
+
+       summaryTotal.innerHTML = isSkip ? '<span>\u00a3</span>TBC' : '<span>\u00a3</span>' + total;
+
+        // ── CALENDAR STATE ──
+        var today      = new Date();
+        var curYear    = today.getFullYear();
+        var curMonth   = today.getMonth();
+        var minMonth   = today.getMonth();
+        var minYear    = today.getFullYear();
+        var maxDate    = new Date(today.getFullYear(), today.getMonth() + 12, 1);
+        var maxMonth   = maxDate.getMonth();
+        var maxYear    = maxDate.getFullYear();
+        var selDate      = null;
+        var selTimeLabel = null;
+        var selTime      = null;
+        var selCallback  = null;
+        var isDateTBC    = false;
+
+        // Placeholder data — replace with booking system integration
+        var unavailableDays = [1, 2, 8, 15, 16, 22, 29];
+
+        var monthNames = ['January','February','March','April','May','June',
+                          'July','August','September','October','November','December'];
+
+        function renderCalendar() {
+            document.getElementById('loc-cal-month').textContent = monthNames[curMonth] + ' ' + curYear;
+            var body = document.getElementById('loc-cal-body');
+            body.innerHTML = '';
+
+            var firstDay    = new Date(curYear, curMonth, 1).getDay();
+            var daysInMonth = new Date(curYear, curMonth + 1, 0).getDate();
+            var startOffset = firstDay === 0 ? 6 : firstDay - 1;
+
+            var day = 1;
+            var row = document.createElement('tr');
+            var count = 0;
+
+            for (var i = 0; i < startOffset; i++) {
+                row.appendChild(makeCell('', 'empty'));
+                count++;
+            }
+
+            while (day <= daysInMonth) {
+                var isPast = new Date(curYear, curMonth, day) < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                var isUnavail = unavailableDays.indexOf(day) > -1 || isPast;
+                var cls = isUnavail ? 'unavailable' : 'available';
+                var cell = makeCell(day, cls);
+                row.appendChild(cell);
+                count++;
+                day++;
+
+                if (count % 7 === 0) {
+                    body.appendChild(row);
+                    row = document.createElement('tr');
+                }
+            }
+
+            while (count % 7 !== 0) {
+                row.appendChild(makeCell('', 'empty'));
+                count++;
+            }
+            if (row.children.length > 0) body.appendChild(row);
+        }
+
+        function makeCell(day, cls) {
+            var td  = document.createElement('td');
+            var div = document.createElement('div');
+            div.className = 'loc-cal-day loc-cal-day--' + cls;
+            div.textContent = day || '';
+
+            if (cls !== 'empty' && cls !== 'unavailable' && day) {
+                div.addEventListener('click', function() {
+                    selectDate(day, cls);
+                });
+            }
+            td.appendChild(div);
+            return td;
+        }
+
+        function selectDate(day, cls) {
+            isDateTBC = false;
+            var escapeBtn = document.getElementById('loc-date-escape-btn');
+            if (escapeBtn) escapeBtn.classList.remove('is-active');
+            document.querySelectorAll('.loc-cal-day--selected').forEach(function(el) {
+                el.classList.remove('loc-cal-day--selected');
+            });
+            document.querySelectorAll('.loc-cal-day').forEach(function(el) {
+                if (parseInt(el.textContent) === day &&
+                    !el.classList.contains('loc-cal-day--empty') &&
+                    !el.classList.contains('loc-cal-day--unavailable')) {
+                    el.classList.add('loc-cal-day--selected');
+                }
+            });
+
+            var dateObj = new Date(curYear, curMonth, day);
+            selDate = dateObj.toLocaleDateString('en-GB', {
+                weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+            });
+            selTimeLabel = null;
+            selTime = null;
+
+            // Reset time slots
+            document.querySelectorAll('.loc-step3-slot-btn').forEach(function(b) {
+                b.classList.remove('is-selected');
+            });
+
+            document.getElementById('loc-selected-date-label').textContent = selDate;
+            document.getElementById('loc-time-slots').style.display = 'block';
+            document.getElementById('loc-time-slots').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            if (clearDateBtn) clearDateBtn.style.display = 'block';
+            updateSummarySlot();
+            updateReserveBtn();
+        }
+
+        // Month nav
+        var prevBtn = document.getElementById('loc-cal-prev');
+        var nextBtn = document.getElementById('loc-cal-next');
+
+        function updateNavBtns() {
+            var atMin = (curYear === minYear && curMonth === minMonth);
+            var atMax = (curYear === maxYear && curMonth === maxMonth);
+            prevBtn.disabled = atMin;
+            prevBtn.style.opacity = atMin ? '0.3' : '1';
+            prevBtn.style.cursor  = atMin ? 'default' : 'pointer';
+            nextBtn.disabled = atMax;
+            nextBtn.style.opacity = atMax ? '0.3' : '1';
+            nextBtn.style.cursor  = atMax ? 'default' : 'pointer';
+        }
+
+        prevBtn.addEventListener('click', function() {
+            if (curYear === minYear && curMonth === minMonth) return;
+            curMonth--;
+            if (curMonth < 0) { curMonth = 11; curYear--; }
+            renderCalendar();
+            updateNavBtns();
+        });
+
+        nextBtn.addEventListener('click', function() {
+            if (curYear === maxYear && curMonth === maxMonth) return;
+            curMonth++;
+            if (curMonth > 11) { curMonth = 0; curYear++; }
+            renderCalendar();
+            updateNavBtns();
+        });
+
+        updateNavBtns();
+
+        // Time slot buttons
+        document.querySelectorAll('.loc-step3-slot-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.loc-step3-slot-btn').forEach(function(b) {
+                    b.classList.remove('is-selected');
+                });
+                btn.classList.add('is-selected');
+                selTimeLabel = btn.dataset.label;
+                selTime      = btn.dataset.time;
+                updateSummarySlot();
+                updateReserveBtn();
+                var sum = document.querySelector('.loc-step3-summary-col');
+                if (sum) sum.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            });
+        });
+        // Clear date button
+            var clearDateBtn = document.getElementById('loc-clear-date-btn');
+            if (clearDateBtn) {
+                clearDateBtn.addEventListener('click', function() {
+                    // Reset state
+                    selDate      = null;
+                    selTimeLabel = null;
+                    selTime      = null;
+
+                    // Reset calendar selection
+                    document.querySelectorAll('.loc-cal-day--selected').forEach(function(el) {
+                        el.classList.remove('loc-cal-day--selected');
+                    });
+
+                    // Reset time slots
+                    document.querySelectorAll('.loc-step3-slot-btn').forEach(function(b) {
+                        b.classList.remove('is-selected');
+                    });
+
+                    // Hide time slot panel and clear button
+                    document.getElementById('loc-time-slots').style.display = 'none';
+                    clearDateBtn.style.display = 'none';
+
+                    // Reset summary slot
+                    document.getElementById('loc-summary-slot').classList.remove('loc-step3-summary__slot--active');
+                    updateSummarySlot();
+                    updateReserveBtn();
+
+                    // Mobile only: scroll back up to the calendar
+                    if (window.innerWidth < 960) {
+                        var calCol = document.querySelector('.loc-step3-calendar-col');
+                        if (calCol) calCol.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            }
+
+        // ── DATE ESCAPE HATCH ──
+        var dateEscapeBtn = document.getElementById('loc-date-escape-btn');
+        if (dateEscapeBtn) {
+            dateEscapeBtn.addEventListener('click', function() {
+                if (isDateTBC) {
+                    // Undo
+                    isDateTBC = false;
+                    dateEscapeBtn.classList.remove('is-active');
+                    dateEscapeBtn.textContent = 'Confirm On Call';
+                } else {
+                    // Activate — clear any selected date/time
+                    isDateTBC    = true;
+                    selDate      = null;
+                    selTimeLabel = null;
+                    selTime      = null;
+                    document.querySelectorAll('.loc-cal-day--selected').forEach(function(el) {
+                        el.classList.remove('loc-cal-day--selected');
+                    });
+                    document.querySelectorAll('.loc-step3-slot-btn').forEach(function(b) {
+                        b.classList.remove('is-selected');
+                    });
+                    document.getElementById('loc-time-slots').style.display = 'none';
+                    if (clearDateBtn) clearDateBtn.style.display = 'none';
+                    dateEscapeBtn.classList.add('is-active');
+                    dateEscapeBtn.textContent = 'Undo — Select a Date Instead';
+                }
+                updateSummarySlot();
+                updateReserveBtn();
+            });
+        }
+
+        function updateSummarySlot() {
+            var slotEl   = document.getElementById('loc-summary-slot');
+            var dateEl   = document.getElementById('loc-summary-slot-date');
+            var timeEl   = document.getElementById('loc-summary-slot-time');
+
+            if (isDateTBC) {
+                dateEl.textContent = 'To be confirmed';
+                timeEl.textContent = 'To be confirmed';
+                slotEl.classList.add('loc-step3-summary__slot--active');
+            } else if (selDate && selTime) {
+                dateEl.textContent = selDate;
+                timeEl.textContent = selTimeLabel + ' (' + selTime + ')';
+                slotEl.classList.add('loc-step3-summary__slot--active');
+            } else if (selDate) {
+                dateEl.textContent = selDate;
+                timeEl.textContent = 'Choose a time above';
+                slotEl.classList.remove('loc-step3-summary__slot--active');
+            } else {
+                dateEl.textContent = '\u2014';
+                timeEl.textContent = '\u2014';
+                slotEl.classList.remove('loc-step3-summary__slot--active');
+            }
+        }
+
+        function updateReserveBtn() {
+            updateStickyBar();
+            // Reserve button is now inside the slot panel
+            // Nothing needed here — handled by slot class
+        }
+
+        // ── MODAL TRIGGERS ──
+            var overlay  = document.getElementById('loc-modal-overlay');
+            var closeBtn = document.getElementById('loc-modal-close');
+
+            function openModal() {
+                if (!selDate && !selTime && !isDateTBC) return;
+                document.getElementById('loc-modal-slot-summary').textContent = isDateTBC
+                    ? 'Date to be confirmed on the call'
+                    : selDate + ', ' + selTimeLabel + ' (' + selTime + ')';
+                overlay.classList.add('is-visible');
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Slot panel reserve button
+            var slotPanel = document.getElementById('loc-summary-slot');
+            if (slotPanel) {
+                slotPanel.addEventListener('click', function() {
+                    openModal();
+                });
+            }
+
+            // Mobile sticky button
+            var stickyBtn3 = document.getElementById('loc-step3-sticky-btn');
+            if (stickyBtn3) {
+                stickyBtn3.addEventListener('click', function() {
+                    if (stickyBtn3.classList.contains('loc-step3-sticky-bottom__btn--disabled')) return;
+                    openModal();
+                });
+            }
+        closeBtn.addEventListener('click', function() {
+            overlay.classList.remove('is-visible');
+            document.body.style.overflow = '';
+        });
+
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                overlay.classList.remove('is-visible');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // ── STICKY BAR UPDATE ──
+            function updateStickyBar() {
+                if (window.innerWidth <= 600) {
+                    return;
+                }
+                var stickyBar3   = document.getElementById('loc-step3-sticky-bottom');
+                var stickyBtn3el = document.getElementById('loc-step3-sticky-btn');
+                var stickySlot   = document.getElementById('loc-sticky-slot');
+                var stickyTotal3 = document.getElementById('loc-sticky-total-3');
+
+                if (stickyTotal3) stickyTotal3.textContent = isSkip ? 'TBC' : total;
+
+                if (isDateTBC) {
+                    if (stickyBar3)   stickyBar3.classList.add('is-visible');
+                    if (stickyBtn3el) stickyBtn3el.classList.remove('loc-step3-sticky-bottom__btn--disabled');
+                    if (stickySlot)   stickySlot.textContent = 'Date to be confirmed on call';
+                } else if (selDate && selTime) {
+                    if (stickyBar3)   stickyBar3.classList.add('is-visible');
+                    if (stickyBtn3el) stickyBtn3el.classList.remove('loc-step3-sticky-bottom__btn--disabled');
+                    if (stickySlot)   stickySlot.textContent = selTimeLabel + ' \u00b7 ' + selDate.split(',')[0];
+                } else {
+                    if (stickyBar3)   stickyBar3.classList.remove('is-visible');
+                    if (stickyBtn3el) stickyBtn3el.classList.add('loc-step3-sticky-bottom__btn--disabled');
+                    if (stickySlot)   stickySlot.textContent = 'Select a date above';
+                }
+            }
+
+        // Callback buttons
+        document.querySelectorAll('.loc-step3-callback-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.loc-step3-callback-btn').forEach(function(b) {
+                    b.classList.remove('is-selected');
+                });
+                btn.classList.add('is-selected');
+                selCallback = { label: btn.dataset.label, time: btn.dataset.time };
+
+                if (window.innerWidth < 960) {
+                    var clearBtn = document.getElementById('loc-clear-date-btn');
+                    if (clearBtn) clearBtn.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ── SMART CALLBACK MESSAGE ──
+        function getCallbackMessage(label) {
+            var now  = new Date();
+            var hour = now.getHours();
+            var day  = now.getDay();
+            var isWeekend = day === 0 || day === 6;
+            var isFriday  = day === 5;
+
+            if (isWeekend) return "We'll call you first thing Monday morning to confirm your reservation.";
+
+            if (label === 'Morning') {
+                if (hour >= 8 && hour < 12) return "We'll aim to call you this morning.";
+                if (isFriday && hour >= 17) return "We'll call you Monday morning \u2014 our first available morning slot.";
+                return "We'll aim to call you tomorrow morning.";
+            }
+            if (label === 'Afternoon') {
+                if (hour >= 8 && hour < 17) return "We'll aim to call you this afternoon.";
+                return "We'll aim to call you tomorrow afternoon.";
+            }
+            if (label === 'Evening') {
+                if (hour >= 8 && hour < 20) return "We'll aim to call you this evening.";
+                return "We'll aim to call you tomorrow evening.";
+            }
+            return "We'll call you during your preferred callback window.";
+        }
+
+        // ── SUBMIT ──
+        document.getElementById('loc-submit-btn').addEventListener('click', function() {
+            var first = document.getElementById('loc-first-name').value.trim();
+            var last  = document.getElementById('loc-last-name').value.trim();
+            var phone = document.getElementById('loc-phone').value.trim();
+            var email = document.getElementById('loc-email').value.trim();
+
+            // Basic validation
+                if (!first || !last || !phone || !email) {
+                    alert('Please fill in all fields before confirming.');
+                    return;
+                }
+
+                // Phone validation — UK format, numbers only, 10-11 digits
+                var phoneClean = phone.replace(/[\s\-\(\)]/g, '');
+                var phoneValid = /^(\+44|0)[0-9]{10}$/.test(phoneClean);
+                if (!phoneValid) {
+                    alert('Please enter a valid UK phone number — for example 07700 000000 or 01234 567890.');
+                    return;
+                }
+
+                // Email validation
+                var emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+                if (!emailValid) {
+                    alert('Please enter a valid email address — for example sarah@example.com.');
+                    return;
+                }
+
+            if (!selCallback) {
+                alert('Please select a preferred callback time.');
+                return;
+            }
+
+            overlay.classList.remove('is-visible');
+            document.body.style.overflow = '';
+
+            // Populate confirmation panel
+            document.getElementById('loc-confirm-date').textContent = isDateTBC
+                ? 'To be confirmed on the call'
+                : selDate + ' \u2014 ' + selTimeLabel + ' (' + selTime + ')';
+            document.getElementById('loc-confirm-total').textContent = isSkip 
+                ? 'To be discussed on the call' 
+                : '\u00a3' + total + ' \u2014 Fixed Price';
+            document.getElementById('loc-confirm-name').textContent      = first + ' ' + last;
+            document.getElementById('loc-confirm-callback').textContent  = selCallback.label + ' (' + selCallback.time + ')';
+            document.getElementById('loc-callback-smart-message').textContent = getCallbackMessage(selCallback.label);
+
+            // Stop the reserve button flashing — booking is confirmed
+            document.getElementById('loc-summary-slot').classList.remove('loc-step3-summary__slot--active');
+
+            // Hide main, show confirmation
+            document.getElementById('loc-step3-main').style.display = 'none';
+            document.getElementById('loc-confirmation-wrap').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Hide funnel chrome — no longer needed after confirmation
+            var funnelHeader   = document.querySelector('.loc-funnel-header');
+            var funnelProgress = document.querySelector('.loc-funnel-progress');
+            var funnelPageHeader = document.querySelector('.loc-funnel-page-header');
+            if (funnelHeader)     funnelHeader.style.display     = 'none';
+            if (funnelProgress)   funnelProgress.style.display   = 'none';
+            if (funnelPageHeader) funnelPageHeader.style.display = 'none';
+
+            // Clear session
+            sessionStorage.removeItem('loc_selections');
+            sessionStorage.removeItem('loc_total');
+            sessionStorage.removeItem('loc_postcode');
+            sessionStorage.removeItem('loc_from_step1');
+        });
+
+        // Init
+        renderCalendar();
+    });
+    </script>
+    <?php
+}
+add_action('wp_footer', 'loc_step3_script');
