@@ -91,7 +91,7 @@ ul, ol {
 
   /* ---- RADIUS SCALE ---- */
   --radius-xs: 2px; --radius-sm: 4px; --radius-md: 8px;
-  --radius-lg: 16px; --radius-full: 50%;
+  --radius-lg: 16px; --radius-pill: 20px; --radius-full: 50%;
 
   /* ---- Z-INDEX LADDER ---- */
   --z-base: 1; --z-raised: 2; --z-sticky: 100; --z-fixed-bar: 200;
@@ -153,7 +153,7 @@ a:hover {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: 14px 28px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   text-decoration: none;
   border: none;
   cursor: pointer;
@@ -175,7 +175,7 @@ a:hover {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: 13px 28px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   text-decoration: none;
   border: 2px solid var(--white);
   cursor: pointer;
@@ -197,7 +197,7 @@ a:hover {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: 13px 28px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   text-decoration: none;
   border: 2px solid var(--blue);
   cursor: pointer;
@@ -278,7 +278,7 @@ a:hover {
     width: 3px;
     height: 42px;
     background: var(--gold);
-    border-radius: 2px;
+    border-radius: var(--radius-xs);
 }
 
 .loc-logo__text {
@@ -389,7 +389,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     transition: border-color 0.2s;
 }
 
@@ -418,7 +418,7 @@ a:hover {
     width: 24px;
     height: 2px;
     background: var(--blue);
-    border-radius: 2px;
+    border-radius: var(--radius-xs);
     transition: transform 0.3s ease, opacity 0.3s ease;
     transform-origin: center;
 }
@@ -591,7 +591,7 @@ a:hover {
     align-items: center;
     gap: 10px;
     border: 2px solid rgba(255,255,255,0.5);
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     padding: 14px 16px 16px;
 }
 
@@ -1086,7 +1086,7 @@ a:hover {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     font-size: 16px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1217,7 +1217,7 @@ a:hover {
     right: 500px;
     width: 300px;
     height: 300px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     border: 50px solid rgba(201,150,12,0.08);
     pointer-events: none;
 }
@@ -1229,7 +1229,7 @@ a:hover {
     right: 80px;
     width: 200px;
     height: 200px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     border: 30px solid rgba(201,150,12,0.05);
     pointer-events: none;
 }
@@ -1380,7 +1380,7 @@ a:hover {
     right: 200px;
     width: 300px;
     height: 300px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     border: 50px solid rgba(201,150,12,0.08);
     pointer-events: none;
 }
@@ -1720,7 +1720,7 @@ a:hover {
     top: 8px;
     width: 6px;
     height: 6px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     background: var(--gold);
 }
 
@@ -2194,7 +2194,7 @@ a:hover {
 .loc-services-card {
     background: var(--white);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     padding: 24px;
 }
 
@@ -2253,7 +2253,7 @@ a:hover {
 
 .loc-services-commercial-card {
     background: var(--white);
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     padding: 28px 24px;
     border-left: 4px solid var(--gold);
 }
@@ -2283,7 +2283,7 @@ a:hover {
 
 .loc-services-soon-card {
     border: 2px dashed var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     padding: 28px 24px;
     position: relative;
 }
@@ -2298,7 +2298,7 @@ a:hover {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: 4px 10px;
-    border-radius: 20px;
+    border-radius: var(--radius-pill);
     margin-bottom: 12px;
 }
 
@@ -2540,7 +2540,7 @@ a:hover {
 
 .loc-areas-page-map-placeholder {
     border: 2px dashed var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     min-height: 280px;
     display: flex;
     flex-direction: column;
@@ -2629,7 +2629,7 @@ a:hover {
     font-size: 12px;
     color: var(--blue);
     background: var(--lightgrey);
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     padding: 2px 6px;
 }
 
@@ -2739,7 +2739,7 @@ a:hover {
     right: -80px;
     width: 360px;
     height: 360px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     border: 60px solid rgba(201,150,12,0.07);
     pointer-events: none;
 }
@@ -2851,7 +2851,7 @@ a:hover {
     right: -40px;
     width: 200px;
     height: 200px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     border: 30px solid rgba(201,150,12,0.08);
     pointer-events: none;
 }
@@ -2866,7 +2866,7 @@ a:hover {
 .loc-about-intro__avatar {
     width: 80px;
     height: 80px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     background: rgba(255,255,255,0.1);
     border: 2px solid rgba(255,255,255,0.2);
     display: flex;
@@ -3064,7 +3064,7 @@ a:hover {
     right: -60px;
     width: 300px;
     height: 300px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     border: 50px solid rgba(201,150,12,0.07);
     pointer-events: none;
 }
@@ -3298,7 +3298,7 @@ a:hover {
     width: 40px;
     height: 40px;
     background: var(--white);
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3379,7 +3379,7 @@ a:hover {
     top: 7px;
     width: 6px;
     height: 6px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     background: var(--gold);
 }
 
@@ -3434,7 +3434,7 @@ a:hover {
     right: -60px;
     width: 250px;
     height: 250px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     border: 40px solid rgba(201,150,12,0.07);
     pointer-events: none;
 }
@@ -3606,7 +3606,7 @@ a:hover {
     left: 10%;
     width: 280px;
     height: 280px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     border: 50px solid rgba(255,255,255,0.03);
     pointer-events: none;
 }
@@ -3687,7 +3687,7 @@ a:hover {
     width: 44px;
     height: 44px;
     background: #EEF3FA;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3777,7 +3777,7 @@ a:hover {
     width: 36px;
     height: 36px;
     background: var(--gold);
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3819,7 +3819,7 @@ a:hover {
     right: -60px;
     width: 300px;
     height: 300px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     border: 50px solid rgba(201,150,12,0.07);
     pointer-events: none;
 }
@@ -4123,7 +4123,7 @@ a:hover {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     font-size: 14px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4180,7 +4180,7 @@ a:hover {
     right: -60px;
     width: 250px;
     height: 250px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     border: 40px solid rgba(201,150,12,0.07);
     pointer-events: none;
 }
@@ -4412,7 +4412,7 @@ a:hover {
     top: 9px;
     width: 6px;
     height: 6px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     background: var(--gold);
 }
 
@@ -4856,7 +4856,7 @@ a:hover {
     width: 60px;
     height: 60px;
     background: var(--white);
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -5386,7 +5386,7 @@ a:hover {
 .loc-funnel-step__num {
     width: 26px;
     height: 26px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     border: 2px solid rgba(255,255,255,0.6);
     display: flex;
     align-items: center;
@@ -5599,7 +5599,7 @@ a:hover {
     color: var(--white);
     font-size: 12px;
     font-weight: 700;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -5925,7 +5925,7 @@ a:hover {
         transform: translateX(-50%);
         width: 44px;
         height: 44px;
-        border-radius: 50%;
+        border-radius: var(--radius-full);
         background: var(--blue);
         color: var(--white);
         align-items: center;
@@ -6986,7 +6986,7 @@ a:hover {
 .loc-step3-legend-dot {
     width: 12px;
     height: 12px;
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     flex-shrink: 0;
 }
 
@@ -7061,7 +7061,7 @@ a:hover {
     width: 100%;
     aspect-ratio: 1;
     border: 1px solid transparent;
-    border-radius: 2px;
+    border-radius: var(--radius-xs);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7641,7 +7641,7 @@ a:hover {
     width: 72px;
     height: 72px;
     background: var(--blue);
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
