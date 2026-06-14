@@ -1,4 +1,4 @@
-﻿/*
+/*
 Theme Name:        Leicester Oven Cleaning
 Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
@@ -7334,9 +7334,9 @@ a:hover {
 }
 /* STEP 3 â€” PULSING GOLD ANIMATION */
 @keyframes loc-pulse-gold {
-    0%   { background: #C9960C; }
-    50%  { background: #e8b020; }
-    100% { background: #C9960C; }
+    0%   { background: var(--gold); }
+    50%  { background: var(--gold-light); }
+    100% { background: var(--gold); }
 }
 
 .loc-step3-summary__slot--active .loc-step3-summary__slot-reserve {
@@ -7539,7 +7539,7 @@ a:hover {
 .loc-step3-form-input:-webkit-autofill,
 .loc-step3-form-input:-webkit-autofill:hover,
 .loc-step3-form-input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0px 1000px #F5F5F5 inset;
+    -webkit-box-shadow: 0 0 0px 1000px var(--lightgrey) inset;
     -webkit-text-fill-color: var(--offblack);
 }
 
