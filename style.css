@@ -604,13 +604,6 @@ a:hover {
     text-transform: uppercase;
 }
 
-.loc-hero__cta-subtext {
-    width: 100%;
-    text-align: center;
-    font-size: 13px;
-    color: rgba(255,255,255,0.75);
-    margin-top: 4px;
-}
 
 /* HERO RESPONSIVE */
 @media (max-width: 768px) {
@@ -799,9 +792,6 @@ a:hover {
         padding: 48px 40px;
     }
 
-    .loc-hww__subtitle {
-        margin: 0 auto 36px;
-    }
 
     .loc-business-banner {
         padding: 44px 40px;
@@ -1404,15 +1394,6 @@ a:hover {
     text-align: left;
 }
 
-.loc-pricing__panel-eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
-}
 
 .loc-pricing__from {
     display: flex;
@@ -1503,44 +1484,9 @@ a:hover {
    FOUNDING RATE STRIP
    ============================================================ */
 
-.loc-founding-strip {
-    max-width: 1080px;
-    margin: 0 auto;
-    background: var(--gold);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 40px;
-    gap: 24px;
-}
 
-.loc-founding-strip__text {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    color: var(--white);
-    line-height: 1.5;
-}
 
-.loc-founding-strip__text strong {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    display: block;
-    margin-bottom: 4px;
-}
 
-.loc-founding-strip__badge {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    background: var(--white);
-    padding: 8px 16px;
-    white-space: nowrap;
-    flex-shrink: 0;
-}
 
 /* ============================================================
    BRAND LOGOS BAR
@@ -1681,11 +1627,6 @@ a:hover {
 }
 
 @media (max-width: 768px) {
-    .loc-founding-strip {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 20px 24px;
-    }
 
     .loc-brands-bar {
         padding: 24px 0;
@@ -1702,33 +1643,8 @@ a:hover {
     text-align: center;
 }
 
-.loc-hww__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 12px;
-}
 
-.loc-hww__title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    font-size: 36px;
-    color: var(--blue);
-    margin-bottom: 12px;
-    line-height: 1.15;
-}
 
-.loc-hww__subtitle {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 17px;
-    color: #666;
-    max-width: 560px;
-    margin: 0 auto 56px;
-    line-height: 1.6;
-}
 
 /* GRID */
 .loc-hww__grid {
@@ -1819,9 +1735,6 @@ a:hover {
         gap: 24px;
     }
 
-    .loc-hww__title {
-        font-size: 26px;
-    }
 }
 
 /* ============================================================
@@ -1977,22 +1890,8 @@ a:hover {
 }
 
 /* TWO COLUMN GRID */
-.loc-areas__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    max-width: 1080px;
-    margin: 0 auto;
-    text-align: left;
-    align-items: start;
-}
 
 /* POSTCODE LIST */
-.loc-areas__list {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-}
 
 .loc-areas__group-title {
     font-family: 'Montserrat', sans-serif;
@@ -2036,77 +1935,17 @@ a:hover {
 }
 
 /* RADIUS CALLOUT */
-.loc-areas__radius-note {
-    background: var(--white);
-    border-left: 4px solid var(--gold);
-    padding: 16px 20px;
-    margin-top: 8px;
-}
 
-.loc-areas__radius-note p {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
-    color: #555;
-    line-height: 1.6;
-}
 
-.loc-areas__radius-note strong {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    color: var(--blue);
-    display: block;
-    margin-bottom: 6px;
-    font-size: 13px;
-}
 
 /* MAP */
-.loc-areas__map {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
 
-.loc-areas__map-img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-    display: block;
-}
 
 /* MAP LEGEND */
-.loc-areas__map-legend {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 16px 20px;
-    background: var(--white);
-    border: 1px solid var(--border);
-}
 
-.loc-areas__legend-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
-    color: #555;
-}
 
-.loc-areas__legend-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    flex-shrink: 0;
-}
 
-.loc-areas__legend-dot--primary {
-    background: var(--blue);
-}
 
-.loc-areas__legend-dot--extended {
-    background: var(--blue);
-    opacity: 0.4;
-}
 
 /* AREAS NOTE */
 .loc-areas__note {
@@ -2135,10 +1974,6 @@ a:hover {
         padding: 60px 20px;
     }
 
-    .loc-areas__grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-    }
 
     .loc-areas__title {
         font-size: 26px;
@@ -5907,179 +5742,27 @@ a:hover {
     top: 100px;
 }
 
-.loc-step1-summary__box {
-    background: var(--blue);
-    padding: 32px 28px;
-    margin-bottom: 16px;
-}
 
-.loc-step1-summary__title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    font-size: 14px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 24px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
 
-.loc-step1-summary__empty {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    color: rgba(255,255,255,0.35);
-    font-style: italic;
-    text-align: center;
-    padding: 20px 0;
-}
 
-.loc-step1-summary__items {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 20px;
-    min-height: 80px;
-}
 
-.loc-step1-summary__item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-}
 
-.loc-step1-summary__item-name {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    color: var(--white);
-    line-height: 1.3;
-}
 
-.loc-step1-summary__item-price {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    color: var(--gold);
-    white-space: nowrap;
-    margin-left: 12px;
-}
 
-.loc-step1-summary__total-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding-top: 16px;
-    border-top: 2px solid rgba(255,255,255,0.15);
-    margin-top: 4px;
-}
 
-.loc-step1-summary__total-label {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
-}
 
-.loc-step1-summary__total-amount {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    font-size: 32px;
-    color: var(--white);
-    line-height: 1;
-}
 
-.loc-step1-summary__total-amount span {
-    font-size: 18px;
-    font-weight: 600;
-    vertical-align: super;
-}
 
 /* FOUNDING NOTE */
-.loc-step1-founding-note {
-    background: var(--gold);
-    padding: 14px 16px;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 16px;
-}
 
-.loc-step1-founding-note__icon {
-    font-size: 14px;
-    flex-shrink: 0;
-    margin-top: 1px;
-}
 
-.loc-step1-founding-note p {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    color: var(--blue);
-    line-height: 1.45;
-    letter-spacing: 0.01em;
-    margin: 0;
-}
 
 /* CONFIRM BUTTON */
-.loc-step1-confirm-btn {
-    display: block;
-    width: 100%;
-    background: var(--gold);
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    padding: 18px 24px;
-    text-align: center;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-    position: relative;
-}
 
-.loc-step1-confirm-btn::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    right: -4px;
-    width: 100%;
-    height: 100%;
-    border: 2px solid rgba(201,150,12,0.4);
-    pointer-events: none;
-}
 
-.loc-step1-confirm-btn:hover {
-    background: var(--gold-light);
-    color: var(--white);
-    transform: translateY(-2px);
-}
 
-.loc-step1-confirm-btn--disabled {
-    background: #ccc;
-    cursor: not-allowed;
-    pointer-events: none;
-    transform: none;
-    color: var(--white);
-}
 
-.loc-step1-confirm-btn--disabled::after {
-    border-color: transparent;
-}
 
-.loc-step1-confirm-subtext {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
-    color: #aaa;
-    text-align: center;
-    margin-top: 12px;
-    font-style: italic;
-    line-height: 1.5;
-}
 
 /* PRICE GUARANTEE */
 .loc-step1-price-guarantee {
@@ -6775,48 +6458,9 @@ a:hover {
 }
 
 /* CONTINUE BUTTON (from step 1 route) */
-.loc-step2-btn-continue {
-    display: block;
-    background: var(--gold);
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 20px 32px;
-    text-align: center;
-    text-decoration: none;
-    margin-top: 20px;
-    transition: background 0.2s, transform 0.15s;
-    position: relative;
-}
 
-.loc-step2-btn-continue::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    right: -4px;
-    width: 100%;
-    height: 100%;
-    border: 2px solid rgba(201,150,12,0.4);
-    pointer-events: none;
-}
 
-.loc-step2-btn-continue:hover {
-    background: var(--gold-light);
-    color: var(--white);
-    transform: translateY(-2px);
-}
 
-.loc-step2-continue-subtext {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
-    color: #aaa;
-    text-align: center;
-    margin-top: 10px;
-    font-style: italic;
-}
 
 /* STEP 2 STICKY BOTTOM BAR â€” mobile only, fixed at bottom */
 .loc-step2-sticky-bottom {
@@ -7330,14 +6974,6 @@ a:hover {
     margin-bottom: 6px;
 }
 
-.loc-step3-section-intro {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    color: #777;
-    line-height: 1.6;
-    margin-bottom: 24px;
-    max-width: 520px;
-}
 
 /* LEGEND */
 .loc-step3-legend {
@@ -7671,23 +7307,7 @@ a:hover {
     padding: 0;
 }
 
-.loc-step3-summary__slot-label {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 6px;
-}
 
-.loc-step3-summary__slot-value {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.4;
-    margin: 0;
-}
 
 /* RESERVE BUTTON */
 .loc-step3-btn-reserve {
@@ -7722,12 +7342,7 @@ a:hover {
 
 .loc-step3-btn-reserve:hover { background: var(--gold-light); }
 
-.loc-step3-btn-reserve--disabled {
-    background: #aaa;
-    cursor: not-allowed;
-}
 
-.loc-step3-btn-reserve--disabled::after { border-color: transparent; }
 
 .loc-step3-reserve-subtext {
     font-family: 'Open Sans', sans-serif;
@@ -8159,27 +7774,8 @@ a:hover {
     text-transform: uppercase;
 }
 
-.loc-step3-confirm-founding {
-    background: #FFF8E6;
-    border: 1px solid var(--gold);
-    padding: 16px 20px;
-    text-align: left;
-    margin-bottom: 0;
-}
 
-.loc-step3-confirm-founding p {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
-    color: #555;
-    line-height: 1.55;
-    margin: 0;
-}
 
-.loc-step3-confirm-founding strong {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    color: var(--gold);
-}
 
 .loc-step3-btn-home {
     display: inline-block;
