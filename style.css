@@ -64,8 +64,8 @@ ul, ol {
 
   /* ---- TYPE SCALE (px; body base = --text-body 17px) ---- */
   --text-fine: 11px; --text-xs: 12px;  --text-sm: 13px;  --text-ui: 14px;
-  --text-ui-lg: 15px; --text-body-sm: 16px; --text-body: 17px; --text-lead: 20px;
-  --text-h4: 24px;   --text-h3: 28px;  --text-h2: 32px;  --text-h1: 40px;
+  --text-ui-lg: 15px; --text-body-sm: 16px; --text-body: 17px; --text-body-lg: 18px; --text-lead: 20px;
+  --text-h4: 24px;   --text-h3: 28px;  --text-h2: 32px;  --text-h2-lg: 36px; --text-h1: 40px;
   --text-display: 56px; --text-hero: 80px; --text-hero-xl: 120px;
 
   /* ---- GREY SCALE (grey-100 = current --border, grey-50 = current --lightgrey) ---- */
@@ -110,7 +110,7 @@ html, body {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  font-size: 17px;
+  font-size: var(--text-body);
   color: var(--offblack);
   background: var(--white);
 }
@@ -121,12 +121,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Heading size scale â€” matches mockup spec */
-h1 { font-size: 42px; font-weight: 800; }
-h2 { font-size: 32px; font-weight: 700; }
-h3 { font-size: 26px; font-weight: 700; }
-h4 { font-size: 22px; font-weight: 600; }
-h5 { font-size: 18px; font-weight: 600; }
-h6 { font-size: 16px; font-weight: 600; }
+h1 { font-size: var(--text-h1); font-weight: 800; }
+h2 { font-size: var(--text-h2); font-weight: 700; }
+h3 { font-size: var(--text-h3); font-weight: 700; }
+h4 { font-size: var(--text-h4); font-weight: 600; }
+h5 { font-size: var(--text-body-lg); font-weight: 600; }
+h6 { font-size: var(--text-body-sm); font-weight: 600; }
 
 /* Links */
 a {
@@ -149,7 +149,7 @@ a:hover {
   color: var(--white);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 15px;
+  font-size: var(--text-ui-lg);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: var(--space-4) var(--space-7);
@@ -171,7 +171,7 @@ a:hover {
   color: var(--white);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 15px;
+  font-size: var(--text-ui-lg);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: var(--space-4) var(--space-7);
@@ -193,7 +193,7 @@ a:hover {
   color: var(--white);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 15px;
+  font-size: var(--text-ui-lg);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: var(--space-4) var(--space-7);
@@ -239,7 +239,7 @@ a:hover {
 .section-eyebrow {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 11px;
+  font-size: var(--text-fine);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
@@ -289,7 +289,7 @@ a:hover {
 .loc-logo__top {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--blue);
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -299,7 +299,7 @@ a:hover {
 .loc-logo__bottom {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
-    font-size: 11px;
+    font-size: var(--text-fine);
     color: var(--gold);
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -323,7 +323,7 @@ a:hover {
 
 .loc-nav__list a {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     font-weight: 600;
     color: var(--offblack);
     text-decoration: none;
@@ -349,7 +349,7 @@ a:hover {
     color: var(--blue);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     padding: var(--space-3) var(--space-5);
@@ -372,12 +372,12 @@ a:hover {
 
 .btn-primary--small {
     padding: 9px var(--space-4);
-    font-size: 11px;
+    font-size: var(--text-fine);
 }
 
 .btn-ghost-blue--small {
     padding: var(--space-2) var(--space-4);
-    font-size: 11px;
+    font-size: var(--text-fine);
 }
 
 /* HAMBURGER */
@@ -461,7 +461,7 @@ a:hover {
     display: block;
     padding: var(--space-4) 0;
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     font-weight: 600;
     color: var(--offblack);
     text-decoration: none;
@@ -556,7 +556,7 @@ a:hover {
 .loc-hero__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 56px;
+    font-size: var(--text-display);
     color: var(--white);
     line-height: 1.1;
     margin-bottom: var(--space-6);
@@ -565,7 +565,7 @@ a:hover {
 
 .loc-hero__tagline {
     font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
+    font-size: var(--text-lead);
     color: rgba(255,255,255,0.85);
     margin-bottom: var(--space-10);
     line-height: 1.5;
@@ -598,7 +598,7 @@ a:hover {
 .loc-hero__cta-label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     letter-spacing: 0.06em;
     color: var(--white);
     text-transform: uppercase;
@@ -608,11 +608,11 @@ a:hover {
 /* HERO RESPONSIVE */
 @media (max-width: 768px) {
     .loc-hero__title {
-        font-size: 28px;
+        font-size: var(--text-h3);
     }
 
     .loc-hero__tagline {
-        font-size: 14px;
+        font-size: var(--text-ui);
         margin-bottom: var(--space-6);
     }
 
@@ -632,7 +632,7 @@ a:hover {
 
     .loc-hero__ctas .btn-primary,
     .loc-hero__ctas .btn-ghost {
-        font-size: 12px;
+        font-size: var(--text-xs);
         padding: var(--space-3) var(--space-5);
         width: 200px;
         text-align: center;
@@ -673,7 +673,7 @@ a:hover {
 }
 
 .loc-trust__icon {
-    font-size: 22px;
+    font-size: var(--text-h4);
     color: var(--gold);
     font-weight: 700;
     flex-shrink: 0;
@@ -688,7 +688,7 @@ a:hover {
 
 .loc-trust__text strong {
     font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     font-weight: 700;
     color: var(--white);
     letter-spacing: 0.02em;
@@ -697,7 +697,7 @@ a:hover {
 
 .loc-trust__text span {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: rgba(255,255,255,0.7);
     line-height: 1.4;
 }
@@ -726,11 +726,11 @@ a:hover {
     }
 
     .loc-trust__text strong {
-        font-size: 11px;
+        font-size: var(--text-fine);
     }
 
     .loc-trust__text span {
-        font-size: 11px;
+        font-size: var(--text-fine);
     }
 }
 
@@ -846,7 +846,7 @@ a:hover {
 .loc-footer__logo-top {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 18px;
+    font-size: var(--text-body-lg);
     color: var(--white);
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -856,7 +856,7 @@ a:hover {
 .loc-footer__logo-bottom {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: var(--gold);
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -864,7 +864,7 @@ a:hover {
 
 .loc-footer__tagline {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: rgba(255,255,255,0.7);
     line-height: 1.6;
     margin-bottom: var(--space-5);
@@ -878,7 +878,7 @@ a:hover {
 
 .loc-footer__badge {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: rgba(255,255,255,0.8);
     display: flex;
     align-items: center;
@@ -889,7 +889,7 @@ a:hover {
 .loc-footer__heading {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--gold);
@@ -908,7 +908,7 @@ a:hover {
 
 .loc-footer__list a {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: rgba(255,255,255,0.75);
     text-decoration: none;
     transition: color 0.2s;
@@ -936,14 +936,14 @@ a:hover {
 
 .loc-footer__copyright {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: rgba(255,255,255,0.6);
     margin: 0;
 }
 
 .loc-footer__legal-note {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: rgba(255,255,255,0.5);
     margin: 0;
 }
@@ -1006,7 +1006,7 @@ a:hover {
 .loc-reserve__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -1016,7 +1016,7 @@ a:hover {
 .loc-reserve__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 36px;
+    font-size: var(--text-h2-lg);
     color: var(--blue);
     margin-bottom: var(--space-3);
     line-height: 1.15;
@@ -1024,7 +1024,7 @@ a:hover {
 
 .loc-reserve__subtitle {
     font-family: 'Open Sans', sans-serif;
-    font-size: 17px;
+    font-size: var(--text-body);
     color: var(--grey-500);
     max-width: 560px;
     margin: 0 auto var(--space-16);
@@ -1085,7 +1085,7 @@ a:hover {
     color: var(--white);
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     border-radius: var(--radius-full);
     display: flex;
     align-items: center;
@@ -1105,7 +1105,7 @@ a:hover {
 .loc-reserve__step-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     color: var(--blue);
     margin-bottom: var(--space-2);
     line-height: 1.25;
@@ -1113,7 +1113,7 @@ a:hover {
 
 .loc-reserve__step-desc {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--grey-500);
     line-height: 1.6;
 }
@@ -1138,7 +1138,7 @@ a:hover {
 
 .loc-reserve__cta p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--grey-400);
     letter-spacing: 0.02em;
 }
@@ -1146,7 +1146,7 @@ a:hover {
 @media (max-width: 768px) {
     #loc-home .btn-primary,
     #loc-home .btn-blue {
-        font-size: 11px;
+        font-size: var(--text-fine);
         padding: var(--space-3) var(--space-5);
     }
 }
@@ -1158,7 +1158,7 @@ a:hover {
     }
 
     .loc-reserve__title {
-        font-size: 26px;
+        font-size: var(--text-h3);
     }
 
     .loc-reserve__eyebrow {
@@ -1166,12 +1166,12 @@ a:hover {
     }
 
     .loc-reserve__title {
-        font-size: 26px;
+        font-size: var(--text-h3);
         margin-bottom: var(--space-2);
     }
 
     .loc-reserve__subtitle {
-        font-size: 15px;
+        font-size: var(--text-ui-lg);
         margin-bottom: var(--space-6);
     }
 
@@ -1250,7 +1250,7 @@ a:hover {
 .loc-business-banner__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -1260,7 +1260,7 @@ a:hover {
 .loc-business-banner__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 28px;
+    font-size: var(--text-h3);
     color: var(--white);
     line-height: 1.2;
     margin-bottom: var(--space-3);
@@ -1272,7 +1272,7 @@ a:hover {
 
 .loc-business-banner__sub {
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: rgba(255,255,255,0.75);
     line-height: 1.6;
     max-width: 540px;
@@ -1295,7 +1295,7 @@ a:hover {
     }
 
     .loc-business-banner__title {
-        font-size: 22px;
+        font-size: var(--text-h4);
     }
 
     .loc-business-banner {
@@ -1336,7 +1336,7 @@ a:hover {
 .loc-pricing__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -1346,7 +1346,7 @@ a:hover {
 .loc-pricing__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 36px;
+    font-size: var(--text-h2-lg);
     color: var(--blue);
     margin-bottom: var(--space-3);
     line-height: 1.15;
@@ -1354,7 +1354,7 @@ a:hover {
 
 .loc-pricing__subtitle {
     font-family: 'Open Sans', sans-serif;
-    font-size: 17px;
+    font-size: var(--text-body);
     color: var(--grey-500);
     max-width: 560px;
     margin: 0 auto var(--space-12);
@@ -1406,14 +1406,14 @@ a:hover {
 .loc-pricing__from-label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 18px;
+    font-size: var(--text-body-lg);
     color: rgba(255,255,255,0.7);
 }
 
 .loc-pricing__from-amount {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 80px;
+    font-size: var(--text-hero);
     color: var(--white);
     line-height: 1;
     letter-spacing: -0.02em;
@@ -1421,7 +1421,7 @@ a:hover {
 
 .loc-pricing__types {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: rgba(255,255,255,0.55);
     margin-bottom: var(--space-8);
     line-height: 1.6;
@@ -1434,7 +1434,7 @@ a:hover {
 
 .loc-pricing__subtext {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: rgba(255,255,255,0.4);
     line-height: 1.5;
 }
@@ -1459,7 +1459,7 @@ a:hover {
 .loc-pricing__icon-item span {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: rgba(255,255,255,0.85);
     letter-spacing: 0.02em;
 }
@@ -1475,7 +1475,7 @@ a:hover {
 
 .loc-pricing__more-hint span {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: rgba(255,255,255,0.5);
     font-style: italic;
 }
@@ -1501,7 +1501,7 @@ a:hover {
 .loc-brands-bar__label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--grey-300);
@@ -1536,7 +1536,7 @@ a:hover {
 .loc-brand {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 18px;
+    font-size: var(--text-body-lg);
     color: var(--grey-200);
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -1561,12 +1561,12 @@ a:hover {
     }
 
     .loc-pricing__title {
-        font-size: 26px;
+        font-size: var(--text-h3);
         margin-bottom: var(--space-2);
     }
 
     .loc-pricing__subtitle {
-        font-size: 15px;
+        font-size: var(--text-ui-lg);
         margin-bottom: var(--space-6);
     }
 
@@ -1583,11 +1583,11 @@ a:hover {
     }
 
     .loc-pricing__from-label {
-        font-size: 15px;
+        font-size: var(--text-ui-lg);
     }
 
     .loc-pricing__from-amount {
-        font-size: 32px;
+        font-size: var(--text-h2);
     }
 
     .loc-pricing__types {
@@ -1689,7 +1689,7 @@ a:hover {
 .loc-hww__group-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     color: var(--blue);
     line-height: 1.2;
 }
@@ -1706,7 +1706,7 @@ a:hover {
 
 .loc-hww__steps li {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--grey-600);
     line-height: 1.55;
     padding-left: 18px;
@@ -1750,7 +1750,7 @@ a:hover {
 .loc-reviews__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -1760,7 +1760,7 @@ a:hover {
 .loc-reviews__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 36px;
+    font-size: var(--text-h2-lg);
     color: var(--white);
     margin-bottom: var(--space-3);
     line-height: 1.15;
@@ -1768,7 +1768,7 @@ a:hover {
 
 .loc-reviews__subtitle {
     font-family: 'Open Sans', sans-serif;
-    font-size: 17px;
+    font-size: var(--text-body);
     color: var(--grey-500);
     max-width: 560px;
     margin: 0 auto var(--space-10);
@@ -1796,7 +1796,7 @@ a:hover {
 .loc-reviews__statement {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 18px;
+    font-size: var(--text-body-lg);
     color: var(--white);
     max-width: 500px;
     line-height: 1.4;
@@ -1804,7 +1804,7 @@ a:hover {
 
 .loc-reviews__invite {
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--grey-400);
 }
 
@@ -1816,7 +1816,7 @@ a:hover {
 
     .loc-reviews__subtitle {
         margin-bottom: var(--space-5);
-        font-size: 15px;
+        font-size: var(--text-ui-lg);
     }
 
     .loc-reviews__stars {
@@ -1829,7 +1829,7 @@ a:hover {
     }
 
     .loc-reviews__statement {
-        font-size: 16px;
+        font-size: var(--text-body-sm);
     }
 
     .loc-reviews__invite {
@@ -1837,7 +1837,7 @@ a:hover {
     }
 
     .loc-reviews__title {
-        font-size: 26px;
+        font-size: var(--text-h3);
     }
 }
 
@@ -1854,7 +1854,7 @@ a:hover {
 .loc-areas__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -1864,7 +1864,7 @@ a:hover {
 .loc-areas__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 36px;
+    font-size: var(--text-h2-lg);
     color: var(--blue);
     margin-bottom: var(--space-3);
     line-height: 1.15;
@@ -1872,7 +1872,7 @@ a:hover {
 
 .loc-areas__subtitle {
     font-family: 'Open Sans', sans-serif;
-    font-size: 17px;
+    font-size: var(--text-body);
     color: var(--grey-500);
     max-width: 560px;
     margin: 0 auto var(--space-12);
@@ -1896,7 +1896,7 @@ a:hover {
 .loc-areas__group-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--blue);
@@ -1917,7 +1917,7 @@ a:hover {
 
 .loc-areas__tags li {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--offblack);
     background: var(--white);
     padding: var(--space-2) var(--space-3);
@@ -1930,7 +1930,7 @@ a:hover {
 .loc-areas__tags li span {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     color: var(--gold);
 }
 
@@ -1950,7 +1950,7 @@ a:hover {
 /* AREAS NOTE */
 .loc-areas__note {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--grey-500);
     margin-top: var(--space-12);
     max-width: 1080px;
@@ -1976,7 +1976,7 @@ a:hover {
 
 
     .loc-areas__title {
-        font-size: 26px;
+        font-size: var(--text-h3);
     }
 }
 
@@ -1993,7 +1993,7 @@ a:hover {
 .loc-faq__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -2003,7 +2003,7 @@ a:hover {
 .loc-faq__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 36px;
+    font-size: var(--text-h2-lg);
     color: var(--blue);
     margin-bottom: var(--space-3);
     line-height: 1.15;
@@ -2011,7 +2011,7 @@ a:hover {
 
 .loc-faq__subtitle {
     font-family: 'Open Sans', sans-serif;
-    font-size: 17px;
+    font-size: var(--text-body);
     color: var(--grey-500);
     max-width: 560px;
     margin: 0 auto var(--space-14);
@@ -2044,7 +2044,7 @@ a:hover {
 .loc-faq__q {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--blue);
     margin-bottom: var(--space-3);
     line-height: 1.3;
@@ -2052,7 +2052,7 @@ a:hover {
 
 .loc-faq__a {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--grey-600);
     line-height: 1.7;
 }
@@ -2065,7 +2065,7 @@ a:hover {
 .loc-faq__more a {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--blue);
     text-decoration: none;
 }
@@ -2085,7 +2085,7 @@ a:hover {
     }
 
     .loc-faq__title {
-        font-size: 26px;
+        font-size: var(--text-h3);
     }
 
     .loc-areas__postcode-list {
@@ -2112,7 +2112,7 @@ a:hover {
 .loc-inner-cta__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--gold);
@@ -2122,14 +2122,14 @@ a:hover {
 .loc-inner-cta h2 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 32px;
+    font-size: var(--text-h2);
     color: var(--white);
     margin-bottom: var(--space-3);
 }
 
 .loc-inner-cta p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     color: rgba(255,255,255,0.8);
     margin-bottom: var(--space-7);
 }
@@ -2159,7 +2159,7 @@ a:hover {
 .loc-services-section__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--gold);
@@ -2169,14 +2169,14 @@ a:hover {
 .loc-services-section__heading {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 34px;
+    font-size: var(--text-h2);
     color: var(--blue);
     margin-bottom: var(--space-4);
 }
 
 .loc-services-section__intro {
     font-family: 'Open Sans', sans-serif;
-    font-size: 17px;
+    font-size: var(--text-body);
     color: var(--grey-600);
     max-width: 680px;
     line-height: 1.7;
@@ -2217,7 +2217,7 @@ a:hover {
 .loc-services-card__name {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--blue);
     line-height: 1.3;
 }
@@ -2225,20 +2225,20 @@ a:hover {
 .loc-services-card__price {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--gold);
     white-space: nowrap;
 }
 
 .loc-services-card__price--contact {
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--grey-500);
     font-weight: 600;
 }
 
 .loc-services-card__desc {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--grey-600);
     line-height: 1.65;
 }
@@ -2261,14 +2261,14 @@ a:hover {
 .loc-services-commercial-card__name {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     color: var(--blue);
     margin-bottom: var(--space-3);
 }
 
 .loc-services-commercial-card__desc {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--grey-600);
     line-height: 1.7;
 }
@@ -2294,7 +2294,7 @@ a:hover {
     color: var(--grey-500);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 10px;
+    font-size: var(--text-fine);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: var(--space-1) var(--space-3);
@@ -2305,7 +2305,7 @@ a:hover {
 .loc-services-soon-card__name {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     color: var(--blue);
     margin-bottom: var(--space-2);
     opacity: 0.7;
@@ -2313,14 +2313,14 @@ a:hover {
 
 .loc-services-soon-card__desc {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--grey-500);
     line-height: 1.65;
 }
 
 .loc-services-soon-note {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--grey-600);
     margin-top: var(--space-2);
 }
@@ -2338,7 +2338,7 @@ a:hover {
 
 .loc-services-cta__sub {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--grey-500);
     margin-top: var(--space-3);
 }
@@ -2378,14 +2378,14 @@ a:hover {
 .loc-hww-page-section__heading {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 28px;
+    font-size: var(--text-h3);
     color: var(--blue);
     margin-bottom: var(--space-4);
 }
 
 .loc-hww-page-section__body {
     font-family: 'Open Sans', sans-serif;
-    font-size: 17px;
+    font-size: var(--text-body);
     color: var(--grey-700);
     line-height: 1.75;
 }
@@ -2418,7 +2418,7 @@ a:hover {
 .loc-hww-checklist-section__heading {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 28px;
+    font-size: var(--text-h3);
     color: var(--white);
     margin-bottom: var(--space-8);
 }
@@ -2434,7 +2434,7 @@ a:hover {
 
 .loc-hww-checklist li {
     font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     color: rgba(255,255,255,0.9);
     line-height: 1.5;
     padding-left: var(--space-7);
@@ -2484,7 +2484,7 @@ a:hover {
 .loc-faq-page__group-heading {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 20px;
+    font-size: var(--text-lead);
     color: var(--blue);
     padding-bottom: var(--space-4);
     border-bottom: 2px solid var(--border);
@@ -2505,7 +2505,7 @@ a:hover {
 .loc-faq-page__q {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     color: var(--blue);
     margin-bottom: var(--space-2);
     line-height: 1.3;
@@ -2513,7 +2513,7 @@ a:hover {
 
 .loc-faq-page__a {
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--grey-700);
     line-height: 1.75;
 }
@@ -2549,12 +2549,12 @@ a:hover {
     gap: var(--space-3);
     color: var(--grey-300);
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     text-align: center;
 }
 
 .loc-areas-page-map-placeholder__note {
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--grey-300);
     margin-top: 0;
 }
@@ -2572,7 +2572,7 @@ a:hover {
 .loc-areas-page-list-section__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--gold);
@@ -2582,7 +2582,7 @@ a:hover {
 .loc-areas-page-list-section__heading {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 32px;
+    font-size: var(--text-h2);
     color: var(--blue);
     margin-bottom: var(--space-10);
 }
@@ -2596,7 +2596,7 @@ a:hover {
 .loc-areas-page-group-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--blue);
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -2616,7 +2616,7 @@ a:hover {
 
 .loc-areas-page-tags li {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--offblack);
     display: flex;
     justify-content: space-between;
@@ -2626,7 +2626,7 @@ a:hover {
 .loc-areas-page-tags li span {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: var(--blue);
     background: var(--lightgrey);
     border-radius: var(--radius-sm);
@@ -2647,14 +2647,14 @@ a:hover {
 .loc-areas-page-contact-section__heading {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 30px;
+    font-size: var(--text-h3);
     color: var(--white);
     margin-bottom: var(--space-4);
 }
 
 .loc-areas-page-contact-section p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     color: rgba(255,255,255,0.85);
     line-height: 1.7;
     margin-bottom: var(--space-7);
@@ -2674,14 +2674,14 @@ a:hover {
 .loc-areas-page-how-section__heading {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 26px;
+    font-size: var(--text-h3);
     color: var(--blue);
     margin-bottom: var(--space-4);
 }
 
 .loc-areas-page-how-section p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     color: var(--grey-700);
     line-height: 1.7;
     margin-bottom: var(--space-7);
@@ -2753,7 +2753,7 @@ a:hover {
 .loc-page-header__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--gold);
@@ -2763,7 +2763,7 @@ a:hover {
 .loc-page-header h1 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 48px;
+    font-size: var(--text-h1);
     color: var(--white);
     margin-bottom: var(--space-5);
     line-height: 1.1;
@@ -2775,7 +2775,7 @@ a:hover {
 
 .loc-page-header__intro {
     font-family: 'Open Sans', sans-serif;
-    font-size: 17px;
+    font-size: var(--text-body);
     color: rgba(255,255,255,0.75);
     line-height: 1.7;
     max-width: 560px;
@@ -2787,7 +2787,7 @@ a:hover {
     }
 
     .loc-page-header h1 {
-        font-size: 30px;
+        font-size: var(--text-h3);
     }
 }
 
@@ -2813,7 +2813,7 @@ a:hover {
 .loc-about-intro__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -2823,7 +2823,7 @@ a:hover {
 .loc-about-intro__text h2 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 36px;
+    font-size: var(--text-h2-lg);
     color: var(--blue);
     margin-bottom: var(--space-6);
     line-height: 1.15;
@@ -2831,7 +2831,7 @@ a:hover {
 
 .loc-about-intro__text p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     color: var(--grey-600);
     line-height: 1.75;
     margin-bottom: var(--space-4);
@@ -2878,21 +2878,21 @@ a:hover {
 .loc-about-intro__name {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 20px;
+    font-size: var(--text-lead);
     color: var(--white);
     margin-bottom: var(--space-1);
 }
 
 .loc-about-intro__role {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--gold);
     margin-bottom: var(--space-1);
 }
 
 .loc-about-intro__location {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: rgba(255,255,255,0.5);
     margin-bottom: var(--space-5);
 }
@@ -2906,7 +2906,7 @@ a:hover {
 
 .loc-about-intro__quote {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: rgba(255,255,255,0.75);
     line-height: 1.65;
     font-style: italic;
@@ -2927,7 +2927,7 @@ a:hover {
 .loc-about-values__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -2937,14 +2937,14 @@ a:hover {
 .loc-about-values__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 36px;
+    font-size: var(--text-h2-lg);
     color: var(--blue);
     margin-bottom: var(--space-3);
 }
 
 .loc-about-values__subtitle {
     font-family: 'Open Sans', sans-serif;
-    font-size: 17px;
+    font-size: var(--text-body);
     color: var(--grey-500);
     max-width: 560px;
     margin: 0 auto var(--space-14);
@@ -2977,7 +2977,7 @@ a:hover {
 .loc-about-values__card-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--blue);
     margin-bottom: var(--space-3);
     line-height: 1.3;
@@ -2985,7 +2985,7 @@ a:hover {
 
 .loc-about-values__card-text {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--grey-600);
     line-height: 1.7;
 }
@@ -3007,7 +3007,7 @@ a:hover {
 .loc-about-story__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -3017,7 +3017,7 @@ a:hover {
 .loc-about-story__block h3 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 24px;
+    font-size: var(--text-h4);
     color: var(--blue);
     margin-bottom: var(--space-5);
     line-height: 1.2;
@@ -3025,7 +3025,7 @@ a:hover {
 
 .loc-about-story__block p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--grey-600);
     line-height: 1.75;
     margin-bottom: var(--space-4);
@@ -3041,7 +3041,7 @@ a:hover {
 .loc-about-story__future-label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--gold);
@@ -3079,7 +3079,7 @@ a:hover {
 .loc-about-credentials__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -3089,7 +3089,7 @@ a:hover {
 .loc-about-credentials__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 32px;
+    font-size: var(--text-h2);
     color: var(--white);
     margin-bottom: var(--space-12);
 }
@@ -3121,14 +3121,14 @@ a:hover {
 .loc-about-credentials__label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--white);
     margin-bottom: var(--space-2);
 }
 
 .loc-about-credentials__value {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: rgba(255,255,255,0.6);
     line-height: 1.5;
 }
@@ -3148,7 +3148,7 @@ a:hover {
 .loc-about-cta__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -3158,14 +3158,14 @@ a:hover {
 .loc-about-cta h2 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 36px;
+    font-size: var(--text-h2-lg);
     color: var(--blue);
     margin-bottom: var(--space-3);
 }
 
 .loc-about-cta p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     color: var(--grey-500);
     margin-bottom: var(--space-8);
     line-height: 1.6;
@@ -3220,7 +3220,7 @@ a:hover {
 
     .loc-about-values__title,
     .loc-about-cta h2 {
-        font-size: 26px;
+        font-size: var(--text-h3);
     }
 }
 
@@ -3246,7 +3246,7 @@ a:hover {
 .loc-contact-details__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -3256,7 +3256,7 @@ a:hover {
 .loc-contact-details__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 28px;
+    font-size: var(--text-h3);
     color: var(--blue);
     margin-bottom: var(--space-3);
     line-height: 1.2;
@@ -3264,7 +3264,7 @@ a:hover {
 
 .loc-contact-details__intro {
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--grey-500);
     line-height: 1.7;
     margin-bottom: var(--space-8);
@@ -3307,7 +3307,7 @@ a:hover {
 .loc-contact-method__label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--blue);
@@ -3316,7 +3316,7 @@ a:hover {
 
 .loc-contact-method__value {
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--offblack);
     font-weight: 600;
     margin-bottom: var(--space-1);
@@ -3334,7 +3334,7 @@ a:hover {
 
 .loc-contact-method__note {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: var(--grey-400);
 }
 
@@ -3349,7 +3349,7 @@ a:hover {
 .loc-contact-promise__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--blue);
     margin-bottom: var(--space-4);
 }
@@ -3365,7 +3365,7 @@ a:hover {
 
 .loc-contact-promise__list li {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--grey-600);
     line-height: 1.5;
     padding-left: 18px;
@@ -3401,21 +3401,21 @@ a:hover {
 .loc-contact-reserve-nudge__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--blue);
     margin-bottom: var(--space-2);
 }
 
 .loc-contact-reserve-nudge__sub {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--grey-500);
     line-height: 1.5;
     margin-bottom: var(--space-4);
 }
 
 .loc-contact-reserve-nudge__btn {
-    font-size: 12px;
+    font-size: var(--text-xs);
     padding: var(--space-3) var(--space-5);
 }
 
@@ -3442,7 +3442,7 @@ a:hover {
 .loc-contact-form-box__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 20px;
+    font-size: var(--text-lead);
     color: var(--white);
     margin-bottom: var(--space-2);
     position: relative;
@@ -3451,7 +3451,7 @@ a:hover {
 
 .loc-contact-form-box__sub {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: rgba(255,255,255,0.65);
     line-height: 1.6;
     margin-bottom: var(--space-6);
@@ -3463,7 +3463,7 @@ a:hover {
 .loc-contact-form-box__type-label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.7);
@@ -3483,7 +3483,7 @@ a:hover {
 
 .loc-enquiry-btn {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     font-weight: 600;
     color: rgba(255,255,255,0.7);
     background: rgba(255,255,255,0.08);
@@ -3518,7 +3518,7 @@ a:hover {
     border: 1px solid rgba(255,255,255,0.2);
     color: var(--white);
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     padding: var(--space-3) var(--space-4);
     margin-bottom: var(--space-4);
     outline: none;
@@ -3545,7 +3545,7 @@ a:hover {
     color: var(--white);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     border: none;
@@ -3561,7 +3561,7 @@ a:hover {
 
 .loc-contact-form-box__privacy {
     font-family: 'Open Sans', sans-serif;
-    font-size: 11px;
+    font-size: var(--text-fine);
     color: rgba(255,255,255,0.4);
     margin-top: var(--space-4);
     line-height: 1.5;
@@ -3639,7 +3639,7 @@ a:hover {
 .loc-biz-who__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -3649,7 +3649,7 @@ a:hover {
 .loc-biz-who__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 34px;
+    font-size: var(--text-h2);
     color: var(--blue);
     margin-bottom: var(--space-3);
     line-height: 1.15;
@@ -3657,7 +3657,7 @@ a:hover {
 
 .loc-biz-who__subtitle {
     font-family: 'Open Sans', sans-serif;
-    font-size: 17px;
+    font-size: var(--text-body);
     color: var(--grey-500);
     max-width: 560px;
     margin: 0 auto var(--space-12);
@@ -3697,14 +3697,14 @@ a:hover {
 .loc-biz-who__card-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--blue);
     margin-bottom: var(--space-2);
 }
 
 .loc-biz-who__card-text {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--grey-500);
     line-height: 1.7;
 }
@@ -3724,7 +3724,7 @@ a:hover {
 .loc-biz-how__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -3734,14 +3734,14 @@ a:hover {
 .loc-biz-how__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 34px;
+    font-size: var(--text-h2);
     color: var(--blue);
     margin-bottom: var(--space-3);
 }
 
 .loc-biz-how__subtitle {
     font-family: 'Open Sans', sans-serif;
-    font-size: 17px;
+    font-size: var(--text-body);
     color: var(--grey-500);
     max-width: 560px;
     margin: 0 auto var(--space-12);
@@ -3783,7 +3783,7 @@ a:hover {
     justify-content: center;
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--white);
     margin-bottom: var(--space-4);
     ox-shadow: var(--shadow-gold);
@@ -3792,14 +3792,14 @@ a:hover {
 .loc-biz-how__step-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--blue);
     margin-bottom: var(--space-3);
 }
 
 .loc-biz-how__step-text {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--grey-500);
     line-height: 1.65;
 }
@@ -3838,7 +3838,7 @@ a:hover {
 .loc-biz-different__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -3848,7 +3848,7 @@ a:hover {
 .loc-biz-different__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 30px;
+    font-size: var(--text-h3);
     color: var(--white);
     margin-bottom: var(--space-5);
     line-height: 1.2;
@@ -3856,7 +3856,7 @@ a:hover {
 
 .loc-biz-different__text p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: rgba(255,255,255,0.7);
     line-height: 1.75;
     margin-bottom: var(--space-4);
@@ -3884,7 +3884,7 @@ a:hover {
 
 .loc-biz-different__item-text {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: rgba(255,255,255,0.75);
     line-height: 1.6;
 }
@@ -3895,7 +3895,7 @@ a:hover {
     color: var(--white);
     display: block;
     margin-bottom: var(--space-1);
-    font-size: 13px;
+    font-size: var(--text-sm);
 }
 
 /* SCOPE SECTION */
@@ -3913,7 +3913,7 @@ a:hover {
 .loc-biz-scope__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -3923,14 +3923,14 @@ a:hover {
 .loc-biz-scope__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 34px;
+    font-size: var(--text-h2);
     color: var(--blue);
     margin-bottom: var(--space-3);
 }
 
 .loc-biz-scope__subtitle {
     font-family: 'Open Sans', sans-serif;
-    font-size: 17px;
+    font-size: var(--text-body);
     color: var(--grey-500);
     max-width: 560px;
     margin: 0 auto var(--space-12);
@@ -3947,7 +3947,7 @@ a:hover {
 .loc-biz-scope__col-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     padding: var(--space-3) var(--space-4);
@@ -3976,7 +3976,7 @@ a:hover {
     gap: var(--space-3);
     padding: var(--space-3) var(--space-4);
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     line-height: 1.5;
 }
 
@@ -3995,7 +3995,7 @@ a:hover {
     display: block;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--offblack);
     margin-bottom: var(--space-1);
 }
@@ -4003,21 +4003,21 @@ a:hover {
 .loc-biz-scope__item--out span:last-of-type {
     display: block;
     color: var(--grey-400);
-    font-size: 12px;
+    font-size: var(--text-xs);
 }
 
 .loc-biz-scope__item--out strong {
     display: block;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--offblack);
     margin-bottom: var(--space-1);
 }
 
 .loc-biz-scope__honest {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--grey-400);
     font-style: italic;
     margin-top: var(--space-4);
@@ -4038,14 +4038,14 @@ a:hover {
 .loc-biz-hmo-note__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--white);
     margin-bottom: var(--space-3);
 }
 
 .loc-biz-hmo-note p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: rgba(255,255,255,0.7);
     line-height: 1.7;
     margin-bottom: var(--space-2);
@@ -4078,7 +4078,7 @@ a:hover {
 .loc-biz-contact__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -4088,7 +4088,7 @@ a:hover {
 .loc-biz-contact__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 28px;
+    font-size: var(--text-h3);
     color: var(--blue);
     margin-bottom: var(--space-3);
     line-height: 1.2;
@@ -4096,7 +4096,7 @@ a:hover {
 
 .loc-biz-contact__intro {
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--grey-500);
     line-height: 1.7;
     margin-bottom: var(--space-8);
@@ -4122,7 +4122,7 @@ a:hover {
     color: var(--white);
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 14px;
+    font-size: var(--text-ui);
     border-radius: var(--radius-full);
     display: flex;
     align-items: center;
@@ -4133,14 +4133,14 @@ a:hover {
 .loc-biz-contact__option-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--blue);
     margin-bottom: var(--space-2);
 }
 
 .loc-biz-contact__option-desc {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--grey-500);
     line-height: 1.6;
 }
@@ -4158,7 +4158,7 @@ a:hover {
 
 .loc-biz-callback-placeholder span {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: rgba(255,255,255,0.7);
     font-style: italic;
 }
@@ -4188,7 +4188,7 @@ a:hover {
 .loc-biz-form-box__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 20px;
+    font-size: var(--text-lead);
     color: var(--white);
     margin-bottom: var(--space-2);
     position: relative;
@@ -4197,7 +4197,7 @@ a:hover {
 
 .loc-biz-form-box__sub {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: rgba(255,255,255,0.65);
     line-height: 1.6;
     margin-bottom: var(--space-6);
@@ -4207,7 +4207,7 @@ a:hover {
 
 .loc-biz-form-box__privacy {
     font-family: 'Open Sans', sans-serif;
-    font-size: 11px;
+    font-size: var(--text-fine);
     color: rgba(255,255,255,0.4);
     margin-top: var(--space-4);
     line-height: 1.5;
@@ -4266,7 +4266,7 @@ a:hover {
     .loc-biz-who__title,
     .loc-biz-how__title,
     .loc-biz-scope__title {
-        font-size: 26px;
+        font-size: var(--text-h3);
     }
 
     .loc-biz-hmo-note {
@@ -4306,7 +4306,7 @@ a:hover {
     align-items: center;
     gap: var(--space-2);
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: rgba(255,255,255,0.6);
 }
 
@@ -4350,7 +4350,7 @@ a:hover {
 .loc-legal-section__label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 10px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -4360,7 +4360,7 @@ a:hover {
 .loc-legal-section h2 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 22px;
+    font-size: var(--text-h4);
     color: var(--blue);
     margin-bottom: var(--space-4);
     line-height: 1.2;
@@ -4369,7 +4369,7 @@ a:hover {
 .loc-legal-section h3 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--blue);
     margin-top: var(--space-5);
     margin-bottom: var(--space-3);
@@ -4377,7 +4377,7 @@ a:hover {
 
 .loc-legal-section p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--grey-700);
     line-height: 1.8;
     margin-bottom: var(--space-4);
@@ -4398,7 +4398,7 @@ a:hover {
 
 .loc-legal-section ul li {
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--grey-700);
     line-height: 1.6;
     padding-left: var(--space-5);
@@ -4438,7 +4438,7 @@ a:hover {
 }
 
 .loc-legal-important p {
-    font-size: 14px;
+    font-size: var(--text-ui);
     margin-bottom: 0;
 }
 
@@ -4456,7 +4456,7 @@ a:hover {
 }
 
 .loc-legal-highlight p {
-    font-size: 14px;
+    font-size: var(--text-ui);
     line-height: 1.9;
     margin-bottom: 0;
 }
@@ -4476,7 +4476,7 @@ a:hover {
     width: 100%;
     border-collapse: collapse;
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
 }
 
 .loc-legal-table thead {
@@ -4488,7 +4488,7 @@ a:hover {
     text-align: left;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: var(--white);
     letter-spacing: 0.05em;
 }
@@ -4531,7 +4531,7 @@ a:hover {
 .loc-legal-sidebar__nav-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--blue);
@@ -4549,7 +4549,7 @@ a:hover {
 
 .loc-legal-sidebar__nav ul li a {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--grey-500);
     text-decoration: none;
     display: block;
@@ -4580,7 +4580,7 @@ a:hover {
 .loc-legal-sidebar__ico-label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 10px;
+    font-size: var(--text-fine);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--gold);
@@ -4589,7 +4589,7 @@ a:hover {
 
 .loc-legal-sidebar__ico p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: rgba(255,255,255,0.65);
     line-height: 1.6;
     margin-bottom: var(--space-2);
@@ -4613,21 +4613,21 @@ a:hover {
 .loc-legal-sidebar__contact-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--blue);
     margin-bottom: var(--space-2);
 }
 
 .loc-legal-sidebar__contact p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--grey-500);
     line-height: 1.5;
     margin-bottom: var(--space-4);
 }
 
 .loc-legal-sidebar__contact-btn {
-    font-size: 12px;
+    font-size: var(--text-xs);
     padding: var(--space-3) var(--space-5);
 }
 
@@ -4652,7 +4652,7 @@ a:hover {
     }
 
     .loc-legal-section h2 {
-        font-size: 18px;
+        font-size: var(--text-body-lg);
     }
 }
 
@@ -4696,7 +4696,7 @@ a:hover {
 
 .loc-blog-coming-soon p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--blue);
     line-height: 1.5;
 }
@@ -4705,7 +4705,7 @@ a:hover {
 .loc-blog-eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -4715,7 +4715,7 @@ a:hover {
 .loc-blog-heading {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 28px;
+    font-size: var(--text-h3);
     color: var(--blue);
     margin-bottom: var(--space-7);
 }
@@ -4769,7 +4769,7 @@ a:hover {
 
 .loc-blog-card__image-placeholder span {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: var(--grey-300);
 }
 
@@ -4779,7 +4779,7 @@ a:hover {
     left: 12px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 10px;
+    font-size: var(--text-fine);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--white);
@@ -4799,7 +4799,7 @@ a:hover {
 .loc-blog-card__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     color: var(--blue);
     line-height: 1.35;
     margin-bottom: var(--space-3);
@@ -4812,7 +4812,7 @@ a:hover {
 
 .loc-blog-card__excerpt {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--grey-500);
     line-height: 1.7;
 }
@@ -4827,14 +4827,14 @@ a:hover {
 
 .loc-blog-card__date {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: var(--grey-300);
 }
 
 .loc-blog-card__read {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: var(--blue);
     text-decoration: none;
     letter-spacing: 0.02em;
@@ -4866,14 +4866,14 @@ a:hover {
 .loc-blog-empty h3 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 18px;
+    font-size: var(--text-body-lg);
     color: var(--blue);
     margin-bottom: var(--space-3);
 }
 
 .loc-blog-empty p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--grey-400);
     line-height: 1.7;
     max-width: 400px;
@@ -4896,7 +4896,7 @@ a:hover {
 .loc-blog-pagination .page-numbers {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--blue);
     text-decoration: none;
     padding: var(--space-2) var(--space-4);
@@ -4928,7 +4928,7 @@ a:hover {
 .loc-blog-sidebar__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--blue);
@@ -4946,7 +4946,7 @@ a:hover {
 
 .loc-blog-sidebar__cats li a {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--grey-500);
     text-decoration: none;
     display: flex;
@@ -4966,7 +4966,7 @@ a:hover {
 .loc-blog-sidebar__count {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     color: var(--grey-300);
 }
 
@@ -4979,7 +4979,7 @@ a:hover {
 .loc-blog-sidebar__cta-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--white);
     margin-bottom: var(--space-2);
     line-height: 1.3;
@@ -4987,14 +4987,14 @@ a:hover {
 
 .loc-blog-sidebar__cta-sub {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: rgba(255,255,255,0.65);
     line-height: 1.5;
     margin-bottom: var(--space-4);
 }
 
 .loc-blog-sidebar__cta-btn {
-    font-size: 12px;
+    font-size: var(--text-xs);
     padding: var(--space-3) var(--space-4);
     display: block;
     text-align: center;
@@ -5035,7 +5035,7 @@ a:hover {
 .loc-single-header__cat {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--white);
@@ -5045,7 +5045,7 @@ a:hover {
 
 .loc-single-header__date {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: rgba(255,255,255,0.6);
 }
 
@@ -5063,7 +5063,7 @@ a:hover {
 /* PROSE CONTENT */
 .loc-single-prose {
     font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     color: var(--grey-700);
     line-height: 1.85;
 }
@@ -5071,7 +5071,7 @@ a:hover {
 .loc-single-prose h2 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 24px;
+    font-size: var(--text-h4);
     color: var(--blue);
     margin: var(--space-8) 0 var(--space-4);
     line-height: 1.2;
@@ -5080,7 +5080,7 @@ a:hover {
 .loc-single-prose h3 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 18px;
+    font-size: var(--text-body-lg);
     color: var(--blue);
     margin: var(--space-7) 0 var(--space-3);
 }
@@ -5134,7 +5134,7 @@ a:hover {
 .loc-single-back {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--blue);
     text-decoration: none;
     transition: color 0.2s;
@@ -5201,7 +5201,7 @@ a:hover {
 .loc-404-number {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 120px;
+    font-size: var(--text-hero-xl);
     line-height: 1;
     color: var(--blue);
     opacity: 0.08;
@@ -5213,7 +5213,7 @@ a:hover {
 .loc-404-eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -5223,7 +5223,7 @@ a:hover {
 .loc-404-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 40px;
+    font-size: var(--text-h1);
     color: var(--blue);
     margin-bottom: var(--space-4);
     line-height: 1.15;
@@ -5231,7 +5231,7 @@ a:hover {
 
 .loc-404-subtitle {
     font-family: 'Open Sans', sans-serif;
-    font-size: 17px;
+    font-size: var(--text-body);
     color: var(--grey-500);
     line-height: 1.65;
     margin-bottom: var(--space-10);
@@ -5253,7 +5253,7 @@ a:hover {
 .loc-404-links__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--grey-300);
@@ -5274,7 +5274,7 @@ a:hover {
     background: var(--lightgrey);
     border: 1px solid var(--border);
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     font-weight: 600;
     color: var(--offblack);
     text-decoration: none;
@@ -5296,11 +5296,11 @@ a:hover {
     }
 
     .loc-404-number {
-        font-size: 80px;
+        font-size: var(--text-hero);
     }
 
     .loc-404-title {
-        font-size: 28px;
+        font-size: var(--text-h3);
     }
 
     .loc-404-links__grid {
@@ -5336,7 +5336,7 @@ a:hover {
 
 .loc-funnel-header__exit {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     font-weight: 600;
     color: var(--grey-400);
     text-decoration: none;
@@ -5393,7 +5393,7 @@ a:hover {
     justify-content: center;
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: var(--white);
     flex-shrink: 0;
 }
@@ -5413,7 +5413,7 @@ a:hover {
 .loc-funnel-step__label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--white);
@@ -5451,7 +5451,7 @@ a:hover {
 .loc-funnel-page-header__eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--gold);
@@ -5459,7 +5459,7 @@ a:hover {
 }
 
 .loc-funnel-page-header h1 {
-    font-size: 38px;
+    font-size: var(--text-h1);
     font-weight: 800;
     color: var(--blue);
     margin-bottom: var(--space-3);
@@ -5468,7 +5468,7 @@ a:hover {
 
 .loc-funnel-page-header__intro {
     font-family: 'Open Sans', sans-serif;
-    font-size: 17px;
+    font-size: var(--text-body);
     color: var(--grey-500);
     max-width: 560px;
     margin: 0 auto;
@@ -5486,15 +5486,15 @@ a:hover {
     }
 
     .loc-funnel-page-header h1 {
-        font-size: 26px;
+        font-size: var(--text-h3);
     }
 
     .loc-funnel-page-header__intro {
-        font-size: 15px;
+        font-size: var(--text-ui-lg);
     }
 
     .loc-funnel-step__label {
-        font-size: 10px;
+        font-size: var(--text-fine);
     }
 
     .loc-funnel-step {
@@ -5505,7 +5505,7 @@ a:hover {
     .loc-funnel-step__num {
         width: 22px;
         height: 22px;
-        font-size: 11px;
+        font-size: var(--text-fine);
     }
 
     .loc-funnel-step__arrow {
@@ -5535,7 +5535,7 @@ a:hover {
 .loc-step1-selection__heading {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--gold);
@@ -5549,7 +5549,7 @@ a:hover {
 .loc-appliance-group__label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--grey-300);
@@ -5597,7 +5597,7 @@ a:hover {
     height: 22px;
     background: var(--blue);
     color: var(--white);
-    font-size: 12px;
+    font-size: var(--text-xs);
     font-weight: 700;
     border-radius: var(--radius-full);
     display: flex;
@@ -5620,7 +5620,7 @@ a:hover {
 .loc-appliance-card__name {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--blue);
     margin-bottom: var(--space-1);
     line-height: 1.2;
@@ -5629,13 +5629,13 @@ a:hover {
 .loc-appliance-card__price {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 18px;
+    font-size: var(--text-body-lg);
     color: var(--offblack);
 }
 
 .loc-appliance-card__note {
     font-family: 'Open Sans', sans-serif;
-    font-size: 11px;
+    font-size: var(--text-fine);
     color: var(--grey-300);
     margin-top: var(--space-1);
 }
@@ -5644,7 +5644,7 @@ a:hover {
 .loc-aga-selected-variant {
     display: none;
     font-family: 'Open Sans', sans-serif;
-    font-size: 11px;
+    font-size: var(--text-fine);
     color: var(--blue);
     font-weight: 600;
     margin-top: var(--space-1);
@@ -5670,7 +5670,7 @@ a:hover {
 .loc-aga-options__label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 10px;
+    font-size: var(--text-fine);
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--grey-300);
@@ -5689,7 +5689,7 @@ a:hover {
     background: var(--white);
     cursor: pointer;
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--offblack);
     font-weight: 600;
     transition: border-color 0.15s, background 0.15s, color 0.15s;
@@ -5710,7 +5710,7 @@ a:hover {
 .loc-aga-option__price {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--blue);
     white-space: nowrap;
     margin-left: var(--space-2);
@@ -5724,7 +5724,7 @@ a:hover {
     background: none;
     border: none;
     font-family: 'Open Sans', sans-serif;
-    font-size: 11px;
+    font-size: var(--text-fine);
     color: var(--grey-300);
     cursor: pointer;
     text-align: center;
@@ -5770,7 +5770,7 @@ a:hover {
 
 .loc-step1-price-guarantee p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--grey-500);
     line-height: 1.55;
     margin: 0;
@@ -5800,7 +5800,7 @@ a:hover {
 .loc-step1-skip-panel__heading {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--blue);
     margin-bottom: var(--space-2);
     line-height: 1.3;
@@ -5808,7 +5808,7 @@ a:hover {
 
 .loc-step1-skip-panel__body {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--grey-500);
     line-height: 1.6;
     margin: 0;
@@ -5819,7 +5819,7 @@ a:hover {
     color: var(--white);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.07em;
     text-transform: uppercase;
     padding: var(--space-4) var(--space-5);
@@ -6103,7 +6103,7 @@ a:hover {
     flex: 1;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 18px;
+    font-size: var(--text-body-lg);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--blue);
@@ -6119,7 +6119,7 @@ a:hover {
     color: var(--grey-200);
     font-weight: 400;
     letter-spacing: 0.04em;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     text-transform: none;
 }
 
@@ -6132,7 +6132,7 @@ a:hover {
     color: var(--white);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: var(--space-4) var(--space-7);
@@ -6162,7 +6162,7 @@ a:hover {
 .loc-step2-confirmed-banner p {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--white);
     line-height: 1.4;
     margin: 0;
@@ -6175,7 +6175,7 @@ a:hover {
 
 .loc-step2-areas-intro {
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--grey-500);
     line-height: 1.6;
     margin-bottom: var(--space-7);
@@ -6196,7 +6196,7 @@ a:hover {
 .loc-step2-area-group-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--blue);
@@ -6217,7 +6217,7 @@ a:hover {
 
 .loc-step2-area-tags li {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--offblack);
     display: flex;
     justify-content: space-between;
@@ -6244,7 +6244,7 @@ a:hover {
 .loc-step2-area-tags li span {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 10px;
+    font-size: var(--text-fine);
     color: var(--blue);
     letter-spacing: 0.06em;
     opacity: 0.55;
@@ -6252,7 +6252,7 @@ a:hover {
 
 .loc-step2-areas-note {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--grey-400);
     line-height: 1.55;
     padding: var(--space-4) var(--space-5);
@@ -6273,7 +6273,7 @@ a:hover {
 .loc-step2-section-heading {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 28px;
+    font-size: var(--text-h3);
     color: var(--blue);
     margin-bottom: var(--space-2);
     line-height: 1.2;
@@ -6281,7 +6281,7 @@ a:hover {
 
 .loc-step2-inline-intro {
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--grey-500);
     line-height: 1.6;
     margin-bottom: var(--space-7);
@@ -6318,7 +6318,7 @@ a:hover {
 .loc-step2-inline-summary__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--gold);
@@ -6327,20 +6327,20 @@ a:hover {
 .loc-step2-inline-summary__total {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 28px;
+    font-size: var(--text-h3);
     color: var(--white);
     line-height: 1;
 }
 
 .loc-step2-inline-summary__total span {
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     font-weight: 600;
     vertical-align: super;
 }
 
 .loc-step2-inline-summary__empty {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: rgba(255,255,255,0.35);
     font-style: italic;
     padding: var(--space-3) 0;
@@ -6365,14 +6365,14 @@ a:hover {
 
 .loc-step2-inline-summary__item-name {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--white);
 }
 
 .loc-step2-inline-summary__item-price {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--gold);
 }
 
@@ -6388,7 +6388,7 @@ a:hover {
 .loc-step2-inline-summary__location-label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.5);
@@ -6397,7 +6397,7 @@ a:hover {
 .loc-step2-inline-summary__location-value {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     color: var(--white);
 }
 
@@ -6408,7 +6408,7 @@ a:hover {
     color: var(--white);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     letter-spacing: 0.07em;
     text-transform: uppercase;
     padding: var(--space-4) var(--space-6);
@@ -6441,7 +6441,7 @@ a:hover {
 
 .loc-step2-proceed-subtext {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: rgba(255,255,255,0.35);
     text-align: center;
     margin-top: var(--space-3);
@@ -6493,7 +6493,7 @@ a:hover {
 .loc-step2-sticky-bottom__location-label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.5);
@@ -6502,7 +6502,7 @@ a:hover {
 .loc-step2-sticky-bottom__location {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     color: var(--white);
 }
 
@@ -6514,7 +6514,7 @@ a:hover {
 .loc-step2-sticky-bottom__label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 10px;
+    font-size: var(--text-fine);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.5);
@@ -6524,13 +6524,13 @@ a:hover {
 .loc-step2-sticky-bottom__amount {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 22px;
+    font-size: var(--text-h4);
     color: var(--white);
     line-height: 1;
 }
 
 .loc-step2-sticky-bottom__amount span {
-    font-size: 13px;
+    font-size: var(--text-sm);
     vertical-align: super;
     font-weight: 600;
 }
@@ -6540,7 +6540,7 @@ a:hover {
     color: var(--white);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     padding: var(--space-4) var(--space-4);
@@ -6597,7 +6597,7 @@ a:hover {
 .loc-step1-sticky-bottom__label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 10px;
+    font-size: var(--text-fine);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.5);
@@ -6607,13 +6607,13 @@ a:hover {
 .loc-step1-sticky-bottom__amount {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 22px;
+    font-size: var(--text-h4);
     color: var(--white);
     line-height: 1;
 }
 
 .loc-step1-sticky-bottom__amount span {
-    font-size: 13px;
+    font-size: var(--text-sm);
     vertical-align: super;
     font-weight: 600;
 }
@@ -6638,7 +6638,7 @@ a:hover {
 .loc-step1-sticky-bottom__location-label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.5);
@@ -6647,7 +6647,7 @@ a:hover {
 .loc-step1-sticky-bottom__location {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     color: var(--white);
     line-height: 1;
 }
@@ -6657,7 +6657,7 @@ a:hover {
     color: var(--white);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     padding: var(--space-4) var(--space-4);
@@ -6690,9 +6690,9 @@ a:hover {
 @media (max-width: 768px) {
     .loc-step2-body { padding: 24px 20px 60px; }
     .loc-step2-sticky-bar { padding: 10px 16px; }
-    .loc-step2-section-heading { font-size: 22px; }
-    .loc-step2-postcode-input { font-size: 15px; padding: 12px 14px; }
-    .loc-step2-btn-confirm { padding: 12px 16px; font-size: 12px; }
+    .loc-step2-section-heading { font-size: var(--text-h4); }
+    .loc-step2-postcode-input { font-size: var(--text-ui-lg); padding: 12px 14px; }
+    .loc-step2-btn-confirm { padding: 12px 16px; font-size: var(--text-xs); }
 }
 
 /* AREAS SECTION */
@@ -6716,7 +6716,7 @@ a:hover {
 .loc-step2-area-group-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--blue);
@@ -6735,7 +6735,7 @@ a:hover {
 
 .loc-step2-area-tags li {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--offblack);
     display: flex;
     justify-content: space-between;
@@ -6754,7 +6754,7 @@ a:hover {
 .loc-step2-area-tags li span {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 10px;
+    font-size: var(--text-fine);
     color: var(--blue);
     letter-spacing: 0.06em;
     opacity: 0.55;
@@ -6762,7 +6762,7 @@ a:hover {
 
 .loc-step2-areas-note {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--grey-400);
     line-height: 1.55;
     padding: var(--space-4) var(--space-5);
@@ -6812,7 +6812,7 @@ a:hover {
 .loc-step2-inline-summary__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--gold);
@@ -6821,20 +6821,20 @@ a:hover {
 .loc-step2-inline-summary__total {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 28px;
+    font-size: var(--text-h3);
     color: var(--white);
     line-height: 1;
 }
 
 .loc-step2-inline-summary__total span {
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     font-weight: 600;
     vertical-align: super;
 }
 
 .loc-step2-inline-summary__empty {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: rgba(255,255,255,0.35);
     font-style: italic;
     padding: var(--space-3) 0;
@@ -6859,14 +6859,14 @@ a:hover {
 
 .loc-step2-inline-summary__item-name {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--white);
 }
 
 .loc-step2-inline-summary__item-price {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--gold);
 }
 
@@ -6877,7 +6877,7 @@ a:hover {
     color: var(--white);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     letter-spacing: 0.07em;
     text-transform: uppercase;
     padding: var(--space-4) var(--space-6);
@@ -6910,7 +6910,7 @@ a:hover {
 
 .loc-step2-proceed-subtext {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: rgba(255,255,255,0.35);
     text-align: center;
     margin-top: var(--space-3);
@@ -6924,7 +6924,7 @@ a:hover {
     }
 
     .loc-step2-section-heading {
-        font-size: 22px;
+        font-size: var(--text-h4);
     }
 }
 /* ============================================================
@@ -6950,7 +6950,7 @@ a:hover {
 .loc-step3-eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -6960,7 +6960,7 @@ a:hover {
 .loc-step3-section-heading {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 22px;
+    font-size: var(--text-h4);
     color: var(--blue);
     margin-bottom: var(--space-2);
 }
@@ -6979,7 +6979,7 @@ a:hover {
     align-items: center;
     gap: var(--space-2);
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--grey-500);
 }
 
@@ -7004,7 +7004,7 @@ a:hover {
 .loc-step3-cal-month {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 18px;
+    font-size: var(--text-body-lg);
     color: var(--blue);
 }
 
@@ -7017,7 +7017,7 @@ a:hover {
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--blue) !important;
     transition: opacity 0.15s ease !important;
 }
@@ -7044,7 +7044,7 @@ a:hover {
 .loc-step3-cal-grid th {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--grey-300);
@@ -7068,7 +7068,7 @@ a:hover {
     justify-content: center;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 14px;
+    font-size: var(--text-ui);
     cursor: default;
     transition: all 0.15s;
     position: relative;
@@ -7123,7 +7123,7 @@ a:hover {
 .loc-step3-time-slots__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--blue);
     margin-bottom: var(--space-4);
     letter-spacing: 0.02em;
@@ -7160,7 +7160,7 @@ a:hover {
 .loc-step3-slot-btn__label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--blue);
     display: block;
     margin-bottom: var(--space-1);
@@ -7168,7 +7168,7 @@ a:hover {
 
 .loc-step3-slot-btn__time {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: var(--grey-400);
     display: block;
 }
@@ -7191,7 +7191,7 @@ a:hover {
 .loc-step3-summary__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--gold);
@@ -7216,20 +7216,20 @@ a:hover {
 
 .loc-step3-summary__item-name {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: rgba(255,255,255,0.8);
 }
 
 .loc-step3-summary__item-price {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--gold);
 }
 
 .loc-step3-summary__empty {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: rgba(255,255,255,0.35);
     font-style: italic;
     padding: var(--space-2) 0;
@@ -7257,7 +7257,7 @@ a:hover {
 .loc-step3-summary__location-label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.5);
@@ -7266,14 +7266,14 @@ a:hover {
 .loc-step3-summary__location-value {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--white);
 }
 
 .loc-step3-summary__total-label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.5);
@@ -7282,13 +7282,13 @@ a:hover {
 .loc-step3-summary__total-amount {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 30px;
+    font-size: var(--text-h3);
     color: var(--white);
     line-height: 1;
 }
 
 .loc-step3-summary__total-amount span {
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     font-weight: 600;
     vertical-align: super;
 }
@@ -7305,7 +7305,7 @@ a:hover {
 
 .loc-step3-reserve-subtext {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: var(--grey-300);
     text-align: center;
     margin-bottom: var(--space-4);
@@ -7321,7 +7321,7 @@ a:hover {
 
 .loc-step3-price-guarantee p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--grey-500);
     line-height: 1.55;
     margin: 0;
@@ -7361,7 +7361,7 @@ a:hover {
     border: none;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--blue);
@@ -7441,7 +7441,7 @@ a:hover {
     border: none;
     cursor: pointer;
     color: rgba(255,255,255,0.6);
-    font-size: 20px;
+    font-size: var(--text-lead);
     line-height: 1;
     padding: var(--space-1);
     transition: color 0.2s;
@@ -7458,14 +7458,14 @@ a:hover {
 .loc-step3-modal__header h2 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 20px;
+    font-size: var(--text-lead);
     color: var(--white);
     margin-bottom: var(--space-2);
 }
 
 .loc-step3-modal__header p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: rgba(255,255,255,0.6);
     line-height: 1.5;
     margin: 0;
@@ -7483,7 +7483,7 @@ a:hover {
 .loc-step3-modal__slot-strip p {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--blue);
     margin: 0;
 }
@@ -7517,7 +7517,7 @@ a:hover {
 .loc-step3-form-label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--blue);
@@ -7525,7 +7525,7 @@ a:hover {
 
 .loc-step3-form-input {
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--offblack);
     border: 2px solid var(--border);
     padding: var(--space-4) var(--space-4);
@@ -7546,7 +7546,7 @@ a:hover {
 .loc-step3-callback-label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-fine);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--blue);
@@ -7586,7 +7586,7 @@ a:hover {
 .loc-step3-callback-btn__label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--blue);
     display: block;
     margin-bottom: var(--space-1);
@@ -7594,7 +7594,7 @@ a:hover {
 
 .loc-step3-callback-btn__time {
     font-family: 'Open Sans', sans-serif;
-    font-size: 11px;
+    font-size: var(--text-fine);
     color: var(--grey-300);
     display: block;
 }
@@ -7604,7 +7604,7 @@ a:hover {
 
 .loc-step3-form-privacy {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: var(--grey-300);
     line-height: 1.5;
     margin-bottom: var(--space-5);
@@ -7618,7 +7618,7 @@ a:hover {
     color: var(--white);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 14px;
+    font-size: var(--text-ui);
     letter-spacing: 0.07em;
     text-transform: uppercase;
     padding: 17px var(--space-5);
@@ -7652,7 +7652,7 @@ a:hover {
 .loc-step3-confirm-heading {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: 32px;
+    font-size: var(--text-h2);
     color: var(--blue);
     margin-bottom: var(--space-3);
     line-height: 1.2;
@@ -7660,7 +7660,7 @@ a:hover {
 
 .loc-step3-confirm-sub {
     font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
+    font-size: var(--text-body-sm);
     color: var(--grey-500);
     line-height: 1.6;
     margin-bottom: var(--space-8);
@@ -7686,7 +7686,7 @@ a:hover {
 .loc-step3-confirm-box__label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 10px;
+    font-size: var(--text-fine);
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--grey-300);
@@ -7696,7 +7696,7 @@ a:hover {
 .loc-step3-confirm-box__value {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--blue);
     line-height: 1.3;
     margin: 0;
@@ -7716,7 +7716,7 @@ a:hover {
 
 .loc-step3-callback-message p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: var(--text-ui-lg);
     color: var(--white);
     line-height: 1.6;
     margin: 0;
@@ -7728,7 +7728,7 @@ a:hover {
     color: var(--gold);
     display: block;
     margin-bottom: var(--space-1);
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
@@ -7743,7 +7743,7 @@ a:hover {
     color: var(--blue);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     letter-spacing: 0.07em;
     text-transform: uppercase;
     padding: var(--space-4) var(--space-7);
@@ -7810,7 +7810,7 @@ a:hover {
 .loc-step3-date-escape__heading {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 14px;
+    font-size: var(--text-ui);
     color: var(--blue);
     margin-bottom: var(--space-2);
     line-height: 1.3;
@@ -7818,7 +7818,7 @@ a:hover {
 
 .loc-step3-date-escape__body {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--grey-500);
     line-height: 1.6;
     margin-bottom: var(--space-4);
@@ -7833,7 +7833,7 @@ a:hover {
     flex: 1;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: var(--text-xs);
     letter-spacing: 0.07em;
     text-transform: uppercase;
     padding: var(--space-4) var(--space-4);
@@ -7899,7 +7899,7 @@ a:hover {
     }
 
     .loc-funnel-step__label {
-        font-size: 9px;
+        font-size: var(--text-fine);
         letter-spacing: 0.03em;
     }
 
@@ -7920,11 +7920,11 @@ a:hover {
     }
 
     .loc-funnel-page-header h1 {
-        font-size: 24px;
+        font-size: var(--text-h4);
     }
 
     .loc-funnel-page-header__intro {
-        font-size: 14px;
+        font-size: var(--text-ui);
     }
 
     /* â”€â”€ STEP 1 â”€â”€ */
@@ -7944,15 +7944,15 @@ a:hover {
     }
 
     .loc-appliance-card__name {
-        font-size: 12px;
+        font-size: var(--text-xs);
     }
 
     .loc-appliance-card__price {
-        font-size: 16px;
+        font-size: var(--text-body-sm);
     }
 
     .loc-appliance-card__note {
-        font-size: 10px;
+        font-size: var(--text-fine);
     }
 
 
@@ -7966,14 +7966,14 @@ a:hover {
     }
 
     .loc-step2-postcode-input {
-        font-size: 15px;
+        font-size: var(--text-ui-lg);
         padding: var(--space-3) var(--space-4);
         min-width: 0;
     }
 
     .loc-step2-btn-confirm {
         padding: var(--space-3) var(--space-4);
-        font-size: 11px;
+        font-size: var(--text-fine);
         white-space: nowrap;
         flex-shrink: 0;
     }
@@ -7984,18 +7984,18 @@ a:hover {
     }
 
     .loc-step2-area-tags li {
-        font-size: 12px;
+        font-size: var(--text-xs);
         padding: var(--space-2) var(--space-2);
     }
 
     .loc-step2-area-tags li span {
-        font-size: 9px;
+        font-size: var(--text-fine);
         flex-shrink: 0;
         margin-left: var(--space-1);
     }
 
     .loc-step2-areas-intro {
-        font-size: 14px;
+        font-size: var(--text-ui);
     }
 
     #loc-sticky-anchor {
@@ -8056,7 +8056,7 @@ a:hover {
     }
 
     .loc-step3-summary__total-amount {
-        font-size: 26px;
+        font-size: var(--text-h3);
     }
 
     .loc-step3-reserve-subtext,
@@ -8065,12 +8065,12 @@ a:hover {
     }
 
     .loc-step3-cal-grid th {
-        font-size: 10px;
+        font-size: var(--text-fine);
         padding: var(--space-2) var(--space-1);
     }
 
     .loc-cal-day {
-        font-size: 12px;
+        font-size: var(--text-xs);
         min-width: 28px;
         min-height: 28px;
     }
@@ -8110,7 +8110,7 @@ a:hover {
 
     .loc-step3-sticky-bottom__slot {
         font-family: 'Open Sans', sans-serif;
-        font-size: 11px;
+        font-size: var(--text-fine);
         color: rgba(255,255,255,0.6);
         white-space: nowrap;
         overflow: hidden;
@@ -8121,7 +8121,7 @@ a:hover {
     .loc-step3-sticky-bottom__total {
         font-family: 'Montserrat', sans-serif;
         font-weight: 800;
-        font-size: 18px;
+        font-size: var(--text-body-lg);
         color: var(--white);
         line-height: 1;
     }
@@ -8131,7 +8131,7 @@ a:hover {
         color: var(--white);
         font-family: 'Montserrat', sans-serif;
         font-weight: 700;
-        font-size: 12px;
+        font-size: var(--text-xs);
         letter-spacing: 0.06em;
         text-transform: uppercase;
         padding: var(--space-4) var(--space-4);
@@ -8149,7 +8149,7 @@ a:hover {
 
     /* CONFIRMATION PANEL */
     .loc-step3-confirm-heading {
-        font-size: 26px;
+        font-size: var(--text-h3);
     }
 
     .loc-step3-confirm-grid {
@@ -8158,7 +8158,7 @@ a:hover {
     }
 
     .loc-step3-confirm-sub {
-        font-size: 14px;
+        font-size: var(--text-ui);
         margin-bottom: var(--space-5);
     }
 
@@ -8190,11 +8190,11 @@ a:hover {
     }
 
     .loc-step3-callback-btn__label {
-        font-size: 11px;
+        font-size: var(--text-fine);
     }
 
     .loc-step3-callback-btn__time {
-        font-size: 10px;
+        font-size: var(--text-fine);
     }
 
 }
@@ -8218,7 +8218,7 @@ a.loc-funnel-step--complete:hover {
     background: var(--gold);
     color: var(--white);
     padding: var(--space-4) var(--space-5);
-    font-size: 12px;
+    font-size: var(--text-xs);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     letter-spacing: 0.07em;
@@ -8251,7 +8251,7 @@ a.loc-funnel-step--complete:hover {
 
 .loc-step2-postcode-error {
     color: #C0392B;
-    font-size: 13px;
+    font-size: var(--text-sm);
     margin: var(--space-2) 0 0;
     font-family: 'Open Sans', sans-serif;
 }
