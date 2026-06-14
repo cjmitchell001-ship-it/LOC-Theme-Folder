@@ -152,7 +152,7 @@ a:hover {
   font-size: 15px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 14px var(--space-7);
+  padding: var(--space-4) var(--space-7);
   border-radius: var(--radius-sm);
   text-decoration: none;
   border: none;
@@ -174,7 +174,7 @@ a:hover {
   font-size: 15px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 13px var(--space-7);
+  padding: var(--space-4) var(--space-7);
   border-radius: var(--radius-sm);
   text-decoration: none;
   border: 2px solid var(--white);
@@ -196,7 +196,7 @@ a:hover {
   font-size: 15px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 13px var(--space-7);
+  padding: var(--space-4) var(--space-7);
   border-radius: var(--radius-sm);
   text-decoration: none;
   border: 2px solid var(--blue);
@@ -243,7 +243,7 @@ a:hover {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 10px;
+  margin-bottom: var(--space-3);
 }
 
 /* ============================================================
@@ -339,7 +339,7 @@ a:hover {
 .loc-header__ctas {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: var(--space-3);
     flex-shrink: 0;
 }
 
@@ -352,7 +352,7 @@ a:hover {
     font-size: 13px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    padding: 11px 22px;
+    padding: var(--space-3) var(--space-5);
     border: 2px solid var(--blue);
     text-decoration: none;
     transition: background 0.2s, color 0.2s;
@@ -385,10 +385,10 @@ a:hover {
     background: none;
     border: 2px solid transparent;
     cursor: pointer;
-    padding: 6px;
+    padding: var(--space-2);
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: var(--space-1);
     border-radius: var(--radius-sm);
     transition: border-color 0.2s;
 }
@@ -459,7 +459,7 @@ a:hover {
 
 .loc-mobile-menu__list a {
     display: block;
-    padding: 14px 0;
+    padding: var(--space-4) 0;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     font-weight: 600;
@@ -589,10 +589,10 @@ a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: var(--space-3);
     border: 2px solid rgba(255,255,255,0.5);
     border-radius: var(--radius-md);
-    padding: 14px var(--space-4) var(--space-4);
+    padding: var(--space-4) var(--space-4) var(--space-4);
 }
 
 .loc-hero__cta-label {
@@ -621,19 +621,19 @@ a:hover {
     }
 
     .loc-hero__content {
-        padding: 60px var(--space-5);
+        padding: var(--space-16) var(--space-5);
     }
 
     .loc-hero__ctas {
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+        gap: var(--space-3);
     }
 
     .loc-hero__ctas .btn-primary,
     .loc-hero__ctas .btn-ghost {
         font-size: 12px;
-        padding: 10px var(--space-5);
+        padding: var(--space-3) var(--space-5);
         width: 200px;
         text-align: center;
     }
@@ -667,7 +667,7 @@ a:hover {
 .loc-trust__item {
     display: flex;
     align-items: flex-start;
-    gap: 14px;
+    gap: var(--space-4);
     flex: 1;
     min-width: 200px;
 }
@@ -677,7 +677,7 @@ a:hover {
     color: var(--gold);
     font-weight: 700;
     flex-shrink: 0;
-    margin-top: 2px;
+    margin-top: var(--space-1);
 }
 
 .loc-trust__text {
@@ -785,7 +785,7 @@ a:hover {
     }
 
     .loc-faq__subtitle {
-        margin: 0 auto 36px;
+        margin: 0 auto var(--space-8);
     }
 
     .loc-hww {
@@ -794,7 +794,7 @@ a:hover {
 
 
     .loc-business-banner {
-        padding: 44px var(--space-10);
+        padding: var(--space-12) var(--space-10);
         margin-bottom: var(--space-12);
     }
 }
@@ -830,7 +830,7 @@ a:hover {
 .loc-footer__inner {
     max-width: 1080px;
     margin: 0 auto;
-    padding: 60px var(--space-10);
+    padding: var(--space-16) var(--space-10);
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
     gap: var(--space-8);
@@ -882,7 +882,7 @@ a:hover {
     color: rgba(255,255,255,0.8);
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: var(--space-2);
 }
 
 /* COLUMN HEADINGS */
@@ -903,7 +903,7 @@ a:hover {
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--space-3);
 }
 
 .loc-footer__list a {
@@ -989,7 +989,7 @@ a:hover {
     .loc-footer__bottom-inner {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: var(--space-3);
     }
 }
 
@@ -999,7 +999,7 @@ a:hover {
 
 .loc-reserve {
     background: var(--white);
-    padding: 60px var(--space-10);
+    padding: var(--space-16) var(--space-10);
     text-align: center;
 }
 
@@ -1027,7 +1027,7 @@ a:hover {
     font-size: 17px;
     color: var(--grey-500);
     max-width: 560px;
-    margin: 0 auto 60px;
+    margin: 0 auto var(--space-16);
     line-height: 1.6;
 }
 
@@ -1095,7 +1095,7 @@ a:hover {
 
 /* STEP ICON */
 .loc-reserve__icon {
-    margin: 6px auto var(--space-4);
+    margin: var(--space-2) auto var(--space-4);
     display: block;
     width: 72px;
     height: 72px;
@@ -1123,7 +1123,7 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 50px;
+    padding-top: var(--space-12);
     opacity: 0.4;
 }
 
@@ -1147,7 +1147,7 @@ a:hover {
     #loc-home .btn-primary,
     #loc-home .btn-blue {
         font-size: 11px;
-        padding: 10px 21px;
+        padding: var(--space-3) var(--space-5);
     }
 }
 
@@ -1162,7 +1162,7 @@ a:hover {
     }
 
     .loc-reserve__eyebrow {
-        margin-bottom: 6px;
+        margin-bottom: var(--space-2);
     }
 
     .loc-reserve__title {
@@ -1191,7 +1191,7 @@ a:hover {
     }
 
     .loc-reserve__icon {
-        margin: 2px auto var(--space-1);
+        margin: var(--space-1) auto var(--space-1);
     }
 
     .loc-reserve__step-title {
@@ -1388,7 +1388,7 @@ a:hover {
 /* LEFT */
 .loc-pricing__panel-left {
     flex: 1;
-    padding: 52px var(--space-12);
+    padding: var(--space-12) var(--space-12);
     position: relative;
     z-index: 2;
     text-align: left;
@@ -1398,8 +1398,8 @@ a:hover {
 .loc-pricing__from {
     display: flex;
     align-items: baseline;
-    gap: 10px;
-    margin-bottom: 14px;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
     line-height: 1;
 }
 
@@ -1453,7 +1453,7 @@ a:hover {
 .loc-pricing__icon-item {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: var(--space-4);
 }
 
 .loc-pricing__icon-item span {
@@ -1467,7 +1467,7 @@ a:hover {
 .loc-pricing__more-hint {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: var(--space-3);
     margin-top: var(--space-1);
     padding-top: var(--space-4);
     border-top: 1px solid rgba(255,255,255,0.1);
@@ -1598,7 +1598,7 @@ a:hover {
         padding: 0 var(--space-5) var(--space-6);
         min-width: unset;
         width: 100%;
-        gap: 14px;
+        gap: var(--space-4);
     }
 
     .loc-pricing__icon-item svg {
@@ -1673,7 +1673,7 @@ a:hover {
 .loc-hww__group-header {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: var(--space-4);
     margin-bottom: var(--space-5);
 }
 
@@ -1701,7 +1701,7 @@ a:hover {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--space-3);
 }
 
 .loc-hww__steps li {
@@ -1727,7 +1727,7 @@ a:hover {
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .loc-hww {
-        padding: 60px var(--space-5);
+        padding: var(--space-16) var(--space-5);
     }
 
     .loc-hww__grid {
@@ -1811,7 +1811,7 @@ a:hover {
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .loc-reviews {
-        padding: 36px var(--space-5);
+        padding: var(--space-8) var(--space-5);
     }
 
     .loc-reviews__subtitle {
@@ -1820,7 +1820,7 @@ a:hover {
     }
 
     .loc-reviews__stars {
-        gap: 10px;
+        gap: var(--space-3);
     }
 
     .loc-reviews__stars-row svg {
@@ -1833,7 +1833,7 @@ a:hover {
     }
 
     .loc-reviews__invite {
-        margin-bottom: -6px;
+        margin-bottom: -var(--space-2);
     }
 
     .loc-reviews__title {
@@ -1920,11 +1920,11 @@ a:hover {
     font-size: 13px;
     color: var(--offblack);
     background: var(--white);
-    padding: 6px var(--space-3);
+    padding: var(--space-2) var(--space-3);
     border: 1px solid var(--border);
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: var(--space-2);
 }
 
 .loc-areas__tags li span {
@@ -1971,7 +1971,7 @@ a:hover {
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .loc-areas {
-        padding: 60px var(--space-5);
+        padding: var(--space-16) var(--space-5);
     }
 
 
@@ -2046,7 +2046,7 @@ a:hover {
     font-weight: 700;
     font-size: 15px;
     color: var(--blue);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
     line-height: 1.3;
 }
 
@@ -2077,7 +2077,7 @@ a:hover {
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .loc-faq {
-        padding: 60px var(--space-5);
+        padding: var(--space-16) var(--space-5);
     }
 
     .loc-faq__grid {
@@ -2163,7 +2163,7 @@ a:hover {
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
 }
 
 .loc-services-section__heading {
@@ -2171,7 +2171,7 @@ a:hover {
     font-weight: 800;
     font-size: 34px;
     color: var(--blue);
-    margin-bottom: 14px;
+    margin-bottom: var(--space-4);
 }
 
 .loc-services-section__intro {
@@ -2211,7 +2211,7 @@ a:hover {
     justify-content: space-between;
     align-items: flex-start;
     gap: var(--space-3);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
 }
 
 .loc-services-card__name {
@@ -2263,7 +2263,7 @@ a:hover {
     font-weight: 700;
     font-size: 16px;
     color: var(--blue);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
 }
 
 .loc-services-commercial-card__desc {
@@ -2297,7 +2297,7 @@ a:hover {
     font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: var(--space-1) 10px;
+    padding: var(--space-1) var(--space-3);
     border-radius: var(--radius-pill);
     margin-bottom: var(--space-3);
 }
@@ -2345,7 +2345,7 @@ a:hover {
 
 @media (max-width: 780px) {
     .loc-services-section {
-        padding: 60px var(--space-5);
+        padding: var(--space-16) var(--space-5);
     }
     .loc-services-grid {
         grid-template-columns: 1fr;
@@ -2407,7 +2407,7 @@ a:hover {
 /* WHAT TO EXPECT CHECKLIST */
 .loc-hww-checklist-section {
     background: var(--blue);
-    padding: 72px var(--space-10);
+    padding: var(--space-18) var(--space-10);
 }
 
 .loc-hww-checklist-section__inner {
@@ -2454,13 +2454,13 @@ a:hover {
         padding: var(--space-12) var(--space-5);
     }
     .loc-hww--page {
-        padding: 0 var(--space-5) 60px;
+        padding: 0 var(--space-5) var(--space-16);
     }
     .loc-hww-checklist-section {
         padding: var(--space-14) var(--space-5);
     }
     .loc-inner-cta {
-        padding: 60px var(--space-5);
+        padding: var(--space-16) var(--space-5);
     }
 }
 
@@ -2469,7 +2469,7 @@ a:hover {
    ============================================================ */
 
 .loc-faq-page {
-    padding: 72px var(--space-10);
+    padding: var(--space-18) var(--space-10);
     background: var(--white);
 }
 
@@ -2486,7 +2486,7 @@ a:hover {
     font-weight: 800;
     font-size: 20px;
     color: var(--blue);
-    padding-bottom: 14px;
+    padding-bottom: var(--space-4);
     border-bottom: 2px solid var(--border);
     margin-bottom: var(--space-7);
 }
@@ -2560,7 +2560,7 @@ a:hover {
 }
 
 .loc-areas-page-list-section {
-    padding: 72px var(--space-10);
+    padding: var(--space-18) var(--space-10);
     background: var(--white);
 }
 
@@ -2576,7 +2576,7 @@ a:hover {
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
 }
 
 .loc-areas-page-list-section__heading {
@@ -2630,12 +2630,12 @@ a:hover {
     color: var(--blue);
     background: var(--lightgrey);
     border-radius: var(--radius-sm);
-    padding: 2px 6px;
+    padding: var(--space-1) var(--space-2);
 }
 
 .loc-areas-page-contact-section {
     background: var(--blue);
-    padding: 72px var(--space-10);
+    padding: var(--space-18) var(--space-10);
     text-align: center;
 }
 
@@ -2661,7 +2661,7 @@ a:hover {
 }
 
 .loc-areas-page-how-section {
-    padding: 72px var(--space-10);
+    padding: var(--space-18) var(--space-10);
     background: var(--lightgrey);
     text-align: center;
 }
@@ -2676,7 +2676,7 @@ a:hover {
     font-weight: 800;
     font-size: 26px;
     color: var(--blue);
-    margin-bottom: 14px;
+    margin-bottom: var(--space-4);
 }
 
 .loc-areas-page-how-section p {
@@ -2726,7 +2726,7 @@ a:hover {
 /* PAGE HEADER â€” used on all inner pages */
 .loc-page-header {
     background: var(--blue);
-    padding: 72px var(--space-10) var(--space-16);
+    padding: var(--space-18) var(--space-10) var(--space-16);
     border-bottom: 4px solid var(--gold);
     position: relative;
     overflow: hidden;
@@ -2757,7 +2757,7 @@ a:hover {
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 14px;
+    margin-bottom: var(--space-4);
 }
 
 .loc-page-header h1 {
@@ -2979,7 +2979,7 @@ a:hover {
     font-weight: 700;
     font-size: 15px;
     color: var(--blue);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
     line-height: 1.3;
 }
 
@@ -3011,7 +3011,7 @@ a:hover {
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
 }
 
 .loc-about-story__block h3 {
@@ -3189,7 +3189,7 @@ a:hover {
     }
 
     .loc-about-values {
-        padding: 60px var(--space-5);
+        padding: var(--space-16) var(--space-5);
     }
 
     .loc-about-values__grid {
@@ -3197,7 +3197,7 @@ a:hover {
     }
 
     .loc-about-story {
-        padding: 60px var(--space-5);
+        padding: var(--space-16) var(--space-5);
     }
 
     .loc-about-story__inner {
@@ -3206,7 +3206,7 @@ a:hover {
     }
 
     .loc-about-credentials {
-        padding: 60px var(--space-5);
+        padding: var(--space-16) var(--space-5);
     }
 
     .loc-about-credentials__grid {
@@ -3215,7 +3215,7 @@ a:hover {
     }
 
     .loc-about-cta {
-        padding: 60px var(--space-5);
+        padding: var(--space-16) var(--space-5);
     }
 
     .loc-about-values__title,
@@ -3230,7 +3230,7 @@ a:hover {
 
 .loc-contact-body {
     background: var(--white);
-    padding: 72px var(--space-10) 100px;
+    padding: var(--space-18) var(--space-10) var(--space-25);
 }
 
 .loc-contact-body__inner {
@@ -3250,7 +3250,7 @@ a:hover {
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
 }
 
 .loc-contact-details__title {
@@ -3267,7 +3267,7 @@ a:hover {
     font-size: 15px;
     color: var(--grey-500);
     line-height: 1.7;
-    margin-bottom: 36px;
+    margin-bottom: var(--space-8);
     max-width: 480px;
 }
 
@@ -3319,7 +3319,7 @@ a:hover {
     font-size: 15px;
     color: var(--offblack);
     font-weight: 600;
-    margin-bottom: 3px;
+    margin-bottom: var(--space-1);
 }
 
 .loc-contact-method__value a {
@@ -3351,7 +3351,7 @@ a:hover {
     font-weight: 700;
     font-size: 13px;
     color: var(--blue);
-    margin-bottom: 14px;
+    margin-bottom: var(--space-4);
 }
 
 .loc-contact-promise__list {
@@ -3360,7 +3360,7 @@ a:hover {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--space-3);
 }
 
 .loc-contact-promise__list li {
@@ -3387,7 +3387,7 @@ a:hover {
 .loc-contact-reserve-nudge {
     display: flex;
     align-items: flex-start;
-    gap: 14px;
+    gap: var(--space-4);
     background: rgba(201,150,12,0.06);
     border: 1px solid rgba(201,150,12,0.2);
     padding: var(--space-5) var(--space-6);
@@ -3395,7 +3395,7 @@ a:hover {
 
 .loc-contact-reserve-nudge__icon {
     flex-shrink: 0;
-    margin-top: 2px;
+    margin-top: var(--space-1);
 }
 
 .loc-contact-reserve-nudge__title {
@@ -3403,7 +3403,7 @@ a:hover {
     font-weight: 700;
     font-size: 13px;
     color: var(--blue);
-    margin-bottom: 6px;
+    margin-bottom: var(--space-2);
 }
 
 .loc-contact-reserve-nudge__sub {
@@ -3411,18 +3411,18 @@ a:hover {
     font-size: 13px;
     color: var(--grey-500);
     line-height: 1.5;
-    margin-bottom: 14px;
+    margin-bottom: var(--space-4);
 }
 
 .loc-contact-reserve-nudge__btn {
     font-size: 12px;
-    padding: 10px var(--space-5);
+    padding: var(--space-3) var(--space-5);
 }
 
 /* RIGHT â€” FORM BOX */
 .loc-contact-form-box {
     background: var(--blue);
-    padding: var(--space-10) 36px;
+    padding: var(--space-10) var(--space-8);
     position: relative;
     overflow: hidden;
 }
@@ -3467,7 +3467,7 @@ a:hover {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.7);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
     position: relative;
     z-index: 2;
 }
@@ -3488,7 +3488,7 @@ a:hover {
     color: rgba(255,255,255,0.7);
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.15);
-    padding: var(--space-2) 14px;
+    padding: var(--space-2) var(--space-4);
     cursor: pointer;
     transition: all 0.2s;
 }
@@ -3520,7 +3520,7 @@ a:hover {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     padding: var(--space-3) var(--space-4);
-    margin-bottom: 14px;
+    margin-bottom: var(--space-4);
     outline: none;
     transition: border-color 0.2s;
 }
@@ -3550,7 +3550,7 @@ a:hover {
     text-transform: uppercase;
     border: none;
     cursor: pointer;
-    padding: 14px var(--space-7);
+    padding: var(--space-4) var(--space-7);
     transition: background 0.2s;
     margin-bottom: 0;
 }
@@ -3563,7 +3563,7 @@ a:hover {
     font-family: 'Open Sans', sans-serif;
     font-size: 11px;
     color: rgba(255,255,255,0.4);
-    margin-top: 14px;
+    margin-top: var(--space-4);
     line-height: 1.5;
     position: relative;
     z-index: 2;
@@ -3576,7 +3576,7 @@ a:hover {
 /* CONTACT RESPONSIVE */
 @media (max-width: 768px) {
     .loc-contact-body {
-        padding: var(--space-12) var(--space-5) 60px;
+        padding: var(--space-12) var(--space-5) var(--space-16);
     }
 
     .loc-contact-body__inner {
@@ -3794,7 +3794,7 @@ a:hover {
     font-weight: 700;
     font-size: 15px;
     color: var(--blue);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
 }
 
 .loc-biz-how__step-text {
@@ -3859,7 +3859,7 @@ a:hover {
     font-size: 15px;
     color: rgba(255,255,255,0.7);
     line-height: 1.75;
-    margin-bottom: 14px;
+    margin-bottom: var(--space-4);
 }
 
 .loc-biz-different__list {
@@ -3871,15 +3871,15 @@ a:hover {
 .loc-biz-different__item {
     display: flex;
     align-items: flex-start;
-    gap: 14px;
+    gap: var(--space-4);
     background: rgba(255,255,255,0.05);
-    padding: var(--space-4) 18px;
+    padding: var(--space-4) var(--space-4);
     border-left: 3px solid var(--gold);
 }
 
 .loc-biz-different__item svg {
     flex-shrink: 0;
-    margin-top: 3px;
+    margin-top: var(--space-1);
 }
 
 .loc-biz-different__item-text {
@@ -3894,7 +3894,7 @@ a:hover {
     font-weight: 700;
     color: var(--white);
     display: block;
-    margin-bottom: 3px;
+    margin-bottom: var(--space-1);
     font-size: 13px;
 }
 
@@ -3950,7 +3950,7 @@ a:hover {
     font-size: 12px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 10px var(--space-4);
+    padding: var(--space-3) var(--space-4);
     margin-bottom: var(--space-3);
 }
 
@@ -3973,8 +3973,8 @@ a:hover {
 .loc-biz-scope__item {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    padding: 10px 14px;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
     font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     line-height: 1.5;
@@ -3997,7 +3997,7 @@ a:hover {
     font-weight: 700;
     font-size: 13px;
     color: var(--offblack);
-    margin-bottom: 3px;
+    margin-bottom: var(--space-1);
 }
 
 .loc-biz-scope__item--out span:last-of-type {
@@ -4012,7 +4012,7 @@ a:hover {
     font-weight: 700;
     font-size: 13px;
     color: var(--offblack);
-    margin-bottom: 3px;
+    margin-bottom: var(--space-1);
 }
 
 .loc-biz-scope__honest {
@@ -4040,7 +4040,7 @@ a:hover {
     font-weight: 800;
     font-size: 15px;
     color: var(--white);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
 }
 
 .loc-biz-hmo-note p {
@@ -4099,7 +4099,7 @@ a:hover {
     font-size: 15px;
     color: var(--grey-500);
     line-height: 1.7;
-    margin-bottom: 36px;
+    margin-bottom: var(--space-8);
 }
 
 /* CONTACT OPTIONS */
@@ -4135,7 +4135,7 @@ a:hover {
     font-weight: 700;
     font-size: 15px;
     color: var(--blue);
-    margin-bottom: 6px;
+    margin-bottom: var(--space-2);
 }
 
 .loc-biz-contact__option-desc {
@@ -4149,7 +4149,7 @@ a:hover {
 .loc-biz-callback-placeholder {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: var(--space-3);
     background: var(--blue);
     padding: var(--space-3) var(--space-4);
     margin-top: var(--space-3);
@@ -4166,7 +4166,7 @@ a:hover {
 /* FORM BOX */
 .loc-biz-form-box {
     background: var(--blue);
-    padding: var(--space-10) 36px;
+    padding: var(--space-10) var(--space-8);
     position: sticky;
     top: 100px;
     overflow: hidden;
@@ -4209,7 +4209,7 @@ a:hover {
     font-family: 'Open Sans', sans-serif;
     font-size: 11px;
     color: rgba(255,255,255,0.4);
-    margin-top: 14px;
+    margin-top: var(--space-4);
     line-height: 1.5;
     position: relative;
     z-index: 2;
@@ -4222,7 +4222,7 @@ a:hover {
 /* BUSINESS PAGE RESPONSIVE */
 @media (max-width: 768px) {
     .loc-biz-who {
-        padding: 60px var(--space-5);
+        padding: var(--space-16) var(--space-5);
     }
 
     .loc-biz-who__grid {
@@ -4230,7 +4230,7 @@ a:hover {
     }
 
     .loc-biz-how {
-        padding: 60px var(--space-5);
+        padding: var(--space-16) var(--space-5);
     }
 
     .loc-biz-how__steps {
@@ -4238,7 +4238,7 @@ a:hover {
     }
 
     .loc-biz-different {
-        padding: 60px var(--space-5);
+        padding: var(--space-16) var(--space-5);
     }
 
     .loc-biz-different__inner {
@@ -4247,7 +4247,7 @@ a:hover {
     }
 
     .loc-biz-scope {
-        padding: 60px var(--space-5);
+        padding: var(--space-16) var(--space-5);
     }
 
     .loc-biz-scope__grid {
@@ -4255,7 +4255,7 @@ a:hover {
     }
 
     .loc-biz-contact {
-        padding: 60px var(--space-5);
+        padding: var(--space-16) var(--space-5);
     }
 
     .loc-biz-contact__inner {
@@ -4372,7 +4372,7 @@ a:hover {
     font-size: 15px;
     color: var(--blue);
     margin-top: var(--space-5);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
 }
 
 .loc-legal-section p {
@@ -4380,7 +4380,7 @@ a:hover {
     font-size: 15px;
     color: var(--grey-700);
     line-height: 1.8;
-    margin-bottom: 14px;
+    margin-bottom: var(--space-4);
 }
 
 .loc-legal-section p:last-child {
@@ -4390,7 +4390,7 @@ a:hover {
 .loc-legal-section ul {
     padding-left: 0;
     list-style: none;
-    margin: 14px 0;
+    margin: var(--space-4) 0;
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
@@ -4430,7 +4430,7 @@ a:hover {
 .loc-legal-important {
     display: flex;
     align-items: flex-start;
-    gap: 14px;
+    gap: var(--space-4);
     background: #EEF3FA;
     border-left: 4px solid var(--blue);
     padding: var(--space-4) var(--space-5);
@@ -4444,7 +4444,7 @@ a:hover {
 
 .loc-legal-important svg {
     flex-shrink: 0;
-    margin-top: 2px;
+    margin-top: var(--space-1);
 }
 
 /* HIGHLIGHT BOX */
@@ -4535,7 +4535,7 @@ a:hover {
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--blue);
-    margin-bottom: 14px;
+    margin-bottom: var(--space-4);
 }
 
 .loc-legal-sidebar__nav ul {
@@ -4544,7 +4544,7 @@ a:hover {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: var(--space-1);
 }
 
 .loc-legal-sidebar__nav ul li a {
@@ -4584,7 +4584,7 @@ a:hover {
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
 }
 
 .loc-legal-sidebar__ico p {
@@ -4628,7 +4628,7 @@ a:hover {
 
 .loc-legal-sidebar__contact-btn {
     font-size: 12px;
-    padding: 10px var(--space-5);
+    padding: var(--space-3) var(--space-5);
 }
 
 /* LEGAL RESPONSIVE */
@@ -4648,7 +4648,7 @@ a:hover {
 
     .loc-legal-header__meta {
         flex-direction: column;
-        gap: 10px;
+        gap: var(--space-3);
     }
 
     .loc-legal-section h2 {
@@ -4687,10 +4687,10 @@ a:hover {
 .loc-blog-coming-soon {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: var(--space-3);
     background: #EEF3FA;
     border-left: 4px solid var(--blue);
-    padding: 14px 18px;
+    padding: var(--space-4) var(--space-4);
     margin-bottom: var(--space-8);
 }
 
@@ -4709,7 +4709,7 @@ a:hover {
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
 }
 
 .loc-blog-heading {
@@ -4784,7 +4784,7 @@ a:hover {
     text-transform: uppercase;
     color: var(--white);
     background: var(--blue);
-    padding: var(--space-1) 10px;
+    padding: var(--space-1) var(--space-3);
 }
 
 /* CARD BODY */
@@ -4802,7 +4802,7 @@ a:hover {
     font-size: 16px;
     color: var(--blue);
     line-height: 1.35;
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
     transition: color 0.2s;
 }
 
@@ -4848,7 +4848,7 @@ a:hover {
 /* EMPTY STATE */
 .loc-blog-empty {
     text-align: center;
-    padding: 60px var(--space-10);
+    padding: var(--space-16) var(--space-10);
     background: var(--lightgrey);
 }
 
@@ -4868,7 +4868,7 @@ a:hover {
     font-weight: 700;
     font-size: 18px;
     color: var(--blue);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
 }
 
 .loc-blog-empty p {
@@ -4899,7 +4899,7 @@ a:hover {
     font-size: 13px;
     color: var(--blue);
     text-decoration: none;
-    padding: var(--space-2) 14px;
+    padding: var(--space-2) var(--space-4);
     border: 1px solid var(--border);
     transition: all 0.2s;
 }
@@ -4932,7 +4932,7 @@ a:hover {
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--blue);
-    margin-bottom: 14px;
+    margin-bottom: var(--space-4);
 }
 
 .loc-blog-sidebar__cats {
@@ -4941,7 +4941,7 @@ a:hover {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: var(--space-1);
 }
 
 .loc-blog-sidebar__cats li a {
@@ -4952,7 +4952,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--space-2) 10px;
+    padding: var(--space-2) var(--space-3);
     border-left: 3px solid transparent;
     transition: all 0.2s;
 }
@@ -4995,7 +4995,7 @@ a:hover {
 
 .loc-blog-sidebar__cta-btn {
     font-size: 12px;
-    padding: 10px 18px;
+    padding: var(--space-3) var(--space-4);
     display: block;
     text-align: center;
 }
@@ -5027,7 +5027,7 @@ a:hover {
 .loc-single-header__meta {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: var(--space-4);
     margin-bottom: var(--space-4);
     flex-wrap: wrap;
 }
@@ -5051,7 +5051,7 @@ a:hover {
 
 /* FEATURED IMAGE */
 .loc-single-featured-image {
-    margin-bottom: 36px;
+    margin-bottom: var(--space-8);
 }
 
 .loc-single-featured-img {
@@ -5073,7 +5073,7 @@ a:hover {
     font-weight: 800;
     font-size: 24px;
     color: var(--blue);
-    margin: 36px 0 14px;
+    margin: var(--space-8) 0 var(--space-4);
     line-height: 1.2;
 }
 
@@ -5082,17 +5082,17 @@ a:hover {
     font-weight: 700;
     font-size: 18px;
     color: var(--blue);
-    margin: var(--space-7) 0 10px;
+    margin: var(--space-7) 0 var(--space-3);
 }
 
 .loc-single-prose p {
-    margin-bottom: 18px;
+    margin-bottom: var(--space-4);
 }
 
 .loc-single-prose ul,
 .loc-single-prose ol {
     padding-left: var(--space-6);
-    margin-bottom: 18px;
+    margin-bottom: var(--space-4);
 }
 
 .loc-single-prose li {
@@ -5184,7 +5184,7 @@ a:hover {
 
 .loc-404-section {
     background: var(--white);
-    padding: 100px var(--space-10);
+    padding: var(--space-25) var(--space-10);
     text-align: center;
     min-height: 70vh;
     display: flex;
@@ -5243,7 +5243,7 @@ a:hover {
 /* CTAs */
 .loc-404-ctas {
     display: flex;
-    gap: 14px;
+    gap: var(--space-4);
     justify-content: center;
     flex-wrap: wrap;
     margin-bottom: var(--space-14);
@@ -5263,7 +5263,7 @@ a:hover {
 .loc-404-links__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: var(--space-3);
 }
 
 .loc-404-link {
@@ -5292,7 +5292,7 @@ a:hover {
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .loc-404-section {
-        padding: 60px var(--space-5);
+        padding: var(--space-16) var(--space-5);
     }
 
     .loc-404-number {
@@ -5364,7 +5364,7 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: var(--space-3);
     padding: var(--space-4) var(--space-5);
     position: relative;
     text-decoration: none;
@@ -5455,7 +5455,7 @@ a:hover {
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
 }
 
 .loc-funnel-page-header h1 {
@@ -5498,8 +5498,8 @@ a:hover {
     }
 
     .loc-funnel-step {
-        padding: 13px 10px;
-        gap: 7px;
+        padding: var(--space-4) var(--space-3);
+        gap: var(--space-2);
     }
 
     .loc-funnel-step__num {
@@ -5553,7 +5553,7 @@ a:hover {
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--grey-300);
-    margin-bottom: 14px;
+    margin-bottom: var(--space-4);
     padding-bottom: var(--space-2);
     border-bottom: 1px solid var(--border);
 }
@@ -5561,14 +5561,14 @@ a:hover {
 .loc-appliance-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
+    gap: var(--space-4);
 }
 
 /* APPLIANCE CARD */
 .loc-appliance-card {
     border: 2px solid var(--border);
     background: var(--white);
-    padding: 22px var(--space-4) 18px;
+    padding: var(--space-5) var(--space-4) var(--space-4);
     text-align: center;
     cursor: pointer;
     transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
@@ -5637,7 +5637,7 @@ a:hover {
     font-family: 'Open Sans', sans-serif;
     font-size: 11px;
     color: var(--grey-300);
-    margin-top: 2px;
+    margin-top: var(--space-1);
 }
 
 /* AGA SELECTED VARIANT label */
@@ -5657,8 +5657,8 @@ a:hover {
 /* AGA EXPAND PANEL */
 .loc-aga-options {
     display: none;
-    margin-top: 14px;
-    padding-top: 14px;
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
     border-top: 1px solid var(--border);
     text-align: left;
 }
@@ -5674,7 +5674,7 @@ a:hover {
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--grey-300);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
     text-align: center;
 }
 
@@ -5684,7 +5684,7 @@ a:hover {
     align-items: center;
     width: 100%;
     padding: 9px var(--space-3);
-    margin-bottom: 6px;
+    margin-bottom: var(--space-2);
     border: 1.5px solid var(--border);
     background: var(--white);
     cursor: pointer;
@@ -5719,8 +5719,8 @@ a:hover {
 .loc-aga-cancel {
     display: block;
     width: 100%;
-    margin-top: 10px;
-    padding: 7px;
+    margin-top: var(--space-3);
+    padding: var(--space-2);
     background: none;
     border: none;
     font-family: 'Open Sans', sans-serif;
@@ -5822,7 +5822,7 @@ a:hover {
     font-size: 12px;
     letter-spacing: 0.07em;
     text-transform: uppercase;
-    padding: 14px 22px;
+    padding: var(--space-4) var(--space-5);
     border: none;
     cursor: pointer;
     white-space: nowrap;
@@ -5957,7 +5957,7 @@ a:hover {
 @media (max-width: 960px) {
     .loc-step1-body {
         grid-template-columns: 1fr;
-        padding: var(--space-8) var(--space-5) 60px;
+        padding: var(--space-8) var(--space-5) var(--space-16);
         gap: var(--space-10);
     }
 
@@ -6109,7 +6109,7 @@ a:hover {
     color: var(--blue);
     border: 2px solid var(--border);
     border-right: none;
-    padding: 14px var(--space-5);
+    padding: var(--space-4) var(--space-5);
     outline: none;
     transition: border-color 0.2s;
     background: var(--white);
@@ -6135,7 +6135,7 @@ a:hover {
     font-size: 13px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    padding: 14px var(--space-7);
+    padding: var(--space-4) var(--space-7);
     border: 2px solid var(--blue);
     cursor: pointer;
     transition: background 0.2s;
@@ -6150,7 +6150,7 @@ a:hover {
 /* CONFIRMED BANNER */
 .loc-step2-confirmed-banner {
     background: var(--blue);
-    padding: 14px var(--space-5);
+    padding: var(--space-4) var(--space-5);
     display: flex;
     align-items: center;
     gap: var(--space-3);
@@ -6211,7 +6211,7 @@ a:hover {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: var(--space-2);
     width: 100%;
 }
 
@@ -6222,7 +6222,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 7px 10px;
+    padding: var(--space-2) var(--space-3);
     background: var(--lightgrey);
     border-left: 3px solid transparent;
     transition: border-color 0.2s, background 0.2s, color 0.2s;
@@ -6311,7 +6311,7 @@ a:hover {
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: var(--space-4);
-    padding-bottom: 14px;
+    padding-bottom: var(--space-4);
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
@@ -6380,7 +6380,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding: 10px 0;
+    padding: var(--space-3) 0;
     border-top: 1px solid rgba(255,255,255,0.15);
     margin-top: var(--space-2);
 }
@@ -6485,8 +6485,8 @@ a:hover {
     justify-content: space-between;
     align-items: baseline;
     width: 100%;
-    margin-top: 10px;
-    padding-top: 10px;
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
     border-top: 1px solid rgba(255,255,255,0.15);
 }
 
@@ -6518,7 +6518,7 @@ a:hover {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.5);
-    margin-bottom: 2px;
+    margin-bottom: var(--space-1);
 }
 
 .loc-step2-sticky-bottom__amount {
@@ -6543,7 +6543,7 @@ a:hover {
     font-size: 12px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    padding: 14px 18px;
+    padding: var(--space-4) var(--space-4);
     border: none;
     cursor: pointer;
     text-decoration: none;
@@ -6601,7 +6601,7 @@ a:hover {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.5);
-    margin-bottom: 2px;
+    margin-bottom: var(--space-1);
 }
 
 .loc-step1-sticky-bottom__amount {
@@ -6630,8 +6630,8 @@ a:hover {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    margin-top: 10px;
-    padding-top: 10px;
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
     border-top: 1px solid rgba(255,255,255,0.15);
 }
 
@@ -6660,7 +6660,7 @@ a:hover {
     font-size: 12px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    padding: 14px 18px;
+    padding: var(--space-4) var(--space-4);
     border: none;
     cursor: pointer;
     text-decoration: none;
@@ -6730,7 +6730,7 @@ a:hover {
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: var(--space-2);
 }
 
 .loc-step2-area-tags li {
@@ -6740,7 +6740,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 7px 10px;
+    padding: var(--space-2) var(--space-3);
     background: var(--lightgrey);
     border-left: 3px solid transparent;
     transition: border-color 0.2s, background 0.2s;
@@ -6805,7 +6805,7 @@ a:hover {
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: var(--space-4);
-    padding-bottom: 14px;
+    padding-bottom: var(--space-4);
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
@@ -6920,7 +6920,7 @@ a:hover {
 /* STEP 2 RESPONSIVE */
 @media (max-width: 768px) {
     .loc-step2-body {
-        padding: var(--space-8) var(--space-5) 60px;
+        padding: var(--space-8) var(--space-5) var(--space-16);
     }
 
     .loc-step2-section-heading {
@@ -6962,7 +6962,7 @@ a:hover {
     font-weight: 800;
     font-size: 22px;
     color: var(--blue);
-    margin-bottom: 6px;
+    margin-bottom: var(--space-2);
 }
 
 
@@ -7013,7 +7013,7 @@ a:hover {
     appearance: none;
     background: transparent !important;
     border: 1px solid var(--gold);
-    padding: var(--space-2) 14px;
+    padding: var(--space-2) var(--space-4);
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
@@ -7048,12 +7048,12 @@ a:hover {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--grey-300);
-    padding: 10px var(--space-1);
+    padding: var(--space-3) var(--space-1);
     text-align: center;
 }
 
 .loc-step3-cal-grid td {
-    padding: 3px;
+    padding: var(--space-1);
     text-align: center;
 }
 
@@ -7132,13 +7132,13 @@ a:hover {
 .loc-step3-time-slots__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: var(--space-3);
 }
 
 .loc-step3-slot-btn {
     background: var(--white);
     border: 2px solid var(--border);
-    padding: 14px var(--space-3);
+    padding: var(--space-4) var(--space-3);
     cursor: pointer;
     text-align: center;
     transition: all 0.2s;
@@ -7185,7 +7185,7 @@ a:hover {
 .loc-step3-summary-box {
     background: var(--blue);
     padding: var(--space-7) var(--space-6);
-    margin-bottom: 14px;
+    margin-bottom: var(--space-4);
 }
 
 .loc-step3-summary__title {
@@ -7240,7 +7240,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding-top: 14px;
+    padding-top: var(--space-4);
     border-top: 2px solid rgba(255,255,255,0.15);
     margin-bottom: 0;
 }
@@ -7249,7 +7249,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding: 10px 0;
+    padding: var(--space-3) 0;
     border-top: 1px solid rgba(255,255,255,0.15);
     margin-bottom: 0;
 }
@@ -7308,7 +7308,7 @@ a:hover {
     font-size: 12px;
     color: var(--grey-300);
     text-align: center;
-    margin-bottom: 14px;
+    margin-bottom: var(--space-4);
     font-style: italic;
     line-height: 1.5;
 }
@@ -7316,7 +7316,7 @@ a:hover {
 .loc-step3-price-guarantee {
     background: var(--lightgrey);
     border-left: 4px solid var(--gold);
-    padding: 14px var(--space-4);
+    padding: var(--space-4) var(--space-4);
 }
 
 .loc-step3-price-guarantee p {
@@ -7355,7 +7355,7 @@ a:hover {
 .loc-step3-summary__slot-reserve {
     display: none;
     width: 100%;
-    margin-top: 14px;
+    margin-top: var(--space-4);
     padding: var(--space-3);
     background: var(--white);
     border: none;
@@ -7395,7 +7395,7 @@ a:hover {
 .loc-step3-summary-box.is-condensed .loc-step3-summary__total-row {
     padding-top: 0;
     border-top: none;
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
 }
 
 /* MODAL */
@@ -7460,7 +7460,7 @@ a:hover {
     font-weight: 800;
     font-size: 20px;
     color: var(--white);
-    margin-bottom: 6px;
+    margin-bottom: var(--space-2);
 }
 
 .loc-step3-modal__header p {
@@ -7477,7 +7477,7 @@ a:hover {
     border-top: 2px solid var(--gold);
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: var(--space-3);
 }
 
 .loc-step3-modal__slot-strip p {
@@ -7500,14 +7500,14 @@ a:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-3);
-    margin-bottom: 14px;
+    margin-bottom: var(--space-4);
 }
 
 .loc-step3-form-group {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    margin-bottom: 14px;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
 }
 
 .loc-step3-form-group--full {
@@ -7528,7 +7528,7 @@ a:hover {
     font-size: 15px;
     color: var(--offblack);
     border: 2px solid var(--border);
-    padding: 13px 14px;
+    padding: var(--space-4) var(--space-4);
     outline: none;
     transition: border-color 0.2s;
     width: 100%;
@@ -7550,7 +7550,7 @@ a:hover {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--blue);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
     display: block;
 }
 
@@ -7564,7 +7564,7 @@ a:hover {
 .loc-step3-callback-btn {
     border: 2px solid var(--border);
     background: var(--white);
-    padding: 13px var(--space-2);
+    padding: var(--space-4) var(--space-2);
     cursor: pointer;
     text-align: center;
     transition: all 0.2s;
@@ -7589,7 +7589,7 @@ a:hover {
     font-size: 13px;
     color: var(--blue);
     display: block;
-    margin-bottom: 3px;
+    margin-bottom: var(--space-1);
 }
 
 .loc-step3-callback-btn__time {
@@ -7654,7 +7654,7 @@ a:hover {
     font-weight: 800;
     font-size: 32px;
     color: var(--blue);
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
     line-height: 1.2;
 }
 
@@ -7679,7 +7679,7 @@ a:hover {
 
 .loc-step3-confirm-box {
     background: var(--lightgrey);
-    padding: var(--space-4) 18px;
+    padding: var(--space-4) var(--space-4);
     border-left: 4px solid var(--gold);
 }
 
@@ -7690,7 +7690,7 @@ a:hover {
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--grey-300);
-    margin-bottom: 6px;
+    margin-bottom: var(--space-2);
 }
 
 .loc-step3-confirm-box__value {
@@ -7746,7 +7746,7 @@ a:hover {
     font-size: 13px;
     letter-spacing: 0.07em;
     text-transform: uppercase;
-    padding: 14px var(--space-7);
+    padding: var(--space-4) var(--space-7);
     border: 2px solid var(--blue);
     text-decoration: none;
     transition: background 0.2s, color 0.2s;
@@ -7826,7 +7826,7 @@ a:hover {
 
 .loc-step3-date-escape__btns {
     display: flex;
-    gap: 10px;
+    gap: var(--space-3);
 }
 
 .loc-step3-date-escape__btn {
@@ -7836,7 +7836,7 @@ a:hover {
     font-size: 12px;
     letter-spacing: 0.07em;
     text-transform: uppercase;
-    padding: 13px var(--space-4);
+    padding: var(--space-4) var(--space-4);
     border: none;
     cursor: pointer;
     text-align: center;
@@ -7904,8 +7904,8 @@ a:hover {
     }
 
     .loc-funnel-step {
-        padding: 11px var(--space-2);
-        gap: 6px;
+        padding: var(--space-3) var(--space-2);
+        gap: var(--space-2);
     }
 
     .loc-funnel-step__arrow {
@@ -7936,11 +7936,11 @@ a:hover {
 
     .loc-appliance-cards {
         grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        gap: var(--space-3);
     }
 
     .loc-appliance-card {
-        padding: var(--space-4) 10px 14px;
+        padding: var(--space-4) var(--space-3) var(--space-4);
     }
 
     .loc-appliance-card__name {
@@ -7962,17 +7962,17 @@ a:hover {
     }
 
     .loc-step2-sticky-bar {
-        padding: 10px var(--space-4);
+        padding: var(--space-3) var(--space-4);
     }
 
     .loc-step2-postcode-input {
         font-size: 15px;
-        padding: var(--space-3) 14px;
+        padding: var(--space-3) var(--space-4);
         min-width: 0;
     }
 
     .loc-step2-btn-confirm {
-        padding: var(--space-3) 14px;
+        padding: var(--space-3) var(--space-4);
         font-size: 11px;
         white-space: nowrap;
         flex-shrink: 0;
@@ -7980,12 +7980,12 @@ a:hover {
 
     .loc-step2-areas-grid {
         grid-template-columns: 1fr 1fr;
-        gap: 14px;
+        gap: var(--space-4);
     }
 
     .loc-step2-area-tags li {
         font-size: 12px;
-        padding: 6px var(--space-2);
+        padding: var(--space-2) var(--space-2);
     }
 
     .loc-step2-area-tags li span {
@@ -8045,14 +8045,14 @@ a:hover {
     }
 
     .loc-step3-summary__title {
-        margin-bottom: 10px;
+        margin-bottom: var(--space-3);
         padding-bottom: var(--space-2);
     }
 
     .loc-step3-summary__total-row {
         padding-top: 0;
         border-top: none;
-        margin-bottom: 10px;
+        margin-bottom: var(--space-3);
     }
 
     .loc-step3-summary__total-amount {
@@ -8066,7 +8066,7 @@ a:hover {
 
     .loc-step3-cal-grid th {
         font-size: 10px;
-        padding: var(--space-2) 2px;
+        padding: var(--space-2) var(--space-1);
     }
 
     .loc-cal-day {
@@ -8076,7 +8076,7 @@ a:hover {
     }
 
     .loc-step3-cal-grid td {
-        padding: 2px;
+        padding: var(--space-1);
     }
 
     /* STEP 3 STICKY BOTTOM BAR */
@@ -8115,7 +8115,7 @@ a:hover {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        margin-bottom: 2px;
+        margin-bottom: var(--space-1);
     }
 
     .loc-step3-sticky-bottom__total {
@@ -8134,7 +8134,7 @@ a:hover {
         font-size: 12px;
         letter-spacing: 0.06em;
         text-transform: uppercase;
-        padding: 14px var(--space-4);
+        padding: var(--space-4) var(--space-4);
         border: none;
         cursor: pointer;
         white-space: nowrap;
@@ -8163,7 +8163,7 @@ a:hover {
     }
 
     .loc-step3-callback-message {
-        padding: 18px var(--space-4);
+        padding: var(--space-4) var(--space-4);
     }
 
     /* MODAL */
@@ -8177,16 +8177,16 @@ a:hover {
 
     .loc-step3-form-row {
         grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        gap: var(--space-3);
     }
 
     .loc-step3-callback-options {
         grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
+        gap: var(--space-2);
     }
 
     .loc-step3-callback-btn {
-        padding: 10px var(--space-1);
+        padding: var(--space-3) var(--space-1);
     }
 
     .loc-step3-callback-btn__label {
@@ -8217,7 +8217,7 @@ a.loc-funnel-step--complete:hover {
     display: block;
     background: var(--gold);
     color: var(--white);
-    padding: 14px var(--space-5);
+    padding: var(--space-4) var(--space-5);
     font-size: 12px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
@@ -8226,7 +8226,7 @@ a.loc-funnel-step--complete:hover {
     text-align: center;
     transition: background 0.2s;
     width: 70%;
-    margin: 10px auto;
+    margin: var(--space-3) auto;
 }
 
 .loc-step3-clear-btn:hover span {
