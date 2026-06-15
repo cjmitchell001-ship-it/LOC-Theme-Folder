@@ -6437,16 +6437,6 @@ a:hover {
 
 /* STEP 2 RESPONSIVE */
 @media (max-width: 768px) {
-    .loc-step2-body { padding: 24px 20px 60px; }
-    .loc-step2-sticky-bar { padding: 10px 16px; }
-    .loc-step2-section-heading { font-size: var(--text-h4); }
-    .loc-step2-postcode-input { font-size: var(--text-ui-lg); padding: 12px 14px; }
-    .loc-step2-btn-confirm { padding: 12px 16px; font-size: var(--text-xs); }
-}
-
-
-/* STEP 2 RESPONSIVE */
-@media (max-width: 768px) {
     .loc-step2-body {
         padding: var(--space-8) var(--space-5) var(--space-16);
     }
@@ -6454,6 +6444,10 @@ a:hover {
     .loc-step2-section-heading {
         font-size: var(--text-h4);
     }
+
+    .loc-step2-sticky-bar { padding: 10px 16px; }
+    .loc-step2-postcode-input { font-size: var(--text-ui-lg); padding: 12px 14px; }
+    .loc-step2-btn-confirm { padding: 12px 16px; font-size: var(--text-xs); }
 }
 /* ============================================================
    STEP 3 â€” CALENDAR & RESERVATION
@@ -7284,28 +7278,10 @@ a:hover {
         display: block;
     }
 }
-/* STEP 3 — cap calendar width in stacked (pre-desktop) layout */
+/* Cap funnel column widths in stacked (pre-desktop) layout */
 @media (max-width: 768px) {
-    .loc-step3-calendar-col {
-        max-width: 560px;
-        margin-left: auto;
-        margin-right: auto;
-        width: 100%;
-    }
-}
-
-/* STEP 1 — cap appliance grid width in stacked (pre-desktop) layout */
-@media (max-width: 768px) {
-    .loc-step1-selection {
-        max-width: 560px;
-        margin-left: auto;
-        margin-right: auto;
-        width: 100%;
-    }
-}
-
-/* STEP 2 — cap areas grid width in landscape/stacked layout */
-@media (max-width: 768px) {
+    .loc-step3-calendar-col,
+    .loc-step1-selection,
     .loc-step2-areas-section {
         max-width: 560px;
         margin-left: auto;
