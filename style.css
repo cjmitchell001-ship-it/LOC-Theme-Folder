@@ -2343,7 +2343,7 @@ a:hover {
     margin-top: var(--space-3);
 }
 
-@media (max-width: 780px) {
+@media (max-width: 768px) {
     .loc-services-section {
         padding: var(--space-16) var(--space-5);
     }
@@ -2449,7 +2449,7 @@ a:hover {
     font-weight: 700;
 }
 
-@media (max-width: 780px) {
+@media (max-width: 768px) {
     .loc-hww-page-section {
         padding: var(--space-12) var(--space-5);
     }
@@ -2518,7 +2518,7 @@ a:hover {
     line-height: 1.75;
 }
 
-@media (max-width: 780px) {
+@media (max-width: 768px) {
     .loc-faq-page {
         padding: var(--space-12) var(--space-5);
     }
@@ -2687,7 +2687,7 @@ a:hover {
     margin-bottom: var(--space-7);
 }
 
-@media (max-width: 780px) {
+@media (max-width: 768px) {
     .loc-areas-page-map-section {
         padding: var(--space-8) var(--space-5);
     }
@@ -5843,7 +5843,7 @@ a:hover {
 }
 
 /* SKIP PANEL RESPONSIVE */
-@media (max-width: 780px) {
+@media (max-width: 768px) {
     .loc-step1-skip-panel {
         padding: var(--space-5) var(--space-4);
     }
@@ -5861,13 +5861,13 @@ a:hover {
 
 }
 
-@media (max-width: 780px) {
+@media (max-width: 768px) {
     .loc-step1-inflow-total {
         display: none;
     }
 }
 
-@media (min-width: 781px) {
+@media (min-width: 769px) {
     .loc-step1-bottom-row {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -5948,7 +5948,7 @@ a:hover {
         50%       { transform: translateX(-50%) translateY(6px); }
     }
 }
-@media (min-width: 781px) {
+@media (min-width: 769px) {
     #loc-step1-sticky-bottom {
         display: none !important;
     }
@@ -5976,7 +5976,7 @@ a:hover {
 }
 
 /* ── STEP 1 DESKTOP (781px+) ────────────────────────────────── */
-@media (min-width: 781px) {
+@media (min-width: 769px) {
 
     /* Body: left content area + right sidebar */
     .loc-step1-body {
@@ -7532,7 +7532,7 @@ a:hover {
 
 
 /* STEP 2 DESKTOP: Hide sticky bottom, show inline summary */
-@media (min-width: 781px) {
+@media (min-width: 769px) {
     .loc-step2-sticky-bottom {
         display: none !important;
     }
@@ -7542,7 +7542,7 @@ a:hover {
     }
 }
 /* STEP 3 — cap calendar width in stacked (pre-desktop) layout */
-@media (max-width: 780px) {
+@media (max-width: 768px) {
     .loc-step3-calendar-col {
         max-width: 560px;
         margin-left: auto;
@@ -7552,7 +7552,7 @@ a:hover {
 }
 
 /* STEP 1 — cap appliance grid width in stacked (pre-desktop) layout */
-@media (max-width: 780px) {
+@media (max-width: 768px) {
     .loc-step1-selection {
         max-width: 560px;
         margin-left: auto;
@@ -7562,7 +7562,7 @@ a:hover {
 }
 
 /* STEP 2 — cap areas grid width in landscape/stacked layout */
-@media (max-width: 780px) {
+@media (max-width: 768px) {
     .loc-step2-areas-section {
         max-width: 560px;
         margin-left: auto;
@@ -7646,7 +7646,7 @@ a:hover {
 /* ============================================================
    STEP 3 — 781px+ SIDE-BY-SIDE LAYOUT
    ============================================================ */
-@media (min-width: 781px) {
+@media (min-width: 769px) {
     .loc-step3-body {
         grid-template-columns: 1fr 320px;
         max-width: 900px;
@@ -8004,7 +8004,7 @@ a.loc-funnel-step--complete:hover {
 .loc-step3-clear-btn:hover span {
     background: var(--gold-light);
 }
-@media (min-width: 781px) {
+@media (min-width: 769px) {
     .loc-step1-skip-panel {
         padding: var(--space-5) var(--space-4);
     }
