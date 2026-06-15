@@ -34,7 +34,7 @@ WordPress is used for routing and template loading only. There are no plugin dep
 
 | File | Purpose |
 |------|---------|
-| `style.css` | All CSS — design tokens, global styles, every page and funnel component (~8,260 lines, CRLF, UTF-8 no BOM) |
+| `style.css` | All CSS — design tokens, global styles, every page and funnel component (~7,700 lines, CRLF, UTF-8 no BOM) |
 | `functions.php` | Font enqueue, Google Fonts, hamburger JS, hero carousel JS, contact JS, `loc_step1_script`, `loc_step2_script`, `loc_step3_script`. ALL inline JS lives here. |
 | `front-page.php` | Homepage |
 | `header.php` | Custom sticky site header (nav hardcoded, not wp_nav_menu) |
@@ -102,7 +102,7 @@ Stacking intent: page content (base/raised) < sticky bars < nav menu < header < 
 ## Working Conventions
 
 1. **Tokens only.** Replace any hardcoded value with a token (see above).
-2. **No `!important`.** If a rule won't apply, the cause is a specificity conflict or a duplicate rule — find and fix that. NOTE: the legacy `!important`s were workarounds for GeneratePress global styles bleeding through. GeneratePress is now REMOVED, so many of those `!important`s are fighting a ghost and can likely be deleted outright (verify the element still renders, then remove). See STYLE-CONFLICTS.md.
+2. **No `!important`.** If a rule won't apply, the cause is a specificity conflict or a duplicate rule — find and fix that. The legacy GP `!important` workarounds have all been removed (June 2026). Two intentional `display: none !important` guards remain (Step 1/2 sticky-bottom desktop hide rules) — do not remove those.
 3. **One element, one home.** Each element governed by one clear rule. Don't add a second class to win a fight; fix the conflict.
 4. **CRLF line endings, UTF-8 NO BOM.** `style.css` is CRLF. Any script that rewrites the file MUST detect and preserve the line ending (double-quoted `` "`r`n" `` in PowerShell checks — single quotes give false negatives) and write with `UTF8Encoding($false)` (no BOM). VS Code default encoding should be `utf8` (not utf8bom).
 5. **For multi-instance value changes, prefer a verified script over hand-edits.** The Edit tool repeatedly failed insert-vs-replace on `:root` lines; literal string-replace with an "assert occurs exactly once, else abort" guard is reliable.
@@ -178,18 +178,21 @@ All four routes implemented and tested on mobile (June 2026).
 
 ---
 
-## Structural Cleanup (remaining work — in order; detail in STYLE-CONFLICTS.md)
+## Structural Cleanup — COMPLETE (June 2026)
 
-Token system is complete (7 categories: colour, grey, shadow, radius, spacing, type, z-index). Zero known rendering bugs. The following is maintainability work, mostly internal:
+Token system and all 6 structural cleanup objectives are done. 9 commits, ~550 lines removed from `style.css`. Detail in the session report at the end of this file.
 
-1. **`!important` removal (26 total).** Most were GeneratePress workarounds — now likely removable outright since GeneratePress is gone. Verify each element renders, then remove.
-2. **Duplicate selectors (28).** Consolidate. Resolve the 1 genuine same-property conflict.
-3. **Breakpoint unification (10 distinct values; 768 has 21 blocks).** Collapse 768/769/780/781 and 600/601 clusters onto canonical breakpoints. The funnel's 780/781 was a workaround for the now-fixed header overflow, so it can likely move to standard cleanly — TEST the funnel at the new breakpoint, don't assume.
-4. **Section-spacing normalisation (the "uneven whitespace" Chris notices).** Peer sections using different vertical-spacing tokens for no reason — align them.
-5. **Component consolidation.** The three funnel summary panels (Step 1/2/3) reimplement the same blue-box-items-total pattern under different class names → unify. Also ~26 repeated eyebrow-pattern selectors, 3 duplicated sticky-bar components.
-6. **Collect scattered media queries** so all rules for an element are findable together.
+1. ✅ **`!important` removal.** 24/26 removed. 2 intentional guards kept (Step 1/2 sticky-bottom desktop hide).
+2. ✅ **Duplicate selectors.** 221-line verbatim Step 2 copy deleted; straggler selector merged; dead block removed.
+3. ✅ **Breakpoint unification.** Canonical pair: `max-width: 768px` / `min-width: 769px`. 780/781px cluster (15 blocks) collapsed. Overlap bug fixed.
+4. ✅ **Section-spacing normalisation.** Two outliers corrected (`.loc-reserve`, `.loc-hww-page-section`).
+5. ✅ **Component consolidation.** 19 eyebrow CSS blocks → `section-eyebrow` utility class (14 PHP templates updated). 9 sticky-bar sub-element pairs comma-grouped.
+6. ✅ **Media query collection.** Duplicate Step 2 responsive block merged; 3 back-to-back layout-cap blocks collapsed into one.
 
-All of this carries over to the static stack unchanged and de-risks the Phase 2 migration (see Architecture Migration below). None of it is throwaway WordPress-specific work — do it all as part of finishing the frontend.
+**What remains (deferred):**
+- Sticky-bar full CSS/JS unification (Option B) — JS references sub-element class names; deferred until a JS refactor pass.
+- `STYLE-CONFLICTS.md` is stale — all items resolved; archive or rewrite before Phase 2.
+- `loc-step3-summary-col { order: 1 }` formatting inconsistency (unindented inside `@media`) — low priority.
 
 ---
 
@@ -228,5 +231,6 @@ Migration off WordPress to a static stack is **agreed**. WordPress is only used 
 | June 2026 (m4) | Full funnel stress-tested across breakpoints. Step 1 desktop 3-col (781px+, sticky sidebar, `overflow-x: clip` fix). Step 2 confirm bar top:74px. Step 3 desktop body 900px cap. "Add Extras" label. |
 | June 2026 (m5) | Homepage restructure (section order finalised). Founding Rate removed site-wide. Four new inner pages (Services/HWW/FAQ/Areas). Footer → 5 columns. Header nav hardcoded. Brand CSS ticker. Desktop whitespace reduced (section padding 80→48). GeneratePress confirmed as migration trigger. |
 | June 2026 (m6 — CSS systematisation) | **GeneratePress dependency removed (standalone theme).** Dead code removed (46 classes). Full design-token system built and applied across 7 categories: colour, grey, shadow, radius, spacing (on-grid + off-grid snap, + `--space-18`/`--space-25`), type (+ `--text-body-lg`/`--text-h2-lg`), z-index (ladder + `--z-nav`, fixed header/modal collision). Mobile header overflow fixed (Call → dropdown menu). Two refactor-introduced bugs found by conflict audit and fixed (`--space-18/25` undefined → zero-padding; `ox-shadow` typo → 21 shadows not rendering). Conflict audit written (STYLE-CONFLICTS.md). This CLAUDE.md rewritten with full token system + verification lessons. |
+| June 2026 (m7 — structural cleanup) | All 6 structural cleanup objectives complete. !importants removed (24/26). Duplicate selectors eliminated (221-line Step 2 copy deleted). Breakpoints unified to 768/769px canonical pair (780/781 cluster collapsed). Section spacing normalised. Eyebrow pattern consolidated: 19 CSS blocks → `section-eyebrow` utility across 14 PHP templates. Sticky-bar sub-elements deduplicated. @media scatter resolved. 9 commits, ~550 lines removed from style.css. |
 
 *Update this log and the sections above whenever significant progress is made or a decision is confirmed.*
