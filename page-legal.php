@@ -26,7 +26,7 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
     <!-- PAGE HEADER -->
     <section class="loc-page-header loc-legal-header">
         <div class="loc-legal-header__inner">
-            <p class="loc-page-header__eyebrow"><?php echo $current['eyebrow']; ?></p>
+            <p class="loc-page-header__eyebrow section-eyebrow"><?php echo $current['eyebrow']; ?></p>
             <h1><?php echo $current['title']; ?></h1>
             <div class="loc-legal-header__meta">
                 <div class="loc-legal-meta-item">

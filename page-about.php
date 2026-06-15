@@ -12,7 +12,7 @@ get_header();
     <!-- PAGE HEADER -->
     <section class="loc-page-header">
         <div class="loc-page-header__inner">
-            <p class="loc-page-header__eyebrow">Who We Are</p>
+            <p class="loc-page-header__eyebrow section-eyebrow">Who We Are</p>
             <h1>A Leicester business, <span>built for Leicester.</span></h1>
             <p class="loc-page-header__intro">No franchise. No call centre. Just one person, doing the job properly, building a business one oven at a time.</p>
         </div>
@@ -22,7 +22,7 @@ get_header();
     <section class="loc-about-intro">
         <div class="loc-about-intro__inner">
             <div class="loc-about-intro__text">
-                <p class="loc-about-intro__eyebrow">The founder</p>
+                <p class="section-eyebrow">The founder</p>
                 <h2>Hi, I'm Chris.</h2>
                 <p>I started Leicester Oven Cleaning because I wanted to build something of my own — a proper local business, doing a job people genuinely need, done to a standard I'd be happy with myself.</p>
                 <p>I'm not a franchise. I don't have a head office or a support team. It's just me — which means when you book, you know exactly who's coming, and you know I have a personal stake in doing it right.</p>
@@ -49,7 +49,7 @@ get_header();
     <!-- VALUES SECTION -->
     <section class="loc-about-values">
         <div class="loc-about-values__inner">
-            <p class="loc-about-values__eyebrow">How I work</p>
+            <p class="section-eyebrow">How I work</p>
             <h2 class="loc-about-values__title">What you can expect</h2>
             <p class="loc-about-values__subtitle">These aren't aspirations. They're the standard I hold myself to on every job.</p>
 
@@ -112,7 +112,7 @@ get_header();
         <div class="loc-about-story__inner">
 
             <div class="loc-about-story__block">
-                <p class="loc-about-story__eyebrow">The fixer instinct</p>
+                <p class="section-eyebrow">The fixer instinct</p>
                 <h3>I've always taken things apart</h3>
                 <p>From an early age I was the person who opened things up rather than called someone else. Heating pumps, fridge freezer fans, anything that stopped working — my first instinct was always to have a look and figure it out rather than assume it was beyond me.</p>
                 <p>Most problems people assume are really difficult to fix, actually aren't. They just need someone willing to look into it properly without being intimidated by the idea of opening something up.</p>
@@ -124,7 +124,7 @@ get_header();
             </div>
 
             <div class="loc-about-story__block">
-                <p class="loc-about-story__eyebrow">The business</p>
+                <p class="section-eyebrow">The business</p>
                 <h3>Why Leicester Oven Cleaning exists</h3>
                 <p>I spent years doing work I didn't enjoy. Factory floors, machinery, HGV driving — all fine for what they were, but not where I wanted to stay. I wanted to build something of my own.</p>
                 <p>Oven cleaning came up almost by accident — a video online, a conversation with an old friend who's been running his own cleaning business successfully for years. The more I looked into it, the more it made sense. Low setup cost, recurring demand, a service people genuinely need but rarely want to do themselves.</p>
@@ -138,7 +138,7 @@ get_header();
     <!-- CREDENTIALS -->
     <section class="loc-about-credentials">
         <div class="loc-about-credentials__inner">
-            <p class="loc-about-credentials__eyebrow">Credentials</p>
+            <p class="section-eyebrow">Credentials</p>
             <h2 class="loc-about-credentials__title">Registered, insured, and accountable</h2>
             <div class="loc-about-credentials__grid">
 
@@ -181,7 +181,7 @@ get_header();
     <!-- CTA -->
     <section class="loc-about-cta">
         <div class="loc-about-cta__inner">
-            <p class="loc-about-cta__eyebrow">Ready to book?</p>
+            <p class="section-eyebrow">Ready to book?</p>
             <h2>Let's get your oven sorted.</h2>
             <p>Fixed price. Same-day results. No card needed to reserve your slot.</p>
             <div class="loc-about-cta__buttons">

@@ -12,7 +12,7 @@ get_header();
     <!-- PAGE HEADER -->
     <section class="loc-page-header">
         <div class="loc-page-header__inner">
-            <p class="loc-page-header__eyebrow">Got Questions?</p>
+            <p class="loc-page-header__eyebrow section-eyebrow">Got Questions?</p>
             <h1>Frequently Asked <span>Questions</span></h1>
             <p class="loc-page-header__intro">Everything you need to know before you reserve. Can't find your answer here? Get in touch — we're happy to help.</p>
         </div>
@@ -162,7 +162,7 @@ get_header();
          ============================================================ -->
     <section class="loc-inner-cta">
         <div class="loc-inner-cta__inner">
-            <p class="loc-inner-cta__eyebrow">Still have a question?</p>
+            <p class="loc-inner-cta__eyebrow section-eyebrow">Still have a question?</p>
             <h2>We're happy to help.</h2>
             <p>Drop us a message and we'll get back to you.</p>
             <a href="/contact" class="btn-primary">Get In Touch &rarr;</a>

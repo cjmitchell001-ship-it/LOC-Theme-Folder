@@ -58,7 +58,7 @@
     <!-- LEFT: CALENDAR -->
     <div class="loc-step3-calendar-col">
 
-        <p class="loc-step3-eyebrow">Available Slots</p>
+        <p class="loc-step3-eyebrow section-eyebrow">Available Slots</p>
         <h2 class="loc-step3-section-heading">Select a date</h2>
         <!-- LEGEND -->
         <div class="loc-step3-legend">

@@ -12,7 +12,7 @@ get_header();
     <!-- PAGE HEADER -->
     <section class="loc-page-header">
         <div class="loc-page-header__inner">
-            <p class="loc-page-header__eyebrow">Where We Cover</p>
+            <p class="loc-page-header__eyebrow section-eyebrow">Where We Cover</p>
             <h1>Areas <span>We Serve</span></h1>
             <p class="loc-page-header__intro">We cover Leicester city and the surrounding Leicestershire area. Enter your postcode on the reservation page for instant confirmation — or check the list below.</p>
         </div>
@@ -40,7 +40,7 @@ get_header();
          ============================================================ -->
     <section class="loc-areas-page-list-section">
         <div class="loc-areas-page-list-section__inner">
-            <p class="loc-areas-page-list-section__eyebrow">Coverage</p>
+            <p class="loc-areas-page-list-section__eyebrow section-eyebrow">Coverage</p>
             <h2 class="loc-areas-page-list-section__heading">Where We Work</h2>
 
             <div class="loc-areas-page-grid">

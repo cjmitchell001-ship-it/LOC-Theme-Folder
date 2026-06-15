@@ -12,7 +12,7 @@ get_header();
     <!-- PAGE HEADER -->
     <section class="loc-page-header">
         <div class="loc-page-header__inner">
-            <p class="loc-page-header__eyebrow">Get In Touch</p>
+            <p class="loc-page-header__eyebrow section-eyebrow">Get In Touch</p>
             <h1>We'd love to <span>hear from you.</span></h1>
             <p class="loc-page-header__intro">Not ready to reserve yet? Ask us anything — we'll get back to you within one working day.</p>
         </div>
@@ -25,7 +25,7 @@ get_header();
             <!-- LEFT — CONTACT DETAILS -->
             <div class="loc-contact-details">
 
-                <p class="loc-contact-details__eyebrow">Contact details</p>
+                <p class="section-eyebrow">Contact details</p>
                 <h2 class="loc-contact-details__title">How to reach us</h2>
                 <p class="loc-contact-details__intro">We're a local Leicester business — you're always speaking directly with Chris, not a call centre or an automated system.</p>
 

@@ -12,7 +12,7 @@ get_header();
     <!-- PAGE HEADER -->
     <section class="loc-page-header">
         <div class="loc-page-header__inner">
-            <p class="loc-page-header__eyebrow">Advice &amp; Tips</p>
+            <p class="loc-page-header__eyebrow section-eyebrow">Advice &amp; Tips</p>
             <h1>The Leicester Oven <span>Cleaning Blog</span></h1>
             <p class="loc-page-header__intro">Practical advice on oven care, appliance maintenance, and getting the most out of your kitchen. Written from experience, not a content farm.</p>
         </div>
@@ -33,7 +33,7 @@ get_header();
                         <p>Articles coming soon — this section will be populated once the business is live and operating.</p>
                     </div>
 
-                    <p class="loc-blog-eyebrow">Latest Articles</p>
+                    <p class="section-eyebrow">Latest Articles</p>
                     <h2 class="loc-blog-heading">Advice &amp; Tips</h2>
 
                     <div class="loc-blog-grid">

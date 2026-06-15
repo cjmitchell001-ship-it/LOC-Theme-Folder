@@ -88,7 +88,7 @@ get_header();
      HOW TO RESERVE YOUR SLOT
      ============================================================ -->
 <section class="loc-reserve">
-    <p class="loc-reserve__eyebrow">Simple &amp; Straightforward</p>
+    <p class="loc-reserve__eyebrow section-eyebrow">Simple &amp; Straightforward</p>
     <h2 class="loc-reserve__title">How to Reserve Your Slot</h2>
     <p class="loc-reserve__subtitle">Three quick steps — no card details, no commitment. We call you to confirm everything.</p>
 
@@ -179,7 +179,7 @@ get_header();
      PRICING SECTION
      ============================================================ -->
 <section class="loc-pricing">
-    <p class="loc-pricing__eyebrow">Transparent &amp; Fixed</p>
+    <p class="section-eyebrow">Transparent &amp; Fixed</p>
     <h2 class="loc-pricing__title">Simple, Fixed Prices</h2>
     <p class="loc-pricing__subtitle">No hidden fees. No surprises. See all options and select your appliances when you reserve.</p>
 
@@ -315,7 +315,7 @@ get_header();
      ============================================================ -->
 <section class="loc-reviews">
     <div class="loc-reviews__inner">
-        <p class="loc-reviews__eyebrow">Our Standard</p>
+        <p class="section-eyebrow">Our Standard</p>
         <h2 class="loc-reviews__title">What Our Customers Say</h2>
         <p class="loc-reviews__subtitle">We're just getting started — and we intend to earn every one of these.</p>
 
@@ -335,7 +335,7 @@ get_header();
      AREAS COVERED
      ============================================================ -->
 <section class="loc-areas">
-    <p class="loc-areas__eyebrow">Where We Operate</p>
+    <p class="section-eyebrow">Where We Operate</p>
     <h2 class="loc-areas__title">Areas We Cover</h2>
     <p class="loc-areas__subtitle">Based in Leicester, we serve the city and surrounding suburbs. Not sure if we cover your area? Just ask.</p>
 
@@ -398,7 +398,7 @@ get_header();
      FAQ
      ============================================================ -->
 <section class="loc-faq">
-    <p class="loc-faq__eyebrow">Got Questions?</p>
+    <p class="section-eyebrow">Got Questions?</p>
     <h2 class="loc-faq__title">Frequently Asked Questions</h2>
     <p class="loc-faq__subtitle">Everything you need to know before you reserve your slot.</p>
 
@@ -427,7 +427,7 @@ get_header();
 <section class="loc-business-banner">
     <div class="loc-business-banner__inner">
         <div class="loc-business-banner__left">
-            <p class="loc-business-banner__eyebrow">Commercial &amp; Business Clients</p>
+            <p class="section-eyebrow">Commercial &amp; Business Clients</p>
             <h2 class="loc-business-banner__title">Got a business property or <span>contract requirement?</span></h2>
             <p class="loc-business-banner__sub">Business bookings work a little differently. Get in touch directly and we'll arrange everything around you.</p>
         </div>

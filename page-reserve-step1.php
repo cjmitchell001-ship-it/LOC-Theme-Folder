@@ -57,7 +57,7 @@
      PAGE HEADER
      ============================================================ -->
 <div class="loc-funnel-page-header">
-    <p class="loc-funnel-page-header__eyebrow">Step 1 of 3</p>
+    <p class="loc-funnel-page-header__eyebrow section-eyebrow">Step 1 of 3</p>
     <h1>What would you like cleaned?</h1>
     <p class="loc-funnel-page-header__intro">Select your oven and any extras below. Prices are fixed — what you see is what you pay, regardless of condition.</p>
 </div>

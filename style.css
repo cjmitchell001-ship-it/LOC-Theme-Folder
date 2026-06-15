@@ -1003,15 +1003,6 @@ a:hover {
     text-align: center;
 }
 
-.loc-reserve__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-reserve__title {
     font-family: 'Montserrat', sans-serif;
@@ -1247,15 +1238,6 @@ a:hover {
     flex: 1;
 }
 
-.loc-business-banner__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-business-banner__title {
     font-family: 'Montserrat', sans-serif;
@@ -1333,15 +1315,6 @@ a:hover {
     text-align: center;
 }
 
-.loc-pricing__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-pricing__title {
     font-family: 'Montserrat', sans-serif;
@@ -1747,15 +1720,6 @@ a:hover {
     text-align: center;
 }
 
-.loc-reviews__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-reviews__title {
     font-family: 'Montserrat', sans-serif;
@@ -1851,15 +1815,6 @@ a:hover {
     text-align: center;
 }
 
-.loc-areas__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-areas__title {
     font-family: 'Montserrat', sans-serif;
@@ -1990,15 +1945,6 @@ a:hover {
     text-align: center;
 }
 
-.loc-faq__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-faq__title {
     font-family: 'Montserrat', sans-serif;
@@ -2110,13 +2056,8 @@ a:hover {
 }
 
 .loc-inner-cta__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
     font-size: var(--text-xs);
     letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
 }
 
 .loc-inner-cta h2 {
@@ -2157,13 +2098,8 @@ a:hover {
 }
 
 .loc-services-section__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
     font-size: var(--text-xs);
     letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
 }
 
 .loc-services-section__heading {
@@ -2570,13 +2506,8 @@ a:hover {
 }
 
 .loc-areas-page-list-section__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
     font-size: var(--text-xs);
     letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
 }
 
 .loc-areas-page-list-section__heading {
@@ -2751,12 +2682,7 @@ a:hover {
 }
 
 .loc-page-header__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
     letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
     margin-bottom: var(--space-4);
 }
 
@@ -2810,15 +2736,6 @@ a:hover {
     align-items: center;
 }
 
-.loc-about-intro__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-about-intro__text h2 {
     font-family: 'Montserrat', sans-serif;
@@ -2924,15 +2841,6 @@ a:hover {
     margin: 0 auto;
 }
 
-.loc-about-values__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-about-values__title {
     font-family: 'Montserrat', sans-serif;
@@ -3004,15 +2912,6 @@ a:hover {
     gap: var(--space-16);
 }
 
-.loc-about-story__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-about-story__block h3 {
     font-family: 'Montserrat', sans-serif;
@@ -3076,15 +2975,6 @@ a:hover {
     z-index: var(--z-raised);
 }
 
-.loc-about-credentials__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-about-credentials__title {
     font-family: 'Montserrat', sans-serif;
@@ -3145,15 +3035,6 @@ a:hover {
     margin: 0 auto;
 }
 
-.loc-about-cta__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-about-cta h2 {
     font-family: 'Montserrat', sans-serif;
@@ -3243,15 +3124,6 @@ a:hover {
 }
 
 /* LEFT â€” CONTACT DETAILS */
-.loc-contact-details__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-contact-details__title {
     font-family: 'Montserrat', sans-serif;
@@ -3636,15 +3508,6 @@ a:hover {
     margin: 0 auto;
 }
 
-.loc-biz-who__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-biz-who__title {
     font-family: 'Montserrat', sans-serif;
@@ -3721,15 +3584,6 @@ a:hover {
     margin: 0 auto;
 }
 
-.loc-biz-how__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-biz-how__title {
     font-family: 'Montserrat', sans-serif;
@@ -3835,15 +3689,6 @@ a:hover {
     z-index: var(--z-raised);
 }
 
-.loc-biz-different__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-biz-different__title {
     font-family: 'Montserrat', sans-serif;
@@ -3910,15 +3755,6 @@ a:hover {
     margin: 0 auto;
 }
 
-.loc-biz-scope__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-biz-scope__title {
     font-family: 'Montserrat', sans-serif;
@@ -4075,15 +3911,6 @@ a:hover {
     align-items: start;
 }
 
-.loc-biz-contact__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-biz-contact__title {
     font-family: 'Montserrat', sans-serif;
@@ -4702,15 +4529,6 @@ a:hover {
 }
 
 /* EYEBROW & HEADING */
-.loc-blog-eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-blog-heading {
     font-family: 'Montserrat', sans-serif;
@@ -5210,15 +5028,6 @@ a:hover {
     user-select: none;
 }
 
-.loc-404-eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
-}
 
 .loc-404-title {
     font-family: 'Montserrat', sans-serif;
@@ -5449,13 +5258,7 @@ a:hover {
 }
 
 .loc-funnel-page-header__eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
     letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: var(--space-3);
 }
 
 .loc-funnel-page-header h1 {
@@ -6727,12 +6530,6 @@ a:hover {
 
 /* CALENDAR COLUMN */
 .loc-step3-eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
     margin-bottom: var(--space-2);
 }
 

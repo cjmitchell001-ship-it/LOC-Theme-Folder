@@ -12,7 +12,7 @@ get_header();
     <!-- PAGE HEADER -->
     <section class="loc-page-header">
         <div class="loc-page-header__inner">
-            <p class="loc-page-header__eyebrow">Our Services</p>
+            <p class="loc-page-header__eyebrow section-eyebrow">Our Services</p>
             <h1>Everything <span>We Clean</span></h1>
             <p class="loc-page-header__intro">Fixed prices, professional results, and your appliances ready to use the same day. Select what you need when you reserve — or get in touch if you're not sure.</p>
         </div>
@@ -23,7 +23,7 @@ get_header();
          ============================================================ -->
     <section class="loc-services-section">
         <div class="loc-services-section__inner">
-            <p class="loc-services-section__eyebrow">Domestic</p>
+            <p class="loc-services-section__eyebrow section-eyebrow">Domestic</p>
             <h2 class="loc-services-section__heading">For Your Home</h2>
             <p class="loc-services-section__intro">We clean all domestic cooking appliances. Everything is stripped down, dip-tank cleaned, and reassembled on the same visit.</p>
 
@@ -131,7 +131,7 @@ get_header();
          ============================================================ -->
     <section class="loc-services-section loc-services-section--alt">
         <div class="loc-services-section__inner">
-            <p class="loc-services-section__eyebrow">Commercial</p>
+            <p class="loc-services-section__eyebrow section-eyebrow">Commercial</p>
             <h2 class="loc-services-section__heading">For Your Business</h2>
             <p class="loc-services-section__intro">We work with landlords, letting agents, HMOs, offices, care homes, and small commercial kitchens. Business bookings are handled directly — get in touch and we'll arrange everything around your schedule.</p>
 
@@ -166,7 +166,7 @@ get_header();
          ============================================================ -->
     <section class="loc-services-section loc-services-section--coming-soon">
         <div class="loc-services-section__inner">
-            <p class="loc-services-section__eyebrow">Expanding</p>
+            <p class="loc-services-section__eyebrow section-eyebrow">Expanding</p>
             <h2 class="loc-services-section__heading">Coming Soon</h2>
             <p class="loc-services-section__intro">We're expanding our services as the business grows. The following will be available soon — register your interest and we'll let you know when they launch.</p>
 

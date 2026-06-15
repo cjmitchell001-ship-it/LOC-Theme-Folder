@@ -12,7 +12,7 @@ get_header();
     <!-- PAGE HEADER -->
     <section class="loc-page-header loc-biz-header">
         <div class="loc-biz-header__inner">
-            <p class="loc-page-header__eyebrow">Business & Commercial</p>
+            <p class="loc-page-header__eyebrow section-eyebrow">Business & Commercial</p>
             <h1>Oven cleaning for <span>businesses that mean it.</span></h1>
             <p class="loc-page-header__intro">Landlords, letting agents, HMOs, offices, and small commercial kitchens — we work around your schedule, not the other way around.</p>
             <div class="loc-biz-header__ctas">
@@ -25,7 +25,7 @@ get_header();
     <!-- WHO WE SERVE -->
     <section class="loc-biz-who">
         <div class="loc-biz-who__inner">
-            <p class="loc-biz-who__eyebrow">Who we work with</p>
+            <p class="section-eyebrow">Who we work with</p>
             <h2 class="loc-biz-who__title">Built for businesses of all sizes</h2>
             <p class="loc-biz-who__subtitle">From a single rental property to a portfolio of HMOs — if you need ovens cleaned professionally, we can help.</p>
 
@@ -86,7 +86,7 @@ get_header();
     <!-- HOW IT WORKS — COMMERCIAL -->
     <section class="loc-biz-how">
         <div class="loc-biz-how__inner">
-            <p class="loc-biz-how__eyebrow">The process</p>
+            <p class="section-eyebrow">The process</p>
             <h2 class="loc-biz-how__title">How commercial bookings work</h2>
             <p class="loc-biz-how__subtitle">Business bookings work differently from domestic — no automated funnel, just a straightforward conversation.</p>
 
@@ -125,7 +125,7 @@ get_header();
         <div class="loc-biz-different__inner">
 
             <div class="loc-biz-different__text">
-                <p class="loc-biz-different__eyebrow">Why choose us</p>
+                <p class="section-eyebrow">Why choose us</p>
                 <h2 class="loc-biz-different__title">What makes us different for business customers</h2>
                 <p>We're not a franchise with a call centre. When you deal with Leicester Oven Cleaning, you deal with Chris — the person who turns up and does the job. No layers, no miscommunication, no surprises.</p>
                 <p>For business customers, that means flexible scheduling, honest pricing, and a direct line to the person responsible for the work.</p>
@@ -181,7 +181,7 @@ get_header();
     <!-- SCOPE SECTION -->
     <section class="loc-biz-scope">
         <div class="loc-biz-scope__inner">
-            <p class="loc-biz-scope__eyebrow">What we clean</p>
+            <p class="section-eyebrow">What we clean</p>
             <h2 class="loc-biz-scope__title">In scope &amp; out of scope</h2>
             <p class="loc-biz-scope__subtitle">We're clear about what we do and what we don't — no wasted conversations.</p>
 
@@ -262,7 +262,7 @@ get_header();
 
             <!-- LEFT — CONTACT OPTIONS -->
             <div class="loc-biz-contact__options">
-                <p class="loc-biz-contact__eyebrow">Get in touch</p>
+                <p class="section-eyebrow">Get in touch</p>
                 <h2 class="loc-biz-contact__title">Tell us about your property</h2>
                 <p class="loc-biz-contact__intro">Business bookings are arranged directly — just tell us what you need and we'll take it from there. No automated system, no waiting.</p>
 

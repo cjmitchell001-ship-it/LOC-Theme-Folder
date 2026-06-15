@@ -12,7 +12,7 @@ get_header();
     <!-- PAGE HEADER -->
     <section class="loc-page-header">
         <div class="loc-page-header__inner">
-            <p class="loc-page-header__eyebrow">Our Process</p>
+            <p class="loc-page-header__eyebrow section-eyebrow">Our Process</p>
             <h1>How <span>We Work</span></h1>
             <p class="loc-page-header__intro">From the moment we arrive to the moment we leave — here's exactly what happens during a Leicester Oven Cleaning visit.</p>
         </div>
@@ -199,7 +199,7 @@ get_header();
          ============================================================ -->
     <section class="loc-inner-cta">
         <div class="loc-inner-cta__inner">
-            <p class="loc-inner-cta__eyebrow">Ready to book?</p>
+            <p class="loc-inner-cta__eyebrow section-eyebrow">Ready to book?</p>
             <h2>Reserve your slot.</h2>
             <p>Fixed price. Same-day results. No card needed to reserve.</p>
             <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>

@@ -51,7 +51,7 @@
 
 <!-- PAGE HEADER -->
 <div class="loc-funnel-page-header">
-    <p class="loc-funnel-page-header__eyebrow">Step 2 of 3</p>
+    <p class="loc-funnel-page-header__eyebrow section-eyebrow">Step 2 of 3</p>
     <h1>Help us find your best available dates</h1>
     <p class="loc-funnel-page-header__intro">We organise our schedule by area — enter your postcode or pick your area below and we'll show you the dates that work best for your location.</p>
 </div>
@@ -155,7 +155,7 @@
     <!-- INLINE APPLIANCE SELECTION — shown only on direct landing after postcode confirmed -->
     <div class="loc-step2-inline-section" id="loc-inline-section" style="display:none;">
 
-        <p class="loc-funnel-page-header__eyebrow">One more step</p>
+        <p class="loc-funnel-page-header__eyebrow section-eyebrow">One more step</p>
         <h2 class="loc-step2-section-heading">What would you like cleaned?</h2>
         <p class="loc-step2-inline-intro">You came straight to this page — no problem. Select your appliances below and we'll get you to the calendar.</p>
 

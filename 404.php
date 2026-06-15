@@ -15,7 +15,7 @@ get_header();
             <div class="loc-404-number">404</div>
 
             <!-- CONTENT -->
-            <p class="loc-404-eyebrow">Page not found</p>
+            <p class="section-eyebrow">Page not found</p>
             <h1 class="loc-404-title">That page doesn't exist.</h1>
             <p class="loc-404-subtitle">The page you were looking for has moved, been deleted, or never existed. Let's get you back on track.</p>
 
