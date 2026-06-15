@@ -29,8 +29,8 @@ get_header();
 
     <!-- HERO CONTENT -->
     <div class="loc-hero__content">
-        <h1 class="loc-hero__title">Leicester Oven Cleaning</h1>
-        <p class="loc-hero__tagline" id="loc-hero-tagline">Professional oven cleaning in Leicester &amp; Leicestershire</p>
+        <h1 class="loc-hero__title">Your oven, cleaned properly. Fixed price, same day.</h1>
+        <p class="loc-hero__tagline" id="loc-hero-tagline">Serving Leicester &amp; Leicestershire — we call to confirm everything before we start.</p>
         <div class="loc-hero__ctas">
             <div class="loc-hero__cta-group">
                 <span class="loc-hero__cta-label">Home Enquiries</span>
@@ -69,8 +69,8 @@ get_header();
         <div class="loc-trust__item">
             <div class="loc-trust__icon">✓</div>
             <div class="loc-trust__text">
-                <strong>Your Data Is Never Shared</strong>
-                <span>Registered with the UK data protection authority</span>
+                <strong>Local &amp; Independent</strong>
+                <span>Leicester-based, owner-operated — your home is in safe hands</span>
             </div>
         </div>
 
@@ -134,7 +134,7 @@ get_header();
                 <line x1="76" y1="102" x2="86" y2="102" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
             </svg>
             <h3 class="loc-reserve__step-title">Enter Your Postcode</h3>
-            <p class="loc-reserve__step-desc">We use your location to show you the most convenient available dates — grouping nearby jobs together so you get the best slot.</p>
+            <p class="loc-reserve__step-desc">We check your area and show you the nearest available dates and times. You pick what works for you.</p>
         </div>
 
         <!-- CONNECTOR -->
@@ -163,15 +163,16 @@ get_header();
                 <path d="M80 82L85.5 88L97 75" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             <h3 class="loc-reserve__step-title">Pick a Date &amp; We'll Call You</h3>
-            <p class="loc-reserve__step-desc">Choose from available slots and reserve online. We'll call to confirm your booking — no card details needed, no commitment until you're happy.</p>
+            <p class="loc-reserve__step-desc">Choose from available slots and reserve online. We'll call to confirm your booking — and take a £25 deposit over the phone to secure your slot. No card details needed online, no commitment until you're happy.</p>
         </div>
 
     </div>
 
     <!-- CTA -->
     <div class="loc-reserve__cta">
-        <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot — we'll call to confirm</a>
-        <p>Takes 2 minutes &nbsp;·&nbsp; No card needed &nbsp;·&nbsp; We confirm everything by phone</p>
+        <p class="loc-reserve__tagline">Reserve online in 2 minutes — we call you to arrange the rest.</p>
+        <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>
+        <p>Takes 2 minutes &nbsp;·&nbsp; £25 deposit on confirmation call &nbsp;·&nbsp; No commitment until you're happy</p>
     </div>
 
 </section>
@@ -416,6 +417,13 @@ get_header();
 
     </div>
 
+        <div class="loc-faq__item">
+            <h4 class="loc-faq__q">Do I need to be home during the clean?</h4>
+            <p class="loc-faq__a">Yes — we'll need access to the property and someone present when we arrive and finish. Most cleans take between 1.5 and 3 hours depending on what's being done. We'll confirm the expected duration when we call to book you in.</p>
+        </div>
+
+    </div>
+
     <div class="loc-faq__more">
         <a href="/faq">See all FAQs &rarr;</a>
     </div>
@@ -429,10 +437,10 @@ get_header();
         <div class="loc-business-banner__left">
             <p class="section-eyebrow">Commercial &amp; Business Clients</p>
             <h2 class="loc-business-banner__title">Got a business property or <span>contract requirement?</span></h2>
-            <p class="loc-business-banner__sub">Business bookings work a little differently. Get in touch directly and we'll arrange everything around you.</p>
+            <p class="loc-business-banner__sub">We offer out-of-hours availability and can work across multiple units or sites. Whether it's a one-off clean or an ongoing arrangement, get in touch and we'll talk through what works.</p>
         </div>
         <div class="loc-business-banner__right">
-            <a href="/business-commercial" class="btn-primary">Get in Touch</a>
+            <a href="/business-commercial" class="btn-primary">Discuss a Business Booking</a>
         </div>
     </div>
 </section>
