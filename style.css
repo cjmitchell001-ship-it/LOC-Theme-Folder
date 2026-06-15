@@ -2963,6 +2963,10 @@ a:hover {
     margin-top: var(--space-6);
 }
 
+.loc-about-cards__inner .loc-about-story__future-box {
+    margin-top: 0;
+}
+
 .loc-about-story__future-label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
@@ -2971,6 +2975,27 @@ a:hover {
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: var(--space-2);
+}
+
+/* ABOUT CARDS — two-column card row */
+.loc-about-cards {
+    padding: var(--space-16) var(--space-10);
+    background: var(--white);
+}
+
+.loc-about-cards__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .loc-about-cards__inner {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* CREDENTIALS */

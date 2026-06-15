@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Set-Location *)",
+      "PowerShell(cd \"C:\\\\Users\\\\cjmit\\\\Local Sites\\\\leicester-oven-cleaning\\\\app\\\\public\\\\wp-content\\\\themes\\\\leicester-oven-cleaning-child\"; powershell -File remove-importants.ps1)",
+      "PowerShell(cd \"C:\\\\Users\\\\cjmit\\\\Local Sites\\\\leicester-oven-cleaning\\\\app\\\\public\\\\wp-content\\\\themes\\\\leicester-oven-cleaning-child\"; powershell -File remove-importants.ps1; Write-Host ''; git diff --stat)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}

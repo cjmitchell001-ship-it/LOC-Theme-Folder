@@ -43,6 +43,11 @@
     <!-- MOBILE CONTROLS -->
     <div class="loc-header__mobile">
         <a href="/reserve-step-1" class="btn-primary btn-primary--small">Reserve</a>
+        <a href="tel:PLACEHOLDER" class="loc-header__call-icon" aria-label="Call us">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.47 11.47 0 0 0 3.58.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/>
+            </svg>
+        </a>
         <button class="loc-hamburger" id="loc-hamburger" aria-label="Open menu">
             <span></span>
             <span></span>
@@ -56,7 +61,6 @@
             <li><a href="/about">About</a></li>
             <li><a href="/services">Services</a></li>
             <li><a href="/business-commercial">Business &amp; Commercial</a></li>
-            <li><a href="tel:PLACEHOLDER">Call Us</a></li>
         </ul>
     </div>
 

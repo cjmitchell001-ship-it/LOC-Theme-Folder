@@ -22,21 +22,14 @@ get_header();
     <section class="loc-about-intro">
         <div class="loc-about-intro__inner">
             <div class="loc-about-intro__text">
-                <p class="section-eyebrow">The founder</p>
-                <h2>Hi, I'm Chris.</h2>
+                <p class="section-eyebrow">The person behind it</p>
+                <h2>Built on honest work.</h2>
                 <p>I started Leicester Oven Cleaning because I wanted to build something of my own — a proper local business, doing a job people genuinely need, done to a standard I'd be happy with myself.</p>
                 <p>I'm not a franchise. I don't have a head office or a support team. It's just me — which means when you book, you know exactly who's coming, and you know I have a personal stake in doing it right.</p>
                 <p>Leicester is where I live. This business is built here, for the people who live here. That's not a marketing line — it's just what it is.</p>
             </div>
             <div class="loc-about-intro__card">
                 <div class="loc-about-intro__card-inner">
-                    <div class="loc-about-intro__avatar">
-                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
-                            <circle cx="12" cy="8" r="4" stroke="rgba(255,255,255,0.9)" stroke-width="1.5"/>
-                            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                    <p class="loc-about-intro__name">Chris</p>
                     <p class="loc-about-intro__role">Founder & Technician</p>
                     <p class="loc-about-intro__location">Leicester, Leicestershire</p>
                     <div class="loc-about-intro__divider"></div>
@@ -51,7 +44,7 @@ get_header();
         <div class="loc-about-values__inner">
             <p class="section-eyebrow">How I work</p>
             <h2 class="loc-about-values__title">What you can expect</h2>
-            <p class="loc-about-values__subtitle">These aren't aspirations. They're the standard I hold myself to on every job.</p>
+            <p class="loc-about-values__subtitle">The standard I hold myself to on every job.</p>
 
             <div class="loc-about-values__grid">
 
@@ -60,14 +53,14 @@ get_header();
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
                     <p class="loc-about-values__card-title">The price you're quoted is the price you pay</p>
-                    <p class="loc-about-values__card-text">The price agreed at booking is the price you pay — regardless of the condition of your oven when I arrive. No surprises on the day, no upselling once I'm through the door.</p>
+                    <p class="loc-about-values__card-text">The price agreed at booking is the price you pay — however dirty the oven is when I arrive. No surprises on the day, no upselling once I'm through the door.</p>
                 </div>
 
                 <div class="loc-about-values__card">
                     <div class="loc-about-values__icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#1A3A6E" stroke-width="2"/><path d="M12 8v4l3 3" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round"/></svg>
                     </div>
-                    <p class="loc-about-values__card-title">On time, every time</p>
+                    <p class="loc-about-values__card-title">On time — or you'll hear from me first</p>
                     <p class="loc-about-values__card-text">Your time matters. I'll be there when I said I would be. If something genuinely unavoidable happens, you'll hear from me as early as possible — not when I'm already late.</p>
                 </div>
 
@@ -76,7 +69,7 @@ get_header();
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="#1A3A6E" stroke-width="2"/><polyline points="9 22 9 12 15 12 15 22" stroke="#1A3A6E" stroke-width="2"/></svg>
                     </div>
                     <p class="loc-about-values__card-title">Your home, respected</p>
-                    <p class="loc-about-values__card-text">Floor coverings go down before anything starts. All my equipment and materials leave with me. I don't use your electricity, I only need a cold water tap. Your home is left exactly as I found it — except for the oven.</p>
+                    <p class="loc-about-values__card-text">Floor coverings go down before anything starts. All my equipment and materials leave with me. Unless you're making me a brew, I don't use your electricity, and only need a cold water tap. Your home is left exactly as I found it — except for the oven.</p>
                 </div>
 
                 <div class="loc-about-values__card">
@@ -107,29 +100,23 @@ get_header();
         </div>
     </section>
 
-    <!-- STORY SECTION -->
-    <section class="loc-about-story">
-        <div class="loc-about-story__inner">
+    <!-- ABOUT CARDS -->
+    <section class="loc-about-cards">
+        <div class="loc-about-cards__inner">
 
-            <div class="loc-about-story__block">
-                <p class="section-eyebrow">The fixer instinct</p>
-                <h3>I've always taken things apart</h3>
-                <p>From an early age I was the person who opened things up rather than called someone else. Heating pumps, fridge freezer fans, anything that stopped working — my first instinct was always to have a look and figure it out rather than assume it was beyond me.</p>
-                <p>Most problems people assume are really difficult to fix, actually aren't. They just need someone willing to look into it properly without being intimidated by the idea of opening something up.</p>
-                <p>That mindset transfers directly into oven cleaning. A thorough clean isn't just a wipe-down — it's a disassembly, a methodical clean of every component, and a careful reassembly. It suits the way I naturally approach things.</p>
-                <div class="loc-about-story__future-box">
-                    <p class="loc-about-story__future-label">Looking ahead</p>
-                    <p>Alongside cleaning, I'm working towards offering appliance repair and restoration services in the future. If your oven has faded dials, a worn door seal, or a fault that's been put off, that's exactly the kind of thing I'd like to be able to help with. It's early days — but it's where this is heading.</p>
-                </div>
+            <div class="loc-about-story__future-box">
+                <p class="loc-about-story__future-label">THE APPROACH</p>
+                <p>Most people call someone when something stops working. My instinct has always been to open it up and understand why. Heating systems, appliances, mechanical faults — I've always been more comfortable taking something apart methodically than assuming it's beyond me.</p>
+                <p>That approach transfers directly into oven cleaning. A proper clean isn't a wipe-down — it's a disassembly, a methodical clean of every component, and a careful reassembly. It takes the same patience and attention to detail as any diagnostic job.</p>
+                <p>Most problems people assume are complicated, aren't. They just need someone willing to look properly.</p>
             </div>
 
-            <div class="loc-about-story__block">
-                <p class="section-eyebrow">The business</p>
-                <h3>Why Leicester Oven Cleaning exists</h3>
-                <p>I spent years doing work I didn't enjoy. Factory floors, machinery, HGV driving — all fine for what they were, but not where I wanted to stay. I wanted to build something of my own.</p>
-                <p>Oven cleaning came up almost by accident — a video online, a conversation with an old friend who's been running his own cleaning business successfully for years. The more I looked into it, the more it made sense. Low setup cost, recurring demand, a service people genuinely need but rarely want to do themselves.</p>
-                <p>So I did the research, got the tools, and started. Leicester is where I live and where I want to build. The business is local by design — not a franchise, not a van with a logo that could be anywhere. A Leicester business, built for Leicester.</p>
-                <p>The goal long term is to grow properly — take on staff, expand the services, eventually move off the tools and run the operation. But right now it's just me, doing good work, building a reputation one oven at a time.</p>
+            <div class="loc-about-story__future-box">
+                <p class="loc-about-story__future-label">LOOKING AHEAD</p>
+                <p>Leicester Oven Cleaning is working towards a broader range of appliance and kitchen services.</p>
+                <p>Longer term, we're exploring appliance repair and restoration — faded dials, worn door seals, recurring faults that have been put off — alongside servicing of larger commercial and industrial extraction units and range ovens.</p>
+                <p>We're also looking at how we can better serve elderly and disabled customers, including accessibility features that make kitchen appliances easier and safer to use day to day.</p>
+                <p>If any of this is relevant to you — even if it's not something we're offering yet — we'd genuinely like to hear from you. Get in touch and tell us what you need.</p>
             </div>
 
         </div>
@@ -147,15 +134,7 @@ get_header();
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#C9960C" stroke-width="2"/></svg>
                     </div>
                     <p class="loc-about-credentials__label">ICO Registered</p>
-                    <p class="loc-about-credentials__value">Data protection registration — number added before go-live</p>
-                </div>
-
-                <div class="loc-about-credentials__item">
-                    <div class="loc-about-credentials__icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="#C9960C" stroke-width="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" stroke="#C9960C" stroke-width="2"/></svg>
-                    </div>
-                    <p class="loc-about-credentials__label">Companies House</p>
-                    <p class="loc-about-credentials__value">Registered as The Proper-T Cleaning Group Ltd</p>
+                    <p class="loc-about-credentials__value">Registration pending — number published here before go-live</p>
                 </div>
 
                 <div class="loc-about-credentials__item">
@@ -185,7 +164,7 @@ get_header();
             <h2>Let's get your oven sorted.</h2>
             <p>Fixed price. Same-day results. No card needed to reserve your slot.</p>
             <div class="loc-about-cta__buttons">
-                <a href="/reserve" class="btn-primary">Reserve Your Slot — we'll call to confirm</a>
+                <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>
                 <a href="/contact" class="btn-ghost-blue">Get in Touch</a>
             </div>
         </div>
