@@ -20,7 +20,6 @@
             <div class="loc-footer__trust-badges">
                 <span class="loc-footer__badge">✓ Fully Insured</span>
                 <span class="loc-footer__badge">✓ ICO Registered</span>
-                <span class="loc-footer__badge">✓ Companies House Registered</span>
             </div>
         </div>
 
@@ -76,7 +75,7 @@
 
             <!-- COPYRIGHT -->
             <p class="loc-footer__copyright">
-                &copy; <?php echo date('Y'); ?> Leicester Oven Cleaning — Trading as The Proper-T Cleaning Group Ltd. All rights reserved.
+                &copy; <?php echo date('Y'); ?> Leicester Oven Cleaning — Trading as The Proper-T Cleaning Group. All rights reserved.
             </p>
 
             <!-- ICO + INSURANCE -->
