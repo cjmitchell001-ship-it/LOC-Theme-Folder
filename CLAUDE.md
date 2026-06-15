@@ -6,7 +6,7 @@
 
 ## Project
 
-Startup oven cleaning business based in Leicester, UK. Founder: Chris. Pre-launch — no commercial customers yet. The website is built and being refined before go-live.
+Startup oven cleaning business based in Leicester, UK. Founder: Chris. Pre-launch — no commercial customers yet. The website is built and being refined before go-live. Solo project — Chris is the only person touching the site.
 
 **Trading name:** Leicester Oven Cleaning  
 **Parent company name:** The Proper-T Cleaning Group — **not yet registered as a Ltd company**  
@@ -23,18 +23,19 @@ The footer currently says "Companies House Registered" — this is aspirational 
 | Local dev | Local by Flywheel |
 | Local domain | `leicester-oven-cleaning.local` |
 | WordPress | 6.9.4 |
-| Parent theme | GeneratePress (free tier) |
-| Child theme | `leicester-oven-cleaning-child` ← you are here |
+| Theme | **Standalone theme** — GeneratePress parent dependency REMOVED. Full CSS control, no parent fallbacks. |
+| Theme folder | `leicester-oven-cleaning-child` (name is historical — it is NOT a child theme any more) |
 | Hosting | SiteGround (pre-launch, live site exists) |
+| Version control | git (run git via Claude Code, not the VS Code PowerShell terminal — git is not on that terminal's PATH) |
 
 WordPress is used for routing and template loading only. There are no plugin dependencies in the funnel. All pages are custom PHP/CSS/JS.
 
-### Child Theme Files
+### Theme Files
 
 | File | Purpose |
 |------|---------|
-| `style.css` | All CSS — brand variables, global styles, every page and funnel component |
-| `functions.php` | Parent theme enqueue, Google Fonts, hamburger JS, hero carousel JS, contact JS, `loc_step1_script`, `loc_step2_script`, `loc_step3_script` |
+| `style.css` | All CSS — design tokens, global styles, every page and funnel component (~8,260 lines, CRLF, UTF-8 no BOM) |
+| `functions.php` | Font enqueue, Google Fonts, hamburger JS, hero carousel JS, contact JS, `loc_step1_script`, `loc_step2_script`, `loc_step3_script`. ALL inline JS lives here. |
 | `front-page.php` | Homepage |
 | `header.php` | Custom sticky site header (nav hardcoded, not wp_nav_menu) |
 | `footer.php` | Five-column footer (brand + Services + Company + Help + Legal) |
@@ -53,26 +54,77 @@ WordPress is used for routing and template loading only. There are no plugin dep
 | `page-reserve-step2.php` | Funnel Step 2 — postcode / area |
 | `page-reserve-step3.php` | Funnel Step 3 — calendar + reservation modal |
 
-### Brand — CSS Variables (verified in `style.css`)
+Companion docs in the repo: `STYLE-CONFLICTS.md` (conflict/duplication audit — the structural to-do list) and `STYLE-AUDIT.md` (original value audit). Read alongside this file.
 
-```css
---blue:       #1A3A6E;   /* Leicester Blue — primary */
---gold:       #C9960C;   /* Rich Gold — accent */
---gold-light: #e8b020;   /* Gold hover state */
---white:      #FFFFFF;
---lightgrey:  #F5F5F5;
---offblack:   #1C1C2E;
---border:     #e2e2e2;
-```
+---
 
-Always use these variables. Never hardcode hex values.
+## Design Token System (authoritative — use tokens, never hardcode)
 
-### Typography (verified in `style.css` and `functions.php`)
+Every colour, space, font-size, shadow, radius, and z-index is a CSS custom property in `:root`. **Never reintroduce a hardcoded value.** Need a value with no token? Snap to the nearest existing token, or add a new token to `:root` first, then use it. Never leave a literal.
 
-- **Headings:** Montserrat 700/800 — loaded via Google Fonts CDN
-- **Body:** Open Sans 400/600, 17px base — loaded via Google Fonts CDN
+`:root` definitions keep their literal values — never tokenise a token definition (no `--blue: var(--blue)`).
 
-### Funnel — Session Storage Keys
+### Brand colours
+`--blue #1A3A6E` · `--gold #C9960C` · `--gold-light #e8b020` · `--white #FFFFFF` · `--lightgrey #F5F5F5` · `--offblack #1C1C2E` · `--border #e2e2e2`
+
+### Greys
+`--grey-700 #444` · `--grey-600 #555` · `--grey-500 #666` · `--grey-400 #888` · `--grey-300 #aaa` · `--grey-200 #ccc` · `--grey-100 #e2e2e2` · `--grey-50 #F5F5F5`
+(`--grey-600` exists specifically for body text — do not fold it into `--grey-500`.)
+
+### Blue tints
+`--blue-dark #122d58` · `--blue-darker #0f2550` · `--blue-pale #eef3fa`
+
+### White overlay ramp (glass panels on blue)
+`--white-a05 / a10 / a15 / a35 / a60 / a85`
+
+### Spacing (4px base; token number × 4 = px)
+`--space-1 4` `--space-2 8` `--space-3 12` `--space-4 16` `--space-5 20` `--space-6 24` `--space-7 28` `--space-8 32` `--space-10 40` `--space-12 48` `--space-14 56` `--space-16 64` `--space-18 72` `--space-20 80` `--space-25 100` `--space-30 120`
+
+### Type (px; body base = `--text-body` 17px)
+`--text-fine 11` `--text-xs 12` `--text-sm 13` `--text-ui 14` `--text-ui-lg 15` `--text-body-sm 16` `--text-body 17` `--text-body-lg 18` `--text-lead 20` `--text-h4 24` `--text-h3 28` `--text-h2 32` `--text-h2-lg 36` `--text-h1 40` `--text-display 56` `--text-hero 80` `--text-hero-xl 120`
+
+### Shadows (elevation ramp, brand-blue tinted)
+`--shadow-xs` `--shadow-sm` `--shadow-md` `--shadow-lg` `--shadow-xl` · `--shadow-up` (sticky/fixed bottom bars, casts upward) · `--shadow-gold` (gold button/badge glow)
+
+### Radius
+`--radius-xs 2` `--radius-sm 4` `--radius-md 8` `--radius-lg 16` `--radius-pill 20` `--radius-full 50%`
+
+### Z-index ladder
+`--z-base 1` `--z-raised 2` `--z-sticky 100` `--z-fixed-bar 200` `--z-nav 500` `--z-header 700` `--z-overlay 1000` `--z-modal 1200` `--z-modal-ui 1210`
+Stacking intent: page content (base/raised) < sticky bars < nav menu < header < modal overlay < modal < modal UI. The modal overlay deliberately sits ABOVE the header so it covers it.
+
+### Typography
+- **Headings:** Montserrat 700/800 — Google Fonts CDN
+- **Body:** Open Sans 400/600, 17px base — Google Fonts CDN
+
+---
+
+## Working Conventions
+
+1. **Tokens only.** Replace any hardcoded value with a token (see above).
+2. **No `!important`.** If a rule won't apply, the cause is a specificity conflict or a duplicate rule — find and fix that. NOTE: the legacy `!important`s were workarounds for GeneratePress global styles bleeding through. GeneratePress is now REMOVED, so many of those `!important`s are fighting a ghost and can likely be deleted outright (verify the element still renders, then remove). See STYLE-CONFLICTS.md.
+3. **One element, one home.** Each element governed by one clear rule. Don't add a second class to win a fight; fix the conflict.
+4. **CRLF line endings, UTF-8 NO BOM.** `style.css` is CRLF. Any script that rewrites the file MUST detect and preserve the line ending (double-quoted `` "`r`n" `` in PowerShell checks — single quotes give false negatives) and write with `UTF8Encoding($false)` (no BOM). VS Code default encoding should be `utf8` (not utf8bom).
+5. **For multi-instance value changes, prefer a verified script over hand-edits.** The Edit tool repeatedly failed insert-vs-replace on `:root` lines; literal string-replace with an "assert occurs exactly once, else abort" guard is reliable.
+6. **Commit per logical change**, descriptive message, clean working tree between tasks. Don't commit one-off tooling scripts — delete them after (their work is in the commit).
+7. **Approval gates stay ON.** Never "allow all edits" / "don't ask again". The per-step review is what catches errors.
+
+---
+
+## VERIFICATION — hard-won lessons (read twice)
+
+Bugs were shipped during the token refactor because verification checked the wrong thing. Caught later by audit, not the browser. Do not repeat:
+
+- **A swap that changes a VALUE can also damage the PROPERTY NAME or a DEPENDENCY.** The shadow pass wrote `ox-shadow:` (dropped the `b`) on 21 declarations — values correct, property dead, shadows invisible. After ANY find-and-replace: verify (a) the property name is intact, (b) every `var(--x)` it references is actually DEFINED in `:root`.
+- **A `git checkout` revert can orphan a dependency a later step assumes exists.** `--space-18`/`--space-25` definitions were rolled back by a revert, then a later swap wrote `var(--space-18)` referencing the now-missing token → those sections rendered with ZERO padding. After any revert-then-redo, confirm all referenced tokens resolve.
+- **Verify against the actual file/diff, not the script's narration.** Verification scripts repeatedly produced alarming-but-wrong intermediate output while the file was fine (and occasionally the reverse). Resolve contradictions by reading the real diff/file.
+- **PowerShell writes can add a UTF-8 BOM or convert line endings.** A BOM (`EF BB BF`) on byte 0 of a CSS file is harmless-looking but can misparse the first rule / break build tools. After any script write: confirm first bytes are the expected content, CRLF preserved, and `git diff` shows only the intended change.
+- **Visible-change passes get a browser check that looks for the thing PRESENT, not just "looks fine."** "Looked good" missed absent shadows. Confirm the specific element shows the specific expected result.
+- **Count and list must agree.** "22 found" but 21 listed → reconcile before acting.
+
+---
+
+## Funnel — Session Storage Keys
 
 | Key | Written by | Read by | Value |
 |-----|-----------|---------|-------|
@@ -82,73 +134,76 @@ Always use these variables. Never hardcode hex values.
 | `loc_skip` | Step 1 skip / Step 2 skip | Step 3 total display | `'true'` |
 | `loc_postcode` | Step 2 confirm btn | Step 3 (unused currently) | String e.g. `'LE4'` |
 
-`loc_skip` must be explicitly `removeItem`'d when proceeding with actual selections. Leaving a stale skip flag causes Step 3 to show £TBC despite real selections being made.
+`loc_skip` must be explicitly `removeItem`'d when proceeding with actual selections. A stale skip flag causes Step 3 to show £TBC despite real selections.
 
-### Funnel — Four User Journey Routes
+## Funnel — Four User Journey Routes
 
 1. Step 1 appliances → Step 2 → Step 3 (selections + total carried through)
 2. Step 1 skip → Step 2 → Step 3 (£TBC throughout)
 3. Direct land Step 2 → inline appliances → Step 3 (sticky bar writes storage on click)
 4. Direct land Step 2 → inline discuss → Step 3 (£TBC throughout)
 
-All four routes are implemented and were last tested on mobile (June 2026). Tablet and desktop breakpoints are outstanding.
+All four routes implemented and tested on mobile (June 2026).
 
-### Funnel — Step 3 Mobile Layout Rules
+## Funnel — Step 3 Mobile Layout Rules
 
-- Summary panel sits **below** the calendar on mobile (`order: 1`)
-- Do not move it back above the calendar (`order: -1`) — this was deliberately changed
-- No sticky/condense behaviour on any breakpoint — the old scroll handler is fully removed
-- Auto-scroll fires when a time slot is selected: `summaryCol.scrollIntoView({ behavior: 'smooth', block: 'end' })`
-- `loc-step3-summary__slot--active` (pulsing state) is only removed on successful form submit
+- Summary panel sits **below** the calendar on mobile (`order: 1`). Do not move it back above (`order: -1`) — deliberately changed.
+- No sticky/condense behaviour on any breakpoint — old scroll handler fully removed.
+- Auto-scroll on slot select: `summaryCol.scrollIntoView({ behavior: 'smooth', block: 'end' })`
+- `loc-step3-summary__slot--active` (pulsing) only removed on successful form submit.
 
 ---
 
-## Placeholder Content (Not Yet Real)
+## Placeholder Content (Not Yet Real — replace before go-live)
 
-These are in the live code and must be replaced before go-live:
-
-- **Phone number:** `+441234567890` in `header.php` and elsewhere — VoIP number not yet obtained
-- **Reserve URLs:** `/reserve` in `header.php` and `front-page.php` — currently 404s, should be `/reserve-step-1`
-- **ICO number:** Shows "[Pending Registration]" in `footer.php`
-- **Companies House number:** Not in footer — company not yet registered
+- **Phone number:** `tel:PLACEHOLDER` — appears in BOTH the `header.php` Call button AND the mobile dropdown menu "Call Us" item. VoIP not yet obtained. Update BOTH when real.
+- **Reserve URLs:** Reserve buttons point to `/reserve-step-1` (the earlier `/reserve` 404 bug is fixed).
+- **ICO number:** "[Pending Registration]" in `footer.php`
+- **Companies House number:** Not in footer — company not registered
 - **Social links:** All `#` placeholders in `footer.php`
 - **All pricing figures:** Placeholder throughout the funnel
 - **Calendar availability:** Hardcoded arrays in Step 3 — no real booking API
 - **Areas map image:** AI-generated placeholder
-- **Hero carousel images:** Mix of AI-generated and stock images — real photos needed
+- **Hero carousel images:** Mix of AI/stock — real photos needed
 
 ---
 
 ## Known Bugs / Open Items
 
-- ~~**Reserve button URLs:** `/reserve` in `header.php` and `front-page.php` should be `/reserve-step-1`~~ Fixed June 2026
+- ~~**Reserve button URLs** `/reserve` → `/reserve-step-1`~~ Fixed June 2026
+- ~~**Mobile header overflow:** RESERVE/CALL/hamburger clipped off right edge~~ Fixed — Call moved into the dropdown menu, header row is now logo · Reserve · hamburger. (This was the root cause of the funnel's 780/781 breakpoint hack — see breakpoint note below.)
+- ~~**Token rendering bugs from the refactor:** `--space-18`/`--space-25` undefined (8 sections zero-padding); `ox-shadow` typo (21 shadows not rendering)~~ Both found by the conflict audit and fixed June 2026.
 - **Step 3 skip route text:** `#loc-summary-items` shows "No selection found" when skip route used — should say "To be discussed on the call"
 - **Step 1 desktop right rail:** Empty after summary panel was removed — needs a plan for the responsive pass
-- **Responsive pass:** Homepage desktop (769px+) substantially complete. Funnel steps (Step 1/2/3) desktop responsive outstanding. Inner pages (Services, FAQ, Areas, How We Work, About, B2B) desktop responsive outstanding.
-- **GeneratePress interference:** Global `button` styles and `transition` rules continue to bleed through and require `!important` workarounds. Getting worse as the CSS grows. Primary reason migration is being considered now rather than post-launch.
 
 ---
 
-## Architecture Migration (Actively Planned)
+## Structural Cleanup (remaining work — in order; detail in STYLE-CONFLICTS.md)
 
-Migration off WordPress/GeneratePress is the agreed next major step — likely to happen before the site is polished and launched, not after. The GeneratePress parent theme is the primary driver: its global CSS bleeds through the child theme and the workarounds are making `style.css` messier with each session.
+Token system is complete (7 categories: colour, grey, shadow, radius, spacing, type, z-index). Zero known rendering bugs. The following is maintainability work, mostly internal:
 
-**Intended target stack:**
-- Static frontend (Astro or similar) hosted on Cloudflare Pages
-- Decoupled API backend for the booking funnel (post-launch concern)
-- Full ownership of the CSS stack — no parent theme, no `!important` workarounds
+1. **`!important` removal (26 total).** Most were GeneratePress workarounds — now likely removable outright since GeneratePress is gone. Verify each element renders, then remove.
+2. **Duplicate selectors (28).** Consolidate. Resolve the 1 genuine same-property conflict.
+3. **Breakpoint unification (10 distinct values; 768 has 21 blocks).** Collapse 768/769/780/781 and 600/601 clusters onto canonical breakpoints. The funnel's 780/781 was a workaround for the now-fixed header overflow, so it can likely move to standard cleanly — TEST the funnel at the new breakpoint, don't assume.
+4. **Section-spacing normalisation (the "uneven whitespace" Chris notices).** Peer sections using different vertical-spacing tokens for no reason — align them.
+5. **Component consolidation.** The three funnel summary panels (Step 1/2/3) reimplement the same blue-box-items-total pattern under different class names → unify. Also ~26 repeated eyebrow-pattern selectors, 3 duplicated sticky-bar components.
+6. **Collect scattered media queries** so all rules for an element are findable together.
 
-**Migration approach:**
-- All existing PHP templates, CSS, and JS are self-contained and can be ported directly
-- The CSS variable system (`--blue`, `--gold`, etc.) carries over unchanged
-- The funnel sessionStorage logic is framework-agnostic and ports cleanly
-- Migration is an opportunity to do a full code tidy before final polish
+All of this carries over to the static stack unchanged and de-risks the Phase 2 migration (see Architecture Migration below). None of it is throwaway WordPress-specific work — do it all as part of finishing the frontend.
 
-**Do not start migration** without a confirmed plan for the funnel backend (the Step 3 calendar is currently hardcoded — it needs a real booking API or a temporary solution before go-live).
+---
 
-## Soft Ideas (Under Consideration — Not Decided)
+## Architecture Migration (AGREED — Phase 2)
 
-- **Founding Customer Rate:** Fully removed from all templates and funnel steps (June 2026). Do not reintroduce.
+Migration off WordPress to a static stack is **agreed**. WordPress is only used for URL routing and template loading — ~95% of the site is custom PHP/CSS/JS with no real WP dependency, and SiteGround hosting (~£220/yr) is overhead for what's used.
+
+**Target stack:** static frontend on **Cloudflare Pages** (free/very cheap) + a separate **booking API** (Railway/Render, ~£5-7/mo). Projected cost ~£60-80/yr.
+
+**Timing — the agreed plan:** migration happens **at the same time as building the real booking backend — both together as one project (Phase 2)**, NOT before and NOT after. Reasoning: the funnel JS is already structured for API calls (sessionStorage is a temporary stand-in); the PHP templates are almost entirely portable (only 3-4 WP function calls to replace); building the backend inside WP and then migrating creates coupling that has to be unpicked; doing both at once is one project not two.
+
+**HARD PRINCIPLE: do not start migration until the frontend is completely finished, tested, and signed off.** Frontend-first. The structural cleanup below IS part of finishing the frontend.
+
+**Why the cleanup matters for migration:** the CSS carries over to the static stack essentially unchanged (the migration is lifting the HTML/CSS/JS out of WP's template wrapper). So every bit of structural cleanup — `!important` removal, breakpoint unification, spacing normalisation, component consolidation — ports directly AND de-risks Phase 2 (less to puzzle over / port when served statically). None of it is throwaway WordPress-specific work.
 
 ---
 
@@ -156,8 +211,10 @@ Migration off WordPress/GeneratePress is the agreed next major step — likely t
 
 - Brand voice: direct, confident, local — never corporate or generic
 - CTA rule: always **"Reserve Your Slot — we'll call to confirm"** — never "Book Now"
-- The deposit is taken after the confirmation call, not at reservation
-- Do not reference appliance repair as a current service — it is a future ambition only
+- Deposit taken after the confirmation call, not at reservation
+- Do not reference appliance repair as a current service — future ambition only
+- No eco-friendly claims; no financial guarantees in copy; no dirty-oven before/after imagery
+- **Founding Customer Rate:** fully removed (June 2026) — do not reintroduce
 
 ---
 
@@ -165,11 +222,11 @@ Migration off WordPress/GeneratePress is the agreed next major step — likely t
 
 | Date | What changed |
 |------|-------------|
-| June 2026 | Step 1: right-rail summary panel removed, sticky bottom bar added. Step 2: summary panel removed, static continue bar added, inline route £0 storage write bug fixed. Step 3: summary repositioned below calendar on mobile, sticky/condense behaviour removed, auto-scroll on time selection added, modal dead-end fixed. Claude Code installed. |
-| June 2026 (milestone 2) | Header: reserve button URLs fixed to `/reserve-step-1`. Step 2: postcode/sessionStorage sync bugs fixed (tile click and manual re-edit without re-confirm); Location + postcode added to continue bar, inline summary, and mobile sticky bar across all routes. Step 3: page header removed; recommended days feature fully stripped (JS, CSS, homepage copy); Prev/Next nav bounded to current month and 12-month cap; mobile auto-scroll on Clear Selection and callback time pick; summary panel restructured into discrete Location / Date / Time rows with standalone Reserve Your Slot button; autofill yellow background fixed; confirmation screen name field bug fixed; appliance card tick character encoding fixed. GeneratePress global button styles identified as source of nav button text colour bug — `!important` overrides applied as temporary workaround; permanent fix deferred to Astro migration. |
-| June 2026 (milestone 3) | 601px layout complete. Step 1: in-flow 2-column panel (skip + total/proceed) replaces sticky bar at 601px+; scroll-down hint indicator added (bouncing arrow, appears on first selection, disappears on scroll); Step 1→Step 2 sessionStorage handoff bug fixed (inflow button had no confirm listener). Step 3: sticky bottom bar hidden above 600px (was rendering as plain block element above its media query). |
-
-| June 2026 (milestone 4) | Full funnel stress-tested across all breakpoints. Step 1 desktop (781px+): 3-column layout — ovens column, extras column, right sidebar (discuss + totals + guarantee); sidebar sticky; `overflow-x: clip` on html+body fixes both CSS sticky and JS-driven fixed positioning. Step 1 601–780px: discuss panel column layout fixed; guarantee box width-matched to discuss panel. Step 2: postcode confirm bar `top` fixed to 74px (below funnel header); areas grid capped at 560px in landscape. Step 3: desktop body capped at 900px max-width; calendar capped at 560px in stacked/landscape layout. Appliance label copy changed to "Add Extras". |
-| June 2026 (milestone 5) | Homepage restructure: section order finalised (Hero → Trust → How to Reserve → Pricing → Brand Ticker → Reviews → Areas → FAQ → Business Banner). Founding Rate removed site-wide (all funnel steps, functions.php). Four new inner page templates added: Services, How We Work, FAQ, Areas. Footer expanded to 5 columns. Header nav hardcoded (wp_nav_menu removed). Hero CTAs replaced with bordered group containers (Home Enquiries / Business Enquiries). Brand logos converted to CSS ticker (10 brands, seamless loop, fade-edge mask, 32s speed, 1025px max-width). Trust bar forced to 4-column grid at 769px+. Homepage desktop whitespace aggressively reduced (section padding 80px → 48px across all sections). Pricing panel and Business Banner alignment fixed at 601–768px (left-aligned, full-width CTA). Reviews section constrained to 1080px inner wrapper. Business banner given 48px margin-bottom from footer at all breakpoints. GeneratePress interference confirmed as migration trigger — decision made to migrate before final polish. |
+| June 2026 | Step 1: right-rail summary removed, sticky bottom bar added. Step 2: summary removed, static continue bar, inline-route £0 storage bug fixed. Step 3: summary below calendar on mobile, sticky/condense removed, auto-scroll on time selection, modal dead-end fixed. Claude Code installed. |
+| June 2026 (m2) | Header reserve URLs → `/reserve-step-1`. Step 2 postcode/sessionStorage sync fixes; location+postcode in continue/summary/sticky bars. Step 3 restructured into Location/Date/Time rows; various encoding/autofill/name-field fixes. GeneratePress button-colour bleed → temporary `!important` workarounds. |
+| June 2026 (m3) | 601px layout complete. Step 1 in-flow 2-col panel, scroll-down hint. Step 3 sticky bar hidden above 600px. |
+| June 2026 (m4) | Full funnel stress-tested across breakpoints. Step 1 desktop 3-col (781px+, sticky sidebar, `overflow-x: clip` fix). Step 2 confirm bar top:74px. Step 3 desktop body 900px cap. "Add Extras" label. |
+| June 2026 (m5) | Homepage restructure (section order finalised). Founding Rate removed site-wide. Four new inner pages (Services/HWW/FAQ/Areas). Footer → 5 columns. Header nav hardcoded. Brand CSS ticker. Desktop whitespace reduced (section padding 80→48). GeneratePress confirmed as migration trigger. |
+| June 2026 (m6 — CSS systematisation) | **GeneratePress dependency removed (standalone theme).** Dead code removed (46 classes). Full design-token system built and applied across 7 categories: colour, grey, shadow, radius, spacing (on-grid + off-grid snap, + `--space-18`/`--space-25`), type (+ `--text-body-lg`/`--text-h2-lg`), z-index (ladder + `--z-nav`, fixed header/modal collision). Mobile header overflow fixed (Call → dropdown menu). Two refactor-introduced bugs found by conflict audit and fixed (`--space-18/25` undefined → zero-padding; `ox-shadow` typo → 21 shadows not rendering). Conflict audit written (STYLE-CONFLICTS.md). This CLAUDE.md rewritten with full token system + verification lessons. |
 
 *Update this log and the sections above whenever significant progress is made or a decision is confirmed.*
