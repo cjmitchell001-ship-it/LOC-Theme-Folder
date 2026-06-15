@@ -999,7 +999,7 @@ a:hover {
 
 .loc-reserve {
     background: var(--white);
-    padding: var(--space-16) var(--space-10);
+    padding: var(--space-20) var(--space-10);
     text-align: center;
 }
 
@@ -2366,7 +2366,7 @@ a:hover {
    ============================================================ */
 
 .loc-hww-page-section {
-    padding: var(--space-16) var(--space-10);
+    padding: var(--space-18) var(--space-10);
     background: var(--white);
 }
 
