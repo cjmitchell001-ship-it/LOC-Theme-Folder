@@ -5316,8 +5316,8 @@ a:hover {
 .loc-funnel-page .site-content,
 .loc-funnel-page #page,
 .loc-funnel-page .content-area {
-    padding: 0 !important;
-    margin: 0 !important;
+    padding: 0;
+    margin: 0;
 }
 
 /* FUNNEL HEADER */
@@ -5608,7 +5608,7 @@ a:hover {
 
 /* AGA card â€” no lift when expanded */
 .loc-appliance-card--aga.is-expanded {
-    transform: none !important;
+    transform: none;
     cursor: default;
 }
 
@@ -5815,7 +5815,7 @@ a:hover {
 }
 
 .loc-step1-skip-btn {
-    background: var(--gold)!important;
+    background: var(--gold);
     color: var(--white);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
@@ -5834,11 +5834,11 @@ a:hover {
 }
 
 .loc-step1-skip-btn:hover {
-    background: var(--gold-light)!important;
+    background: var(--gold-light);
 }
 
 .loc-step1-skip-btn.is-active {
-    background: var(--blue)!important;
+    background: var(--blue);
     color: var(--white);
 }
 
@@ -5912,8 +5912,8 @@ a:hover {
         text-align: center;
         flex-shrink: 1;
         width: 100%;
-        background: var(--gold) !important;
-        color: var(--white) !important;
+        background: var(--gold);
+        color: var(--white);
     }
 
     /* Scroll-down hint */
@@ -7011,26 +7011,26 @@ a:hover {
 .loc-step3-cal-nav-btn {
     -webkit-appearance: none;
     appearance: none;
-    background: transparent !important;
+    background: transparent;
     border: 1px solid var(--gold);
     padding: var(--space-2) var(--space-4);
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: var(--text-sm);
-    color: var(--blue) !important;
-    transition: opacity 0.15s ease !important;
+    color: var(--blue);
+    transition: opacity 0.15s ease;
 }
 
 .loc-step3-cal-nav-btn:hover,
 .loc-step3-cal-nav-btn:focus {
-    background: transparent !important;
+    background: transparent;
     outline: none;
 }
 
 .loc-step3-cal-nav-btn:active {
     opacity: 0.4;
-    background: transparent !important;
+    background: transparent;
     outline: none;
 }
 
@@ -7101,14 +7101,14 @@ a:hover {
 
 
 .loc-cal-day--selected {
-    background: var(--blue) !important;
-    border-color: var(--blue) !important;
-    color: var(--white) !important;
+    background: var(--blue);
+    border-color: var(--blue);
+    color: var(--white);
     transform: translateY(-1px);
     box-shadow: 0 4px 14px rgba(26,58,110,0.3);
 }
 
-.loc-cal-day--selected::after { background: var(--white) !important; }
+.loc-cal-day--selected::after { background: var(--white); }
 
 .loc-cal-day--today { font-weight: 800; }
 
@@ -7850,25 +7850,25 @@ a:hover {
 }
 
 .loc-step3-date-escape__btn--call {
-    background: var(--blue) !important;
-    color: var(--white) !important;
+    background: var(--blue);
+    color: var(--white);
 }
 
 .loc-step3-date-escape__btn--call:hover {
-    background: #152d58 !important;
+    background: var(--blue-dark);
 }
 
 .loc-step3-date-escape__btn--discuss {
-    background: var(--gold) !important;
-    color: var(--white) !important;
+    background: var(--gold);
+    color: var(--white);
 }
 
 .loc-step3-date-escape__btn--discuss:hover {
-    background: var(--gold-light) !important;
+    background: var(--gold-light);
 }
 
 .loc-step3-date-escape__btn--discuss.is-active {
-    background: var(--blue) !important;
+    background: var(--blue);
 }
 
 /* ============================================================
