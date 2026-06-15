@@ -7114,10 +7114,6 @@ a:hover {
     100% { background: var(--gold); }
 }
 
-.loc-step3-summary__slot--active .loc-step3-summary__slot-reserve {
-    animation: loc-pulse-gold 2s ease-in-out infinite;
-}
-
 .loc-step3-summary__slot--active .loc-step3-summary__slot-label {
     color: var(--white);
 }
@@ -7151,6 +7147,7 @@ a:hover {
 
 .loc-step3-summary__slot--active .loc-step3-summary__slot-reserve {
     display: block;
+    animation: loc-pulse-gold 2s ease-in-out infinite;
 }
 
 /* STICKY SUMMARY */
