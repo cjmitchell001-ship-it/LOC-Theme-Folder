@@ -6189,7 +6189,7 @@ a:hover {
     margin-bottom: var(--space-6);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
     .loc-step2-areas-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
@@ -6295,7 +6295,7 @@ a:hover {
     .loc-appliance-cards--inline { grid-template-columns: repeat(3, 1fr); }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
     .loc-appliance-cards--inline { grid-template-columns: repeat(4, 1fr); }
 }
 
