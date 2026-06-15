@@ -6276,6 +6276,7 @@ a:hover {
     display: flex;
 }
 
+.loc-step1-sticky-bottom__row,
 .loc-step2-sticky-bottom__row {
     display: flex;
     align-items: center;
@@ -6293,6 +6294,7 @@ a:hover {
     border-top: 1px solid rgba(255,255,255,0.15);
 }
 
+.loc-step1-sticky-bottom__location-label,
 .loc-step2-sticky-bottom__location-label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
@@ -6309,11 +6311,13 @@ a:hover {
     color: var(--white);
 }
 
+.loc-step1-sticky-bottom__total,
 .loc-step2-sticky-bottom__total {
     display: flex;
     flex-direction: column;
 }
 
+.loc-step1-sticky-bottom__label,
 .loc-step2-sticky-bottom__label {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
@@ -6324,6 +6328,7 @@ a:hover {
     margin-bottom: var(--space-1);
 }
 
+.loc-step1-sticky-bottom__amount,
 .loc-step2-sticky-bottom__amount {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
@@ -6332,12 +6337,14 @@ a:hover {
     line-height: 1;
 }
 
+.loc-step1-sticky-bottom__amount span,
 .loc-step2-sticky-bottom__amount span {
     font-size: var(--text-sm);
     vertical-align: super;
     font-weight: 600;
 }
 
+.loc-step1-sticky-bottom__btn,
 .loc-step2-sticky-bottom__btn {
     background: var(--gold);
     color: var(--white);
@@ -6356,10 +6363,12 @@ a:hover {
     display: block;
 }
 
+.loc-step1-sticky-bottom__btn:hover,
 .loc-step2-sticky-bottom__btn:hover {
     background: var(--gold-light);
 }
 
+.loc-step1-sticky-bottom__btn--disabled,
 .loc-step2-sticky-bottom__btn--disabled {
     background: var(--grey-400);
     pointer-events: none;
@@ -6392,41 +6401,10 @@ a:hover {
     align-items: stretch;
 }
 
-.loc-step1-sticky-bottom__total {
-    display: flex;
-    flex-direction: column;
-}
 
-.loc-step1-sticky-bottom__label {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    margin-bottom: var(--space-1);
-}
 
-.loc-step1-sticky-bottom__amount {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    font-size: var(--text-h4);
-    color: var(--white);
-    line-height: 1;
-}
 
-.loc-step1-sticky-bottom__amount span {
-    font-size: var(--text-sm);
-    vertical-align: super;
-    font-weight: 600;
-}
 
-.loc-step1-sticky-bottom__row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
 
 .loc-step1-sticky-bottom__location-row {
     display: flex;
@@ -6438,14 +6416,6 @@ a:hover {
     border-top: 1px solid rgba(255,255,255,0.15);
 }
 
-.loc-step1-sticky-bottom__location-label {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-}
 
 .loc-step1-sticky-bottom__location {
     font-family: 'Montserrat', sans-serif;
@@ -6455,32 +6425,8 @@ a:hover {
     line-height: 1;
 }
 
-.loc-step1-sticky-bottom__btn {
-    background: var(--gold);
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-xs);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: var(--space-4) var(--space-4);
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    white-space: nowrap;
-    flex-shrink: 0;
-    transition: background 0.2s;
-    display: block;
-}
 
-.loc-step1-sticky-bottom__btn:hover {
-    background: var(--gold-light);
-}
 
-.loc-step1-sticky-bottom__btn--disabled {
-    background: var(--grey-400);
-    pointer-events: none;
-}
 
 /* Static in-flow variant â€” Step 2 "continue" bar (from-Step-1 route) */
 .loc-step1-sticky-bottom.loc-step1-sticky-bottom--static {
