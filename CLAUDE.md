@@ -10,7 +10,7 @@ Startup oven cleaning business based in Leicester, UK. Founder: Chris. Pre-launc
 
 **Trading name:** Leicester Oven Cleaning  
 **Parent company name:** The Proper-T Cleaning Group — **not yet registered as a Ltd company**  
-The footer currently says "Companies House Registered" — this is aspirational placeholder copy, not a current fact.
+The "Companies House Registered" footer badge and "Ltd" in the copyright line have been removed (June 2026, m8) — they were aspirational placeholder copy, not a current fact.
 
 ---
 
@@ -156,10 +156,11 @@ All four routes implemented and tested on mobile (June 2026).
 
 ## Placeholder Content (Not Yet Real — replace before go-live)
 
-- **Phone number:** `tel:PLACEHOLDER` — appears in BOTH the `header.php` Call button AND the mobile dropdown menu "Call Us" item. VoIP not yet obtained. Update BOTH when real.
+- **Phone number:** `tel:PLACEHOLDER` — appears in the `header.php` Call button (mobile blue phone SVG icon, added m8). Mobile dropdown menu no longer has a "Call Us" item (removed m8 — contact page handles discovery instead). VoIP not yet obtained. Update when real.
 - **Reserve URLs:** Reserve buttons point to `/reserve-step-1` (the earlier `/reserve` 404 bug is fixed).
-- **ICO number:** "[Pending Registration]" in `footer.php`
-- **Companies House number:** Not in footer — company not registered
+- **ICO number:** Footer wording reworded (m8) to remove the implication of a current registration number — still placeholder, no real ICO number yet.
+- **Companies House:** Badge/claim removed from footer entirely (m8) — company not registered, no number to show.
+- **Cancellation policy:** Placeholder page created (m8) — content still to be written before go-live.
 - **Social links:** All `#` placeholders in `footer.php`
 - **All pricing figures:** Placeholder throughout the funnel
 - **Calendar availability:** Hardcoded arrays in Step 3 — no real booking API
@@ -210,10 +211,17 @@ Migration off WordPress to a static stack is **agreed**. WordPress is only used 
 
 ---
 
+## Privacy Requirement — Founder Identity
+
+Chris (the founder) wants his name, face, and personal/employment history kept OFF all public-facing pages for now — he is deliberately staying anonymous from some people while the business is pre-launch. Do not add a name, photo, or biographical detail (employment history, how the business started, personal anecdotes) to any page. The About page profile card shows role/location/quote only, no name. The intro and story sections are written in first person without self-identifying detail.
+
+---
+
 ## Voice & CTA Rules
 
 - Brand voice: direct, confident, local — never corporate or generic
 - CTA rule: always **"Reserve Your Slot — we'll call to confirm"** — never "Book Now"
+- Primary CTA pattern: a short reassurance tagline directly above the button, button itself short (e.g. "Reserve Your Slot →"), with a subtext line below covering practical details (time, deposit, commitment)
 - Deposit taken after the confirmation call, not at reservation
 - Do not reference appliance repair as a current service — future ambition only
 - No eco-friendly claims; no financial guarantees in copy; no dirty-oven before/after imagery
@@ -232,5 +240,6 @@ Migration off WordPress to a static stack is **agreed**. WordPress is only used 
 | June 2026 (m5) | Homepage restructure (section order finalised). Founding Rate removed site-wide. Four new inner pages (Services/HWW/FAQ/Areas). Footer → 5 columns. Header nav hardcoded. Brand CSS ticker. Desktop whitespace reduced (section padding 80→48). GeneratePress confirmed as migration trigger. |
 | June 2026 (m6 — CSS systematisation) | **GeneratePress dependency removed (standalone theme).** Dead code removed (46 classes). Full design-token system built and applied across 7 categories: colour, grey, shadow, radius, spacing (on-grid + off-grid snap, + `--space-18`/`--space-25`), type (+ `--text-body-lg`/`--text-h2-lg`), z-index (ladder + `--z-nav`, fixed header/modal collision). Mobile header overflow fixed (Call → dropdown menu). Two refactor-introduced bugs found by conflict audit and fixed (`--space-18/25` undefined → zero-padding; `ox-shadow` typo → 21 shadows not rendering). Conflict audit written (STYLE-CONFLICTS.md). This CLAUDE.md rewritten with full token system + verification lessons. |
 | June 2026 (m7 — structural cleanup) | All 6 structural cleanup objectives complete. !importants removed (24/26). Duplicate selectors eliminated (221-line Step 2 copy deleted). Breakpoints unified to 768/769px canonical pair (780/781 cluster collapsed). Section spacing normalised. Eyebrow pattern consolidated: 19 CSS blocks → `section-eyebrow` utility across 14 PHP templates. Sticky-bar sub-elements deduplicated. @media scatter resolved. 9 commits, ~550 lines removed from style.css. |
+| June 2026 (m8 — copy pass) | Began conversion-copywriting review, page by page. Header/footer copy fixed (Companies House badge removed, Ltd dropped from copyright, ICO inconsistency resolved, cancellation policy placeholder page created). Mobile header: phone SVG icon added (blue) between Reserve and hamburger, Call Us removed from dropdown menu (contact page handles discovery instead). Homepage: new hero proposition ("Your oven, cleaned properly. Fixed price, same day."), trust bar item 3 replaced (Local & Independent), Step 2 simplified, £25 deposit now mentioned in Step 3 and CTA subtext, tagline-above-button CTA pattern introduced, FAQ "do I need to be home" added, business banner rewritten (out-of-hours + multi-site angle). About page: full rework removing personal identifiers (no name, no face, no employment history) per privacy requirement — story section replaced with two side-by-side cards (The Approach / Looking Ahead), Looking Ahead expanded to include commercial extraction units and accessibility retrofitting as market-testing feedback-loop CTA, credentials fixed (Companies House removed, ICO placeholder reworded), values copy tightened (price promise scoped to cleaning not repair, "on time" promise softened, Yorkshire tea line added). FAQ: "what's included in the price" added (extra trays/shelves scope). |
 
 *Update this log and the sections above whenever significant progress is made or a decision is confirmed.*
