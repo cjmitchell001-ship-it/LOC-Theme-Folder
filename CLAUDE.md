@@ -1,3 +1,11 @@
+---
+title: Leicester Oven Cleaning — Claude Code Project Context
+description: Single source of truth for the theme/codebase — design tokens, working conventions, funnel architecture, known bugs, the migration plan, and the founder privacy requirement. Read at the start of every session.
+tags: [technical, design-tokens, wordpress, css, leicester-oven-cleaning]
+type: reference
+updated: 2026-06-16
+---
+
 # Leicester Oven Cleaning — Claude Code Project Context
 
 > This file is the single source of truth for the project. It is maintained alongside the code and updated as decisions are made. Read it at the start of every session. Do not treat the V10 context document as authoritative — this file supersedes it.
