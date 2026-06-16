@@ -207,7 +207,7 @@
                         <rect x="64" y="48" width="42" height="50" rx="2" stroke="#1A3A6E" stroke-width="2.5" fill="none"/>
                         <rect x="70" y="54" width="30" height="30" rx="1.5" stroke="#1A3A6E" stroke-width="1.5" fill="#EEF3FA"/>
                     </svg>
-                    <p class="loc-appliance-card__name">Range 90cm</p>
+                    <p class="loc-appliance-card__name">Range Cooker 90cm</p>
                     <p class="loc-appliance-card__price">£100</p>
                 </div>
 
@@ -220,7 +220,7 @@
                         <rect x="66" y="48" width="44" height="50" rx="2" stroke="#1A3A6E" stroke-width="2.5" fill="none"/>
                         <rect x="72" y="54" width="32" height="30" rx="1.5" stroke="#1A3A6E" stroke-width="1.5" fill="#EEF3FA"/>
                     </svg>
-                    <p class="loc-appliance-card__name">Range 100cm+</p>
+                    <p class="loc-appliance-card__name">Range Cooker 100cm+</p>
                     <p class="loc-appliance-card__price">£120</p>
                 </div>
 
@@ -277,7 +277,7 @@
                         <rect x="18" y="38" width="36" height="36" rx="18" stroke="#1A3A6E" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
                         <rect x="66" y="38" width="36" height="36" rx="18" stroke="#1A3A6E" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
                     </svg>
-                    <p class="loc-appliance-card__name">Ceramic / Induction</p>
+                    <p class="loc-appliance-card__name">Ceramic / Induction Hob</p>
                     <p class="loc-appliance-card__price">£18</p>
                 </div>
 
