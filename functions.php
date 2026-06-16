@@ -326,7 +326,7 @@ function loc_step1_script() {
         function setSkipInactive() {
             isSkipped = false;
             skipBtn.classList.remove('is-active');
-            skipBtn.textContent = 'Discuss on the Call Instead';
+            skipBtn.textContent = 'Discuss on the Call';
             sessionStorage.removeItem('loc_skip');
             updateSummary();
         }
@@ -345,7 +345,7 @@ function loc_step1_script() {
             if (isSkipped) {
                 isSkipped = false;
                 skipBtn.classList.remove('is-active');
-                skipBtn.textContent = 'Discuss on the Call Instead';
+                skipBtn.textContent = 'Discuss on the Call';
                 sessionStorage.removeItem('loc_skip');
             }
 
@@ -687,7 +687,7 @@ function loc_step2_script() {
                         // Undo
                         isStep2Skipped = false;
                         step2SkipBtn.classList.remove('is-active');
-                        step2SkipBtn.textContent = 'Discuss on the Call Instead';
+                        step2SkipBtn.textContent = 'Discuss on the Call';
                         sessionStorage.removeItem('loc_skip');
                         updateInlineSummary();
                     } else {
@@ -757,7 +757,7 @@ function loc_step2_script() {
                 isStep2Skipped = false;
                 if (step2SkipBtn) {
                     step2SkipBtn.classList.remove('is-active');
-                    step2SkipBtn.textContent = 'Discuss on the Call Instead';
+                    step2SkipBtn.textContent = 'Discuss on the Call';
                 }
                 sessionStorage.removeItem('loc_skip');
             }

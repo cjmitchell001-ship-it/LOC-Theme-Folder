@@ -309,11 +309,11 @@
         <div class="loc-step1-skip-panel">
             <div class="loc-step1-skip-panel__inner">
                 <div class="loc-step1-skip-panel__text">
-                    <p class="loc-step1-skip-panel__heading">Not sure what you have, or would you rather talk it through?</p>
+                    <p class="loc-step1-skip-panel__heading">Prefer to talk it through instead?</p>
                     <p class="loc-step1-skip-panel__body">If you'd prefer to discuss your appliances over the phone, just click below. We'll go through everything together when we call to confirm your booking.</p>
                 </div>
                 <button class="loc-step1-skip-btn" id="loc-step2-skip-btn">
-                    Discuss on the Call Instead
+                    Discuss on the Call
                 </button>
             </div>
         </div>
