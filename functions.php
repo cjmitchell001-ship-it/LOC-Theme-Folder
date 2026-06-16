@@ -910,7 +910,11 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
         var keys = Object.keys(selections);
 
         if (keys.length === 0) {
-            summaryItems.innerHTML = '<p class="loc-step3-summary__empty">No selection found — <a href="/reserve-step-1" style="color:var(--gold);">go back to Step 1</a></p>';
+            if (isSkip) {
+                summaryItems.innerHTML = '<p class="loc-step3-summary__empty">Appliances to be discussed on the call</p>';
+            } else {
+                summaryItems.innerHTML = '<p class="loc-step3-summary__empty">No selection found — <a href="/reserve-step-1" style="color:var(--gold);">go back to Step 1</a></p>';
+            }
         } else {
             keys.forEach(function(name) {
                 var price = selections[name];
