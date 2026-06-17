@@ -277,8 +277,8 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Introduction</p>
                     <h2>Cancellations &amp; rescheduling</h2>
-                    <p>We understand that plans change. This policy sets out what happens if you need to cancel or reschedule your booking, and under what circumstances your deposit will be refunded or retained.</p>
-                    <p>Please read this policy before booking. By confirming your booking and paying your deposit, you agree to these terms.</p>
+                    <p>Plans change — we get it. This policy sets out what happens if you need to cancel or reschedule your booking, and when your deposit will be refunded or retained.</p>
+                    <p>Please read this before booking. By confirming your booking and paying your deposit, you agree to these terms.</p>
                 </div>
 
                 <div class="loc-legal-section">
@@ -293,52 +293,47 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td>More than 48 hours before the appointment</td><td>Full refund of deposit</td></tr>
-                                <tr><td>24–48 hours before the appointment</td><td>Deposit retained — may be transferred to a rescheduled booking at our discretion</td></tr>
-                                <tr><td>Less than 24 hours before the appointment</td><td>Deposit retained — no transfer available</td></tr>
-                                <tr><td>No-show (no contact made)</td><td>Deposit retained — no transfer available</td></tr>
+                                <tr><td>48 hours or more before the appointment</td><td>Full refund of deposit</td></tr>
+                                <tr><td>Less than 48 hours before the appointment</td><td>Deposit forfeited</td></tr>
+                                <tr><td>No-show (no contact made)</td><td>Deposit forfeited</td></tr>
                             </tbody>
                         </table>
                     </div>
-                    <p>To cancel your booking, please contact us as soon as possible by telephone or email. The time of your cancellation is recorded from when we receive your communication.</p>
+                    <p>To cancel, contact us as soon as possible by phone or email. The cancellation time is recorded from when we receive your message.</p>
                 </div>
 
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 2</p>
                     <h2>Rescheduling by the customer</h2>
-                    <p>If you need to reschedule your appointment, please contact us as soon as possible. We will always try to accommodate a rescheduled date where our availability permits.</p>
+                    <p>If you need to move your appointment, get in touch as soon as you can. We'll always try to find a new date that works.</p>
                     <ul>
-                        <li><strong>More than 48 hours notice:</strong> rescheduling is free of charge and your deposit transfers to the new date</li>
-                        <li><strong>24–48 hours notice:</strong> rescheduling is at our discretion — a new deposit may be required</li>
-                        <li><strong>Less than 24 hours notice:</strong> treated as a cancellation — see Section 1</li>
+                        <li><strong>48 hours or more notice:</strong> rescheduling is free of charge and your deposit transfers to the new date</li>
+                        <li><strong>Less than 48 hours notice:</strong> treated as a cancellation — see Section 1</li>
                     </ul>
                 </div>
 
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 3</p>
-                    <h2>Business and commercial bookings</h2>
-                    <p>The standard cancellation terms and £25 deposit policy set out in Sections 1 and 2 apply to domestic bookings only.</p>
-                    <p>For business and commercial bookings — including HMO properties, multi-oven jobs, and any booking requiring more than one day of work — cancellation terms and deposit amounts are agreed individually at the time of booking confirmation and set out in writing before the booking is finalised.</p>
-                    <p>The deposit for commercial bookings will reflect the scale of the work and the revenue committed to that job. For larger bookings, the deposit may represent a meaningful percentage of the total quoted price rather than a flat fee.</p>
-                    <p>If you need to cancel a commercial booking, please contact us as early as possible. We will always try to find a fair resolution — but where significant preparation or scheduling has been committed to a job, the retained deposit will reflect that commitment.</p>
-                </div>
-
-                <div class="loc-legal-section">
-                    <p class="loc-legal-section__label">Section 4</p>
                     <h2>Cancellation by Leicester Oven Cleaning</h2>
-                    <p>In the rare event that we need to cancel your booking, we will contact you as early as possible and offer either:</p>
+                    <p>If we ever need to cancel your booking, we'll contact you as early as possible and offer either:</p>
                     <ul>
                         <li>A full refund of your deposit, or</li>
                         <li>A rescheduled appointment at a date that suits you</li>
                     </ul>
-                    <p>We will not retain any deposit where the cancellation is made by us.</p>
+                    <p>We will never retain your deposit where the cancellation is made by us.</p>
+                </div>
+
+                <div class="loc-legal-section">
+                    <p class="loc-legal-section__label">Section 4</p>
+                    <h2>Unable to proceed on arrival</h2>
+                    <p>If we arrive and can't carry out the work for reasons outside our control — the appliance is inaccessible, access isn't available, or a safety concern is identified — this may be treated as a short-notice cancellation under Section 1.</p>
+                    <p>If the issue is a safety concern with the appliance itself, we'll talk it through with you before making any decision about the deposit.</p>
                 </div>
 
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 5</p>
-                    <h2>Unable to proceed on arrival</h2>
-                    <p>If we arrive at your property and are unable to carry out the work for reasons outside our control — for example, the appliance is inaccessible, a safety concern is identified, or access is not available — this may be treated as a short-notice cancellation under Section 1.</p>
-                    <p>If we are unable to proceed due to a safety concern with the appliance itself, we will discuss the situation with you before making any decision about the deposit.</p>
+                    <h2>Need to talk it through?</h2>
+                    <p>Stuff happens — a burst pipe, a sick kid, a change of plan. If you're outside the 48-hour window for a genuine reason, get in touch before your slot rather than after. We're reasonable people, and we'll always try to work with you.</p>
                 </div>
 
                 <div class="loc-legal-section">
