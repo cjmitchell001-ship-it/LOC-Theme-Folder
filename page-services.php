@@ -15,6 +15,7 @@ get_header();
             <p class="loc-page-header__eyebrow section-eyebrow">Our Services</p>
             <h1>Everything <span>We Clean</span></h1>
             <p class="loc-page-header__intro">Fixed prices, professional results, and your appliances ready to use the same day. Select what you need when you reserve — or get in touch if you're not sure.</p>
+            <p class="loc-page-header__intro">Fully insured, fixed prices, no surprises on the day.</p>
         </div>
     </section>
 
@@ -25,7 +26,7 @@ get_header();
         <div class="loc-services-section__inner">
             <p class="loc-services-section__eyebrow section-eyebrow">Domestic</p>
             <h2 class="loc-services-section__heading">For Your Home</h2>
-            <p class="loc-services-section__intro">We clean all domestic cooking appliances. Everything is stripped down, dip-tank cleaned, and reassembled on the same visit.</p>
+            <p class="loc-services-section__intro">We come to your home, treat it with care, and give your oven, hob, or extractor a full professional clean — stripped down, dip-tank cleaned, and reassembled the same visit.</p>
 
             <div class="loc-services-grid">
 
@@ -34,7 +35,7 @@ get_header();
                         <h3 class="loc-services-card__name">Single Oven</h3>
                         <span class="loc-services-card__price">from £55</span>
                     </div>
-                    <p class="loc-services-card__desc">Full strip-down clean. Interior cavity, door glass (both sides), racks, trays, fan housing, and exterior.</p>
+                    <p class="loc-services-card__desc">A full strip-down clean, done carefully in your kitchen — interior cavity, door glass (both sides), racks, trays, fan housing, and exterior.</p>
                 </div>
 
                 <div class="loc-services-card">
@@ -42,15 +43,15 @@ get_header();
                         <h3 class="loc-services-card__name">Double Oven</h3>
                         <span class="loc-services-card__price">from £70</span>
                     </div>
-                    <p class="loc-services-card__desc">Both cavities cleaned independently. All racks, trays, glass panels, and fan housings. Both cavities together.</p>
+                    <p class="loc-services-card__desc">Both cavities cleaned independently, with the same care throughout — all racks, trays, glass panels, and fan housings.</p>
                 </div>
 
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Range Cooker (90cm)</h3>
-                        <span class="loc-services-card__price">from £95</span>
+                        <span class="loc-services-card__price">from £100</span>
                     </div>
-                    <p class="loc-services-card__desc">Full range clean including all cavities, grill compartment, and exterior.</p>
+                    <p class="loc-services-card__desc">A full range clean, taking the time it needs — all cavities, grill compartment, and exterior.</p>
                 </div>
 
                 <div class="loc-services-card">
@@ -58,7 +59,7 @@ get_header();
                         <h3 class="loc-services-card__name">Range Cooker (100cm+)</h3>
                         <span class="loc-services-card__price">from £120</span>
                     </div>
-                    <p class="loc-services-card__desc">Full clean for larger range formats, including all cavities, compartments, and exterior surfaces.</p>
+                    <p class="loc-services-card__desc">A full clean for larger range formats, handled with the extra care they need — all cavities, compartments, and exterior surfaces.</p>
                 </div>
 
                 <div class="loc-services-card">
@@ -66,15 +67,15 @@ get_header();
                         <h3 class="loc-services-card__name">AGA / Large Range</h3>
                         <span class="loc-services-card__price loc-services-card__price--contact">Contact us</span>
                     </div>
-                    <p class="loc-services-card__desc">Specialist clean for AGA, Rayburn, and equivalent appliances. Quoted by type — get in touch for a price.</p>
+                    <p class="loc-services-card__desc">A specialist clean for AGA, Rayburn, and equivalent appliances, carried out by someone who knows them well. Quoted by type — get in touch for a price.</p>
                 </div>
 
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Gas Hob</h3>
-                        <span class="loc-services-card__price">from £20</span>
+                        <span class="loc-services-card__price">from £22</span>
                     </div>
-                    <p class="loc-services-card__desc">Burner heads, caps, pan supports, and hob surface. All parts dip-tank cleaned.</p>
+                    <p class="loc-services-card__desc">Burner heads, caps, pan supports, and hob surface, all dip-tank cleaned and handled carefully.</p>
                 </div>
 
                 <div class="loc-services-card">
@@ -82,7 +83,7 @@ get_header();
                         <h3 class="loc-services-card__name">Ceramic / Induction Hob</h3>
                         <span class="loc-services-card__price">from £18</span>
                     </div>
-                    <p class="loc-services-card__desc">Surface clean and polish. Scratch-safe technique throughout.</p>
+                    <p class="loc-services-card__desc">A careful surface clean and polish, using a scratch-safe technique throughout.</p>
                 </div>
 
                 <div class="loc-services-card">
@@ -90,7 +91,7 @@ get_header();
                         <h3 class="loc-services-card__name">Extractor Hood</h3>
                         <span class="loc-services-card__price">from £22</span>
                     </div>
-                    <p class="loc-services-card__desc">Grease filters dip-tank cleaned, fan housing degreased, exterior surfaces cleaned and polished.</p>
+                    <p class="loc-services-card__desc">Grease filters dip-tank cleaned and fan housing degreased, with exterior surfaces cleaned and polished to finish.</p>
                 </div>
 
                 <div class="loc-services-card">
@@ -98,7 +99,7 @@ get_header();
                         <h3 class="loc-services-card__name">Microwave</h3>
                         <span class="loc-services-card__price">from £18</span>
                     </div>
-                    <p class="loc-services-card__desc">Interior cavity, turntable, and door — fully cleaned and dried.</p>
+                    <p class="loc-services-card__desc">Interior cavity, turntable, and door, fully cleaned, dried, and left ready to use.</p>
                 </div>
 
                 <div class="loc-services-card">
@@ -107,14 +108,6 @@ get_header();
                         <span class="loc-services-card__price">from £45</span>
                     </div>
                     <p class="loc-services-card__desc">Grill grates, burner covers, and interior cleaned and degreased. Seasonal service — contact us to arrange.</p>
-                </div>
-
-                <div class="loc-services-card loc-services-card--wide">
-                    <div class="loc-services-card__header">
-                        <h3 class="loc-services-card__name">Oven Parts Replacement</h3>
-                        <span class="loc-services-card__price loc-services-card__price--contact">Ask on the day</span>
-                    </div>
-                    <p class="loc-services-card__desc">We carry common replacement parts — bulbs, door seals, and fan filters — and fit them as part of your clean visit.</p>
                 </div>
 
             </div>
@@ -168,7 +161,7 @@ get_header();
         <div class="loc-services-section__inner">
             <p class="loc-services-section__eyebrow section-eyebrow">Expanding</p>
             <h2 class="loc-services-section__heading">Coming Soon</h2>
-            <p class="loc-services-section__intro">We're expanding our services as the business grows. The following will be available soon — register your interest and we'll let you know when they launch.</p>
+            <p class="loc-services-section__intro">We're expanding our services as the business grows. The following will be available soon.</p>
 
             <div class="loc-services-soon-grid">
 
