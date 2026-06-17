@@ -95,7 +95,7 @@ get_header();
                 </div>
                 <ul class="loc-hww__steps">
                     <li>Full interior cavity cleaned — walls, base, and fan housing</li>
-                    <li>Roof of the oven given particular attention — the most common source of domestic oven fires</li>
+                    <li>Roof of the oven given particular attention</li>
                     <li>Element carefully moved aside to clean beneath</li>
                 </ul>
             </div>
@@ -172,7 +172,7 @@ get_header();
     <section class="loc-hww-page-section">
         <div class="loc-hww-page-section__inner">
             <h2 class="loc-hww-page-section__heading">Before We Go</h2>
-            <p class="loc-hww-page-section__body">We won't leave until you're happy. You're invited to inspect every appliance before we pack up. All equipment, protective coverings, and materials are removed — we leave the floor area clean. Your oven is ready to use immediately.</p>
+            <p class="loc-hww-page-section__body">We won't leave until you're happy. You're invited to inspect every appliance before we pack up. All equipment, protective coverings, and materials are removed — we leave the floor area clean.</p>
         </div>
     </section>
 
@@ -187,7 +187,6 @@ get_header();
                 <li>We protect your floors and surroundings before we start</li>
                 <li>We inspect your appliance for any existing faults before touching it — and tell you what we find</li>
                 <li>All parts are cleaned using professional dip-tank equipment — not sprayed and wiped</li>
-                <li>We carry common replacement parts (bulbs, seals, filters) and can fit them on the day</li>
                 <li>You're invited to check the result before we leave</li>
                 <li>Your appliance is ready to use the same day</li>
             </ul>
