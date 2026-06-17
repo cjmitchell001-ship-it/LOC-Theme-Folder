@@ -79,6 +79,8 @@ get_header();
                         <li>Shepshed <span>LE12</span></li>
                         <li>Mountsorrel <span>LE12</span></li>
                         <li>Sileby <span>LE12</span></li>
+                        <li>Ashby-de-la-Zouch <span>LE65</span></li>
+                        <li>Coalville <span>LE67</span></li>
                     </ul>
                 </div>
 

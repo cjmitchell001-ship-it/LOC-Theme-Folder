@@ -121,6 +121,8 @@
                     <li data-postcode="LE12">Shepshed <span>LE12</span></li>
                     <li data-postcode="LE12">Mountsorrel <span>LE12</span></li>
                     <li data-postcode="LE12">Sileby <span>LE12</span></li>
+                    <li data-postcode="LE65">Ashby-de-la-Zouch <span>LE65</span></li>
+                    <li data-postcode="LE67">Coalville <span>LE67</span></li>
                 </ul>
             </div>
 
