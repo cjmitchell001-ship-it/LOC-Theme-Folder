@@ -223,6 +223,8 @@ Migration off WordPress to a static stack is **agreed**. WordPress is only used 
 
 Chris (the founder) wants his name, face, and personal/employment history kept OFF all public-facing pages for now — he is deliberately staying anonymous from some people while the business is pre-launch. Do not add a name, photo, or biographical detail (employment history, how the business started, personal anecdotes) to any page. The About page profile card shows role/location/quote only, no name. The intro and story sections are written in first person without self-identifying detail.
 
+**Exception: `page-business-commercial.php` intentionally uses the founder's first name ("Chris") three times**, in the "What Makes Us Different" section and contact options (~L130, ~L172, ~L283). This was a deliberate, reconsidered decision (June 2026) — the blanket no-name rule still applies to all other pages (About page remains fully anonymous), but this page is treated as an intentional exception. Do not depersonalise this page in future sessions without explicit instruction.
+
 ---
 
 ## Voice & CTA Rules
