@@ -65,7 +65,7 @@ get_header();
 
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">Why is my preferred date not available?</h3>
-                    <p class="loc-faq-page__a">We group jobs geographically each day — working within a set radius rather than travelling across the county. This keeps us punctual and efficient. Dates with a gold dot on the calendar are days we're already working near you. If none of those suit, choose any available date and we'll do our best to accommodate you.</p>
+                    <p class="loc-faq-page__a">We group jobs by area each day, rather than travelling across the county for a single booking. This keeps us efficient and keeps your price down. If your preferred date shows as unavailable, it's because we're not working in your area that day — choose any available date instead, or get in touch if you need a specific day and we'll see what we can do.</p>
                 </div>
             </div>
 
@@ -100,7 +100,7 @@ get_header();
 
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">Do I need to do anything to prepare?</h3>
-                    <p class="loc-faq-page__a">Just make sure there's clear access to the appliance. We bring everything else — equipment, protective coverings, cleaning products, and replacement parts.</p>
+                    <p class="loc-faq-page__a">Just make sure there's clear access to the appliance. We bring everything else — equipment, protective coverings, and cleaning products.</p>
                 </div>
 
                 <div class="loc-faq-page__item">
@@ -153,10 +153,6 @@ get_header();
                     <p class="loc-faq-page__a">We clean domestic-scale appliances in commercial settings — rental properties, offices, care homes, and small commercial kitchens. For larger commercial operations, get in touch directly.</p>
                 </div>
 
-                <div class="loc-faq-page__item">
-                    <h3 class="loc-faq-page__q">Do you clean all oven brands?</h3>
-                    <p class="loc-faq-page__a">Yes. We clean all makes and models including AGA, Rayburn, Rangemaster, Smeg, Neff, Siemens, Bosch, and all standard domestic brands.</p>
-                </div>
             </div>
 
         </div>
