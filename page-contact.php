@@ -40,7 +40,7 @@ get_header();
                         </div>
                         <div class="loc-contact-method__text">
                             <p class="loc-contact-method__label">Phone</p>
-                            <p class="loc-contact-method__value"><a href="tel:+441234567890">Number TBC — coming soon</a></p>
+                            <p class="loc-contact-method__value"><a href="tel:PLACEHOLDER">Number TBC — coming soon</a></p>
                             <p class="loc-contact-method__note">Mon–Sat, 8am–6pm</p>
                         </div>
                     </div>
@@ -97,7 +97,7 @@ get_header();
                     <div class="loc-contact-reserve-nudge__text">
                         <p class="loc-contact-reserve-nudge__title">Ready to book instead?</p>
                         <p class="loc-contact-reserve-nudge__sub">Skip the form — reserve your slot in 2 minutes online. No card needed, we call to confirm.</p>
-                        <a href="/reserve" class="btn-primary loc-contact-reserve-nudge__btn">Reserve Your Slot →</a>
+                        <a href="/reserve-step-1" class="btn-primary loc-contact-reserve-nudge__btn">Reserve Your Slot →</a>
                     </div>
                 </div>
 
