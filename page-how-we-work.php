@@ -96,7 +96,7 @@ get_header();
                 <ul class="loc-hww__steps">
                     <li>Full interior cavity cleaned — walls, base, and fan housing</li>
                     <li>Roof of the oven given particular attention</li>
-                    <li>Element carefully moved aside to clean beneath</li>
+                    <li>Element carefully moved aside — never removed — to clean beneath</li>
                 </ul>
             </div>
 
@@ -186,7 +186,7 @@ get_header();
                 <li>We arrive within the agreed time window and call ahead with our ETA</li>
                 <li>We protect your floors and surroundings before we start</li>
                 <li>We inspect your appliance for any existing faults before touching it — and tell you what we find</li>
-                <li>All parts are cleaned using professional dip-tank equipment — not sprayed and wiped</li>
+                <li>All parts are removed, soaked, and cleaned individually using professional cleaning solutions — not simply sprayed and wiped in place</li>
                 <li>You're invited to check the result before we leave</li>
                 <li>Your appliance is ready to use the same day</li>
             </ul>

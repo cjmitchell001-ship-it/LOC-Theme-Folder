@@ -53,7 +53,7 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Introduction</p>
                     <h2>Your privacy matters to us</h2>
-                    <p>Leicester Oven Cleaning is a trading name of The Proper-T Cleaning Group Ltd. We are committed to protecting the personal information of our customers and website visitors in accordance with UK data protection law, including the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.</p>
+                    <p>Leicester Oven Cleaning is a trading name operated as a sole trader. We are committed to protecting the personal information of our customers and website visitors in accordance with UK data protection law, including the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.</p>
                     <p>This Privacy Policy explains what personal information we collect, why we collect it, how we use it, how long we keep it, and what your rights are.</p>
                     <p>If you have any questions about this policy or how we handle your data, please contact us at <a href="mailto:hello@leicesterovencleaning.co.uk">hello@leicesterovencleaning.co.uk</a>.</p>
                     <div class="loc-legal-important">
@@ -68,8 +68,9 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                     <p>The data controller responsible for your personal information is:</p>
                     <div class="loc-legal-highlight">
                         <p><strong>Trading name:</strong> Leicester Oven Cleaning<br>
-                        <strong>Legal entity:</strong> The Proper-T Cleaning Group Ltd<br>
-                        <strong>Registered in:</strong> England and Wales<br>
+                        <strong>Business type:</strong> Sole trader<br>
+                        <strong>Legal name:</strong> [LEGAL NAME — required for sole trader disclosure]<br>
+                        <strong>Contact address:</strong> [CONTACT ADDRESS — required for sole trader disclosure]<br>
                         <strong>Operating area:</strong> Leicester and Leicestershire<br>
                         <strong>Contact email:</strong> hello@leicesterovencleaning.co.uk<br>
                         <strong>Contact phone:</strong> [Number to be confirmed]<br>
@@ -189,7 +190,7 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Introduction</p>
                     <h2>Our terms of service</h2>
-                    <p>These Terms and Conditions govern the relationship between Leicester Oven Cleaning (a trading name of The Proper-T Cleaning Group Ltd, registered in England and Wales) and customers who book or enquire about our oven cleaning services.</p>
+                    <p>These Terms and Conditions govern the relationship between Leicester Oven Cleaning (a trading name operated as a sole trader) and customers who book or enquire about our oven cleaning services.</p>
                     <p>By making a reservation or booking with us, you agree to these terms. Please read them carefully before proceeding.</p>
                 </div>
 
@@ -346,13 +347,13 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 1</p>
                     <h2>What this page covers</h2>
-                    <p>This website does not currently use tracking, advertising, or analytics cookies of any kind. The only storage used is a small amount of temporary information kept in your browser while you're using our reservation form — for example, remembering which appliances you've selected as you move between steps. This information stays on your device, is never sent to us or anyone else, and clears automatically once you close your browser tab.</p>
+                    <p>This website uses Google Analytics to help us understand how visitors use the site. Google Analytics sets cookies on your device to collect anonymised information about pages visited, time spent on the site, and how you arrived here. This data is used only to improve the website — it is never used to identify you personally or shared with third parties for advertising purposes. A cookie consent banner will be in place before this site goes live.</p>
                 </div>
 
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 2</p>
                     <h2>What we don't use</h2>
-                    <p>We don't use Google Analytics or any other analytics service. We don't use advertising or remarketing cookies. We don't track you across other websites. There is currently no cookie consent banner on this site, because no cookies requiring consent are set.</p>
+                    <p>We do not use advertising or remarketing cookies. We do not track you across other websites. The only other storage used on this site is temporary session data kept in your browser while you use our reservation form — for example, remembering which appliances you have selected as you move between steps. This information stays on your device, is never sent to us or anyone else, and clears automatically when you close your browser tab.</p>
                 </div>
 
                 <div class="loc-legal-section">

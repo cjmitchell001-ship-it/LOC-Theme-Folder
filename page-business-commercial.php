@@ -13,7 +13,7 @@ get_header();
     <section class="loc-page-header loc-biz-header">
         <div class="loc-biz-header__inner">
             <p class="loc-page-header__eyebrow section-eyebrow">Business & Commercial</p>
-            <h1>Oven cleaning for <span>businesses that mean it.</span></h1>
+            <h1>Professional oven cleaning for <span>businesses, landlords, and letting agents.</span></h1>
             <p class="loc-page-header__intro">Landlords, letting agents, HMOs, offices, and small commercial kitchens — we work around your schedule, not the other way around.</p>
             <div class="loc-biz-header__ctas">
                 <a href="#biz-contact" class="btn-primary">Get in Touch</a>

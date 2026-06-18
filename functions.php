@@ -1241,14 +1241,17 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 if (isDateTBC) {
                     if (stickyBar3)   stickyBar3.classList.add('is-visible');
                     if (stickyBtn3el) stickyBtn3el.classList.remove('loc-step3-sticky-bottom__btn--disabled');
+                    if (stickyBtn3el) stickyBtn3el.textContent = 'Reserve Your Slot \u2192';
                     if (stickySlot)   stickySlot.textContent = 'Date to be confirmed on call';
                 } else if (selDate && selTime) {
                     if (stickyBar3)   stickyBar3.classList.add('is-visible');
                     if (stickyBtn3el) stickyBtn3el.classList.remove('loc-step3-sticky-bottom__btn--disabled');
+                    if (stickyBtn3el) stickyBtn3el.textContent = 'Confirm Your Slot \u2192';
                     if (stickySlot)   stickySlot.textContent = selTimeLabel + ' \u00b7 ' + selDate.split(',')[0];
                 } else {
                     if (stickyBar3)   stickyBar3.classList.remove('is-visible');
                     if (stickyBtn3el) stickyBtn3el.classList.add('loc-step3-sticky-bottom__btn--disabled');
+                    if (stickyBtn3el) stickyBtn3el.textContent = 'Reserve Your Slot \u2192';
                     if (stickySlot)   stickySlot.textContent = 'Select a date above';
                 }
             }

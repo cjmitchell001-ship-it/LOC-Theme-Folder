@@ -40,7 +40,7 @@ get_header();
 
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">What do you need access to?</h3>
-                    <p class="loc-faq-page__a">We only require access to a cold water tap. We bring all our own equipment and do not use your electricity — so there's no disruption to the rest of your home.</p>
+                    <p class="loc-faq-page__a">We only require access to a cold water tap. We bring all our own equipment.</p>
                 </div>
 
                 <div class="loc-faq-page__item">
@@ -80,12 +80,12 @@ get_header();
 
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">Is there a deposit?</h3>
-                    <p class="loc-faq-page__a">Yes, a £25 deposit is taken after our confirmation call — not at the point of reservation. It's deducted from your total on the day. It's refundable with 48 hours notice and transferable to another date if you need to reschedule.</p>
+                    <p class="loc-faq-page__a">Yes. When you reserve your slot online, we ask for your card details to hold your slot — but nothing is charged at that point. £0.00 is due today. After our confirmation call, if you're happy to go ahead, we process a £25 deposit to your card. If you decide not to proceed during the call, the hold is released instantly and no charge is ever made.</p>
                 </div>
 
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">Can I reschedule?</h3>
-                    <p class="loc-faq-page__a">Yes. Give us 48 hours notice and your deposit transfers to your new date, no questions asked. Within 48 hours the deposit is non-refundable.</p>
+                    <p class="loc-faq-page__a">Yes. Give us 48 hours notice and your deposit is carried over to your new date, no questions asked. Within 48 hours the deposit is non-refundable.</p>
                 </div>
 
                 <div class="loc-faq-page__item">
@@ -101,6 +101,11 @@ get_header();
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">Do I need to do anything to prepare?</h3>
                     <p class="loc-faq-page__a">Just make sure there's clear access to the appliance. We bring everything else — equipment, protective coverings, and cleaning products.</p>
+                </div>
+
+                <div class="loc-faq-page__item">
+                    <h3 class="loc-faq-page__q">Do I need to be home during the clean?</h3>
+                    <p class="loc-faq-page__a">We'll need access to the property to get started, and we ask that someone is available to sign the job off when we're done — but you don't need to be present throughout. Most cleans take between 1.5 and 3 hours depending on what's being done. We'll confirm the expected duration when we call to book you in.</p>
                 </div>
 
                 <div class="loc-faq-page__item">
@@ -125,7 +130,12 @@ get_header();
 
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">Do you take card payment?</h3>
-                    <p class="loc-faq-page__a">Yes. We take payment on the day by card. The £25 deposit is deducted from the total automatically.</p>
+                    <p class="loc-faq-page__a">Yes. The remaining balance after your deposit is taken on the day using a card reader — debit or credit card, or contactless including Apple Pay and Google Pay. Your £25 deposit is processed when we confirm your booking by phone — nothing is charged at the point of reservation.</p>
+                </div>
+
+                <div class="loc-faq-page__item">
+                    <h3 class="loc-faq-page__q">Why do you need my card details to reserve?</h3>
+                    <p class="loc-faq-page__a">We ask for your card details to hold your slot — but we don't charge anything at that point. Think of it like a hotel reservation: your card is held, not charged. After our confirmation call, if you're happy to proceed, we process the £25 deposit. If not, the hold is released immediately and no money changes hands. You'll never be charged without speaking to us first.</p>
                 </div>
 
                 <div class="loc-faq-page__item">

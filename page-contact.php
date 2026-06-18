@@ -13,7 +13,7 @@ get_header();
     <section class="loc-page-header">
         <div class="loc-page-header__inner">
             <p class="loc-page-header__eyebrow section-eyebrow">Get In Touch</p>
-            <h1>We'd love to <span>hear from you.</span></h1>
+            <h1>Got a question? <span>We're happy to help.</span></h1>
             <p class="loc-page-header__intro">Not ready to reserve yet? Ask us anything — we'll get back to you within one working day.</p>
         </div>
     </section>

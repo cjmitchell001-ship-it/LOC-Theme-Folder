@@ -19,7 +19,7 @@
             <p class="loc-footer__tagline">Professional oven cleaning across Leicester & Leicestershire.</p>
             <div class="loc-footer__trust-badges">
                 <span class="loc-footer__badge">✓ Fully Insured</span>
-                <span class="loc-footer__badge">✓ ICO Registered</span>
+                <span class="loc-footer__badge">✓ ICO Registration Pending</span>
             </div>
         </div>
 
@@ -75,7 +75,7 @@
 
             <!-- COPYRIGHT -->
             <p class="loc-footer__copyright">
-                &copy; <?php echo date('Y'); ?> Leicester Oven Cleaning — Trading as The Proper-T Cleaning Group. All rights reserved.
+                &copy; <?php echo date('Y'); ?> Leicester Oven Cleaning. All rights reserved.
             </p>
 
             <!-- ICO + INSURANCE -->

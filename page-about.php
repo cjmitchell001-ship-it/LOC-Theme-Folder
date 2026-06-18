@@ -111,13 +111,6 @@ get_header();
                 <p>Most problems people assume are complicated, aren't. They just need someone willing to look properly.</p>
             </div>
 
-            <div class="loc-about-story__future-box">
-                <p class="loc-about-story__future-label">LOOKING AHEAD</p>
-                <p>Leicester Oven Cleaning is working towards a broader range of appliance and kitchen services.</p>
-                <p>Longer term, we're exploring appliance repair and restoration — faded dials, worn door seals, recurring faults that have been put off — alongside servicing of larger commercial and industrial extraction units and range ovens.</p>
-                <p>We're also looking at how we can better serve elderly and disabled customers, including accessibility features that make kitchen appliances easier and safer to use day to day.</p>
-                <p>If any of this is relevant to you — even if it's not something we're offering yet — we'd genuinely like to hear from you. Get in touch and tell us what you need.</p>
-            </div>
 
         </div>
     </section>

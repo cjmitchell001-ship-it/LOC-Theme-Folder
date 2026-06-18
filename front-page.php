@@ -163,7 +163,7 @@ get_header();
                 <path d="M80 82L85.5 88L97 75" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             <h3 class="loc-reserve__step-title">Pick a Date &amp; We'll Call You</h3>
-            <p class="loc-reserve__step-desc">Choose from available slots and reserve online. We'll call to confirm your booking — and take a £25 deposit over the phone to secure your slot. No card details needed online, no commitment until you're happy.</p>
+            <p class="loc-reserve__step-desc">Choose from available slots and reserve online. We'll call to confirm your booking — and take a £25 deposit over the phone to secure your slot. £0.00 due today — your slot is held, not charged. We call to confirm everything before any deposit is taken.</p>
         </div>
 
     </div>
@@ -172,7 +172,7 @@ get_header();
     <div class="loc-reserve__cta">
         <p class="loc-reserve__tagline">Reserve online in 2 minutes — we call you to arrange the rest.</p>
         <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>
-        <p>Takes 2 minutes &nbsp;·&nbsp; £25 deposit on confirmation call &nbsp;·&nbsp; No commitment until you're happy</p>
+        <p>Takes 2 minutes &nbsp;·&nbsp; £0.00 due today &nbsp;·&nbsp; £25 deposit only after our confirmation call</p>
     </div>
 
 </section>
@@ -321,12 +321,7 @@ get_header();
         <p class="loc-reviews__subtitle">We're just getting started — and we intend to earn every one of these.</p>
 
         <div class="loc-reviews__stars">
-            <div class="loc-reviews__stars-row">
-                <?php for($i = 0; $i < 5; $i++): ?>
-                <svg viewBox="0 0 24 24" fill="#C9960C" width="40" height="40"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                <?php endfor; ?>
-            </div>
-            <p class="loc-reviews__statement">This is the standard we set ourselves — every clean, every time.</p>
+            <p class="loc-reviews__statement">No reviews yet — we're just getting started.</p>
             <p class="loc-reviews__invite">Be one of our first customers and tell us how we did.</p>
             <a href="/reserve-step-1" class="btn-primary" style="margin-top: 16px;">Reserve Your Slot — we'll call to confirm</a>
         </div>
@@ -419,7 +414,7 @@ get_header();
 
         <div class="loc-faq__item">
             <h4 class="loc-faq__q">Do I need to be home during the clean?</h4>
-            <p class="loc-faq__a">Yes — we'll need access to the property and someone present when we arrive and finish. Most cleans take between 1.5 and 3 hours depending on what's being done. We'll confirm the expected duration when we call to book you in.</p>
+            <p class="loc-faq__a">We'll need access to the property to get started, and we ask that someone is available to sign the job off when we're done — but you don't need to be present throughout. Most cleans take between 1.5 and 3 hours depending on what's being done. We'll confirm the expected duration when we call to book you in.</p>
         </div>
 
     </div>

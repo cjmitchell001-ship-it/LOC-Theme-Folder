@@ -26,7 +26,7 @@ get_header();
         <div class="loc-services-section__inner">
             <p class="loc-services-section__eyebrow section-eyebrow">Domestic</p>
             <h2 class="loc-services-section__heading">For Your Home</h2>
-            <p class="loc-services-section__intro">We come to your home, treat it with care, and give your oven, hob, or extractor a full professional clean — stripped down, dip-tank cleaned, and reassembled the same visit.</p>
+            <p class="loc-services-section__intro">We come to your home, treat it with care, and give your oven, hob, or extractor a full professional clean — stripped down, professionally cleaned component by component, and reassembled — all in a single visit.</p>
 
             <div class="loc-services-grid">
 
@@ -67,7 +67,7 @@ get_header();
                         <h3 class="loc-services-card__name">AGA / Large Range</h3>
                         <span class="loc-services-card__price loc-services-card__price--contact">Contact us</span>
                     </div>
-                    <p class="loc-services-card__desc">A specialist clean for AGA, Rayburn, and equivalent appliances, carried out by someone who knows them well. Quoted by type — get in touch for a price.</p>
+                    <p class="loc-services-card__desc">A specialist clean for AGA, Rayburn, and equivalent appliances — quoted and arranged individually. Get in touch to discuss your requirements.</p>
                 </div>
 
                 <div class="loc-services-card">
@@ -75,7 +75,7 @@ get_header();
                         <h3 class="loc-services-card__name">Gas Hob</h3>
                         <span class="loc-services-card__price">from £22</span>
                     </div>
-                    <p class="loc-services-card__desc">Burner heads, caps, pan supports, and hob surface, all dip-tank cleaned and handled carefully.</p>
+                    <p class="loc-services-card__desc">Burner heads, caps, pan supports, and hob surface — all removed, soaked, and cleaned individually.</p>
                 </div>
 
                 <div class="loc-services-card">
@@ -91,7 +91,7 @@ get_header();
                         <h3 class="loc-services-card__name">Extractor Hood</h3>
                         <span class="loc-services-card__price">from £22</span>
                     </div>
-                    <p class="loc-services-card__desc">Grease filters dip-tank cleaned and fan housing degreased, with exterior surfaces cleaned and polished to finish.</p>
+                    <p class="loc-services-card__desc">Grease filters removed, soaked, and degreased, with fan housing and exterior surfaces cleaned and polished to finish.</p>
                 </div>
 
                 <div class="loc-services-card">
@@ -107,7 +107,7 @@ get_header();
                         <h3 class="loc-services-card__name">BBQ</h3>
                         <span class="loc-services-card__price">from £45</span>
                     </div>
-                    <p class="loc-services-card__desc">Grill grates, burner covers, and interior cleaned and degreased. Seasonal service — contact us to arrange.</p>
+                    <p class="loc-services-card__desc">Grill grates, burner covers, and interior cleaned and degreased. Quoted and arranged individually — get in touch to discuss.</p>
                 </div>
 
             </div>
@@ -154,34 +154,6 @@ get_header();
         </div>
     </section>
 
-    <!-- ============================================================
-         COMING SOON
-         ============================================================ -->
-    <section class="loc-services-section loc-services-section--coming-soon">
-        <div class="loc-services-section__inner">
-            <p class="loc-services-section__eyebrow section-eyebrow">Expanding</p>
-            <h2 class="loc-services-section__heading">Coming Soon</h2>
-            <p class="loc-services-section__intro">We're expanding our services as the business grows. The following will be available soon.</p>
-
-            <div class="loc-services-soon-grid">
-
-                <div class="loc-services-soon-card">
-                    <span class="loc-services-soon-card__badge">Coming Soon</span>
-                    <h3 class="loc-services-soon-card__name">Deep Fat Fryer Cleaning</h3>
-                    <p class="loc-services-soon-card__desc">Full strip-down and dip-tank clean for commercial and domestic fryers.</p>
-                </div>
-
-                <div class="loc-services-soon-card">
-                    <span class="loc-services-soon-card__badge">Coming Soon</span>
-                    <h3 class="loc-services-soon-card__name">Contract Commercial Kitchen Cleaning</h3>
-                    <p class="loc-services-soon-card__desc">Scheduled deep cleaning for restaurants, pubs, and catering operations.</p>
-                </div>
-
-            </div>
-
-            <p class="loc-services-soon-note">Already need this? <a href="/contact">Get in touch</a> — we may be able to help sooner than you think.</p>
-        </div>
-    </section>
 
 </main>
 

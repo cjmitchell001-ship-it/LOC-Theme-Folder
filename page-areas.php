@@ -19,23 +19,6 @@ get_header();
     </section>
 
     <!-- ============================================================
-         MAP PLACEHOLDER
-         ============================================================ -->
-    <section class="loc-areas-page-map-section">
-        <div class="loc-areas-page-map-section__inner">
-            <!-- Replace with real Google Maps screenshot before go-live -->
-            <div class="loc-areas-page-map-placeholder">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="rgba(26,58,110,0.3)" stroke-width="2"/>
-                    <circle cx="12" cy="10" r="3" stroke="rgba(26,58,110,0.3)" stroke-width="2"/>
-                </svg>
-                <p>Coverage map — Leicester &amp; Leicestershire</p>
-                <p class="loc-areas-page-map-placeholder__note">Map coming soon</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
          AREA LIST
          ============================================================ -->
     <section class="loc-areas-page-list-section">
