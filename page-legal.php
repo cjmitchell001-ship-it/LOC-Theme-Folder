@@ -58,7 +58,7 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                     <p>If you have any questions about this policy or how we handle your data, please contact us at <a href="mailto:hello@leicesterovencleaning.co.uk">hello@leicesterovencleaning.co.uk</a>.</p>
                     <div class="loc-legal-important">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#1A3A6E" stroke-width="2"/><line x1="12" y1="8" x2="12" y2="12" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="16" r="1" fill="#1A3A6E"/></svg>
-                        <p><strong>We are registered with the Information Commissioner's Office (ICO).</strong> Our ICO registration number will be displayed here once registration is complete, immediately before this website goes live.</p>
+                        <p><strong>We will be registered with the Information Commissioner's Office (ICO) before this website goes live.</strong> Our ICO registration number will be displayed here once registration is complete.</p>
                     </div>
                 </div>
 
@@ -129,14 +129,8 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                     <p class="loc-legal-section__label">Section 4</p>
                     <h2>Who we share your information with</h2>
                     <p>We do not sell, rent, or trade your personal information to any third party.</p>
-                    <p>We share your information only with the following categories of trusted service providers, strictly as necessary to operate our business:</p>
-                    <ul>
-                        <li><strong>Booking and payment processing software</strong> — to manage reservations and process deposit payments</li>
-                        <li><strong>Email delivery services</strong> — to send booking confirmations and automated reminders</li>
-                        <li><strong>Website hosting provider</strong> — SiteGround, who host this website and store its data on servers in the EU</li>
-                        <li><strong>Analytics providers</strong> — if analytics tools are active, to understand how our website is used</li>
-                    </ul>
-                    <p>All third-party providers we use are required to handle your data securely and in accordance with UK data protection law.</p>
+                    <p>Right now, your information is handled directly by us — when you submit a reservation or enquiry, your details are used only to call or email you back and arrange your booking. We don't currently use any third-party booking, payment, or analytics software.</p>
+                    <p>As the business grows, we may begin using third-party tools to help manage bookings, payments, or website performance. If we do, this policy will be updated to name those providers before they're put into use, and they will always be required to handle your data securely and in line with UK data protection law.</p>
                 </div>
 
                 <div class="loc-legal-section" id="section-retention">
@@ -224,11 +218,10 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                     <p>All prices quoted are fixed and inclusive. The price agreed at the time of booking confirmation is the price you will pay, regardless of the condition of the appliance when we arrive.</p>
 
                     <h3>Domestic bookings</h3>
-                    <p>A deposit of £25 is required to confirm your booking. This deposit is deducted from the total price of the job on the day. The remaining balance is due on the day of the clean, upon satisfactory completion of the work. Payment is accepted by card via our card reader. We do not accept cash payments.</p>
+                    <p>A deposit of £25 is required to confirm your booking. This deposit is deducted from the total price of the job on the day. The remaining balance is due on the day of the clean, upon satisfactory completion of the work. We accept both card and cash payment on the day.</p>
 
                     <h3>Business and commercial bookings</h3>
-                    <p>For business and commercial bookings, deposit amounts are agreed individually at the time of booking confirmation and will reflect the scale and duration of the work. For larger jobs — including multi-oven properties, HMOs, and any booking requiring more than one day — the deposit will be set at a level that fairly reflects the revenue committed to that job.</p>
-                    <p>All deposit amounts and payment terms for business bookings will be confirmed in writing before the booking is finalised.</p>
+                    <p>Deposit amounts and payment terms for business and commercial bookings are agreed individually at the time of booking confirmation and confirmed in writing before the booking is finalised.</p>
                 </div>
 
                 <div class="loc-legal-section">
@@ -347,39 +340,25 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Introduction</p>
                     <h2>How we use cookies</h2>
-                    <p>This Cookie Policy explains what cookies are, which cookies this website uses, and how you can control them.</p>
-                    <p>Leicester Oven Cleaning is a trading name of The Proper-T Cleaning Group Ltd. We are committed to being transparent about how we use cookies on this website.</p>
+                    <p>This page explains what storage this website uses and what it doesn't.</p>
                 </div>
 
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 1</p>
-                    <h2>What are cookies?</h2>
-                    <p>Cookies are small text files that are placed on your device when you visit a website. They are widely used to make websites work efficiently and to provide information to website owners.</p>
-                    <p>Cookies do not give us access to your device or any personal information about you beyond what you choose to share with us.</p>
+                    <h2>What this page covers</h2>
+                    <p>This website does not currently use tracking, advertising, or analytics cookies of any kind. The only storage used is a small amount of temporary information kept in your browser while you're using our reservation form — for example, remembering which appliances you've selected as you move between steps. This information stays on your device, is never sent to us or anyone else, and clears automatically once you close your browser tab.</p>
                 </div>
 
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 2</p>
-                    <h2>Cookies we use</h2>
-                    <h3>Strictly necessary cookies</h3>
-                    <p>These cookies are required for the website to function and cannot be switched off. They include:</p>
-                    <ul>
-                        <li><strong>Session cookies</strong> — used by our booking system to carry your selections between steps of the reservation process</li>
-                        <li><strong>Security cookies</strong> — used to protect forms on this website from spam and abuse</li>
-                        <li><strong>Cookie consent cookie</strong> — stores your cookie preferences so we don't ask again on every visit</li>
-                    </ul>
-                    <h3>Analytics cookies (optional)</h3>
-                    <p>If you accept analytics cookies, we use Google Analytics to understand how visitors use our website. This helps us improve the site and our service. Google Analytics collects information such as pages visited, time spent on the site, and how you arrived at the site. This data is anonymised and does not identify you personally.</p>
-                    <h3>Cookies we do not use</h3>
-                    <p>We do not use advertising cookies, remarketing cookies, or any cookies that track you across other websites. We do not sell or share cookie data with advertisers.</p>
+                    <h2>What we don't use</h2>
+                    <p>We don't use Google Analytics or any other analytics service. We don't use advertising or remarketing cookies. We don't track you across other websites. There is currently no cookie consent banner on this site, because no cookies requiring consent are set.</p>
                 </div>
 
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 3</p>
-                    <h2>Managing your cookie preferences</h2>
-                    <p>When you first visit this website, you will be shown a cookie consent banner. You can choose to accept or decline optional analytics cookies at that point.</p>
-                    <p>You can also control cookies through your browser settings. Most browsers allow you to refuse cookies, delete existing cookies, or be notified when a cookie is set. Please refer to your browser's help documentation for instructions.</p>
-                    <p>Please note that disabling strictly necessary cookies may affect the functionality of this website, including the reservation system.</p>
+                    <h2>If this changes</h2>
+                    <p>If we introduce analytics or other tracking in future, we'll update this page and add a consent mechanism where required by law, before any such tool goes live.</p>
                 </div>
 
                 <div class="loc-legal-section">
