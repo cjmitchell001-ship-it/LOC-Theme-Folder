@@ -40,7 +40,7 @@ get_header();
 
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">What do you need access to?</h3>
-                    <p class="loc-faq-page__a">We only require access to a cold water tap. We bring all our own equipment.</p>
+                    <p class="loc-faq-page__a">We only require access to a cold water tap — and hot water where available, though we'll always proceed regardless. We bring all our own equipment.</p>
                 </div>
 
                 <div class="loc-faq-page__item">
@@ -67,6 +67,27 @@ get_header();
                     <h3 class="loc-faq-page__q">Why is my preferred date not available?</h3>
                     <p class="loc-faq-page__a">We group jobs by area each day, rather than travelling across the county for a single booking. This keeps us efficient and keeps your price down. If your preferred date shows as unavailable, it's because we're not working in your area that day — choose any available date instead, or get in touch if you need a specific day and we'll see what we can do.</p>
                 </div>
+            </div>
+
+            <!-- RESULTS & EXPECTATIONS -->
+            <div class="loc-faq-page__group">
+                <h2 class="loc-faq-page__group-heading">Results &amp; Expectations</h2>
+
+                <div class="loc-faq-page__item">
+                    <h3 class="loc-faq-page__q">Will my oven look brand new after the clean?</h3>
+                    <p class="loc-faq-page__a">We always do our best — but results depend on the age and condition of the appliance. A heavily used or older oven will come out significantly cleaner than it went in, but we won't promise showroom condition if it isn't realistic. We'll give you an honest assessment before we start, so you know what to expect.</p>
+                </div>
+
+                <div class="loc-faq-page__item">
+                    <h3 class="loc-faq-page__q">What if my oven has existing damage or faults?</h3>
+                    <p class="loc-faq-page__a">We carry out a pre-clean inspection before touching anything. Any existing damage, wear, or faults are noted and brought to your attention before work begins. We are not liable for damage that was pre-existing or that results from a pre-existing fault that wasn't apparent during our inspection. If we have any concerns, we'll tell you before we proceed.</p>
+                </div>
+
+                <div class="loc-faq-page__item">
+                    <h3 class="loc-faq-page__q">What if I'm not happy with the result?</h3>
+                    <p class="loc-faq-page__a">We won't consider the job done until you're satisfied. Before we pack up, you're invited to inspect every appliance we've cleaned. If something isn't right, we'll put it right before we leave. We're not in the business of rushing off — the sign-off is part of the job.</p>
+                </div>
+
             </div>
 
             <!-- BOOKING & RESERVATIONS -->
@@ -117,6 +138,11 @@ get_header();
                     <h3 class="loc-faq-page__q">Will there be any smell?</h3>
                     <p class="loc-faq-page__a">There may be a mild clean scent during and after the process — nothing unpleasant. We recommend ventilating the kitchen for 30 minutes after we leave.</p>
                 </div>
+
+                <div class="loc-faq-page__item">
+                    <h3 class="loc-faq-page__q">What if you can't get access on the day?</h3>
+                    <p class="loc-faq-page__a">We call ahead before every visit to confirm we're on our way. If we arrive and can't get access, we'll wait a reasonable time and exhaust every option — calling you, calling any key holder, and doing everything we can to make the visit work. Forfeiting a deposit is genuinely a last resort. If access can't be secured through no fault of ours after all options have been exhausted, the deposit may be retained — but we'll always be straight with you about what happened and why.</p>
+                </div>
             </div>
 
             <!-- PRICING & PAYMENT -->
@@ -130,7 +156,7 @@ get_header();
 
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">Do you take card payment?</h3>
-                    <p class="loc-faq-page__a">Yes. The remaining balance after your deposit is taken on the day using a card reader — debit or credit card, or contactless including Apple Pay and Google Pay. Your £25 deposit is processed when we confirm your booking by phone — nothing is charged at the point of reservation.</p>
+                    <p class="loc-faq-page__a">Yes. The remaining balance after your deposit is taken on the day using a card reader — debit or credit card, or contactless including Apple Pay and Google Pay. Your £25 deposit is processed when we confirm your booking by phone — nothing is charged at the point of reservation. We also accept payment by bank transfer — details provided on request.</p>
                 </div>
 
                 <div class="loc-faq-page__item">
@@ -144,8 +170,13 @@ get_header();
                 </div>
 
                 <div class="loc-faq-page__item">
+                    <h3 class="loc-faq-page__q">When is payment due?</h3>
+                    <p class="loc-faq-page__a">For domestic bookings, the remaining balance is due on the day — on completion of the work, before we leave. We bring a card reader so payment is straightforward. For business and commercial bookings, payment terms are agreed individually at the time of booking confirmation and confirmed in writing before the job goes ahead.</p>
+                </div>
+
+                <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">What's included in the price?</h3>
-                    <p class="loc-faq-page__a">Our fixed price covers a full clean of the oven itself — including the interior, door glass, and standard racks and shelves. If you have additional loose trays, baking tins, or extra items you'd like cleaned, just mention it when we call to confirm — we'll agree any additional cost before we start, so there are no surprises.</p>
+                    <p class="loc-faq-page__a">Our fixed price covers a full clean of the oven itself — including the interior, door glass, and standard racks and shelves. If you have additional loose trays, baking tins, or extra items you'd like cleaned, just mention it when we call to confirm — we'll agree any additional cost (if any) before we start, so there are no surprises.</p>
                 </div>
             </div>
 
