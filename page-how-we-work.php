@@ -51,7 +51,6 @@ get_header();
                     <h3 class="loc-hww__group-title">Arrival &amp; Setup</h3>
                 </div>
                 <ul class="loc-hww__steps">
-                    <li>Technician introduces themselves at the door</li>
                     <li>Pre-clean inspection carried out — condition and any existing damage noted before work begins</li>
                     <li>Protective floor coverings laid down around the oven</li>
                     <li>Fixed price reconfirmed before any work starts</li>
@@ -200,7 +199,7 @@ get_header();
         <div class="loc-inner-cta__inner">
             <p class="loc-inner-cta__eyebrow section-eyebrow">Ready to book?</p>
             <h2>Reserve your slot.</h2>
-            <p>Fixed price. Same-day results. No card needed to reserve.</p>
+            <p>Fixed price. Reserve online in 2 minutes — we call you to arrange the rest.</p>
             <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>
         </div>
     </section>
