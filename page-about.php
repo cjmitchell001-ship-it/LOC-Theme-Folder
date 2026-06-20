@@ -69,7 +69,7 @@ get_header();
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="#1A3A6E" stroke-width="2"/><polyline points="9 22 9 12 15 12 15 22" stroke="#1A3A6E" stroke-width="2"/></svg>
                     </div>
                     <p class="loc-about-values__card-title">Your home, respected</p>
-                    <p class="loc-about-values__card-text">Floor coverings go down before anything starts. All my equipment and materials leave with me. Unless you're making me a brew, I don't use your electricity, and only need a cold water tap. Your home is left exactly as I found it — except for the oven.</p>
+                    <p class="loc-about-values__card-text">Floor coverings go down before anything starts. All my equipment and materials leave with me. Unless you're making me a brew, I don't use your electricity and only need access to a cold water tap — and hot water where available. Your home is left exactly as I found it — except for the oven.</p>
                 </div>
 
                 <div class="loc-about-values__card">
@@ -82,10 +82,10 @@ get_header();
 
                 <div class="loc-about-values__card">
                     <div class="loc-about-values__icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="#1A3A6E" stroke-width="2"/><line x1="8" y1="21" x2="16" y2="21" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="17" x2="12" y2="21" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><polyline points="9 11 12 14 22 4" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
-                    <p class="loc-about-values__card-title">Fully insured</p>
-                    <p class="loc-about-values__card-text">I hold both public liability insurance and treatment risk insurance — which specifically covers the appliance being worked on. Not just standard cover. The right cover for this type of work.</p>
+                    <p class="loc-about-values__card-title">You're Invited to Check the Result</p>
+                    <p class="loc-about-values__card-text">Before we pack up and leave, you're invited to inspect every appliance we've cleaned. We won't consider the job done until you're satisfied with the result.</p>
                 </div>
 
                 <div class="loc-about-values__card">
@@ -146,6 +146,14 @@ get_header();
                     <p class="loc-about-credentials__value">Specific cover for appliances being worked on</p>
                 </div>
 
+                <div class="loc-about-credentials__item">
+                    <div class="loc-about-credentials__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#C9960C" stroke-width="2"/><path d="M9 12l2 2 4-4" stroke="#C9960C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <p class="loc-about-credentials__label">Fully Insured</p>
+                    <p class="loc-about-credentials__value">Public liability insurance and treatment risk insurance — which specifically covers the appliance being worked on. Not just standard cover. The right cover for this type of work.</p>
+                </div>
+
             </div>
         </div>
     </section>
@@ -155,7 +163,7 @@ get_header();
         <div class="loc-about-cta__inner">
             <p class="section-eyebrow">Ready to book?</p>
             <h2>Let's get your oven sorted.</h2>
-            <p>Fixed price. Same-day results. No card needed to reserve your slot.</p>
+            <p>Fixed price. Reserve online in 2 minutes — we call you to arrange the rest.</p>
             <div class="loc-about-cta__buttons">
                 <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>
                 <a href="/contact" class="btn-ghost-blue">Get in Touch</a>
