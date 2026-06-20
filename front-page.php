@@ -29,6 +29,7 @@ get_header();
 
     <!-- HERO CONTENT -->
     <div class="loc-hero__content">
+        <p class="section-eyebrow">Leicester Oven Cleaning</p>
         <h1 class="loc-hero__title">Your oven, cleaned properly. Fixed price, same day.</h1>
         <p class="loc-hero__tagline" id="loc-hero-tagline">Serving Leicester &amp; Leicestershire — we call to confirm everything before we start.</p>
         <div class="loc-hero__ctas">
@@ -90,7 +91,7 @@ get_header();
 <section class="loc-reserve">
     <p class="loc-reserve__eyebrow section-eyebrow">Simple &amp; Straightforward</p>
     <h2 class="loc-reserve__title">How to Reserve Your Slot</h2>
-    <p class="loc-reserve__subtitle">Three quick steps — no card details, no commitment. We call you to confirm everything.</p>
+    <p class="loc-reserve__subtitle">Three quick steps — no commitment. We call you to confirm everything.</p>
 
     <div class="loc-reserve__grid">
 
@@ -163,7 +164,7 @@ get_header();
                 <path d="M80 82L85.5 88L97 75" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             <h3 class="loc-reserve__step-title">Pick a Date &amp; We'll Call You</h3>
-            <p class="loc-reserve__step-desc">Choose from available slots and reserve online. We'll call to confirm your booking — and take a £25 deposit over the phone to secure your slot. £0.00 due today — your slot is held, not charged. We call to confirm everything before any deposit is taken.</p>
+            <p class="loc-reserve__step-desc">Choose from available slots and reserve your slot online. We'll call you at your convenience to fully confirm your booking.</p>
         </div>
 
     </div>
@@ -172,7 +173,6 @@ get_header();
     <div class="loc-reserve__cta">
         <p class="loc-reserve__tagline">Reserve online in 2 minutes — we call you to arrange the rest.</p>
         <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>
-        <p>Takes 2 minutes &nbsp;·&nbsp; £0.00 due today &nbsp;·&nbsp; £25 deposit only after our confirmation call</p>
     </div>
 
 </section>
@@ -318,10 +318,8 @@ get_header();
     <div class="loc-reviews__inner">
         <p class="section-eyebrow">Our Standard</p>
         <h2 class="loc-reviews__title">What Our Customers Say</h2>
-        <p class="loc-reviews__subtitle">We're just getting started — and we intend to earn every one of these.</p>
-
         <div class="loc-reviews__stars">
-            <p class="loc-reviews__statement">No reviews yet — we're just getting started.</p>
+            <p class="loc-reviews__statement">No reviews yet — we're building our reputation one oven at a time.</p>
             <p class="loc-reviews__invite">Be one of our first customers and tell us how we did.</p>
             <a href="/reserve-step-1" class="btn-primary" style="margin-top: 16px;">Reserve Your Slot — we'll call to confirm</a>
         </div>
