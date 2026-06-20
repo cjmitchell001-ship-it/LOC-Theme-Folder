@@ -216,10 +216,10 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 3</p>
                     <h2>Pricing and payment</h2>
-                    <p>All prices quoted are fixed and inclusive. The price agreed at the time of booking confirmation is the price you will pay, regardless of the condition of the appliance when we arrive.</p>
+                    <p>All prices quoted are fixed and inclusive. The price agreed at the time of booking confirmation is the price you will pay. This is subject to the appliance being as described at the time of booking — if we arrive and find the scope of work is materially different from what was agreed, we will discuss this with you before proceeding. We will never start work at a different price without your agreement.</p>
 
                     <h3>Domestic bookings</h3>
-                    <p>A deposit of £25 is required to confirm your booking. This deposit is deducted from the total price of the job on the day. The remaining balance is due on the day of the clean, upon satisfactory completion of the work. We accept both card and cash payment on the day.</p>
+                    <p>A deposit of £25 is required to confirm your booking. This deposit is deducted from the total price of the job on the day. The remaining balance is due on the day of the clean, upon satisfactory completion of the work. We accept card, cash, or bank transfer on the day.</p>
 
                     <h3>Business and commercial bookings</h3>
                     <p>Deposit amounts and payment terms for business and commercial bookings are agreed individually at the time of booking confirmation and confirmed in writing before the booking is finalised.</p>
@@ -234,7 +234,7 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 5</p>
                     <h2>Access and working conditions</h2>
-                    <p>You agree to provide reasonable access to the appliance(s) to be cleaned on the agreed date and within the agreed time window. We require access to a cold water tap. We do not require access to your electricity supply.</p>
+                    <p>You agree to provide reasonable access to the appliance(s) to be cleaned on the agreed date and within the agreed time window. We require access to a cold water tap — and hot water where available. We do not require access to your electricity supply.</p>
                     <p>We will lay down protective floor coverings before commencing work and will remove all equipment and materials when the job is complete.</p>
                     <p>If we are unable to access the property or the appliance at the agreed time through no fault of our own, this may be treated as a customer cancellation. Please refer to our Cancellation Policy.</p>
                 </div>
@@ -243,7 +243,7 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                     <p class="loc-legal-section__label">Section 6</p>
                     <h2>Pre-existing damage and appliance condition</h2>
                     <p>We carry out a pre-clean inspection before commencing any work. Any pre-existing damage, faults, or areas of concern will be noted and brought to your attention before work begins.</p>
-                    <p>We will not proceed with work on an appliance if we believe it presents a safety risk. In such cases, our deposit refund policy will apply.</p>
+                    <p>We will not proceed with work on an appliance if we believe it presents a safety risk. If we are unable to proceed due to a safety concern with the appliance, we will discuss the situation with you before making any decision regarding the deposit. Where the concern is genuine and could not have been reasonably foreseen, a full deposit refund will be issued.</p>
                     <p>We are not liable for damage to appliances that was pre-existing, concealed, or that results from a pre-existing fault that was not apparent during our pre-clean inspection.</p>
                 </div>
 
