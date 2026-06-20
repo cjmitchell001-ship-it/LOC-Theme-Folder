@@ -336,7 +336,6 @@
             <a href="<?php echo home_url('/reserve-step-3'); ?>" class="loc-step2-btn-proceed loc-step2-btn-proceed--disabled" id="loc-inline-proceed-btn">
                 Choose Your Date &rarr;
             </a>
-            <p class="loc-step2-proceed-subtext">Fixed price &middot; No card needed &middot; We call to confirm</p>
         </div>
 
     </div><!-- /inline-section -->

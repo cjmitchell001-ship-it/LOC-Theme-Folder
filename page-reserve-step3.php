@@ -157,9 +157,8 @@
             </div>
         </div>
         <div class="loc-step3-price-guarantee">
-            <p><strong>Fixed price guaranteed.</strong> The total shown is what you pay on the day — regardless of condition.</p>
+            <p>Your card details are held to reserve your slot — nothing is charged until after our confirmation call. Your £25 deposit is only processed once you're happy to go ahead.</p>
         </div>
-            <p class="loc-step3-reserve-subtext">No card taken now &middot; We call to confirm &middot; &pound;25 deposit on the call</p>
     </aside>
 
 </div><!-- /loc-step3-body -->

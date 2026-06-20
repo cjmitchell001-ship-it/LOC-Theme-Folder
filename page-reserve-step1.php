@@ -308,7 +308,7 @@
 
         <!-- PRICE GUARANTEE -->
         <div class="loc-step1-price-guarantee">
-            <p><strong>Fixed price guaranteed.</strong> The total shown is the price you pay — no matter the condition of your appliances when we arrive. Confirmed before we start.</p>
+            <p><strong>Fixed price.</strong> The total shown is the price agreed at booking — confirmed before we start.</p>
         </div>
 
     </div><!-- /sidebar -->
