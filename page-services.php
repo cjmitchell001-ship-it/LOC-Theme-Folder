@@ -105,7 +105,7 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">BBQ</h3>
-                        <span class="loc-services-card__price">from £45</span>
+                        <span class="loc-services-card__price loc-services-card__price--contact">Contact us</span>
                     </div>
                     <p class="loc-services-card__desc">Grill grates, burner covers, and interior cleaned and degreased. Quoted and arranged individually — get in touch to discuss.</p>
                 </div>
@@ -114,7 +114,7 @@ get_header();
 
             <div class="loc-services-cta">
                 <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>
-                <p class="loc-services-cta__sub">Select your appliances and see your exact price — takes 2 minutes</p>
+                <p class="loc-services-cta__sub">Fixed price. Reserve online in 2 minutes — we call you to arrange the rest.</p>
             </div>
         </div>
     </section>
