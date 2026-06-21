@@ -184,6 +184,7 @@ All four routes implemented and tested on mobile (June 2026).
 - ~~**Token rendering bugs from the refactor:** `--space-18`/`--space-25` undefined (8 sections zero-padding); `ox-shadow` typo (21 shadows not rendering)~~ Both found by the conflict audit and fixed June 2026.
 - **Step 3 skip route text:** `#loc-summary-items` shows "No selection found" when skip route used — should say "To be discussed on the call"
 - **Step 1 desktop right rail:** Empty after summary panel was removed — needs a plan for the responsive pass
+- **Clickable contact references — pre-launch task:** Every instance of "get in touch", "contact us", "give us a call", "drop us a message", or any similar contact prompt across all PHP templates must be a clickable link — either pointing to `/contact` or triggering a call via `tel:PLACEHOLDER`. Currently these references exist as plain text in several places. A full sweep must be completed before launch to ensure no passive contact reference is left unlinked.
 
 ---
 
