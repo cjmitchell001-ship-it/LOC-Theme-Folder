@@ -95,7 +95,7 @@ get_header();
                 <div class="loc-biz-how__step">
                     <div class="loc-biz-how__step-num">1</div>
                     <p class="loc-biz-how__step-title">Get in touch</p>
-                    <p class="loc-biz-how__step-text">Fill in the enquiry form, call us directly, or request a callback. Tell us about your property and what you need.</p>
+                    <p class="loc-biz-how__step-text">Fill in the enquiry form, <a href="tel:PLACEHOLDER">call us directly</a>, or request a callback. Tell us about your property and what you need.</p>
                 </div>
 
                 <div class="loc-biz-how__step">
@@ -249,7 +249,7 @@ get_header();
                 <div>
                     <p class="loc-biz-hmo-note__title">HMOs and multi-oven properties</p>
                     <p>If you have multiple ovens at a single property — such as an HMO with shared kitchens — pricing is not a simple multiple of the standard rate. When several appliances are cleaned in a single visit, travel and setup costs are shared across the job, and that efficiency is reflected in how we quote.</p>
-                    <p>We don't publish a fixed multi-oven rate because every situation is different. <strong>Get in touch with the details of your property and we'll put together a fair quote.</strong></p>
+                    <p>We don't publish a fixed multi-oven rate because every situation is different. <strong><a href="/contact">Get in touch</a> with the details of your property and we'll put together a fair quote.</strong></p>
                 </div>
             </div>
 
@@ -280,7 +280,7 @@ get_header();
                     <div class="loc-biz-contact__option-num">2</div>
                     <div class="loc-biz-contact__option-text">
                         <p class="loc-biz-contact__option-title">Call us directly</p>
-                        <p class="loc-biz-contact__option-desc"><strong>[Number TBC]</strong> — Mon–Sat, 8am–6pm. Speak directly with Chris.</p>
+                        <p class="loc-biz-contact__option-desc"><strong>[Number TBC]</strong> — Mon–Sat, 8am–6pm. <a href="tel:PLACEHOLDER">Speak directly with Chris</a>.</p>
                     </div>
                 </div>
 
