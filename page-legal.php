@@ -293,13 +293,13 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                             </tbody>
                         </table>
                     </div>
-                    <p>To cancel, contact us as soon as possible by phone or email. The cancellation time is recorded from when we receive your message.</p>
+                    <p>To cancel, <a href="/contact">contact us</a> as soon as possible by phone or email. The cancellation time is recorded from when we receive your message.</p>
                 </div>
 
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 2</p>
                     <h2>Rescheduling by the customer</h2>
-                    <p>If you need to move your appointment, get in touch as soon as you can. We'll always try to find a new date that works.</p>
+                    <p>If you need to move your appointment, <a href="/contact">get in touch</a> as soon as you can. We'll always try to find a new date that works.</p>
                     <ul>
                         <li><strong>48 hours or more notice:</strong> rescheduling is free of charge and your deposit transfers to the new date</li>
                         <li><strong>Less than 48 hours notice:</strong> treated as a cancellation — see Section 1</li>
@@ -327,7 +327,7 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 5</p>
                     <h2>Need to talk it through?</h2>
-                    <p>Stuff happens — a burst pipe, a sick kid, a change of plan. If you're outside the 48-hour window for a genuine reason, get in touch before your slot rather than after. We're reasonable people, and we'll always try to work with you.</p>
+                    <p>Stuff happens — a burst pipe, a sick kid, a change of plan. If you're outside the 48-hour window for a genuine reason, <a href="/contact">get in touch</a> before your slot rather than after. We're reasonable people, and we'll always try to work with you.</p>
                 </div>
 
                 <div class="loc-legal-section">
@@ -397,7 +397,7 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                 <!-- CONTACT BOX -->
                 <div class="loc-legal-sidebar__contact">
                     <p class="loc-legal-sidebar__contact-title">Questions about this policy?</p>
-                    <p>Contact us directly — we'll respond within one working day.</p>
+                    <p><a href="/contact">Contact us directly</a> — we'll respond within one working day.</p>
                     <a href="/contact" class="btn-primary loc-legal-sidebar__contact-btn">Get in Touch</a>
                 </div>
 
