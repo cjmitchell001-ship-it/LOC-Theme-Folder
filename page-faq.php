@@ -14,7 +14,7 @@ get_header();
         <div class="loc-page-header__inner">
             <p class="loc-page-header__eyebrow section-eyebrow">Got Questions?</p>
             <h1>Frequently Asked <span>Questions</span></h1>
-            <p class="loc-page-header__intro">Everything you need to know before you reserve. Can't find your answer here? Get in touch — we're happy to help.</p>
+            <p class="loc-page-header__intro">Everything you need to know before you reserve. Can't find your answer here? <a href="/contact">Get in touch</a> — we're happy to help.</p>
         </div>
     </section>
 
@@ -65,7 +65,7 @@ get_header();
 
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">Why is my preferred date not available?</h3>
-                    <p class="loc-faq-page__a">We group jobs by area each day, rather than travelling across the county for a single booking. This keeps us efficient and keeps your price down. If your preferred date shows as unavailable, it's because we're not working in your area that day — choose any available date instead, or get in touch if you need a specific day and we'll see what we can do.</p>
+                    <p class="loc-faq-page__a">We group jobs by area each day, rather than travelling across the county for a single booking. This keeps us efficient and keeps your price down. If your preferred date shows as unavailable, it's because we're not working in your area that day — choose any available date instead, or <a href="/contact">get in touch</a> if you need a specific day and we'll see what we can do.</p>
                 </div>
             </div>
 
@@ -186,7 +186,7 @@ get_header();
 
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">Do you clean commercial appliances?</h3>
-                    <p class="loc-faq-page__a">We clean domestic-scale appliances in commercial settings — rental properties, offices, care homes, and small commercial kitchens. For larger commercial operations, get in touch directly.</p>
+                    <p class="loc-faq-page__a">We clean domestic-scale appliances in commercial settings — rental properties, offices, care homes, and small commercial kitchens. For larger commercial operations, <a href="/contact">get in touch directly</a>.</p>
                 </div>
 
             </div>
@@ -201,7 +201,7 @@ get_header();
         <div class="loc-inner-cta__inner">
             <p class="loc-inner-cta__eyebrow section-eyebrow">Still have a question?</p>
             <h2>We're happy to help.</h2>
-            <p>Drop us a message and we'll get back to you.</p>
+            <p><a href="/contact">Drop us a message</a> and we'll get back to you.</p>
             <a href="/contact" class="btn-primary">Get In Touch &rarr;</a>
         </div>
     </section>
