@@ -101,7 +101,7 @@ get_header();
 
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">Is there a deposit?</h3>
-                    <p class="loc-faq-page__a">Yes. When you reserve your slot online, we ask for your card details to hold your slot — but nothing is charged at that point. £0.00 is due today. After our confirmation call, if you're happy to go ahead, we process a £25 deposit to your card. If you decide not to proceed during the call, the hold is released instantly and no charge is ever made.</p>
+                    <p class="loc-faq-page__a">Yes — £25, arranged on the confirmation call. After you reserve online, we'll call to confirm your booking and give you our bank details to transfer the deposit. Nothing is charged at the point of reservation, and the deposit is only requested once you're happy to go ahead.</p>
                 </div>
 
                 <div class="loc-faq-page__item">
@@ -155,13 +155,8 @@ get_header();
                 </div>
 
                 <div class="loc-faq-page__item">
-                    <h3 class="loc-faq-page__q">Do you take card payment?</h3>
-                    <p class="loc-faq-page__a">Yes. The remaining balance after your deposit is taken on the day using a card reader — debit or credit card, or contactless including Apple Pay and Google Pay. Your £25 deposit is processed when we confirm your booking by phone — nothing is charged at the point of reservation. We also accept payment by bank transfer — details provided on request.</p>
-                </div>
-
-                <div class="loc-faq-page__item">
-                    <h3 class="loc-faq-page__q">Why do you need my card details to reserve?</h3>
-                    <p class="loc-faq-page__a">We ask for your card details to hold your slot — but we don't charge anything at that point. Think of it like a hotel reservation: your card is held, not charged. After our confirmation call, if you're happy to proceed, we process the £25 deposit. If not, the hold is released immediately and no money changes hands. You'll never be charged without speaking to us first.</p>
+                    <h3 class="loc-faq-page__q">How do I pay?</h3>
+                    <p class="loc-faq-page__a">No payment is taken online. After you reserve your slot, we'll call to confirm everything. On that call we'll arrange a £25 deposit by bank transfer — we'll give you the details when we speak. The remaining balance is due on the day, once the job is done, by bank transfer or cash.</p>
                 </div>
 
                 <div class="loc-faq-page__item">
@@ -171,7 +166,7 @@ get_header();
 
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">When is payment due?</h3>
-                    <p class="loc-faq-page__a">For domestic bookings, the remaining balance is due on the day — on completion of the work, before we leave. We bring a card reader so payment is straightforward. For business and commercial bookings, payment terms are agreed individually at the time of booking confirmation and confirmed in writing before the job goes ahead.</p>
+                    <p class="loc-faq-page__a">The £25 deposit is arranged on the confirmation call — we'll give you our bank details and you transfer it before we arrive. The remaining balance is due on the day, once you're happy with the result. We accept bank transfer or cash. For business and commercial bookings, payment terms are agreed individually at the time of booking confirmation and confirmed in writing before the job goes ahead.</p>
                 </div>
 
                 <div class="loc-faq-page__item">
