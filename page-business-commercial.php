@@ -17,7 +17,6 @@ get_header();
             <p class="loc-page-header__intro">Landlords, letting agents, HMOs, offices, and small commercial kitchens — we work around your schedule, not the other way around.</p>
             <div class="loc-biz-header__ctas">
                 <a href="#biz-contact" class="btn-primary">Get in Touch</a>
-                <a href="#biz-contact" class="btn-ghost">Request a Callback</a>
             </div>
         </div>
     </section>
@@ -95,7 +94,7 @@ get_header();
                 <div class="loc-biz-how__step">
                     <div class="loc-biz-how__step-num">1</div>
                     <p class="loc-biz-how__step-title">Get in touch</p>
-                    <p class="loc-biz-how__step-text">Fill in the enquiry form, <a href="tel:PLACEHOLDER">call us directly</a>, or request a callback. Tell us about your property and what you need.</p>
+                    <p class="loc-biz-how__step-text">Fill in the enquiry form or <a href="tel:PLACEHOLDER">call us directly</a>. Tell us about your property and what you need.</p>
                 </div>
 
                 <div class="loc-biz-how__step">
@@ -284,18 +283,6 @@ get_header();
                     </div>
                 </div>
 
-                <!-- OPTION 3 — CALLBACK -->
-                <div class="loc-biz-contact__option">
-                    <div class="loc-biz-contact__option-num">3</div>
-                    <div class="loc-biz-contact__option-text">
-                        <p class="loc-biz-contact__option-title">Request a callback</p>
-                        <p class="loc-biz-contact__option-desc">Pick a time slot and we'll call you. Callback scheduler coming soon — powered by our booking system.</p>
-                        <div class="loc-biz-callback-placeholder">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="rgba(255,255,255,0.5)" stroke-width="2"/><line x1="16" y1="2" x2="16" y2="6" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="2" x2="8" y2="6" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round"/><line x1="3" y1="10" x2="21" y2="10" stroke="rgba(255,255,255,0.5)" stroke-width="2"/></svg>
-                            <span>Callback scheduler — active once booking system is configured</span>
-                        </div>
-                    </div>
-                </div>
 
             </div>
 
