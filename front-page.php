@@ -430,7 +430,7 @@ get_header();
         <div class="loc-business-banner__left">
             <p class="section-eyebrow">Commercial &amp; Business Clients</p>
             <h2 class="loc-business-banner__title">Got a business property or <span>contract requirement?</span></h2>
-            <p class="loc-business-banner__sub">We offer out-of-hours availability and can work across multiple units or sites. Whether it's a one-off clean or an ongoing arrangement, get in touch and we'll talk through what works.</p>
+            <p class="loc-business-banner__sub">We offer out-of-hours availability and can work across multiple units or sites. Whether it's a one-off clean or an ongoing arrangement, <a href="/contact">get in touch</a> and we'll talk through what works.</p>
         </div>
         <div class="loc-business-banner__right">
             <a href="/business-commercial" class="btn-primary">Discuss a Business Booking</a>
