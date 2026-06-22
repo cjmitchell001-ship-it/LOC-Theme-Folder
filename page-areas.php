@@ -109,7 +109,7 @@ get_header();
     <section class="loc-areas-page-how-section">
         <div class="loc-areas-page-how-section__inner">
             <h2 class="loc-areas-page-how-section__heading">How our area check works</h2>
-            <p>When you reach Step 2 of the reservation, you'll enter your postcode or select your area. We'll confirm instantly whether we cover you. If you're in a listed area, you're good to go. If you're just outside, get in touch — we'll do our best.</p>
+            <p>When you reach Step 2 of the reservation, you'll enter your postcode or select your area. We'll confirm instantly whether we cover you. If you're in a listed area, you're good to go. If you're just outside, <a href="/contact">get in touch</a> — we'll do our best.</p>
             <p>Fixed price. Reserve online in 2 minutes — we call you to arrange the rest.</p>
             <a href="/reserve-step-1" class="btn-primary">Start Your Reservation &rarr;</a>
         </div>
