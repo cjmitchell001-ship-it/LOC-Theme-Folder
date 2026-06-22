@@ -219,7 +219,7 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                     <p>All prices quoted are fixed and inclusive. The price agreed at the time of booking confirmation is the price you will pay. This is subject to the appliance being as described at the time of booking — if we arrive and find the scope of work is materially different from what was agreed, we will discuss this with you before proceeding. We will never start work at a different price without your agreement.</p>
 
                     <h3>Domestic bookings</h3>
-                    <p>A deposit of £25 is required to confirm your booking. This deposit is deducted from the total price of the job on the day. The remaining balance is due on the day of the clean, upon satisfactory completion of the work. We accept card, cash, or bank transfer on the day.</p>
+                    <p>A deposit of £25 is required to confirm your booking. This deposit is arranged on the confirmation call by bank transfer — we will provide our bank details when we speak. The deposit is deducted from the total price of the job on the day. The remaining balance is due on the day of the clean, upon satisfactory completion of the work. We accept bank transfer or cash on the day.</p>
 
                     <h3>Business and commercial bookings</h3>
                     <p>Deposit amounts and payment terms for business and commercial bookings are agreed individually at the time of booking confirmation and confirmed in writing before the booking is finalised.</p>
@@ -333,7 +333,7 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 6</p>
                     <h2>Refund processing</h2>
-                    <p>Deposit refunds will be processed within 5 working days of the cancellation being agreed. Refunds are made to the original payment method only.</p>
+                    <p>Deposit refunds will be processed within 5 working days of the cancellation being agreed. Refunds are made by bank transfer to the account used to pay the deposit.</p>
                 </div>
 
                 <?php elseif ($slug === 'cookie-policy'): ?>
