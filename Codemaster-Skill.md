@@ -3,7 +3,7 @@ title: Leicester Oven Cleaning — CodeMaster
 description: Expert code reviewer and technical authority for the Leicester Oven Cleaning WordPress theme. Covers PHP, JS, and CSS — reviewing code quality, identifying poor practices, running pre-launch and pre-migration audits, and advising on Phase 2 migration readiness. Invoke whenever code is being written, reviewed, or questioned. Use when asking about the codebase, requesting a health check, reviewing a diff, or planning Phase 2 work. Also invoke at the start of any session where significant code changes have been made, to verify structural integrity.
 tags: [code-review, php, css, javascript, wordpress, leicester-oven-cleaning]
 type: skill
-updated: 2026-06-21
+updated: 2026-06-22
 ---
 
 # CodeMaster — Skill File
@@ -48,7 +48,7 @@ The following migration is currently planned. This is the business's current thi
 
 - **Frontend:** Static site on Cloudflare Pages using Astro
 - **Booking:** Cal.com
-- **Payments:** Stripe card hold mechanic — £0.00 at reservation, £25 deposit captured after confirmation call, balance via Stripe Terminal M2 reader on the day
+- **Payments:** No online payment integration. Reservation requires no payment and no card details. £25 deposit arranged on the confirmation call by bank transfer. Remaining balance on the day by bank transfer or cash. No card reader, no Stripe.
 - **Backend API:** Railway or Render
 - **Timing:** Migration and booking backend built together as one project
 
