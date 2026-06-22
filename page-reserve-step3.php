@@ -157,7 +157,7 @@
             </div>
         </div>
         <div class="loc-step3-price-guarantee">
-            <p>Your card details are held to reserve your slot — nothing is charged until after our confirmation call. Your £25 deposit is only processed once you're happy to go ahead.</p>
+            <p>No payment online. We'll call to confirm your slot and arrange a £25 deposit by bank transfer.</p>
         </div>
     </aside>
 
@@ -174,7 +174,7 @@
         </div>
 
         <h2 class="loc-step3-confirm-heading">Your slot is reserved.</h2>
-        <p class="loc-step3-confirm-sub">There&rsquo;s nothing more to do right now. We&rsquo;ll be in touch to confirm everything &mdash; no card has been taken.</p>
+        <p class="loc-step3-confirm-sub">There&rsquo;s nothing more to do right now. We&rsquo;ll be in touch to confirm everything &mdash; no payment has been taken.</p>
 
         <div class="loc-step3-confirm-grid">
             <div class="loc-step3-confirm-box">
