@@ -14,7 +14,7 @@ get_header();
         <div class="loc-page-header__inner">
             <p class="loc-page-header__eyebrow section-eyebrow">Our Services</p>
             <h1>Everything <span>We Clean</span></h1>
-            <p class="loc-page-header__intro">Fixed prices, professional results, and your appliances ready to use the same day. Select what you need when you reserve — or get in touch if you're not sure.</p>
+            <p class="loc-page-header__intro">Fixed prices, professional results, and your appliances ready to use the same day. Select what you need when you reserve — or <a href="/contact">get in touch</a> if you're not sure.</p>
             <p class="loc-page-header__intro">Fully insured, fixed prices, no surprises on the day.</p>
         </div>
     </section>
@@ -67,7 +67,7 @@ get_header();
                         <h3 class="loc-services-card__name">AGA / Large Range</h3>
                         <span class="loc-services-card__price loc-services-card__price--contact">Contact us</span>
                     </div>
-                    <p class="loc-services-card__desc">A specialist clean for AGA, Rayburn, and equivalent appliances — quoted and arranged individually. Get in touch to discuss your requirements.</p>
+                    <p class="loc-services-card__desc">A specialist clean for AGA, Rayburn, and equivalent appliances — quoted and arranged individually. <a href="/contact">Get in touch</a> to discuss your requirements.</p>
                 </div>
 
                 <div class="loc-services-card">
@@ -107,7 +107,7 @@ get_header();
                         <h3 class="loc-services-card__name">BBQ</h3>
                         <span class="loc-services-card__price loc-services-card__price--contact">Contact us</span>
                     </div>
-                    <p class="loc-services-card__desc">Grill grates, burner covers, and interior cleaned and degreased. Quoted and arranged individually — get in touch to discuss.</p>
+                    <p class="loc-services-card__desc">Grill grates, burner covers, and interior cleaned and degreased. Quoted and arranged individually — <a href="/contact">get in touch</a> to discuss.</p>
                 </div>
 
             </div>
@@ -126,7 +126,7 @@ get_header();
         <div class="loc-services-section__inner">
             <p class="loc-services-section__eyebrow section-eyebrow">Commercial</p>
             <h2 class="loc-services-section__heading">For Your Business</h2>
-            <p class="loc-services-section__intro">We work with landlords, letting agents, HMOs, offices, care homes, and small commercial kitchens. Business bookings are handled directly — get in touch and we'll arrange everything around your schedule.</p>
+            <p class="loc-services-section__intro">We work with landlords, letting agents, HMOs, offices, care homes, and small commercial kitchens. Business bookings are handled directly — <a href="/contact">get in touch</a> and we'll arrange everything around your schedule.</p>
 
             <div class="loc-services-commercial-grid">
 
