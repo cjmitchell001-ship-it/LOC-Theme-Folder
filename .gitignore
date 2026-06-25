@@ -6,3 +6,7 @@ node_modules/
 .claude/memory/
 .claude/projects/
 client_secret_*.json
+token.json
+vendor/
+composer.phar
+composer-setup.php

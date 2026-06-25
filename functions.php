@@ -6,6 +6,8 @@
  * Loads Google Fonts and the theme stylesheet.
  */
 
+require_once get_template_directory() . '/calendar-api.php';
+
 // ============================================================
 // ENQUEUE GOOGLE FONTS + THEME STYLESHEET
 // ============================================================
