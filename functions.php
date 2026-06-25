@@ -400,6 +400,7 @@ function loc_step1_script() {
                 sessionStorage.setItem('loc_skip', 'true');
                 sessionStorage.removeItem('loc_selections');
                 sessionStorage.removeItem('loc_total');
+                sessionStorage.setItem('loc_duration', 0);
                 sessionStorage.setItem('loc_from_step1', 'true');
             } else {
                 sessionStorage.removeItem('loc_skip');
@@ -415,6 +416,36 @@ function loc_step1_script() {
                 var total = Object.values(serialised).reduce(function(sum, p) { return sum + p; }, 0);
                 sessionStorage.setItem('loc_selections', JSON.stringify(serialised));
                 sessionStorage.setItem('loc_total', total);
+
+                // ── DURATION CALCULATION ──
+                var baseDurations = {
+                    'Single Oven':        105,
+                    'Double Oven':        135,
+                    'Range Cooker 90cm':  150,
+                    'Range Cooker 100cm+': 165
+                };
+                var extraDurations = {
+                    'Gas Hob':                 30,
+                    'Ceramic / Induction Hob': 30,
+                    'Extractor Hood':           30,
+                    'Microwave':                15
+                };
+                var duration = 0;
+                var hasBase  = false;
+                var hasAga   = selections.hasOwnProperty('AGA / Large Range');
+                if (!hasAga) {
+                    Object.keys(selections).forEach(function(name) {
+                        if (baseDurations.hasOwnProperty(name)) {
+                            duration += baseDurations[name];
+                            hasBase   = true;
+                        } else if (extraDurations.hasOwnProperty(name)) {
+                            duration += extraDurations[name];
+                        }
+                    });
+                    if (!hasBase) { duration = 0; }
+                }
+                sessionStorage.setItem('loc_duration', duration);
+
                 sessionStorage.setItem('loc_from_step1', 'true');
             }
 
@@ -584,6 +615,19 @@ function loc_step2_script() {
             sessionStorage.removeItem('loc_postcode');
             // Save fresh
             sessionStorage.setItem('loc_postcode', postcode);
+
+            // ── POSTCODE ZONE LOOKUP ──
+            var districtMatch = postcode.match(/^([A-Z]{1,2}\d{1,2})/i);
+            var district = districtMatch ? districtMatch[1].toUpperCase() : '';
+            var zoneMap = {
+                'LE4': 'North', 'LE6': 'North', 'LE7': 'North', 'LE11': 'North', 'LE12': 'North',
+                'LE5': 'East',  'LE13': 'East',  'LE14': 'East',  'LE15': 'East',
+                'LE2': 'South', 'LE8': 'South',  'LE18': 'South', 'LE16': 'South', 'LE17': 'South',
+                'LE3': 'West',  'LE9': 'West',   'LE10': 'West',  'LE19': 'West',
+                'LE1': 'Central'
+            };
+            var zone = zoneMap[district] || 'unknown';
+            sessionStorage.setItem('loc_zone', zone);
 
             // Show confirmed banner
             confirmedText.textContent = postcode + ' saved — we\'ll show you the best available dates for your area.';
