@@ -5,3 +5,4 @@ node_modules/
 *.log
 .claude/memory/
 .claude/projects/
+client_secret_*.json
