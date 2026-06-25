@@ -10,7 +10,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 $_LOC_CREDENTIALS_FILE = __DIR__ . '/client_secret_212238838163-k4gs5q3ulqgp15tnamdq53dv3l7k92i6.apps.googleusercontent.com.json';
 $_LOC_TOKEN_FILE       = __DIR__ . '/token.json';
-$_LOC_CALENDAR_ID      = 'primary'; // replace with real calendar ID once confirmed
+$_LOC_CALENDAR_ID      = '514d8e2bd29573d1582ae633e39ee999679bc205ee207a15c019b1aed196f67d@group.calendar.google.com';
 
 
 // ============================================================
