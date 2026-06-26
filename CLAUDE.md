@@ -257,5 +257,27 @@ Chris (the founder) wants his name, face, and personal/employment history kept O
 | June 2026 (m11 — payment mechanic update) | **Stripe card-hold model removed site-wide; replaced with bank transfer mechanic.** New mechanic: reservation requires no payment and no card details; Chris calls to confirm; £25 deposit arranged on that call by bank transfer; remaining balance by bank transfer or cash on the day. Changes across 3 files: FAQ — "Is there a deposit?" rewritten, "Do you take card payment?" renamed to "How do I pay?" and rewritten, "Why do you need my card details?" Q&A removed entirely, "When is payment due?" updated (card reader removed). Step 3 — price guarantee container rewritten, confirmation panel subtext updated ("no card has been taken" → "no payment has been taken"). Legal — T&Cs domestic payment clause updated (deposit described as bank transfer on the call, card removed from balance methods), cancellation refund processing updated ("original payment method" → "bank transfer to the account used to pay the deposit"). Steps 1 & 2, front-page, HWW, commercial, and footer confirmed clean — no changes needed. "No card needed" phrases in sidebars/contact page left in place (still factually accurate). |
 | June 2026 (m12 — contact references sweep) | **All passive contact references made clickable site-wide.** 17 instances linked across 6 files. Rule: call references → `tel:PLACEHOLDER`; all other contact references → `/contact`. Files changed: `front-page.php` (1), `page-areas.php` (1), `page-business-commercial.php` (3 — "call us directly", "Get in touch" in HMO note, "Speak directly with Chris"), `page-faq.php` (4 — page intro, date availability answer, commercial appliances answer, "Drop us a message" CTA para), `page-legal.php` (4 — cancel instruction, reschedule instruction, 48hr-window note, sidebar contact para), `page-services.php` (4 — page intro, AGA card desc, BBQ card desc, commercial section intro). UI headings, eyebrows, and the contact page's own heading left unlinked (correct). Final sweep confirmed zero unlinked instances. Note: `page-reserve-step3.php:113` has `tel:+441234567890` (not `tel:PLACEHOLDER`) — predates this session, fix when real number confirmed. |
 | June 2026 (Phase 2 — Google Calendar API) | **Google Calendar API connection established.** Installed `google/apiclient` v2.19.3 via Composer. Created `calendar-api.php` (4 functions: `loc_get_google_client`, `loc_get_calendar_service`, `loc_get_available_slots`, `loc_create_provisional_booking`). Created `calendar-auth.php` for one-time OAuth flow (accessed via `127.0.0.1:10004`, no WordPress dependency). `token.json` written and gitignored. Calendar ID set to Leicester Oven Cleaning Jobs calendar. `vendor/`, `token.json`, `client_secret_*.json` all gitignored. Commit `57bf832`. |
+| June 2026 (Phase 3 — real availability in Step 3) | **Step 3 calendar now shows real availability from Google Calendar.** Created `calendar-ajax.php` — JSON endpoint called by Step 3 JS via `fetch()`, `days_ahead` set to 180. Rewrote `loc_get_available_slots`: zone-labelled dates (all-day events titled North/South/East/West/Central) shown only to customers whose `loc_zone` matches; no-zone dates shown to all customers; fully booked dates hidden; past dates hidden. Updated `loc_step3_script`: replaced hardcoded `unavailableDays` array with `fetch()` to AJAX endpoint; per-date morning/afternoon slot visibility from API response; loading state while fetching; fallback to all-dates mode if zone unknown; skip route and inline Step 2 route use 60-min default duration so zone filtering still applies. Fixed `get_template_directory()` → `get_stylesheet_directory()` in `functions.php` (was resolving to GeneratePress folder, causing fatal error). Fixed CORS error by switching fetch URL from hardcoded `127.0.0.1:10004` to relative path (works on production without changes). Corrected slot time labels: Morning `7am–1pm`, Afternoon `1pm–6pm`. All four funnel routes stress-tested and passing. Commit `f856146`. |
 
 *Update this log and the sections above whenever significant progress is made or a decision is confirmed.*
+
+---
+
+## Deployment Notes — Google Calendar API
+
+These steps are required when deploying to the live SiteGround server. They are one-time actions per environment.
+
+### Before deploying
+1. Go to Google Cloud Console → APIs & Services → Credentials → your OAuth 2.0 Client ID
+2. Add the production URL to **Authorised redirect URIs**:
+   `https://your-live-domain.co.uk/wp-content/themes/leicester-oven-cleaning-child/calendar-auth.php`
+   (keep the `127.0.0.1:10004` local URI alongside it — do not remove it)
+3. Save the credentials
+
+### After deploying files to SiteGround
+4. `token.json` is gitignored and will not be present on the live server — it must be generated there
+5. Visit `calendar-auth.php` on the live domain in a browser to trigger the OAuth flow
+6. Sign in with the Google account that owns the Jobs calendar and grant access
+7. Confirm the success message: "Calendar connected successfully"
+8. `token.json` will be written to the theme folder on the live server
+9. The calendar AJAX endpoint will then work correctly on production
