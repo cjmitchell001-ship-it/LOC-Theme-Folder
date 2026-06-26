@@ -94,9 +94,9 @@
         <div class="loc-step3-time-slots" id="loc-time-slots" style="display:none;">
             <p class="loc-step3-time-slots__title">Choose a time window for <span id="loc-selected-date-label"></span></p>
             <div class="loc-step3-time-slots__grid">
-                <button class="loc-step3-slot-btn" data-label="Morning" data-time="8am &ndash; 1pm">
+                <button class="loc-step3-slot-btn" data-label="Morning" data-time="7am &ndash; 1pm">
                     <span class="loc-step3-slot-btn__label">Morning</span>
-                    <span class="loc-step3-slot-btn__time">8am &ndash; 1pm</span>
+                    <span class="loc-step3-slot-btn__time">7am &ndash; 1pm</span>
                 </button>
                 <button class="loc-step3-slot-btn" data-label="Afternoon" data-time="1pm &ndash; 6pm">
                     <span class="loc-step3-slot-btn__label">Afternoon</span>

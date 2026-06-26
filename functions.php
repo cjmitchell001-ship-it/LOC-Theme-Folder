@@ -6,7 +6,7 @@
  * Loads Google Fonts and the theme stylesheet.
  */
 
-require_once get_template_directory() . '/calendar-api.php';
+require_once get_stylesheet_directory() . '/calendar-api.php';
 
 // ============================================================
 // ENQUEUE GOOGLE FONTS + THEME STYLESHEET
@@ -990,8 +990,10 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
         var selCallback  = null;
         var isDateTBC    = false;
 
-        // Placeholder data — replace with booking system integration
-        var unavailableDays = [1, 2, 8, 15, 16, 22, 29];
+        // Availability data — populated via fetch from calendar-ajax.php
+        var availableDates  = [];
+        var availableLookup = {};
+        var isFallbackMode  = false;
 
         var monthNames = ['January','February','March','April','May','June',
                           'July','August','September','October','November','December'];
@@ -1015,8 +1017,9 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             }
 
             while (day <= daysInMonth) {
-                var isPast = new Date(curYear, curMonth, day) < new Date(today.getFullYear(), today.getMonth(), today.getDate());
-                var isUnavail = unavailableDays.indexOf(day) > -1 || isPast;
+                var isPast  = new Date(curYear, curMonth, day) < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                var dateStr = curYear + '-' + String(curMonth + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+                var isUnavail = isPast || (!isFallbackMode && !availableLookup[dateStr]);
                 var cls = isUnavail ? 'unavailable' : 'available';
                 var cell = makeCell(day, cls);
                 row.appendChild(cell);
@@ -1079,6 +1082,20 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             });
 
             document.getElementById('loc-selected-date-label').textContent = selDate;
+
+            // Show only the slots available for this specific date
+            var _ds  = curYear + '-' + String(curMonth + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+            var _dd  = availableLookup[_ds];
+            var _mBtn = document.querySelector('.loc-step3-slot-btn[data-label="Morning"]');
+            var _aBtn = document.querySelector('.loc-step3-slot-btn[data-label="Afternoon"]');
+            if (!isFallbackMode && _dd) {
+                if (_mBtn) _mBtn.style.display = _dd.morning   ? '' : 'none';
+                if (_aBtn) _aBtn.style.display = _dd.afternoon ? '' : 'none';
+            } else {
+                if (_mBtn) _mBtn.style.display = '';
+                if (_aBtn) _aBtn.style.display = '';
+            }
+
             document.getElementById('loc-time-slots').style.display = 'block';
             document.getElementById('loc-time-slots').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             if (clearDateBtn) clearDateBtn.style.display = 'block';
@@ -1156,6 +1173,12 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                     // Hide time slot panel and clear button
                     document.getElementById('loc-time-slots').style.display = 'none';
                     clearDateBtn.style.display = 'none';
+
+                    // Reset slot button visibility
+                    var _mb = document.querySelector('.loc-step3-slot-btn[data-label="Morning"]');
+                    var _ab = document.querySelector('.loc-step3-slot-btn[data-label="Afternoon"]');
+                    if (_mb) _mb.style.display = '';
+                    if (_ab) _ab.style.display = '';
 
                     // Reset summary slot
                     document.getElementById('loc-summary-slot').classList.remove('loc-step3-summary__slot--active');
@@ -1414,8 +1437,52 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             sessionStorage.removeItem('loc_from_step1');
         });
 
-        // Init
-        renderCalendar();
+        // Init — fetch real availability then render calendar
+        (function() {
+            var locZone     = sessionStorage.getItem('loc_zone') || '';
+            var locDuration = parseInt(sessionStorage.getItem('loc_duration'), 10) || 0;
+            var calBody     = document.getElementById('loc-cal-body');
+            var calMonth    = document.getElementById('loc-cal-month');
+
+            // Only fall back to unfiltered mode if zone is genuinely unknown.
+            // Missing duration (skip route / inline Step 2 route) uses a 60-min
+            // default so zone filtering still applies.
+            if (!locZone || locZone === 'unknown') {
+                isFallbackMode = true;
+                renderCalendar();
+                return;
+            }
+
+            var fetchDuration = locDuration > 0 ? locDuration : 60;
+
+            // Show loading state
+            if (calMonth) calMonth.textContent = ' ';
+            if (calBody)  calBody.innerHTML    = '<tr><td colspan="7" style="text-align:center;padding:var(--space-8) 0;color:var(--grey-400);font-size:var(--text-ui);">Loading available dates…</td></tr>';
+
+            fetch('/wp-content/themes/leicester-oven-cleaning-child/calendar-ajax.php?zone=' + encodeURIComponent(locZone) + '&duration_minutes=' + fetchDuration)
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    if (!data || data.error || !Array.isArray(data)) {
+                        isFallbackMode = true;
+                        renderCalendar();
+                        return;
+                    }
+                    if (data.length === 0) {
+                        if (calMonth) calMonth.textContent = monthNames[curMonth] + ' ' + curYear;
+                        if (calBody)  calBody.innerHTML    = '<tr><td colspan="7" style="text-align:center;padding:var(--space-8) 0;color:var(--grey-500);font-size:var(--text-body-sm);">No available slots found in the next 180 days.<br>Please <a href="/contact" style="color:var(--gold);">call us</a> to arrange a date.</td></tr>';
+                        return;
+                    }
+                    data.forEach(function(item) {
+                        availableLookup[item.date] = item;
+                    });
+                    availableDates = data;
+                    renderCalendar();
+                })
+                .catch(function() {
+                    isFallbackMode = true;
+                    renderCalendar();
+                });
+        })();
     });
     </script>
     <?php

@@ -64,9 +64,14 @@ function loc_get_calendar_service() {
 
 // ============================================================
 // loc_get_available_slots( $zone, $duration_minutes, $days_ahead )
-// Queries the Jobs calendar for zone-labelled all-day events,
-// then checks morning (07:00-13:00) and afternoon (13:00-18:00)
-// for free blocks of at least $duration_minutes.
+//
+// Availability rules:
+//   - No-zone date (no all-day zone event): shown to ALL customers.
+//   - Zone-labelled date (all-day event titled North/South/East/West/Central):
+//     shown only to customers whose $zone matches that label.
+//   - Fully booked date (both morning and afternoon taken): hidden for everyone.
+//   - Past dates: always hidden.
+//
 // Returns array of [ 'date' => 'YYYY-MM-DD', 'morning' => bool, 'afternoon' => bool ]
 // ============================================================
 
@@ -78,8 +83,9 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
         return $service; // AUTH_REQUIRED:...
     }
 
-    $now       = new DateTime( 'today', new DateTimeZone( 'Europe/London' ) );
-    $end       = clone $now;
+    $tz  = new DateTimeZone( 'Europe/London' );
+    $now = new DateTime( 'today', $tz );
+    $end = clone $now;
     $end->modify( '+' . intval( $days_ahead ) . ' days' );
 
     $timeMin = $now->format( DateTime::RFC3339 );
@@ -97,8 +103,10 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
         return [];
     }
 
-    // Index all-day zone markers and timed events by date
-    $zoneDays   = []; // dates that have a matching zone all-day event
+    $knownZones = [ 'north', 'south', 'east', 'west', 'central' ];
+
+    // Index zone all-day events and timed events by date
+    $zonedDates = []; // date => zone label (lowercase) — only dates with a zone all-day event
     $timedByDay = []; // date => array of [start_ts, end_ts]
 
     foreach ( $events->getItems() as $event ) {
@@ -106,13 +114,13 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
         $end_e = $event->getEnd();
 
         if ( $start->getDate() ) {
-            // All-day event — check if title matches zone
-            $title = trim( $event->getSummary() );
-            if ( strcasecmp( $title, $zone ) === 0 ) {
-                $zoneDays[ $start->getDate() ] = true;
+            // All-day event — record if it carries a known zone label
+            $title = strtolower( trim( $event->getSummary() ) );
+            if ( in_array( $title, $knownZones ) ) {
+                $zonedDates[ $start->getDate() ] = $title;
             }
         } else {
-            // Timed event — record as occupied block
+            // Timed event — record as an occupied block
             $date = ( new DateTime( $start->getDateTime() ) )->format( 'Y-m-d' );
             $timedByDay[ $date ][] = [
                 strtotime( $start->getDateTime() ),
@@ -121,19 +129,33 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
         }
     }
 
-    $slots = [];
+    $slots     = [];
+    $zoneLower = strtolower( $zone );
+    $cursor    = clone $now;
 
-    foreach ( $zoneDays as $date => $_ ) {
-        $morning   = loc_slot_is_free( $date, '07:00', '13:00', $duration_minutes, $timedByDay );
-        $afternoon = loc_slot_is_free( $date, '13:00', '18:00', $duration_minutes, $timedByDay );
+    while ( $cursor < $end ) {
+        $dateStr = $cursor->format( 'Y-m-d' );
 
+        // Zone-labelled date that doesn't match this customer's zone — skip
+        if ( isset( $zonedDates[ $dateStr ] ) && $zonedDates[ $dateStr ] !== $zoneLower ) {
+            $cursor->modify( '+1 day' );
+            continue;
+        }
+
+        // Check morning (07:00–13:00) and afternoon (13:00–18:00) slots
+        $morning   = loc_slot_is_free( $dateStr, '07:00', '13:00', $duration_minutes, $timedByDay );
+        $afternoon = loc_slot_is_free( $dateStr, '13:00', '18:00', $duration_minutes, $timedByDay );
+
+        // Only include if at least one slot is free
         if ( $morning || $afternoon ) {
             $slots[] = [
-                'date'      => $date,
+                'date'      => $dateStr,
                 'morning'   => $morning,
                 'afternoon' => $afternoon,
             ];
         }
+
+        $cursor->modify( '+1 day' );
     }
 
     return $slots;
