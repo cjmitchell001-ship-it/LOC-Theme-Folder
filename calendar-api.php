@@ -205,7 +205,7 @@ function loc_slot_is_free( $date, $slot_start, $slot_end, $duration_minutes, $ti
 // Returns true on success, false on failure.
 // ============================================================
 
-function loc_create_provisional_booking( $date, $slot, $customer_name, $phone, $email, $appliances, $duration_minutes, $zone ) {
+function loc_create_provisional_booking( $date, $slot, $customer_name, $phone, $email, $appliances, $duration_minutes, $zone, $callback_time = '' ) {
     global $_LOC_CALENDAR_ID;
 
     $service = loc_get_calendar_service();
@@ -219,20 +219,27 @@ function loc_create_provisional_booking( $date, $slot, $customer_name, $phone, $
     $endDt      = clone $startDt;
     $endDt->modify( '+' . intval( $duration_minutes ) . ' minutes' );
 
-    $applianceText = is_array( $appliances )
-        ? implode( ', ', array_map( function( $name, $price ) {
-            return $name . ' (£' . $price . ')';
-          }, array_keys( $appliances ), $appliances ) )
-        : (string) $appliances;
+    if ( is_array( $appliances ) && ! empty( $appliances ) ) {
+        $applianceLines = [];
+        foreach ( $appliances as $name => $price ) {
+            $applianceLines[] = '  ' . $name . ' — £' . $price;
+        }
+        $applianceBlock = implode( "\n", $applianceLines );
+    } else {
+        $applianceBlock = '  To be discussed on the call';
+    }
 
     $description = implode( "\n", [
         'Name:       ' . $customer_name,
         'Phone:      ' . $phone,
         'Email:      ' . $email,
         'Zone:       ' . $zone,
-        'Appliances: ' . $applianceText,
+        'Callback:   ' . ( $callback_time ?: 'Not specified' ),
         'Duration:   ' . $duration_minutes . ' min',
         'Status:     PROVISIONAL — awaiting confirmation call',
+        '',
+        'Appliances:',
+        $applianceBlock,
     ] );
 
     $event = new Google\Service\Calendar\Event( [

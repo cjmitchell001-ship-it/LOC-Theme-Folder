@@ -7,6 +7,10 @@
  */
 
 require_once get_stylesheet_directory() . '/calendar-api.php';
+require_once get_stylesheet_directory() . '/reservation-handler.php';
+
+add_action( 'wp_ajax_nopriv_loc_reservation', 'loc_handle_reservation' ); // unauthenticated visitors
+add_action( 'wp_ajax_loc_reservation',        'loc_handle_reservation' ); // logged-in users
 
 // ============================================================
 // ENQUEUE GOOGLE FONTS + THEME STYLESHEET
@@ -985,6 +989,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
         var maxMonth   = maxDate.getMonth();
         var maxYear    = maxDate.getFullYear();
         var selDate      = null;
+        var selDateISO   = null; // YYYY-MM-DD — sent to reservation-handler.php
         var selTimeLabel = null;
         var selTime      = null;
         var selCallback  = null;
@@ -1070,9 +1075,10 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             });
 
             var dateObj = new Date(curYear, curMonth, day);
-            selDate = dateObj.toLocaleDateString('en-GB', {
+            selDate    = dateObj.toLocaleDateString('en-GB', {
                 weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
             });
+            selDateISO = curYear + '-' + String(curMonth + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
             selTimeLabel = null;
             selTime = null;
 
@@ -1157,6 +1163,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 clearDateBtn.addEventListener('click', function() {
                     // Reset state
                     selDate      = null;
+                    selDateISO   = null;
                     selTimeLabel = null;
                     selTime      = null;
 
@@ -1206,6 +1213,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                     // Activate — clear any selected date/time
                     isDateTBC    = true;
                     selDate      = null;
+                    selDateISO   = null;
                     selTimeLabel = null;
                     selTime      = null;
                     document.querySelectorAll('.loc-cal-day--selected').forEach(function(el) {
@@ -1369,6 +1377,13 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
 
         // ── SUBMIT ──
         document.getElementById('loc-submit-btn').addEventListener('click', function() {
+
+            // ── SNAPSHOT sessionStorage immediately — before any async work ──
+            var ssSelections    = sessionStorage.getItem('loc_selections') || '';
+            var ssTotal         = parseInt(sessionStorage.getItem('loc_total'), 10) || 0;
+            var ssDuration      = parseInt(sessionStorage.getItem('loc_duration'), 10) || 0;
+            var ssZone          = sessionStorage.getItem('loc_zone') || '';
+
             var first = document.getElementById('loc-first-name').value.trim();
             var last  = document.getElementById('loc-last-name').value.trim();
             var phone = document.getElementById('loc-phone').value.trim();
@@ -1400,41 +1415,91 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 return;
             }
 
-            overlay.classList.remove('is-visible');
-            document.body.style.overflow = '';
+            // ── COLLECT POST DATA ──
+            var submitBtn   = document.getElementById('loc-submit-btn');
+            var submitErrEl = document.getElementById('loc-submit-error');
 
-            // Populate confirmation panel
-            document.getElementById('loc-confirm-date').textContent = isDateTBC
-                ? 'To be confirmed on the call'
-                : selDate + ' \u2014 ' + selTimeLabel + ' (' + selTime + ')';
-            document.getElementById('loc-confirm-total').textContent = isSkip 
-                ? 'To be discussed on the call' 
-                : '\u00a3' + total + ' \u2014 Fixed Price';
-            document.getElementById('loc-confirm-name').textContent      = first + ' ' + last;
-            document.getElementById('loc-confirm-callback').textContent  = selCallback.label + ' (' + selCallback.time + ')';
-            document.getElementById('loc-callback-smart-message').textContent = getCallbackMessage(selCallback.label);
+            var postData = {
+                first_name:       first,
+                last_name:        last,
+                phone:            phone,
+                email:            email,
+                callback_time:    selCallback.label,
+                date:             selDateISO || '',
+                slot:             selTimeLabel || '',
+                duration_minutes: ssDuration,
+                zone:             ssZone,
+                appliances:       ssSelections,
+                total:            ssTotal
+            };
 
-            // Stop the reserve button flashing — booking is confirmed
-            document.getElementById('loc-summary-slot').classList.remove('loc-step3-summary__slot--active');
+            // ── DISABLE BUTTON WHILE FETCHING ──
+            submitBtn.disabled    = true;
+            submitBtn.textContent = 'Reserving your slot…';
+            if (submitErrEl) submitErrEl.style.display = 'none';
 
-            // Hide main, show confirmation
-            document.getElementById('loc-step3-main').style.display = 'none';
-            document.getElementById('loc-confirmation-wrap').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            // Hide funnel chrome — no longer needed after confirmation
-            var funnelHeader   = document.querySelector('.loc-funnel-header');
-            var funnelProgress = document.querySelector('.loc-funnel-progress');
-            var funnelPageHeader = document.querySelector('.loc-funnel-page-header');
-            if (funnelHeader)     funnelHeader.style.display     = 'none';
-            if (funnelProgress)   funnelProgress.style.display   = 'none';
-            if (funnelPageHeader) funnelPageHeader.style.display = 'none';
+            var formBody = new URLSearchParams(postData);
+            formBody.append('action', 'loc_reservation');
 
-            // Clear session
-            sessionStorage.removeItem('loc_selections');
-            sessionStorage.removeItem('loc_total');
-            sessionStorage.removeItem('loc_postcode');
-            sessionStorage.removeItem('loc_from_step1');
+            fetch('/wp-admin/admin-ajax.php', {
+                method:  'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body:    formBody.toString()
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (data && data.success) {
+                    // ── SUCCESS -- proceed with existing confirmation flow ──
+                    overlay.classList.remove('is-visible');
+                    document.body.style.overflow = '';
+
+                    document.getElementById('loc-confirm-date').textContent = isDateTBC
+                        ? 'To be confirmed on the call'
+                        : selDate + ' — ' + selTimeLabel + ' (' + selTime + ')';
+                    document.getElementById('loc-confirm-total').textContent = isSkip
+                        ? 'To be discussed on the call'
+                        : '£' + total + ' — Fixed Price';
+                    document.getElementById('loc-confirm-name').textContent      = first + ' ' + last;
+                    document.getElementById('loc-confirm-callback').textContent  = selCallback.label + ' (' + selCallback.time + ')';
+                    document.getElementById('loc-callback-smart-message').textContent = getCallbackMessage(selCallback.label);
+
+                    document.getElementById('loc-summary-slot').classList.remove('loc-step3-summary__slot--active');
+
+                    document.getElementById('loc-step3-main').style.display = 'none';
+                    document.getElementById('loc-confirmation-wrap').style.display = 'block';
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                    var funnelHeader     = document.querySelector('.loc-funnel-header');
+                    var funnelProgress   = document.querySelector('.loc-funnel-progress');
+                    var funnelPageHeader = document.querySelector('.loc-funnel-page-header');
+                    if (funnelHeader)     funnelHeader.style.display     = 'none';
+                    if (funnelProgress)   funnelProgress.style.display   = 'none';
+                    if (funnelPageHeader) funnelPageHeader.style.display = 'none';
+
+                    sessionStorage.removeItem('loc_selections');
+                    sessionStorage.removeItem('loc_total');
+                    sessionStorage.removeItem('loc_postcode');
+                    sessionStorage.removeItem('loc_from_step1');
+
+                } else {
+                    // ── SERVER-SIDE FAILURE -- show inline error, keep modal open ──
+                    submitBtn.disabled    = false;
+                    submitBtn.textContent = 'Confirm My Reservation →';
+                    if (submitErrEl) {
+                        submitErrEl.textContent  = 'Sorry, there was a problem reserving your slot. Please call us directly.';
+                        submitErrEl.style.display = 'block';
+                    }
+                }
+            })
+            .catch(function() {
+                // ── NETWORK FAILURE -- show inline error, keep modal open ──
+                submitBtn.disabled    = false;
+                submitBtn.textContent = 'Confirm My Reservation →';
+                if (submitErrEl) {
+                    submitErrEl.textContent  = 'Sorry, there was a problem reserving your slot. Please call us directly.';
+                    submitErrEl.style.display = 'block';
+                }
+            });
         });
 
         // Init — fetch real availability then render calendar
