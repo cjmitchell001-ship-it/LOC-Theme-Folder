@@ -333,53 +333,71 @@ get_header();
     <h2 class="loc-areas__title">Areas We Cover</h2>
     <p class="loc-areas__subtitle">Based in Leicester, we serve the city and surrounding suburbs. Not sure if we cover your area? Just ask.</p>
 
-    <div class="loc-areas__postcode-list">
+    <div class="loc-step2-areas-grid">
 
-        <div class="loc-areas__group">
-            <h4 class="loc-areas__group-title">Leicester City &amp; Inner Suburbs</h4>
-            <ul class="loc-areas__tags">
-                <li>Leicester City Centre <span>LE1</span></li>
-                <li>Oadby <span>LE2</span></li>
-                <li>Stoneygate <span>LE2</span></li>
-                <li>Wigston <span>LE18</span></li>
-                <li>Knighton <span>LE2</span></li>
-                <li>Clarendon Park <span>LE2</span></li>
+        <div class="loc-step2-area-group loc-step2-area-group--central">
+            <h4 class="loc-step2-area-group-title">Central</h4>
+            <ul class="loc-step2-area-tags">
+                <li data-postcode="LE1">Leicester City <span>LE1</span></li>
             </ul>
         </div>
 
-        <div class="loc-areas__group">
-            <h4 class="loc-areas__group-title">North &amp; West Leicester</h4>
-            <ul class="loc-areas__tags">
-                <li>Birstall <span>LE4</span></li>
-                <li>Glenfield <span>LE3</span></li>
-                <li>Kirby Muxloe <span>LE9</span></li>
-                <li>Braunstone <span>LE3</span></li>
-                <li>Anstey <span>LE7</span></li>
-                <li>Groby <span>LE6</span></li>
+        <div class="loc-step2-area-group">
+            <h4 class="loc-step2-area-group-title">North</h4>
+            <ul class="loc-step2-area-tags">
+                <li data-postcode="LE4">Birstall <span>LE4</span></li>
+                <li data-postcode="LE4">Thurmaston <span>LE4</span></li>
+                <li data-postcode="LE6">Groby <span>LE6</span></li>
+                <li data-postcode="LE7">Anstey <span>LE7</span></li>
+                <li data-postcode="LE7">Syston <span>LE7</span></li>
+                <li data-postcode="LE7">Scraptoft <span>LE7</span></li>
+                <li data-postcode="LE7">Queniborough <span>LE7</span></li>
+                <li data-postcode="LE11">Loughborough <span>LE11</span></li>
+                <li data-postcode="LE12">Shepshed <span>LE12</span></li>
+                <li data-postcode="LE12">Mountsorrel <span>LE12</span></li>
+                <li data-postcode="LE12">Sileby <span>LE12</span></li>
+                <li data-postcode="LE65">Ashby-de-la-Zouch <span>LE65</span></li>
+                <li data-postcode="LE67">Coalville <span>LE67</span></li>
             </ul>
         </div>
 
-        <div class="loc-areas__group">
-            <h4 class="loc-areas__group-title">North &amp; East Leicester</h4>
-            <ul class="loc-areas__tags">
-                <li>Syston <span>LE7</span></li>
-                <li>Queniborough <span>LE7</span></li>
-                <li>Thurmaston <span>LE4</span></li>
-                <li>Hamilton <span>LE5</span></li>
-                <li>Humberstone <span>LE5</span></li>
-                <li>Scraptoft <span>LE7</span></li>
+        <div class="loc-step2-area-group">
+            <h4 class="loc-step2-area-group-title">East</h4>
+            <ul class="loc-step2-area-tags">
+                <li data-postcode="LE5">Hamilton <span>LE5</span></li>
+                <li data-postcode="LE5">Humberstone <span>LE5</span></li>
+                <li data-postcode="LE13">Melton Mowbray <span>LE13</span></li>
+                <li data-postcode="LE14">Melton Rural <span>LE14</span></li>
+                <li data-postcode="LE15">Oakham <span>LE15</span></li>
+                <li data-postcode="LE15">Rutland <span>LE15</span></li>
             </ul>
         </div>
 
-        <div class="loc-areas__group">
-            <h4 class="loc-areas__group-title">South Leicestershire</h4>
-            <ul class="loc-areas__tags">
-                <li>Blaby <span>LE8</span></li>
-                <li>Countesthorpe <span>LE8</span></li>
-                <li>Narborough <span>LE19</span></li>
-                <li>Lutterworth <span>LE17</span></li>
-                <li>Market Harborough <span>LE16</span></li>
-                <li>Fleckney <span>LE8</span></li>
+        <div class="loc-step2-area-group">
+            <h4 class="loc-step2-area-group-title">South</h4>
+            <ul class="loc-step2-area-tags">
+                <li data-postcode="LE2">Stoneygate <span>LE2</span></li>
+                <li data-postcode="LE2">Clarendon Park <span>LE2</span></li>
+                <li data-postcode="LE2">Oadby <span>LE2</span></li>
+                <li data-postcode="LE2">Knighton <span>LE2</span></li>
+                <li data-postcode="LE8">Blaby <span>LE8</span></li>
+                <li data-postcode="LE8">Countesthorpe <span>LE8</span></li>
+                <li data-postcode="LE8">Fleckney <span>LE8</span></li>
+                <li data-postcode="LE18">Wigston <span>LE18</span></li>
+                <li data-postcode="LE16">Market Harborough <span>LE16</span></li>
+                <li data-postcode="LE17">Lutterworth <span>LE17</span></li>
+            </ul>
+        </div>
+
+        <div class="loc-step2-area-group">
+            <h4 class="loc-step2-area-group-title">West</h4>
+            <ul class="loc-step2-area-tags">
+                <li data-postcode="LE3">Glenfield <span>LE3</span></li>
+                <li data-postcode="LE3">Braunstone <span>LE3</span></li>
+                <li data-postcode="LE9">Kirby Muxloe <span>LE9</span></li>
+                <li data-postcode="LE9">Earl Shilton <span>LE9</span></li>
+                <li data-postcode="LE10">Hinckley <span>LE10</span></li>
+                <li data-postcode="LE19">Narborough <span>LE19</span></li>
             </ul>
         </div>
 

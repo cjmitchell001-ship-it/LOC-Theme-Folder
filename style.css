@@ -1860,60 +1860,7 @@ a:hover {
     line-height: 1.6;
 }
 
-/* POSTCODE-ONLY LAYOUT (homepage) */
-.loc-areas__postcode-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-8);
-    max-width: 1080px;
-    margin: 0 auto 0;
-    text-align: left;
-}
-
-/* TWO COLUMN GRID */
-
-/* POSTCODE LIST */
-
-.loc-areas__group-title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-xs);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--blue);
-    margin-bottom: var(--space-3);
-    padding-bottom: var(--space-2);
-    border-bottom: 2px solid var(--gold);
-    display: inline-block;
-}
-
-.loc-areas__tags {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-}
-
-.loc-areas__tags li {
-    font-family: 'Open Sans', sans-serif;
-    font-size: var(--text-sm);
-    color: var(--offblack);
-    background: var(--white);
-    padding: var(--space-2) var(--space-3);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-}
-
-.loc-areas__tags li span {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-fine);
-    color: var(--gold);
-}
+/* POSTCODE GRID — uses shared loc-step2-areas-grid component */
 
 /* RADIUS CALLOUT */
 
@@ -2060,10 +2007,6 @@ a:hover {
         font-size: var(--text-h3);
     }
 
-    .loc-areas__postcode-list {
-        grid-template-columns: 1fr 1fr;
-        gap: var(--space-6);
-    }
 }
 
 /* ============================================================
@@ -2544,51 +2487,7 @@ a:hover {
     margin-bottom: var(--space-10);
 }
 
-.loc-areas-page-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-8);
-}
-
-.loc-areas-page-group-title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-ui);
-    color: var(--blue);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: var(--space-4);
-    padding-bottom: var(--space-2);
-    border-bottom: 2px solid var(--gold);
-}
-
-.loc-areas-page-tags {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-}
-
-.loc-areas-page-tags li {
-    font-family: 'Open Sans', sans-serif;
-    font-size: var(--text-ui);
-    color: var(--offblack);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.loc-areas-page-tags li span {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-xs);
-    color: var(--blue);
-    background: var(--lightgrey);
-    border-radius: var(--radius-sm);
-    padding: var(--space-1) var(--space-2);
-}
+/* Area list grid — uses shared loc-step2-areas-grid component */
 
 .loc-areas-page-contact-section {
     background: var(--blue);
@@ -2651,21 +2550,12 @@ a:hover {
     .loc-areas-page-list-section {
         padding: var(--space-12) var(--space-5);
     }
-    .loc-areas-page-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: var(--space-6);
-    }
     .loc-areas-page-contact-section,
     .loc-areas-page-how-section {
         padding: var(--space-14) var(--space-5);
     }
 }
 
-@media (max-width: 480px) {
-    .loc-areas-page-grid {
-        grid-template-columns: 1fr;
-    }
-}
 
 /* ============================================================
    INNER PAGE â€” SHARED STYLES
@@ -6045,6 +5935,14 @@ a:hover {
 
 @media (min-width: 769px) {
     .loc-step2-areas-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 480px) {
+    .loc-step2-areas-grid { grid-template-columns: 1fr; }
+}
+
+.loc-step2-area-group--central {
+    grid-column: 1 / -1;
 }
 
 .loc-step2-area-group-title {

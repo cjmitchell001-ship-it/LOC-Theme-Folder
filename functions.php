@@ -626,7 +626,7 @@ function loc_step2_script() {
             var districtMatch = postcode.match(/^([A-Z]{1,2}\d{1,2})/i);
             var district = districtMatch ? districtMatch[1].toUpperCase() : '';
             var zoneMap = {
-                'LE4': 'North', 'LE6': 'North', 'LE7': 'North', 'LE11': 'North', 'LE12': 'North',
+                'LE4': 'North', 'LE6': 'North', 'LE7': 'North', 'LE11': 'North', 'LE12': 'North', 'LE65': 'North', 'LE67': 'North',
                 'LE5': 'East',  'LE13': 'East',  'LE14': 'East',  'LE15': 'East',
                 'LE2': 'South', 'LE8': 'South',  'LE18': 'South', 'LE16': 'South', 'LE17': 'South',
                 'LE3': 'West',  'LE9': 'West',   'LE10': 'West',  'LE19': 'West',
