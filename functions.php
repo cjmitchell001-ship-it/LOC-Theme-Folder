@@ -11,7 +11,49 @@ require_once get_stylesheet_directory() . '/reservation-handler.php';
 
 add_action( 'wp_ajax_nopriv_loc_reservation', 'loc_handle_reservation' ); // unauthenticated visitors
 add_action( 'wp_ajax_loc_reservation',        'loc_handle_reservation' ); // logged-in users
+// ============================================================
+// GOOGLE CALENDAR OAUTH — WordPress-routed endpoint
+// Access: https://leicesterovencleaning.co.uk/?loc_calendar_auth=1
+// Must be visited while logged in as a WordPress admin.
+// ============================================================
 
+add_action( 'template_redirect', function() {
+    if ( empty( $_GET['loc_calendar_auth'] ) || $_GET['loc_calendar_auth'] !== '1' ) {
+        return;
+    }
+
+    if ( ! current_user_can( 'manage_options' ) ) {
+        wp_die( 'Unauthorised.', '', [ 'response' => 403 ] );
+    }
+
+    $redirectUri = 'https://leicesterovencleaning.co.uk/?loc_calendar_auth=1';
+    $client      = loc_get_google_client();
+    $client->setRedirectUri( $redirectUri );
+
+    global $_LOC_TOKEN_FILE;
+
+    if ( isset( $_GET['code'] ) ) {
+        $token = $client->fetchAccessTokenWithAuthCode( sanitize_text_field( wp_unslash( $_GET['code'] ) ) );
+
+        if ( isset( $token['error'] ) ) {
+            wp_die( 'Google OAuth error: ' . esc_html( $token['error_description'] ?? $token['error'] ) );
+        }
+
+        $client->setAccessToken( $token );
+        file_put_contents( $_LOC_TOKEN_FILE, json_encode( $token ) );
+
+        echo '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Calendar Connected</title></head><body style="font-family:sans-serif;padding:2em;">';
+        echo '<h2 style="color:#1A3A6E;">&#10003; Calendar connected successfully.</h2>';
+        echo '<p>You can close this window.</p>';
+        echo '<p style="color:#888;font-size:0.9em;">token.json has been saved to the theme folder.</p>';
+        echo '</body></html>';
+        exit;
+    }
+
+    $authUrl = $client->createAuthUrl();
+    wp_redirect( filter_var( $authUrl, FILTER_SANITIZE_URL ) );
+    exit;
+} );
 // ============================================================
 // ENQUEUE GOOGLE FONTS + THEME STYLESHEET
 // ============================================================
