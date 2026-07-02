@@ -11,6 +11,38 @@ require_once get_stylesheet_directory() . '/reservation-handler.php';
 
 add_action( 'wp_ajax_nopriv_loc_reservation', 'loc_handle_reservation' ); // unauthenticated visitors
 add_action( 'wp_ajax_loc_reservation',        'loc_handle_reservation' ); // logged-in users
+
+// ============================================================
+// GOOGLE CALENDAR AVAILABILITY — WordPress AJAX endpoint
+// Replaces direct calendar-ajax.php access, which SiteGround's
+// NGINX blocks (all requests routed through WordPress).
+// Called via /wp-admin/admin-ajax.php?action=loc_calendar_availability
+// ============================================================
+
+function loc_handle_calendar_availability() {
+    header( 'Content-Type: application/json' );
+
+    $zone             = isset( $_GET['zone'] )             ? sanitize_text_field( wp_unslash( $_GET['zone'] ) ) : '';
+    $duration_minutes = isset( $_GET['duration_minutes'] ) ? intval( $_GET['duration_minutes'] )                : 0;
+
+    if ( $zone === '' || $duration_minutes <= 0 ) {
+        echo json_encode( [ 'error' => 'Missing or invalid parameters: zone and duration_minutes are required.' ] );
+        wp_die();
+    }
+
+    $result = loc_get_available_slots( $zone, $duration_minutes, 180 );
+
+    if ( is_string( $result ) && strpos( $result, 'AUTH_REQUIRED:' ) === 0 ) {
+        echo json_encode( [ 'error' => 'Calendar not authorised. Please complete the OAuth flow.' ] );
+        wp_die();
+    }
+
+    echo json_encode( $result );
+    wp_die();
+}
+add_action( 'wp_ajax_nopriv_loc_calendar_availability', 'loc_handle_calendar_availability' );
+add_action( 'wp_ajax_loc_calendar_availability',        'loc_handle_calendar_availability' );
+
 // ============================================================
 // GOOGLE CALENDAR OAUTH — WordPress-routed endpoint
 // Access: https://leicesterovencleaning.co.uk/?loc_calendar_auth=1
@@ -1566,7 +1598,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             if (calMonth) calMonth.textContent = ' ';
             if (calBody)  calBody.innerHTML    = '<tr><td colspan="7" style="text-align:center;padding:var(--space-8) 0;color:var(--grey-400);font-size:var(--text-ui);">Loading available dates…</td></tr>';
 
-            fetch('/wp-content/themes/leicester-oven-cleaning-child/calendar-ajax.php?zone=' + encodeURIComponent(locZone) + '&duration_minutes=' + fetchDuration)
+            fetch('/wp-admin/admin-ajax.php?action=loc_calendar_availability&zone=' + encodeURIComponent(locZone) + '&duration_minutes=' + fetchDuration)
                 .then(function(r) { return r.json(); })
                 .then(function(data) {
                     if (!data || data.error || !Array.isArray(data)) {
