@@ -163,7 +163,7 @@ get_header();
         <div class="loc-about-cta__inner">
             <p class="section-eyebrow">Ready to book?</p>
             <h2>Let's get your oven sorted.</h2>
-            <p>Fixed price. Reserve online in 2 minutes — we call you to arrange the rest.</p>
+            <p>Prices from £70. Reserve online in 2 minutes — we call you to arrange the rest.</p>
             <div class="loc-about-cta__buttons">
                 <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>
                 <a href="/contact" class="btn-ghost-blue">Get in Touch</a>

@@ -30,7 +30,7 @@ get_header();
     <!-- HERO CONTENT -->
     <div class="loc-hero__content">
         <p class="section-eyebrow">Leicester Oven Cleaning</p>
-        <h1 class="loc-hero__title">Your oven, cleaned properly. Fixed price, same day.</h1>
+        <h1 class="loc-hero__title">Your oven, cleaned properly. Honest pricing, same day.</h1>
         <p class="loc-hero__tagline" id="loc-hero-tagline">Serving Leicester &amp; Leicestershire — we call to confirm everything before we start.</p>
         <div class="loc-hero__ctas">
             <div class="loc-hero__cta-group">
@@ -54,7 +54,7 @@ get_header();
         <div class="loc-trust__item">
             <div class="loc-trust__icon">✓</div>
             <div class="loc-trust__text">
-                <strong>Fixed Price Guarantee</strong>
+                <strong>Upfront Pricing</strong>
                 <span>The price we agree is the price you pay</span>
             </div>
         </div>
@@ -196,7 +196,7 @@ get_header();
             </div>
             <p class="loc-pricing__types">Single oven &nbsp;·&nbsp; Double oven &nbsp;·&nbsp; Range cooker &nbsp;·&nbsp; Hobs &nbsp;·&nbsp; Hoods &nbsp;·&nbsp; Extras</p>
             <a href="/reserve-step-1" class="btn-primary loc-pricing__cta">See All Prices &amp; Reserve Your Slot →</a>
-            <p class="loc-pricing__subtext">No card needed &nbsp;·&nbsp; Fixed price confirmed before we start &nbsp;·&nbsp; We call you to confirm</p>
+            <p class="loc-pricing__subtext">No card needed &nbsp;·&nbsp; Your price confirmed before we start &nbsp;·&nbsp; We call you to confirm</p>
         </div>
 
         <!-- RIGHT — ICON CLUSTER -->

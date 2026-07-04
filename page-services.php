@@ -65,8 +65,9 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">AGA / Large Range</h3>
-                        <span class="loc-services-card__price loc-services-card__price--contact">Contact us</span>
+                        <span class="loc-services-card__price loc-services-card__price--contact">£TBC</span>
                     </div>
+                    <p class="loc-services-card__price--contact">Price on request</p>
                     <p class="loc-services-card__desc">A specialist clean for AGA, Rayburn, and equivalent appliances — quoted and arranged individually. <a href="/contact">Get in touch</a> to discuss your requirements.</p>
                 </div>
 
@@ -105,8 +106,9 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">BBQ</h3>
-                        <span class="loc-services-card__price loc-services-card__price--contact">Contact us</span>
+                        <span class="loc-services-card__price loc-services-card__price--contact">£TBC</span>
                     </div>
+                    <p class="loc-services-card__price--contact">Price on request</p>
                     <p class="loc-services-card__desc">Grill grates, burner covers, and interior cleaned and degreased. Quoted and arranged individually — <a href="/contact">get in touch</a> to discuss.</p>
                 </div>
 
@@ -114,7 +116,7 @@ get_header();
 
             <div class="loc-services-cta">
                 <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>
-                <p class="loc-services-cta__sub">Fixed price. Reserve online in 2 minutes — we call you to arrange the rest.</p>
+                <p class="loc-services-cta__sub">Prices from £70. Reserve online in 2 minutes — we call you to arrange the rest.</p>
             </div>
         </div>
     </section>
