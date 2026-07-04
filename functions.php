@@ -470,8 +470,8 @@ function loc_step1_script() {
                 var serialised = {};
                 Object.keys(selections).forEach(function(name) {
                     var val = selections[name];
-                    if (name === 'AGA / Large Range') {
-                        serialised['AGA / Large Range'] = 'TBC';
+                    if (name === 'AGA / Large Range' || (typeof val === 'object' && val.tbc)) {
+                        serialised[name] = 'TBC';
                     } else if (typeof val === 'object' && val.qty) {
                         serialised[name + ' ×' + val.qty] = val.price;
                     } else {
