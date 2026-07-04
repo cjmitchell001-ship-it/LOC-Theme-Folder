@@ -53,7 +53,7 @@ get_header();
                 <ul class="loc-hww__steps">
                     <li>Pre-clean inspection carried out — condition and any existing damage noted before work begins</li>
                     <li>Protective floor coverings laid down around the oven</li>
-                    <li>Fixed price reconfirmed before any work starts</li>
+                    <li>Your price reconfirmed before any work starts</li>
                 </ul>
             </div>
 

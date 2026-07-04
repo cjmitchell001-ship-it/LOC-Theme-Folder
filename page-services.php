@@ -14,8 +14,8 @@ get_header();
         <div class="loc-page-header__inner">
             <p class="loc-page-header__eyebrow section-eyebrow">Our Services</p>
             <h1>Everything <span>We Clean</span></h1>
-            <p class="loc-page-header__intro">Fixed prices, professional results, and your appliances ready to use the same day. Select what you need when you reserve — or <a href="/contact">get in touch</a> if you're not sure.</p>
-            <p class="loc-page-header__intro">Fully insured, fixed prices, no surprises on the day.</p>
+            <p class="loc-page-header__intro">Honest pricing, professional results, and your appliances ready to use the same day. Select what you need when you reserve — or <a href="/contact">get in touch</a> if you're not sure.</p>
+            <p class="loc-page-header__intro">Fully insured, confirmed pricing, no surprises on the day.</p>
         </div>
     </section>
 

@@ -171,7 +171,7 @@ get_header();
 
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">What's included in the price?</h3>
-                    <p class="loc-faq-page__a">Our fixed price covers a full clean of the oven itself — including the interior, door glass, and standard racks and shelves. If you have additional loose trays, baking tins, or extra items you'd like cleaned, just mention it when we call to confirm — we'll agree any additional cost (if any) before we start, so there are no surprises.</p>
+                    <p class="loc-faq-page__a">Your confirmed price covers a full clean of the oven itself — including the interior, door glass, and standard racks and shelves. If you have additional loose trays, baking tins, or extra items you'd like cleaned, just mention it when we call to confirm — we'll agree any additional cost (if any) before we start, so there are no surprises.</p>
                 </div>
             </div>
 

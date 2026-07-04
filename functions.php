@@ -173,7 +173,7 @@ function loc_hero_script() {
         // TAGLINES — edit these freely without touching anything else
         var taglines = [
             'Professional oven cleaning in Leicester & Leicestershire',
-            'Extractor hoods cleaned and degreased — same visit, same fixed price',
+            'Extractor hoods cleaned and degreased — same visit, same price',
             'Gas hobs restored to factory clean — no hidden extras',
             'Ceramic and induction hobs — spotless without the scratches',
             'Small business? We work around you — minimal disruption guaranteed',
@@ -1433,7 +1433,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                         : selDate + ' — ' + selTimeLabel + ' (' + selTime + ')';
                     document.getElementById('loc-confirm-total').textContent = isSkip
                         ? 'To be discussed on the call'
-                        : '£' + total + ' — Fixed Price';
+                        : 'From £' + total;
                     document.getElementById('loc-confirm-name').textContent      = first + ' ' + last;
                     document.getElementById('loc-confirm-callback').textContent  = selCallback.label + ' (' + selCallback.time + ')';
                     document.getElementById('loc-callback-smart-message').textContent = getCallbackMessage(selCallback.label);

@@ -112,7 +112,7 @@ get_header();
                 <line x1="38" y1="67" x2="46" y2="67" stroke="#1A3A6E" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
             </svg>
             <h3 class="loc-reserve__step-title">Choose Your Appliances</h3>
-            <p class="loc-reserve__step-desc">Select your oven type and any extras — hob, extractor hood, or microwave. We'll show you a clear fixed price upfront.</p>
+            <p class="loc-reserve__step-desc">Select your oven type and any extras — hob, extractor hood, or microwave. We'll confirm your price with you upfront.</p>
         </div>
 
         <!-- CONNECTOR -->
@@ -181,7 +181,7 @@ get_header();
      ============================================================ -->
 <section class="loc-pricing">
     <p class="section-eyebrow">Transparent &amp; Fixed</p>
-    <h2 class="loc-pricing__title">Simple, Fixed Prices</h2>
+    <h2 class="loc-pricing__title">Simple, Honest Pricing</h2>
     <p class="loc-pricing__subtitle">No hidden fees. No surprises. See all options and select your appliances when you reserve.</p>
 
     <!-- PRICING PANEL -->

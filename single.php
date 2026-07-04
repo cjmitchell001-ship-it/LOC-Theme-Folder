@@ -73,7 +73,7 @@ get_header();
 
                 <div class="loc-blog-sidebar__cta">
                     <p class="loc-blog-sidebar__cta-title">Ready to get your oven cleaned?</p>
-                    <p class="loc-blog-sidebar__cta-sub">Fixed price. Same-day results. No card needed to reserve.</p>
+                    <p class="loc-blog-sidebar__cta-sub">Prices from £70. Same-day results. No card needed to reserve.</p>
                     <a href="/reserve" class="btn-primary loc-blog-sidebar__cta-btn">Reserve Your Slot →</a>
                 </div>
 
