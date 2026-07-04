@@ -278,92 +278,68 @@ function loc_step1_script() {
 
         // ── STATE ──
         var selections  = {};
-        var agaExpanded = false;
         var isSkipped   = false;
         var skipBtn     = document.getElementById('loc-skip-btn');
 
-        // ── STANDARD CARDS ──
+        // ── STANDARD CARDS (qty stepper) ──
         var cards = document.querySelectorAll('.loc-appliance-card:not(.loc-appliance-card--aga)');
         cards.forEach(function(card) {
-            card.addEventListener('click', function() {
-                var name  = card.dataset.name;
-                var price = parseInt(card.dataset.price, 10);
-                if (selections[name] !== undefined) {
+            var stepperPanel = card.querySelector('.loc-aga-options');
+            var minusBtn     = card.querySelector('.loc-qty-btn--minus');
+            var plusBtn      = card.querySelector('.loc-qty-btn--plus');
+            var priceEl      = card.querySelector('.loc-appliance-card__price');
+            var basePrice    = parseInt(card.dataset.price, 10);
+            var name         = card.dataset.name;
+            var qty          = 0;
+
+            function updateCard() {
+                if (qty === 0) {
                     delete selections[name];
                     card.classList.remove('is-selected');
+                    stepperPanel.classList.remove('is-visible');
+                    priceEl.textContent = '£' + basePrice;
                 } else {
-                    selections[name] = price;
+                    var total = basePrice * qty;
+                    selections[name] = qty === 1 ? basePrice : { price: total, qty: qty, basePrice: basePrice };
                     card.classList.add('is-selected');
+                    stepperPanel.classList.add('is-visible');
+                    priceEl.textContent = '£' + basePrice + ' ×' + qty;
+                }
+                updateSummary();
+            }
+
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('.loc-aga-options')) return;
+                if (isSkipped) return;
+                if (qty === 0) { qty = 1; updateCard(); }
+            });
+
+            plusBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                qty++;
+                updateCard();
+            });
+
+            minusBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (qty > 0) { qty--; updateCard(); }
+            });
+        });
+
+                // ── AGA CARD ──
+        var agaCard = document.getElementById('loc-aga-card');
+        if (agaCard) {
+            agaCard.addEventListener('click', function() {
+                if (agaCard.classList.contains('is-selected')) {
+                    agaCard.classList.remove('is-selected');
+                    delete selections['AGA / Large Range'];
+                } else {
+                    agaCard.classList.add('is-selected');
+                    selections['AGA / Large Range'] = { tbc: true, price: 0 };
                 }
                 updateSummary();
             });
-        });
-
-        // ── AGA CARD ──
-        var agaCard     = document.getElementById('loc-aga-card');
-        var agaOptions  = document.getElementById('loc-aga-options');
-        var agaPrice    = document.getElementById('loc-aga-price');
-        var agaNote     = document.getElementById('loc-aga-note');
-        var agaVariant  = document.getElementById('loc-aga-variant');
-
-        agaCard.addEventListener('click', function() {
-            if (agaCard.classList.contains('is-selected')) { clearAga(); return; }
-            if (!agaExpanded) { expandAga(); }
-        });
-
-        var agaOptionBtns = agaOptions.querySelectorAll('.loc-aga-option');
-        agaOptionBtns.forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                selectAga(btn, btn.dataset.variant, parseInt(btn.dataset.price, 10));
-            });
-        });
-
-        agaOptions.querySelector('.loc-aga-cancel').addEventListener('click', function(e) {
-            e.stopPropagation();
-            cancelAga();
-        });
-
-        function expandAga() {
-            agaExpanded = true;
-            agaCard.classList.add('is-expanded');
-            agaOptions.classList.add('is-visible');
         }
-
-        function selectAga(btn, variant, price) {
-            agaOptionBtns.forEach(function(b) { b.classList.remove('is-selected'); });
-            btn.classList.add('is-selected');
-            agaOptions.classList.remove('is-visible');
-            agaCard.classList.remove('is-expanded');
-            agaExpanded = false;
-            agaCard.classList.add('is-selected');
-            agaPrice.textContent   = '\u00a3' + price;
-            agaNote.textContent    = '';
-            agaVariant.textContent = variant;
-            selections['AGA / Large Range'] = { price: price, variant: variant };
-            updateSummary();
-        }
-
-        function cancelAga() {
-            agaOptions.classList.remove('is-visible');
-            agaCard.classList.remove('is-expanded');
-            agaExpanded = false;
-            agaPrice.textContent = 'Select type \u2193';
-            agaNote.textContent  = 'Tap to choose';
-        }
-
-        function clearAga() {
-            agaCard.classList.remove('is-selected', 'is-expanded');
-            agaOptions.classList.remove('is-visible');
-            agaOptionBtns.forEach(function(b) { b.classList.remove('is-selected'); });
-            agaExpanded            = false;
-            agaPrice.textContent   = 'Select type \u2193';
-            agaNote.textContent    = 'Tap to choose';
-            agaVariant.textContent = '';
-            delete selections['AGA / Large Range'];
-            updateSummary();
-        }
-
         // ── SKIP BUTTON ──
         function setSkipActive() {
             isSkipped = true;
@@ -372,22 +348,14 @@ function loc_step1_script() {
             sessionStorage.setItem('loc_skip', 'true');
 
             selections  = {};
-            agaExpanded = false;
-
             document.querySelectorAll('.loc-appliance-card').forEach(function(c) {
                 c.classList.remove('is-selected', 'is-expanded');
+                var priceEl      = c.querySelector('.loc-appliance-card__price');
+                var stepperPanel = c.querySelector('.loc-aga-options');
+                var basePrice    = parseInt(c.dataset.price, 10);
+                if (priceEl && basePrice) { priceEl.textContent = '£' + basePrice; }
+                if (stepperPanel) { stepperPanel.classList.remove('is-visible'); }
             });
-            document.querySelectorAll('.loc-aga-option').forEach(function(b) {
-                b.classList.remove('is-selected');
-            });
-            document.querySelectorAll('.loc-aga-options').forEach(function(p) {
-                p.classList.remove('is-visible');
-            });
-
-            agaPrice.textContent   = 'Select type \u2193';
-            agaNote.textContent    = 'Tap to choose';
-            agaVariant.textContent = '';
-
             var stickyTotal  = document.getElementById('loc-step1-sticky-total');
             var stickyBtn    = document.getElementById('loc-step1-sticky-btn');
             var stickyBar    = document.getElementById('loc-step1-sticky-bottom');
@@ -488,12 +456,14 @@ function loc_step1_script() {
                 Object.keys(selections).forEach(function(name) {
                     var val = selections[name];
                     if (name === 'AGA / Large Range') {
-                        serialised['AGA (' + val.variant + ')'] = val.price;
+                        serialised['AGA / Large Range'] = 'TBC';
+                    } else if (typeof val === 'object' && val.qty) {
+                        serialised[name + ' ×' + val.qty] = val.price;
                     } else {
                         serialised[name] = val;
                     }
                 });
-                var total = Object.values(serialised).reduce(function(sum, p) { return sum + p; }, 0);
+                var total = Object.values(serialised).reduce(function(sum, p) { return typeof p === 'number' ? sum + p : sum; }, 0);
                 sessionStorage.setItem('loc_selections', JSON.stringify(serialised));
                 sessionStorage.setItem('loc_total', total);
 
@@ -508,18 +478,21 @@ function loc_step1_script() {
                     'Gas Hob':                 30,
                     'Ceramic / Induction Hob': 30,
                     'Extractor Hood':           30,
-                    'Microwave':                15
+                    'Microwave':                15,
+                    'Combi Microwave':          20
                 };
                 var duration = 0;
                 var hasBase  = false;
                 var hasAga   = selections.hasOwnProperty('AGA / Large Range');
                 if (!hasAga) {
                     Object.keys(selections).forEach(function(name) {
+                        var val = selections[name];
+                        var qty = (typeof val === 'object' && val.qty) ? val.qty : 1;
                         if (baseDurations.hasOwnProperty(name)) {
-                            duration += baseDurations[name];
+                            duration += baseDurations[name] * qty;
                             hasBase   = true;
                         } else if (extraDurations.hasOwnProperty(name)) {
-                            duration += extraDurations[name];
+                            duration += extraDurations[name] * qty;
                         }
                     });
                     if (!hasBase) { duration = 0; }
@@ -739,8 +712,6 @@ function loc_step2_script() {
 
         // ── INLINE APPLIANCE SELECTION ──
         var inlineSelections = {};
-        var inlineAgaExpanded = false;
-
         var inlineCards = document.querySelectorAll('.loc-appliance-card--inline:not(.loc-appliance-card--aga)');
         inlineCards.forEach(function(card) {
             card.addEventListener('click', function() {
@@ -758,124 +729,21 @@ function loc_step2_script() {
         });
 
         // AGA inline
-        var agaCard    = document.getElementById('loc-aga-inline-card');
-        var agaOptions = document.getElementById('loc-aga-inline-options');
-        var agaPrice   = document.getElementById('loc-aga-inline-price');
-        var agaNote    = document.getElementById('loc-aga-inline-note');
-        var agaVariant = document.getElementById('loc-aga-inline-variant');
-        var agaBtns    = agaOptions.querySelectorAll('.loc-aga-option');
-
-        agaCard.addEventListener('click', function() {
-            if (agaCard.classList.contains('is-selected')) { clearAgaInline(); return; }
-            if (!inlineAgaExpanded) {
-                agaCard.classList.add('is-expanded');
-                agaOptions.classList.add('is-visible');
-                inlineAgaExpanded = true;
-            }
-        });
-
-        agaBtns.forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                var variant = btn.dataset.variant;
-                var price   = parseInt(btn.dataset.price, 10);
-                agaBtns.forEach(function(b) { b.classList.remove('is-selected'); });
-                btn.classList.add('is-selected');
-                agaOptions.classList.remove('is-visible');
-                agaCard.classList.remove('is-expanded');
-                agaCard.classList.add('is-selected');
-                inlineAgaExpanded = false;
-                agaPrice.textContent   = '£' + price;
-                agaNote.textContent    = '';
-                agaVariant.textContent = variant;
-                inlineSelections['AGA / Large Range'] = { price: price, variant: variant };
+        var agaCard = document.getElementById('loc-aga-inline-card');
+        if (agaCard) {
+            agaCard.addEventListener('click', function() {
+                if (agaCard.classList.contains('is-selected')) {
+                    agaCard.classList.remove('is-selected');
+                    delete inlineSelections['AGA / Large Range'];
+                } else {
+                    agaCard.classList.add('is-selected');
+                    inlineSelections['AGA / Large Range'] = { tbc: true, price: 0 };
+                }
                 updateInlineSummary();
             });
-        });
-
-        agaOptions.querySelector('.loc-aga-cancel').addEventListener('click', function(e) {
-            e.stopPropagation();
-            agaOptions.classList.remove('is-visible');
-            agaCard.classList.remove('is-expanded');
-            inlineAgaExpanded = false;
-            agaPrice.textContent = 'Select type \u2193';
-            agaNote.textContent  = 'Tap to choose';
-        });
-        // ── STEP 2 SKIP BUTTON ──
-            var step2SkipBtn = document.getElementById('loc-step2-skip-btn');
-            var isStep2Skipped = false;
-
-            if (step2SkipBtn) {
-                step2SkipBtn.addEventListener('click', function() {
-                    if (isStep2Skipped) {
-                        // Undo
-                        isStep2Skipped = false;
-                        step2SkipBtn.classList.remove('is-active');
-                        step2SkipBtn.textContent = 'Discuss on the Call';
-                        sessionStorage.removeItem('loc_skip');
-                        updateInlineSummary();
-                    } else {
-                        // Activate skip
-                        isStep2Skipped = true;
-                        step2SkipBtn.classList.add('is-active');
-                        step2SkipBtn.textContent = 'Undo \u2014 Select Appliances Instead';
-                        sessionStorage.setItem('loc_skip', 'true');
-
-                        // Clear selections
-                        inlineSelections = {};
-                        inlineAgaExpanded = false;
-
-                        document.querySelectorAll('.loc-appliance-card--inline').forEach(function(c) {
-                            c.classList.remove('is-selected', 'is-expanded');
-                        });
-                        document.querySelectorAll('.loc-aga-option').forEach(function(b) {
-                            b.classList.remove('is-selected');
-                        });
-                        document.querySelectorAll('.loc-aga-options').forEach(function(p) {
-                            p.classList.remove('is-visible');
-                        });
-
-                        agaPrice.textContent   = 'Select type \u2193';
-                        agaNote.textContent    = 'Tap to choose';
-                        agaVariant.textContent = '';
-
-                        // Update summary
-                        var itemsEl    = document.getElementById('loc-inline-items');
-                        var totalEl    = document.getElementById('loc-inline-total');
-                        var proceedBtn = document.getElementById('loc-inline-proceed-btn');
-
-                        itemsEl.innerHTML = '<div class="loc-step2-inline-summary__item"><span class="loc-step2-inline-summary__item-name">To be discussed on the call</span><span class="loc-step2-inline-summary__item-price" style="color:rgba(255,255,255,0.4);">TBC</span></div>';
-                        totalEl.innerHTML = '<span>\u00a3</span>TBC';
-                        proceedBtn.classList.remove('loc-step2-btn-proceed--disabled');
-
-                        // Update sticky bar
-                        var stickyBar   = document.getElementById('loc-step2-sticky-bottom');
-                        var stickyTotal = document.getElementById('loc-step2-sticky-total');
-                        var stickyBtn   = document.getElementById('loc-step2-sticky-btn');
-                        if (stickyBar)   stickyBar.classList.add('is-visible');
-                        if (stickyBtn)   stickyBtn.classList.remove('loc-step2-sticky-bottom__btn--disabled');
-
-                        positionStep2StickyBar();   // ← add this
-                        
-                        if (stickyTotal) stickyTotal.innerHTML = '<span>\u00a3</span>TBC';
-                        if (stickyBtn)   stickyBtn.classList.remove('loc-step2-sticky-bottom__btn--disabled');
-                    }
-                });
-            }
-
-        function clearAgaInline() {
-            agaCard.classList.remove('is-selected', 'is-expanded');
-            agaOptions.classList.remove('is-visible');
-            agaBtns.forEach(function(b) { b.classList.remove('is-selected'); });
-            inlineAgaExpanded      = false;
-            agaPrice.textContent   = 'Select type \u2193';
-            agaNote.textContent    = 'Tap to choose';
-            agaVariant.textContent = '';
-            delete inlineSelections['AGA / Large Range'];
-            updateInlineSummary();
         }
 
-        function updateInlineSummary() {
+                function updateInlineSummary() {
             // Reset skip state if user manually selects
             if (isStep2Skipped) {
                 isStep2Skipped = false;
@@ -945,7 +813,7 @@ function loc_step2_script() {
                     serialised[name] = val;
                 }
             });
-            var total = Object.values(serialised).reduce(function(sum, p) { return sum + p; }, 0);
+            var total = Object.values(serialised).reduce(function(sum, p) { return typeof p === 'number' ? sum + p : sum; }, 0);
             sessionStorage.setItem('loc_selections', JSON.stringify(serialised));
             sessionStorage.setItem('loc_total', total);
         });
@@ -969,7 +837,7 @@ function loc_step2_script() {
                         serialised[name] = val;
                     }
                 });
-                var total = Object.values(serialised).reduce(function(sum, p) { return sum + p; }, 0);
+                var total = Object.values(serialised).reduce(function(sum, p) { return typeof p === 'number' ? sum + p : sum; }, 0);
                 sessionStorage.setItem('loc_selections', JSON.stringify(serialised));
                 sessionStorage.setItem('loc_total', total);
             });
@@ -1044,9 +912,10 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 var price = selections[name];
                 var div = document.createElement('div');
                 div.className = 'loc-step3-summary__item';
+                var priceDisplay = (price === 'TBC') ? 'TBC' : '£' + price;
                 div.innerHTML =
                     '<span class="loc-step3-summary__item-name">' + name + '</span>' +
-                    '<span class="loc-step3-summary__item-price">\u00a3' + price + '</span>';
+                    '<span class="loc-step3-summary__item-price">' + priceDisplay + '</span>';
                 summaryItems.appendChild(div);
             });
         }

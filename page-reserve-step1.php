@@ -77,7 +77,7 @@
             <div class="loc-appliance-cards">
 
                 <!-- Single Oven -->
-                <div class="loc-appliance-card" data-name="Single Oven" data-price="55">
+                <div class="loc-appliance-card" data-name="Single Oven" data-price="70">
                     <svg width="64" height="64" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16" y="22" width="88" height="76" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
                         <rect x="16" y="22" width="88" height="20" rx="4" stroke="#1A3A6E" stroke-width="3" fill="#F0F4FA"/>
@@ -90,7 +90,14 @@
                         <line x1="40" y1="94" x2="80" y2="94" stroke="#1A3A6E" stroke-width="3" stroke-linecap="round"/>
                     </svg>
                     <p class="loc-appliance-card__name">Single Oven</p>
-                    <p class="loc-appliance-card__price">£55</p>
+                    <p class="loc-appliance-card__price">£70</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Double Oven -->
@@ -111,6 +118,13 @@
                     </svg>
                     <p class="loc-appliance-card__name">Double Oven</p>
                     <p class="loc-appliance-card__price">£70</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Range Cooker 90cm -->
@@ -131,6 +145,13 @@
                     </svg>
                     <p class="loc-appliance-card__name">Range Cooker 90cm</p>
                     <p class="loc-appliance-card__price">£100</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Range Cooker 100cm+ -->
@@ -152,6 +173,13 @@
                     </svg>
                     <p class="loc-appliance-card__name">Range Cooker 100cm+</p>
                     <p class="loc-appliance-card__price">£120</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- AGA / Large Range — expand in place -->
@@ -169,31 +197,8 @@
                         <line x1="30" y1="90" x2="90" y2="90" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
                     </svg>
                     <p class="loc-appliance-card__name">AGA / Large Range</p>
-                    <p class="loc-appliance-card__price" id="loc-aga-price">Select type &darr;</p>
-                    <p class="loc-appliance-card__note" id="loc-aga-note">Tap to choose</p>
-                    <p class="loc-aga-selected-variant" id="loc-aga-variant"></p>
-
-                    <!-- AGA sub-options — revealed on click -->
-                    <div class="loc-aga-options" id="loc-aga-options">
-                        <p class="loc-aga-options__label">Which type of AGA?</p>
-                        <button class="loc-aga-option" data-variant="2 Door" data-price="170">
-                            <span>2 Door</span>
-                            <span class="loc-aga-option__price">£170</span>
-                        </button>
-                        <button class="loc-aga-option" data-variant="3 Door" data-price="190">
-                            <span>3 Door</span>
-                            <span class="loc-aga-option__price">£190</span>
-                        </button>
-                        <button class="loc-aga-option" data-variant="With Companion" data-price="230">
-                            <span>With Companion</span>
-                            <span class="loc-aga-option__price">£230</span>
-                        </button>
-                        <button class="loc-aga-option" data-variant="With Module" data-price="260">
-                            <span>With Module</span>
-                            <span class="loc-aga-option__price">£260</span>
-                        </button>
-                        <button class="loc-aga-cancel">Cancel</button>
-                    </div>
+                    <p class="loc-appliance-card__price">£TBC</p>
+                    <p class="loc-appliance-card__note">Price on request</p>
                 </div>
 
             </div>
@@ -207,47 +212,81 @@
                 <!-- Gas Hob -->
                 <div class="loc-appliance-card" data-name="Gas Hob" data-price="22">
                     <svg width="64" height="64" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="10" y="28" width="100" height="64" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
-                        <circle cx="38" cy="60" r="16" stroke="#1A3A6E" stroke-width="2" fill="none"/>
-                        <circle cx="38" cy="60" r="8" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
-                        <circle cx="38" cy="60" r="2.5" fill="#1A3A6E"/>
-                        <circle cx="82" cy="60" r="16" stroke="#1A3A6E" stroke-width="2" fill="none"/>
-                        <circle cx="82" cy="60" r="8" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
-                        <circle cx="82" cy="60" r="2.5" fill="#1A3A6E"/>
-                        <line x1="38" y1="44" x2="38" y2="40" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
-                        <line x1="82" y1="44" x2="82" y2="40" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+                        <rect x="10" y="20" width="100" height="80" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
+                        <!-- top-left burner -->
+                        <circle cx="35" cy="40" r="13" stroke="#1A3A6E" stroke-width="2" fill="none"/>
+                        <circle cx="35" cy="40" r="6" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
+                        <circle cx="35" cy="40" r="2" fill="#1A3A6E"/>
+                        <!-- top-right burner -->
+                        <circle cx="85" cy="40" r="13" stroke="#1A3A6E" stroke-width="2" fill="none"/>
+                        <circle cx="85" cy="40" r="6" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
+                        <circle cx="85" cy="40" r="2" fill="#1A3A6E"/>
+                        <!-- bottom-left burner -->
+                        <circle cx="35" cy="80" r="13" stroke="#1A3A6E" stroke-width="2" fill="none"/>
+                        <circle cx="35" cy="80" r="6" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
+                        <circle cx="35" cy="80" r="2" fill="#1A3A6E"/>
+                        <!-- bottom-right burner -->
+                        <circle cx="85" cy="80" r="13" stroke="#1A3A6E" stroke-width="2" fill="none"/>
+                        <circle cx="85" cy="80" r="6" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
+                        <circle cx="85" cy="80" r="2" fill="#1A3A6E"/>
                     </svg>
                     <p class="loc-appliance-card__name">Gas Hob</p>
                     <p class="loc-appliance-card__price">£22</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Ceramic / Induction Hob -->
                 <div class="loc-appliance-card" data-name="Ceramic / Induction Hob" data-price="18">
                     <svg width="64" height="64" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="10" y="28" width="100" height="64" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
-                        <rect x="18" y="38" width="36" height="36" rx="18" stroke="#1A3A6E" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
-                        <rect x="66" y="38" width="36" height="36" rx="18" stroke="#1A3A6E" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
-                        <line x1="10" y1="82" x2="110" y2="82" stroke="#1A3A6E" stroke-width="1.5" opacity="0.2"/>
-                        <text x="60" y="98" text-anchor="middle" fill="#1A3A6E" font-family="Montserrat, sans-serif" font-weight="700" font-size="10" opacity="0.5">CERAMIC / INDUCTION</text>
+                        <rect x="10" y="20" width="100" height="80" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
+                        <circle cx="35" cy="40" r="13" stroke="#1A3A6E" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+                        <circle cx="85" cy="40" r="13" stroke="#1A3A6E" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+                        <circle cx="35" cy="80" r="13" stroke="#1A3A6E" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+                        <circle cx="85" cy="80" r="13" stroke="#1A3A6E" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
                     </svg>
                     <p class="loc-appliance-card__name">Ceramic / Induction Hob</p>
                     <p class="loc-appliance-card__price">£18</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Extractor Hood -->
                 <div class="loc-appliance-card" data-name="Extractor Hood" data-price="22">
                     <svg width="64" height="64" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 30 L100 30 L88 70 L32 70 Z" stroke="#1A3A6E" stroke-width="3" fill="#EEF3FA"/>
-                        <rect x="40" y="70" width="40" height="12" rx="2" stroke="#1A3A6E" stroke-width="2" fill="none"/>
-                        <line x1="44" y1="44" x2="76" y2="44" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-                        <line x1="48" y1="53" x2="72" y2="53" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
-                        <circle cx="55" cy="36" r="3" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
-                        <circle cx="65" cy="36" r="3" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
-                        <line x1="60" y1="88" x2="60" y2="100" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
-                        <path d="M54 94L60 100L66 94" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+                        <!-- duct pipe at top -->
+                        <rect x="40" y="18" width="40" height="12" rx="2" stroke="#1A3A6E" stroke-width="2" fill="none"/>
+                        <!-- duct arrow pointing up -->
+                        <line x1="60" y1="20" x2="60" y2="8" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+                        <path d="M54 14L60 8L66 14" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+                        <!-- hood body: narrow top, wide bottom -->
+                        <path d="M32 30 L88 30 L100 75 L20 75 Z" stroke="#1A3A6E" stroke-width="3" fill="#EEF3FA"/>
+                        <!-- filter lines -->
+                        <line x1="44" y1="52" x2="76" y2="52" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                        <line x1="40" y1="63" x2="80" y2="63" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+                        <!-- controls -->
+                        <circle cx="55" cy="38" r="3" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
+                        <circle cx="65" cy="38" r="3" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
                     </svg>
                     <p class="loc-appliance-card__name">Extractor Hood</p>
                     <p class="loc-appliance-card__price">£22</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Microwave -->
@@ -263,6 +302,41 @@
                     </svg>
                     <p class="loc-appliance-card__name">Microwave</p>
                     <p class="loc-appliance-card__price">£18</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Combi Microwave -->
+                <div class="loc-appliance-card" data-name="Combi Microwave" data-price="30">
+                    <svg width="64" height="64" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- outer body -->
+                        <rect x="8" y="30" width="104" height="60" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
+                        <!-- door cavity -->
+                        <rect x="16" y="38" width="62" height="44" rx="2" stroke="#1A3A6E" stroke-width="2.5" fill="#EEF3FA"/>
+                        <!-- grill element (wavy line across top of cavity) -->
+                        <path d="M22 50 Q28 44 34 50 Q40 56 46 50 Q52 44 58 50 Q64 56 70 50" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7"/>
+                        <!-- turntable plate -->
+                        <ellipse cx="47" cy="72" rx="18" ry="5" stroke="#1A3A6E" stroke-width="1.5" fill="none" opacity="0.4"/>
+                        <!-- control panel -->
+                        <rect x="88" y="38" width="16" height="44" rx="2" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
+                        <circle cx="96" cy="50" r="4" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
+                        <circle cx="96" cy="66" r="3" fill="#1A3A6E" opacity="0.3"/>
+                        <circle cx="96" cy="76" r="3" fill="#1A3A6E" opacity="0.3"/>
+                    </svg>
+                    <p class="loc-appliance-card__name">Combi Microwave</p>
+                    <p class="loc-appliance-card__price">£30</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
                 </div>
 
             </div>

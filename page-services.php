@@ -33,7 +33,7 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Single Oven</h3>
-                        <span class="loc-services-card__price">from £55</span>
+                        <span class="loc-services-card__price">from £70</span>
                     </div>
                     <p class="loc-services-card__desc">A full strip-down clean, done carefully in your kitchen — interior cavity, door glass (both sides), racks, trays, fan housing, and exterior.</p>
                 </div>

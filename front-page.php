@@ -192,7 +192,7 @@ get_header();
 
             <div class="loc-pricing__from">
                 <span class="loc-pricing__from-label">Prices from</span>
-                <span class="loc-pricing__from-amount">£55</span>
+                <span class="loc-pricing__from-amount">£70</span>
             </div>
             <p class="loc-pricing__types">Single oven &nbsp;·&nbsp; Double oven &nbsp;·&nbsp; Range cooker &nbsp;·&nbsp; Hobs &nbsp;·&nbsp; Hoods &nbsp;·&nbsp; Extras</p>
             <a href="/reserve-step-1" class="btn-primary loc-pricing__cta">See All Prices &amp; Reserve Your Slot →</a>

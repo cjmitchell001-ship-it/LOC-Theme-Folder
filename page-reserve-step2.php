@@ -172,7 +172,7 @@
             <p class="loc-appliance-group__label">Ovens</p>
             <div class="loc-appliance-cards loc-appliance-cards--inline">
 
-                <div class="loc-appliance-card loc-appliance-card--inline" data-name="Single Oven" data-price="55">
+                <div class="loc-appliance-card loc-appliance-card--inline" data-name="Single Oven" data-price="70">
                     <svg width="48" height="48" viewBox="0 0 120 120" fill="none">
                         <rect x="16" y="22" width="88" height="76" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
                         <rect x="16" y="22" width="88" height="20" rx="4" stroke="#1A3A6E" stroke-width="3" fill="#F0F4FA"/>
@@ -185,7 +185,14 @@
                         <line x1="40" y1="94" x2="80" y2="94" stroke="#1A3A6E" stroke-width="3" stroke-linecap="round"/>
                     </svg>
                     <p class="loc-appliance-card__name">Single Oven</p>
-                    <p class="loc-appliance-card__price">£55</p>
+                    <p class="loc-appliance-card__price">£70</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="loc-appliance-card loc-appliance-card--inline" data-name="Double Oven" data-price="70">
@@ -204,6 +211,13 @@
                     </svg>
                     <p class="loc-appliance-card__name">Double Oven</p>
                     <p class="loc-appliance-card__price">£70</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="loc-appliance-card loc-appliance-card--inline" data-name="Range Cooker 90cm" data-price="100">
@@ -217,6 +231,13 @@
                     </svg>
                     <p class="loc-appliance-card__name">Range Cooker 90cm</p>
                     <p class="loc-appliance-card__price">£100</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="loc-appliance-card loc-appliance-card--inline" data-name="Range Cooker 100cm+" data-price="120">
@@ -230,6 +251,13 @@
                     </svg>
                     <p class="loc-appliance-card__name">Range Cooker 100cm+</p>
                     <p class="loc-appliance-card__price">£120</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- AGA -->
@@ -244,17 +272,8 @@
                         <rect x="14" y="82" width="92" height="16" rx="2" stroke="#1A3A6E" stroke-width="2" fill="none"/>
                     </svg>
                     <p class="loc-appliance-card__name">AGA / Large Range</p>
-                    <p class="loc-appliance-card__price" id="loc-aga-inline-price">Select type &darr;</p>
-                    <p class="loc-appliance-card__note" id="loc-aga-inline-note">Tap to choose</p>
-                    <p class="loc-aga-selected-variant" id="loc-aga-inline-variant"></p>
-                    <div class="loc-aga-options" id="loc-aga-inline-options">
-                        <p class="loc-aga-options__label">Which type?</p>
-                        <button class="loc-aga-option" data-variant="2 Door" data-price="170"><span>2 Door</span><span class="loc-aga-option__price">£170</span></button>
-                        <button class="loc-aga-option" data-variant="3 Door" data-price="190"><span>3 Door</span><span class="loc-aga-option__price">£190</span></button>
-                        <button class="loc-aga-option" data-variant="With Companion" data-price="230"><span>With Companion</span><span class="loc-aga-option__price">£230</span></button>
-                        <button class="loc-aga-option" data-variant="With Module" data-price="260"><span>With Module</span><span class="loc-aga-option__price">£260</span></button>
-                        <button class="loc-aga-cancel">Cancel</button>
-                    </div>
+                    <p class="loc-appliance-card__price">£TBC</p>
+                    <p class="loc-appliance-card__note">Price on request</p>
                 </div>
 
             </div>
@@ -267,36 +286,65 @@
 
                 <div class="loc-appliance-card loc-appliance-card--inline" data-name="Gas Hob" data-price="22">
                     <svg width="48" height="48" viewBox="0 0 120 120" fill="none">
-                        <rect x="10" y="28" width="100" height="64" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
-                        <circle cx="38" cy="60" r="16" stroke="#1A3A6E" stroke-width="2" fill="none"/>
-                        <circle cx="38" cy="60" r="8" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
-                        <circle cx="38" cy="60" r="2.5" fill="#1A3A6E"/>
-                        <circle cx="82" cy="60" r="16" stroke="#1A3A6E" stroke-width="2" fill="none"/>
-                        <circle cx="82" cy="60" r="8" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
-                        <circle cx="82" cy="60" r="2.5" fill="#1A3A6E"/>
+                        <rect x="10" y="20" width="100" height="80" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
+                        <circle cx="35" cy="40" r="13" stroke="#1A3A6E" stroke-width="2" fill="none"/>
+                        <circle cx="35" cy="40" r="6" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
+                        <circle cx="35" cy="40" r="2" fill="#1A3A6E"/>
+                        <circle cx="85" cy="40" r="13" stroke="#1A3A6E" stroke-width="2" fill="none"/>
+                        <circle cx="85" cy="40" r="6" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
+                        <circle cx="85" cy="40" r="2" fill="#1A3A6E"/>
+                        <circle cx="35" cy="80" r="13" stroke="#1A3A6E" stroke-width="2" fill="none"/>
+                        <circle cx="35" cy="80" r="6" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
+                        <circle cx="35" cy="80" r="2" fill="#1A3A6E"/>
+                        <circle cx="85" cy="80" r="13" stroke="#1A3A6E" stroke-width="2" fill="none"/>
+                        <circle cx="85" cy="80" r="6" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
+                        <circle cx="85" cy="80" r="2" fill="#1A3A6E"/>
                     </svg>
                     <p class="loc-appliance-card__name">Gas Hob</p>
                     <p class="loc-appliance-card__price">£22</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="loc-appliance-card loc-appliance-card--inline" data-name="Ceramic / Induction Hob" data-price="18">
                     <svg width="48" height="48" viewBox="0 0 120 120" fill="none">
-                        <rect x="10" y="28" width="100" height="64" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
-                        <rect x="18" y="38" width="36" height="36" rx="18" stroke="#1A3A6E" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
-                        <rect x="66" y="38" width="36" height="36" rx="18" stroke="#1A3A6E" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+                        <rect x="10" y="20" width="100" height="80" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
+                        <circle cx="35" cy="40" r="13" stroke="#1A3A6E" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+                        <circle cx="85" cy="40" r="13" stroke="#1A3A6E" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+                        <circle cx="35" cy="80" r="13" stroke="#1A3A6E" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+                        <circle cx="85" cy="80" r="13" stroke="#1A3A6E" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
                     </svg>
                     <p class="loc-appliance-card__name">Ceramic / Induction Hob</p>
                     <p class="loc-appliance-card__price">£18</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="loc-appliance-card loc-appliance-card--inline" data-name="Extractor Hood" data-price="22">
                     <svg width="48" height="48" viewBox="0 0 120 120" fill="none">
-                        <path d="M20 30 L100 30 L88 70 L32 70 Z" stroke="#1A3A6E" stroke-width="3" fill="#EEF3FA"/>
-                        <rect x="40" y="70" width="40" height="12" rx="2" stroke="#1A3A6E" stroke-width="2" fill="none"/>
-                        <line x1="44" y1="44" x2="76" y2="44" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                        <rect x="40" y="18" width="40" height="12" rx="2" stroke="#1A3A6E" stroke-width="2" fill="none"/>
+                        <path d="M32 30 L88 30 L100 75 L20 75 Z" stroke="#1A3A6E" stroke-width="3" fill="#EEF3FA"/>
+                        <line x1="44" y1="52" x2="76" y2="52" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
                     </svg>
                     <p class="loc-appliance-card__name">Extractor Hood</p>
                     <p class="loc-appliance-card__price">£22</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="loc-appliance-card loc-appliance-card--inline" data-name="Microwave" data-price="18">
@@ -308,6 +356,35 @@
                     </svg>
                     <p class="loc-appliance-card__name">Microwave</p>
                     <p class="loc-appliance-card__price">£18</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="loc-appliance-card loc-appliance-card--inline" data-name="Combi Microwave" data-price="30">
+                    <svg width="48" height="48" viewBox="0 0 120 120" fill="none">
+                        <rect x="8" y="30" width="104" height="60" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
+                        <rect x="16" y="38" width="62" height="44" rx="2" stroke="#1A3A6E" stroke-width="2.5" fill="#EEF3FA"/>
+                        <path d="M22 50 Q28 44 34 50 Q40 56 46 50 Q52 44 58 50 Q64 56 70 50" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7"/>
+                        <ellipse cx="47" cy="72" rx="18" ry="5" stroke="#1A3A6E" stroke-width="1.5" fill="none" opacity="0.4"/>
+                        <rect x="88" y="38" width="16" height="44" rx="2" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
+                        <circle cx="96" cy="50" r="4" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
+                        <circle cx="96" cy="66" r="3" fill="#1A3A6E" opacity="0.3"/>
+                        <circle cx="96" cy="76" r="3" fill="#1A3A6E" opacity="0.3"/>
+                    </svg>
+                    <p class="loc-appliance-card__name">Combi Microwave</p>
+                    <p class="loc-appliance-card__price">£30</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
                 </div>
 
             </div>

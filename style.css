@@ -5480,6 +5480,36 @@ a:hover {
     color: var(--offblack);
 }
 
+/* QTY STEPPER — +/- controls inside appliance cards */
+.loc-qty-stepper__controls {
+    display: flex;
+    gap: var(--space-2);
+    justify-content: center;
+}
+
+.loc-qty-btn {
+    width: 44px;
+    height: 44px;
+    border: 1.5px solid var(--border);
+    background: var(--white);
+    color: var(--offblack);
+    font-size: var(--text-h4);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.loc-qty-btn:hover {
+    border-color: var(--blue);
+    background: var(--blue-pale);
+    color: var(--blue);
+}
+
 
 
 

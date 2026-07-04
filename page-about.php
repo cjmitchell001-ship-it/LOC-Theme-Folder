@@ -69,7 +69,7 @@ get_header();
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="#1A3A6E" stroke-width="2"/><polyline points="9 22 9 12 15 12 15 22" stroke="#1A3A6E" stroke-width="2"/></svg>
                     </div>
                     <p class="loc-about-values__card-title">Your home, respected</p>
-                    <p class="loc-about-values__card-text">Floor coverings go down before anything starts. All my equipment and materials leave with me. Unless you're making me a brew, I don't use your electricity and only need access to a cold water tap — and hot water where available. Your home is left exactly as I found it — except for the oven.</p>
+                    <p class="loc-about-values__card-text">Floor coverings go down before anything starts. All my equipment and materials leave with me. Unless you're making me a brew, I don't use your electricity and require access to a cold water tap — and hot water where available. Your home is left exactly as I found it — except for the oven.</p>
                 </div>
 
                 <div class="loc-about-values__card">

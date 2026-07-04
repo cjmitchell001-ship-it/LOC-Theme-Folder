@@ -40,7 +40,7 @@ get_header();
 
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">What do you need access to?</h3>
-                    <p class="loc-faq-page__a">We only require access to a cold water tap — and hot water where available, though we'll always proceed regardless. We bring all our own equipment.</p>
+                    <p class="loc-faq-page__a">We require access to a cold water tap — and hot water where available. We bring all our own equipment.</p>
                 </div>
 
                 <div class="loc-faq-page__item">

@@ -151,13 +151,33 @@ EOT;
 
     // ── CONFIRMATION EMAIL TO CUSTOMER ────────────────────────────────────
 
-    $confirm_subject = 'Your oven cleaning slot is reserved — ' . $date_formatted;
+    // Work out natural-language call timing
+    $today     = new DateTime( 'today', new DateTimeZone( 'Europe/London' ) );
+    $appt_date = new DateTime( $date, new DateTimeZone( 'Europe/London' ) );
+    $days_away = (int) $today->diff( $appt_date )->days;
+
+    $callback_lower = strtolower( $callback_time ?: 'morning' );
+    if ( $days_away === 0 ) {
+        $call_when = "later today (" . $callback_lower . ")";
+    } elseif ( $days_away === 1 ) {
+        $call_when = "tomorrow " . $callback_lower;
+    } elseif ( $days_away <= 6 ) {
+        $call_when = $appt_date->format( 'l' ) . " " . $callback_lower; // e.g. "Wednesday morning"
+    } else {
+        $call_when = "in the next day or two (" . $callback_lower . ")";
+    }
+
+    $confirm_subject = 'Your slot is reserved, ' . $first_name . ' — we\'ll call ' . $call_when;
     $confirm_body    = <<<EOT
 Hi {$first_name},
 
-Your slot is provisionally held. Here's a summary of your reservation.
+Thank you for reserving with us — your slot on {$date_formatted} ({$slot_display}) is held.
 
-DATE AND TIME
+We'll give you a call {$call_when} to confirm your booking, run through your appliances, and answer anything you're not sure about. Once we've spoken, we'll arrange a £25 deposit by bank transfer to officially lock it in.
+
+Nothing to do on your end right now — we'll come to you.
+
+YOUR RESERVATION
 {$date_formatted} — {$slot_display}
 
 APPLIANCES
@@ -165,17 +185,11 @@ APPLIANCES
 
 Total: {$total_display}
 
-WHAT HAPPENS NEXT
-We'll call you to confirm everything and arrange a £25 deposit by bank transfer.
-No payment is due right now — no card details are needed.
-
 WHAT TO HAVE READY ON THE DAY
 - Clear access to the oven(s) — please remove any trays, shelves, or items stored inside before we arrive
-- A cold water tap nearby
+- Access to a cold water tap — and hot water where available
 
-If you need to get in touch before we call, you can reach us at tel:PLACEHOLDER.
-
-Thanks for choosing Leicester Oven Cleaning. We look forward to seeing you on {$date_formatted}.
+If you need to reach us before we call, you can contact us at tel:PLACEHOLDER or hello@leicesterovencleaning.co.uk.
 
 Leicester Oven Cleaning
 hello@leicesterovencleaning.co.uk
