@@ -743,6 +743,9 @@ function loc_step2_script() {
             });
         });
 
+        var isStep2Skipped = false;
+        var step2SkipBtn   = document.getElementById('loc-step2-skip-btn');
+
         // AGA inline
         var agaCard = document.getElementById('loc-aga-inline-card');
         if (agaCard) {
