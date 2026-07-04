@@ -99,7 +99,7 @@ function loc_handle_reservation() {
 
     $slot_display  = ( $slot === 'Morning' ) ? 'Morning (7am – 1pm)' : 'Afternoon (1pm – 6pm)';
 
-    $total_display = $total > 0 ? '£' . $total . ' (fixed price)' : 'To be discussed on the call';
+    $total_display = $total > 0 ? 'From £' . $total . ' — we\'ll confirm your exact price on the call' : 'To be discussed on the call';
 
     if ( ! empty( $appliances ) ) {
         $appliance_lines = '';
@@ -157,14 +157,23 @@ EOT;
     $days_away = (int) $today->diff( $appt_date )->days;
 
     $callback_lower = strtolower( $callback_time ?: 'morning' );
-    if ( $days_away === 0 ) {
-        $call_when = "later today (" . $callback_lower . ")";
-    } elseif ( $days_away === 1 ) {
-        $call_when = "tomorrow " . $callback_lower;
-    } elseif ( $days_away <= 6 ) {
-        $call_when = $appt_date->format( 'l' ) . " " . $callback_lower; // e.g. "Wednesday morning"
+
+    // Next working day we can place the callback (Mon–Thu → tomorrow; Fri/Sat/Sun → Monday)
+    $call_day = new DateTime( 'today', new DateTimeZone( 'Europe/London' ) );
+    $dow      = (int) $call_day->format( 'N' ); // 1=Mon … 7=Sun
+    if ( $dow >= 5 ) {
+        $call_day->modify( 'next Monday' );
     } else {
-        $call_when = "in the next day or two (" . $callback_lower . ")";
+        $call_day->modify( '+1 day' );
+    }
+    $days_to_call = (int) ( new DateTime( 'today', new DateTimeZone( 'Europe/London' ) ) )->diff( $call_day )->days;
+
+    if ( $days_away === 0 ) {
+        $call_when = 'later today (' . $callback_lower . ')';
+    } elseif ( $days_to_call <= 1 ) {
+        $call_when = 'tomorrow ' . $callback_lower;
+    } else {
+        $call_when = $call_day->format( 'l' ) . ' ' . $callback_lower;
     }
 
     $confirm_subject = 'Your slot is reserved, ' . $first_name . ' — we\'ll call ' . $call_when;
