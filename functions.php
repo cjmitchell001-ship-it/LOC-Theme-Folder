@@ -421,8 +421,9 @@ function loc_step1_script() {
                 total += price;
             });
 
-            if (stickyTotal)  stickyTotal.innerHTML = '<span>\u00a3</span>' + total;
-            if (inflowAmount) inflowAmount.innerHTML = '<span>\u00a3</span>' + total;
+            var fromPfx = total > 0 ? 'From ' : '';
+            if (stickyTotal)  stickyTotal.innerHTML = fromPfx + '<span>\u00a3</span>' + total;
+            if (inflowAmount) inflowAmount.innerHTML = fromPfx + '<span>\u00a3</span>' + total;
             if (stickyBtn)    stickyBtn.classList.remove('loc-step1-sticky-bottom__btn--disabled');
             if (inflowBtn)    inflowBtn.classList.remove('loc-step1-sticky-bottom__btn--disabled');
             if (stickyBar)    stickyBar.classList.add('is-visible');
@@ -593,7 +594,7 @@ function loc_step2_script() {
                 return;
             }
             var total = parseInt(sessionStorage.getItem('loc_total'), 10) || 0;
-            totalEl.innerHTML = '<span>\u00a3</span>' + total;
+            totalEl.innerHTML = (total > 0 ? 'From ' : '') + '<span>\u00a3</span>' + total;
         })();
 
 
@@ -778,21 +779,21 @@ function loc_step2_script() {
             keys.forEach(function(name) {
                 var val         = inlineSelections[name];
                 var price       = (typeof val === 'object') ? val.price : val;
-                var displayName = (name === 'AGA / Large Range') ? 'AGA (' + val.variant + ')' : name;
+                var displayName = name;
                 total += price;
                 var div = document.createElement('div');
                 div.className = 'loc-step2-inline-summary__item';
                 div.innerHTML =
                     '<span class="loc-step2-inline-summary__item-name">' + displayName + '</span>' +
-                    '<span class="loc-step2-inline-summary__item-price">\u00a3' + price + '</span>';
+                    '<span class="loc-step2-inline-summary__item-price">' + ((typeof val === 'object' && val.tbc) ? 'TBC' : '\u00a3' + price) + '</span>';
                 itemsEl.appendChild(div);
             });
 
-            totalEl.innerHTML = '<span>\u00a3</span>' + total;
+            totalEl.innerHTML = (total > 0 ? 'From ' : '') + '<span>\u00a3</span>' + total;
             proceedBtn.classList.remove('loc-step2-btn-proceed--disabled');
 
             if (stickyBar)   stickyBar.classList.add('is-visible');
-            if (stickyTotal) stickyTotal.innerHTML = '<span>\u00a3</span>' + total;
+            if (stickyTotal) stickyTotal.innerHTML = (total > 0 ? 'From ' : '') + '<span>\u00a3</span>' + total;
             if (stickyBtn)   stickyBtn.classList.remove('loc-step2-sticky-bottom__btn--disabled');
         }
 
@@ -807,8 +808,8 @@ function loc_step2_script() {
             var serialised = {};
             Object.keys(inlineSelections).forEach(function(name) {
                 var val = inlineSelections[name];
-                if (name === 'AGA / Large Range') {
-                    serialised['AGA (' + val.variant + ')'] = val.price;
+                if (name === 'AGA / Large Range' || (typeof val === 'object' && val.tbc)) {
+                    serialised[name] = 'TBC';
                 } else {
                     serialised[name] = val;
                 }
@@ -831,8 +832,8 @@ function loc_step2_script() {
                 var serialised = {};
                 Object.keys(inlineSelections).forEach(function(name) {
                     var val = inlineSelections[name];
-                    if (name === 'AGA / Large Range') {
-                        serialised['AGA (' + val.variant + ')'] = val.price;
+                    if (name === 'AGA / Large Range' || (typeof val === 'object' && val.tbc)) {
+                        serialised[name] = 'TBC';
                     } else {
                         serialised[name] = val;
                     }
@@ -920,7 +921,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             });
         }
 
-       summaryTotal.innerHTML = isSkip ? '<span>\u00a3</span>TBC' : '<span>\u00a3</span>' + total;
+       summaryTotal.innerHTML = isSkip ? '<span>\u00a3</span>TBC' : (total > 0 ? 'From <span>\u00a3</span>' + total : '<span>\u00a3</span>0');
 
         // ── CALENDAR STATE ──
         var today      = new Date();

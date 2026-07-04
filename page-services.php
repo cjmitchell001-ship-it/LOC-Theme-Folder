@@ -41,7 +41,7 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Double Oven</h3>
-                        <span class="loc-services-card__price">from £70</span>
+                        <span class="loc-services-card__price">from £90</span>
                     </div>
                     <p class="loc-services-card__desc">Both cavities cleaned independently, with the same care throughout — all racks, trays, glass panels, and fan housings.</p>
                 </div>
@@ -49,7 +49,7 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Range Cooker (90cm)</h3>
-                        <span class="loc-services-card__price">from £100</span>
+                        <span class="loc-services-card__price">from £125</span>
                     </div>
                     <p class="loc-services-card__desc">A full range clean, taking the time it needs — all cavities, grill compartment, and exterior.</p>
                 </div>
@@ -57,7 +57,7 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Range Cooker (100cm+)</h3>
-                        <span class="loc-services-card__price">from £120</span>
+                        <span class="loc-services-card__price">from £125</span>
                     </div>
                     <p class="loc-services-card__desc">A full clean for larger range formats, handled with the extra care they need — all cavities, compartments, and exterior surfaces.</p>
                 </div>
@@ -73,7 +73,7 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Gas Hob</h3>
-                        <span class="loc-services-card__price">from £22</span>
+                        <span class="loc-services-card__price">from £25</span>
                     </div>
                     <p class="loc-services-card__desc">Burner heads, caps, pan supports, and hob surface — all removed, soaked, and cleaned individually.</p>
                 </div>
@@ -81,7 +81,7 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Ceramic / Induction Hob</h3>
-                        <span class="loc-services-card__price">from £18</span>
+                        <span class="loc-services-card__price">from £25</span>
                     </div>
                     <p class="loc-services-card__desc">A careful surface clean and polish, using a scratch-safe technique throughout.</p>
                 </div>
@@ -89,7 +89,7 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Extractor Hood</h3>
-                        <span class="loc-services-card__price">from £22</span>
+                        <span class="loc-services-card__price">from £25</span>
                     </div>
                     <p class="loc-services-card__desc">Grease filters removed, soaked, and degreased, with fan housing and exterior surfaces cleaned and polished to finish.</p>
                 </div>
@@ -97,7 +97,7 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Microwave</h3>
-                        <span class="loc-services-card__price">from £18</span>
+                        <span class="loc-services-card__price">from £25</span>
                     </div>
                     <p class="loc-services-card__desc">Interior cavity, turntable, and door, fully cleaned, dried, and left ready to use.</p>
                 </div>
