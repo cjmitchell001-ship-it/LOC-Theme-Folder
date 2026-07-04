@@ -48,7 +48,7 @@ get_header();
 
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
-                        <h3 class="loc-services-card__name">Range Cooker (90cm)</h3>
+                        <h3 class="loc-services-card__name">Range Cooker</h3>
                         <span class="loc-services-card__price">from £125</span>
                     </div>
                     <p class="loc-services-card__desc">A full range clean, taking the time it needs — all cavities, grill compartment, and exterior.</p>
@@ -56,10 +56,10 @@ get_header();
 
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
-                        <h3 class="loc-services-card__name">Range Cooker (100cm+)</h3>
-                        <span class="loc-services-card__price">from £125</span>
+                        <h3 class="loc-services-card__name">Free-Standing Oven</h3>
+                        <span class="loc-services-card__price">from £70</span>
                     </div>
-                    <p class="loc-services-card__desc">A full clean for larger range formats, handled with the extra care they need — all cavities, compartments, and exterior surfaces.</p>
+                    <p class="loc-services-card__desc">A full clean of the oven cavity, door, glass, racks, and trays — with the same care as a built-in.</p>
                 </div>
 
                 <div class="loc-services-card">

@@ -59,7 +59,7 @@
 <div class="loc-funnel-page-header">
     <p class="loc-funnel-page-header__eyebrow section-eyebrow">Step 1 of 3</p>
     <h1>What would you like cleaned?</h1>
-    <p class="loc-funnel-page-header__intro">Select your oven and any extras below. Prices are fixed — what you see is what you pay, regardless of condition.</p>
+    <p class="loc-funnel-page-header__intro">Choose what needs cleaning below. The prices shown are a starting point — every oven is different, and a few things affect the final cost: whether you've got a double oven and only want one side done, how long it's been since it was last cleaned (we've turned up to ovens that hadn't been touched in years — no judgement, it happens), and how much buildup there actually is. We'll always confirm your exact price with you before the day, so there are no surprises.</p>
 </div>
 
 <!-- ============================================================
@@ -127,8 +127,8 @@
                     </div>
                 </div>
 
-                <!-- Range Cooker 90cm -->
-                <div class="loc-appliance-card" data-name="Range Cooker 90cm" data-price="125">
+                <!-- Range Cooker -->
+                <div class="loc-appliance-card" data-name="Range Cooker" data-price="125">
                     <svg width="64" height="64" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="8" y="24" width="104" height="82" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
                         <rect x="8" y="24" width="104" height="18" rx="4" stroke="#1A3A6E" stroke-width="3" fill="#F0F4FA"/>
@@ -143,7 +143,7 @@
                         <rect x="70" y="54" width="30" height="30" rx="1.5" stroke="#1A3A6E" stroke-width="1.5" fill="#EEF3FA"/>
                         <line x1="70" y1="100" x2="106" y2="100" stroke="#1A3A6E" stroke-width="2.5" stroke-linecap="round"/>
                     </svg>
-                    <p class="loc-appliance-card__name">Range Cooker 90cm</p>
+                    <p class="loc-appliance-card__name">Range Cooker</p>
                     <p class="loc-appliance-card__price">From £125</p>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
@@ -154,25 +154,23 @@
                     </div>
                 </div>
 
-                <!-- Range Cooker 100cm+ -->
-                <div class="loc-appliance-card" data-name="Range Cooker 100cm+" data-price="125">
+                <!-- Free-Standing Oven -->
+                <div class="loc-appliance-card" data-name="Free-Standing Oven" data-price="70">
                     <svg width="64" height="64" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="4" y="24" width="112" height="82" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
-                        <rect x="4" y="24" width="112" height="18" rx="4" stroke="#1A3A6E" stroke-width="3" fill="#F0F4FA"/>
-                        <circle cx="16" cy="33" r="4" stroke="#1A3A6E" stroke-width="2" fill="none"/><circle cx="16" cy="33" r="1.5" fill="#1A3A6E"/>
-                        <circle cx="30" cy="33" r="4" stroke="#1A3A6E" stroke-width="2" fill="none"/><circle cx="30" cy="33" r="1.5" fill="#1A3A6E"/>
-                        <circle cx="60" cy="33" r="4" stroke="#1A3A6E" stroke-width="2" fill="none"/><circle cx="60" cy="33" r="1.5" fill="#1A3A6E"/>
-                        <circle cx="90" cy="33" r="4" stroke="#1A3A6E" stroke-width="2" fill="none"/><circle cx="90" cy="33" r="1.5" fill="#1A3A6E"/>
-                        <circle cx="104" cy="33" r="4" stroke="#1A3A6E" stroke-width="2" fill="none"/><circle cx="104" cy="33" r="1.5" fill="#1A3A6E"/>
-                        <rect x="10" y="48" width="44" height="50" rx="2" stroke="#1A3A6E" stroke-width="2.5" fill="none"/>
-                        <rect x="16" y="54" width="32" height="30" rx="1.5" stroke="#1A3A6E" stroke-width="1.5" fill="#EEF3FA"/>
-                        <line x1="16" y1="100" x2="54" y2="100" stroke="#1A3A6E" stroke-width="2.5" stroke-linecap="round"/>
-                        <rect x="66" y="48" width="44" height="50" rx="2" stroke="#1A3A6E" stroke-width="2.5" fill="none"/>
-                        <rect x="72" y="54" width="32" height="30" rx="1.5" stroke="#1A3A6E" stroke-width="1.5" fill="#EEF3FA"/>
-                        <line x1="72" y1="100" x2="110" y2="100" stroke="#1A3A6E" stroke-width="2.5" stroke-linecap="round"/>
+                        <rect x="14" y="14" width="92" height="88" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
+                        <rect x="14" y="14" width="92" height="22" rx="4" stroke="#1A3A6E" stroke-width="3" fill="#F0F4FA"/>
+                        <circle cx="32" cy="25" r="5" stroke="#1A3A6E" stroke-width="2.5" fill="none"/><circle cx="32" cy="25" r="1.5" fill="#1A3A6E"/>
+                        <circle cx="50" cy="25" r="5" stroke="#1A3A6E" stroke-width="2.5" fill="none"/><circle cx="50" cy="25" r="1.5" fill="#1A3A6E"/>
+                        <circle cx="70" cy="25" r="5" stroke="#1A3A6E" stroke-width="2.5" fill="none"/><circle cx="70" cy="25" r="1.5" fill="#1A3A6E"/>
+                        <circle cx="88" cy="25" r="5" stroke="#1A3A6E" stroke-width="2.5" fill="none"/><circle cx="88" cy="25" r="1.5" fill="#1A3A6E"/>
+                        <rect x="22" y="44" width="76" height="46" rx="3" stroke="#1A3A6E" stroke-width="2.5" fill="none"/>
+                        <rect x="30" y="50" width="60" height="28" rx="2" stroke="#1A3A6E" stroke-width="2" fill="#EEF3FA"/>
+                        <line x1="38" y1="86" x2="82" y2="86" stroke="#1A3A6E" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="28" y1="102" x2="28" y2="114" stroke="#1A3A6E" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="92" y1="102" x2="92" y2="114" stroke="#1A3A6E" stroke-width="2.5" stroke-linecap="round"/>
                     </svg>
-                    <p class="loc-appliance-card__name">Range Cooker 100cm+</p>
-                    <p class="loc-appliance-card__price">From £125</p>
+                    <p class="loc-appliance-card__name">Free-Standing Oven</p>
+                    <p class="loc-appliance-card__price">From £70</p>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
                         <div class="loc-qty-stepper__controls">
@@ -197,6 +195,23 @@
                         <line x1="30" y1="90" x2="90" y2="90" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
                     </svg>
                     <p class="loc-appliance-card__name">AGA / Large Range</p>
+                    <p class="loc-appliance-card__price">£TBC</p>
+                    <p class="loc-appliance-card__note">Price on request</p>
+                </div>
+
+                <!-- BBQ -->
+                <div class="loc-appliance-card loc-appliance-card--aga" id="loc-bbq-card" data-name="BBQ" data-price="0">
+                    <svg width="64" height="64" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 60 A40 32 0 0 0 100 60" stroke="#1A3A6E" stroke-width="3" fill="none"/>
+                        <path d="M20 60 A40 22 0 0 1 100 60" stroke="#1A3A6E" stroke-width="3" fill="none"/>
+                        <line x1="16" y1="60" x2="104" y2="60" stroke="#1A3A6E" stroke-width="2.5" stroke-linecap="round"/>
+                        <rect x="54" y="24" width="12" height="8" rx="2" stroke="#1A3A6E" stroke-width="2" fill="none"/>
+                        <line x1="36" y1="70" x2="84" y2="70" stroke="#1A3A6E" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                        <line x1="42" y1="82" x2="30" y2="108" stroke="#1A3A6E" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="60" y1="82" x2="60" y2="108" stroke="#1A3A6E" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="78" y1="82" x2="90" y2="108" stroke="#1A3A6E" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
+                    <p class="loc-appliance-card__name">BBQ</p>
                     <p class="loc-appliance-card__price">£TBC</p>
                     <p class="loc-appliance-card__note">Price on request</p>
                 </div>
@@ -382,7 +397,7 @@
 
         <!-- PRICE GUARANTEE -->
         <div class="loc-step1-price-guarantee">
-            <p><strong>Fixed price.</strong> The total shown is the price agreed at booking — confirmed before we start.</p>
+            <p><strong>Your total, from.</strong> The figure shown is a starting total — we'll confirm your exact price with you before the day.</p>
         </div>
 
     </div><!-- /sidebar -->

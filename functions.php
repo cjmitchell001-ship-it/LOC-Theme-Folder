@@ -340,6 +340,20 @@ function loc_step1_script() {
                 updateSummary();
             });
         }
+        // ── BBQ CARD ──
+        var bbqCard = document.getElementById('loc-bbq-card');
+        if (bbqCard) {
+            bbqCard.addEventListener('click', function() {
+                if (bbqCard.classList.contains('is-selected')) {
+                    bbqCard.classList.remove('is-selected');
+                    delete selections['BBQ'];
+                } else {
+                    bbqCard.classList.add('is-selected');
+                    selections['BBQ'] = { tbc: true, price: 0 };
+                }
+                updateSummary();
+            });
+        }
         // ── SKIP BUTTON ──
         function setSkipActive() {
             isSkipped = true;
@@ -472,8 +486,8 @@ function loc_step1_script() {
                 var baseDurations = {
                     'Single Oven':        105,
                     'Double Oven':        135,
-                    'Range Cooker 90cm':  150,
-                    'Range Cooker 100cm+': 165
+                    'Range Cooker':        150,
+                    'Free-Standing Oven':  105
                 };
                 var extraDurations = {
                     'Gas Hob':                 30,
@@ -739,6 +753,20 @@ function loc_step2_script() {
                 } else {
                     agaCard.classList.add('is-selected');
                     inlineSelections['AGA / Large Range'] = { tbc: true, price: 0 };
+                }
+                updateInlineSummary();
+            });
+        }
+        // BBQ inline
+        var bbqInlineCard = document.getElementById('loc-bbq-inline-card');
+        if (bbqInlineCard) {
+            bbqInlineCard.addEventListener('click', function() {
+                if (bbqInlineCard.classList.contains('is-selected')) {
+                    bbqInlineCard.classList.remove('is-selected');
+                    delete inlineSelections['BBQ'];
+                } else {
+                    bbqInlineCard.classList.add('is-selected');
+                    inlineSelections['BBQ'] = { tbc: true, price: 0 };
                 }
                 updateInlineSummary();
             });
