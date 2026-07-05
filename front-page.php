@@ -15,13 +15,13 @@ get_header();
 
     <!-- CAROUSEL BACKGROUND SLIDES -->
     <div class="loc-hero__carousel">
-        <div class="loc-hero__slide is-active" style="background-image: url('http://leicester-oven-cleaning.local/wp-content/uploads/2026/05/Gemini_Generated_Image_ybbxmmybbxmmybbx-scaled.webp')"></div>
-        <div class="loc-hero__slide" style="background-image: url('http://leicester-oven-cleaning.local/wp-content/uploads/2026/05/stocksnap-oven-2618460_1920.webp')"></div>
-        <div class="loc-hero__slide" style="background-image: url('http://leicester-oven-cleaning.local/wp-content/uploads/2026/05/pexels-connorscottmcmanus-15119073-scaled.webp')"></div>
-        <div class="loc-hero__slide" style="background-image: url('http://leicester-oven-cleaning.local/wp-content/uploads/2026/05/Gemini_Generated_Image_x7svqfx7svqfx7sv-scaled.webp')"></div>
-        <div class="loc-hero__slide" style="background-image: url('http://leicester-oven-cleaning.local/wp-content/uploads/2026/05/Gemini_Generated_Image_voa8wkvoa8wkvoa8-scaled.webp')"></div>
-        <div class="loc-hero__slide" style="background-image: url('http://leicester-oven-cleaning.local/wp-content/uploads/2026/05/Gemini_Generated_Image_eatglheatglheatg-scaled.webp')"></div>
-        <div class="loc-hero__slide" style="background-image: url('http://leicester-oven-cleaning.local/wp-content/uploads/2026/05/Gemini_Generated_Image_6kq5q76kq5q76kq5-scaled.webp')"></div>
+        <div class="loc-hero__slide is-active" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/Gemini_Generated_Image_ybbxmmybbxmmybbx.webp')"></div>
+        <div class="loc-hero__slide" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/stocksnap-oven-2618460_1920.webp')"></div>
+        <div class="loc-hero__slide" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/pexels-connorscottmcmanus-15119073.webp')"></div>
+        <div class="loc-hero__slide" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/Gemini_Generated_Image_x7svqfx7svqfx7sv.webp')"></div>
+        <div class="loc-hero__slide" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/Gemini_Generated_Image_voa8wkvoa8wkvoa8.webp')"></div>
+        <div class="loc-hero__slide" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/Gemini_Generated_Image_eatglheatglheatg.webp')"></div>
+        <div class="loc-hero__slide" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/Gemini_Generated_Image_6kq5q76kq5q76kq5.webp')"></div>
     </div>
 
     <!-- BLUE OVERLAY -->
