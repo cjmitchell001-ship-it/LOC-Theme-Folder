@@ -49,8 +49,8 @@ get_header();
                 </div>
 
                 <div class="loc-faq-page__item">
-                    <h3 class="loc-faq-page__q">Is the price really fixed regardless of condition?</h3>
-                    <p class="loc-faq-page__a">Yes. The price we agree when we confirm your booking is the price you pay — no matter how dirty the oven is when we arrive. No hidden fees, no on-the-day surprises.</p>
+                    <h3 class="loc-faq-page__q">Will my price change once you see the oven?</h3>
+                    <p class="loc-faq-page__a">The price shown is a starting point. If your oven's condition is roughly typical, that's what you'll pay. If it's much dirtier than usual — say, it hasn't been cleaned in years — we'll always confirm the adjusted price with you before we start. No surprises on the day.</p>
                 </div>
 
                 <div class="loc-faq-page__item">

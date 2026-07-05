@@ -417,8 +417,8 @@ get_header();
     <div class="loc-faq__grid">
 
         <div class="loc-faq__item">
-            <h4 class="loc-faq__q">Is the price really fixed regardless of condition?</h4>
-            <p class="loc-faq__a">Yes. The price we agree when we confirm your booking is the price you pay — no matter how dirty the oven is when we arrive. No hidden fees, no on-the-day surprises.</p>
+            <h4 class="loc-faq__q">Will my price change once you see the oven?</h4>
+            <p class="loc-faq__a">The price shown is a starting point. If your oven's condition is roughly typical, that's what you'll pay. If it's much dirtier than usual — say, it hasn't been cleaned in years — we'll always confirm the adjusted price with you before we start. No surprises on the day.</p>
         </div>
 
         <div class="loc-faq__item">
@@ -426,11 +426,14 @@ get_header();
             <p class="loc-faq__a">Yes — your oven will be fully reassembled, tested, and ready to use before we leave. Same day, every time.</p>
         </div>
 
-    </div>
-
         <div class="loc-faq__item">
             <h4 class="loc-faq__q">Do I need to be home during the clean?</h4>
             <p class="loc-faq__a">We'll need access to the property to get started, and we ask that someone is available to sign the job off when we're done — but you don't need to be present throughout. Most cleans take between 1.5 and 3 hours depending on what's being done. We'll confirm the expected duration when we call to book you in.</p>
+        </div>
+
+        <div class="loc-faq__item">
+            <h4 class="loc-faq__q">What if I'm not happy with the result?</h4>
+            <p class="loc-faq__a">We won't leave until you're happy with the result — if something's not right, tell us before we go and we'll put it right there and then.</p>
         </div>
 
     </div>
