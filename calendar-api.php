@@ -163,7 +163,7 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
         // Day-level job cap — sits alongside the time-window check above.
         // Once a day hits its cap, it's fully unavailable regardless of
         // remaining unused hours in the window.
-        $isWeekend = in_array( $cursor->format( 'N' ), [ 6, 7 ], true );
+        $isWeekend = in_array( (int) $cursor->format( 'N' ), [ 6, 7 ], true );
         $jobCap    = $isWeekend ? LOC_WEEKEND_JOB_CAP : LOC_WEEKDAY_JOB_CAP;
         $jobCount  = $jobCountByDay[ $dateStr ] ?? 0;
 
