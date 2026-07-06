@@ -321,8 +321,11 @@ function loc_create_provisional_booking( $date, $slot, $customer_name, $phone, $
 }
 
 
-// Helper: adds an all-day zone-label event (North/South/East/West) to $date
-// if the zone is non-Central and no zone label already exists on that date.
+// Helper: keeps $date's zone-label events in step with its surviving bookings.
+// Deletes stale labels (no remaining PROVISIONAL:/Confirmed: booking of that
+// zone on the date — e.g. an East label left behind after the East customer
+// cancelled), then adds the new booking's label if the zone is
+// non-Central and its label isn't already present.
 function loc_ensure_zone_label( $service, $date, $zone ) {
     global $_LOC_CALENDAR_ID;
 
@@ -342,12 +345,34 @@ function loc_ensure_zone_label( $service, $date, $zone ) {
         'singleEvents' => true,
     ] );
 
-    $knownZones = [ 'north', 'south', 'east', 'west', 'central' ];
+    $knownZones  = [ 'north', 'south', 'east', 'west', 'central' ];
+    $labelEvents = []; // zone => event, existing label events on this date
+    $activeZones = []; // zones of surviving job bookings (includes the one just created)
+
     foreach ( $events->getItems() as $event ) {
-        if ( $event->getStart()->getDate()
-            && in_array( strtolower( trim( $event->getSummary() ) ), $knownZones, true ) ) {
-            return; // date already has a zone label — first booking already set it
+        $title = strtolower( trim( $event->getSummary() ) );
+
+        if ( $event->getStart()->getDate() ) {
+            if ( in_array( $title, $knownZones, true ) ) {
+                $labelEvents[ $title ] = $event;
+            }
+        } elseif ( strpos( $title, 'provisional:' ) === 0 || strpos( $title, 'confirmed:' ) === 0 ) {
+            if ( preg_match( '/^Zone:\s*(\S+)/mi', (string) $event->getDescription(), $m ) ) {
+                $activeZones[] = strtolower( $m[1] );
+            }
         }
+    }
+
+    // Delete stale labels so the calendar shows the day's true zone
+    foreach ( $labelEvents as $labelZone => $labelEvent ) {
+        if ( ! in_array( $labelZone, $activeZones, true ) ) {
+            $service->events->delete( $_LOC_CALENDAR_ID, $labelEvent->getId() );
+            unset( $labelEvents[ $labelZone ] );
+        }
+    }
+
+    if ( isset( $labelEvents[ $zoneLower ] ) ) {
+        return; // this zone's label already exists
     }
 
     $label = new Google\Service\Calendar\Event( [
