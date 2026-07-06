@@ -12,6 +12,12 @@ $_LOC_CREDENTIALS_FILE = __DIR__ . '/client_secret_212238838163-k4gs5q3ulqgp15tn
 $_LOC_TOKEN_FILE       = __DIR__ . '/token.json';
 $_LOC_CALENDAR_ID      = '514d8e2bd29573d1582ae633e39ee999679bc205ee207a15c019b1aed196f67d@group.calendar.google.com';
 
+// Day-level job caps. Weekdays: Chris only wants one evening job on a work
+// night. Weekends: three average jobs fit back-to-back in the six-hour
+// Morning window. Adjust here if capacity changes later.
+define( 'LOC_WEEKDAY_JOB_CAP', 1 );
+define( 'LOC_WEEKEND_JOB_CAP', 3 );
+
 
 // ============================================================
 // loc_get_google_client()
@@ -106,8 +112,9 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
     $knownZones = [ 'north', 'south', 'east', 'west', 'central' ];
 
     // Index zone all-day events and timed events by date
-    $zonedDates = []; // date => zone label (lowercase) — only dates with a zone all-day event
-    $timedByDay = []; // date => array of [start_ts, end_ts]
+    $zonedDates   = []; // date => zone label (lowercase) — only dates with a zone all-day event
+    $timedByDay   = []; // date => array of [start_ts, end_ts]
+    $jobCountByDay = []; // date => number of genuine job bookings (provisional or confirmed)
 
     foreach ( $events->getItems() as $event ) {
         $start = $event->getStart();
@@ -126,6 +133,13 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
                 strtotime( $start->getDateTime() ),
                 strtotime( $end_e->getDateTime() ),
             ];
+
+            // Count genuine job bookings only — excludes the recurring
+            // "Unavailable" day-blocking events, which are not jobs.
+            $title = strtolower( trim( $event->getSummary() ) );
+            if ( strpos( $title, 'provisional:' ) === 0 || strpos( $title, 'confirmed:' ) === 0 ) {
+                $jobCountByDay[ $date ] = ( $jobCountByDay[ $date ] ?? 0 ) + 1;
+            }
         }
     }
 
@@ -145,6 +159,18 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
         // Check morning (07:00–13:00) and afternoon (13:00–18:00) slots
         $morning   = loc_slot_is_free( $dateStr, '07:00', '13:00', $duration_minutes, $timedByDay );
         $afternoon = loc_slot_is_free( $dateStr, '13:00', '18:00', $duration_minutes, $timedByDay );
+
+        // Day-level job cap — sits alongside the time-window check above.
+        // Once a day hits its cap, it's fully unavailable regardless of
+        // remaining unused hours in the window.
+        $isWeekend = in_array( $cursor->format( 'N' ), [ 6, 7 ], true );
+        $jobCap    = $isWeekend ? LOC_WEEKEND_JOB_CAP : LOC_WEEKDAY_JOB_CAP;
+        $jobCount  = $jobCountByDay[ $dateStr ] ?? 0;
+
+        if ( $jobCount >= $jobCap ) {
+            $morning   = false;
+            $afternoon = false;
+        }
 
         // Only include if at least one slot is free
         if ( $morning || $afternoon ) {
