@@ -112,9 +112,10 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
     $knownZones = [ 'north', 'south', 'east', 'west', 'central' ];
 
     // Index zone all-day events and timed events by date
-    $zonedDates   = []; // date => zone label (lowercase) — only dates with a zone all-day event
-    $timedByDay   = []; // date => array of [start_ts, end_ts]
+    $zonedDates    = []; // date => zone label (lowercase) — only dates with a zone all-day event
+    $timedByDay    = []; // date => array of [start_ts, end_ts]
     $jobCountByDay = []; // date => number of genuine job bookings (provisional or confirmed)
+    $jobZonesByDay = []; // date => array of booking zones (lowercase), parsed from event descriptions
 
     foreach ( $events->getItems() as $event ) {
         $start = $event->getStart();
@@ -139,7 +140,24 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
             $title = strtolower( trim( $event->getSummary() ) );
             if ( strpos( $title, 'provisional:' ) === 0 || strpos( $title, 'confirmed:' ) === 0 ) {
                 $jobCountByDay[ $date ] = ( $jobCountByDay[ $date ] ?? 0 ) + 1;
+
+                // Record the booking's zone (from the "Zone:" line written
+                // into the description at booking time) so stale zone labels
+                // can be detected below.
+                if ( preg_match( '/^Zone:\s*(\S+)/mi', (string) $event->getDescription(), $m ) ) {
+                    $jobZonesByDay[ $date ][] = strtolower( $m[1] );
+                }
             }
+        }
+    }
+
+    // Ignore stale zone labels: a label only holds if at least one surviving
+    // job booking on that date belongs to the labelled zone. This makes
+    // manual label cleanup after a cancellation optional — a label whose
+    // last matching booking was deleted is treated as if it weren't there.
+    foreach ( $zonedDates as $labelDate => $label ) {
+        if ( ! in_array( $label, $jobZonesByDay[ $labelDate ] ?? [], true ) ) {
+            unset( $zonedDates[ $labelDate ] );
         }
     }
 
@@ -150,8 +168,9 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
     while ( $cursor < $end ) {
         $dateStr = $cursor->format( 'Y-m-d' );
 
-        // Zone-labelled date that doesn't match this customer's zone — skip
-        if ( isset( $zonedDates[ $dateStr ] ) && $zonedDates[ $dateStr ] !== $zoneLower ) {
+        // Zone-labelled date: visible to that zone's customers AND Central
+        // customers (Central is zone-neutral). Everyone else skips the day.
+        if ( isset( $zonedDates[ $dateStr ] ) && $zonedDates[ $dateStr ] !== $zoneLower && $zoneLower !== 'central' ) {
             $cursor->modify( '+1 day' );
             continue;
         }
@@ -283,8 +302,58 @@ function loc_create_provisional_booking( $date, $slot, $customer_name, $phone, $
 
     try {
         $service->events->insert( $_LOC_CALENDAR_ID, $event );
-        return true;
     } catch ( Exception $e ) {
         return false;
     }
+
+    // Auto-create the day's zone label on the first North/South/East/West
+    // booking. Central is zone-neutral and never sets a label. A label
+    // failure must not fail the booking — the availability logic derives
+    // the effective zone from the bookings themselves, so the label is a
+    // visual aid on the calendar, not the source of truth.
+    try {
+        loc_ensure_zone_label( $service, $date, $zone );
+    } catch ( Exception $e ) {
+        // non-fatal
+    }
+
+    return true;
+}
+
+
+// Helper: adds an all-day zone-label event (North/South/East/West) to $date
+// if the zone is non-Central and no zone label already exists on that date.
+function loc_ensure_zone_label( $service, $date, $zone ) {
+    global $_LOC_CALENDAR_ID;
+
+    $zoneLower = strtolower( trim( $zone ) );
+    if ( ! in_array( $zoneLower, [ 'north', 'south', 'east', 'west' ], true ) ) {
+        return; // Central, empty, or unrecognised — never sets a label
+    }
+
+    $tz       = new DateTimeZone( 'Europe/London' );
+    $dayStart = new DateTime( $date . ' 00:00', $tz );
+    $dayEnd   = clone $dayStart;
+    $dayEnd->modify( '+1 day' );
+
+    $events = $service->events->listEvents( $_LOC_CALENDAR_ID, [
+        'timeMin'      => $dayStart->format( DateTime::RFC3339 ),
+        'timeMax'      => $dayEnd->format( DateTime::RFC3339 ),
+        'singleEvents' => true,
+    ] );
+
+    $knownZones = [ 'north', 'south', 'east', 'west', 'central' ];
+    foreach ( $events->getItems() as $event ) {
+        if ( $event->getStart()->getDate()
+            && in_array( strtolower( trim( $event->getSummary() ) ), $knownZones, true ) ) {
+            return; // date already has a zone label — first booking already set it
+        }
+    }
+
+    $label = new Google\Service\Calendar\Event( [
+        'summary' => ucfirst( $zoneLower ),
+        'start'   => [ 'date' => $date ],
+        'end'     => [ 'date' => $dayEnd->format( 'Y-m-d' ) ],
+    ] );
+    $service->events->insert( $_LOC_CALENDAR_ID, $label );
 }
