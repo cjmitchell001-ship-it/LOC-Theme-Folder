@@ -82,7 +82,7 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Ceramic / Induction Hob</h3>
-                        <span class="loc-services-card__price">from £25</span>
+                        <span class="loc-services-card__price">£25</span>
                     </div>
                     <p class="loc-services-card__desc">A careful surface clean and polish, using a scratch-safe technique throughout.</p>
                 </div>
@@ -98,7 +98,7 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Microwave</h3>
-                        <span class="loc-services-card__price">from £25</span>
+                        <span class="loc-services-card__price">£25</span>
                     </div>
                     <p class="loc-services-card__desc">Interior cavity, turntable, and door, fully cleaned, dried, and left ready to use.</p>
                 </div>

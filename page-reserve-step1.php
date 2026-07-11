@@ -266,7 +266,7 @@
                         <circle cx="85" cy="80" r="13" stroke="#1A3A6E" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
                     </svg>
                     <p class="loc-appliance-card__name">Ceramic / Induction Hob</p>
-                    <p class="loc-appliance-card__price">From £25</p>
+                    <p class="loc-appliance-card__price">£25</p>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
                         <div class="loc-qty-stepper__controls">
@@ -316,7 +316,7 @@
                         <line x1="25" y1="60" x2="65" y2="60" stroke="#1A3A6E" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
                     </svg>
                     <p class="loc-appliance-card__name">Microwave</p>
-                    <p class="loc-appliance-card__price">From £25</p>
+                    <p class="loc-appliance-card__price">£25</p>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
                         <div class="loc-qty-stepper__controls">
@@ -344,7 +344,7 @@
                         <circle cx="96" cy="76" r="3" fill="#1A3A6E" opacity="0.3"/>
                     </svg>
                     <p class="loc-appliance-card__name">Combi Microwave</p>
-                    <p class="loc-appliance-card__price">From £30</p>
+                    <p class="loc-appliance-card__price">£30</p>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
                         <div class="loc-qty-stepper__controls">
