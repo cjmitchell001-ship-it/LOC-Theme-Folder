@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.1.0
+Version:           2.2.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -7735,4 +7735,62 @@ a.loc-funnel-step--complete:hover {
     font-size: var(--text-sm);
     margin: var(--space-2) 0 0;
     font-family: 'Open Sans', sans-serif;
+}
+
+/* ============================================================
+   EARLY BIRD OFFER — announcement bar, offer note, was-price
+   (all rendered only while loc_earlybird_active())
+   ============================================================ */
+
+.loc-announce-bar {
+    display: block;
+    background: var(--blue);
+    color: var(--white);
+    text-align: center;
+    padding: var(--space-2) var(--space-4);
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--text-ui);
+    line-height: 1.5;
+    text-decoration: none;
+}
+
+.loc-announce-bar__prices {
+    color: var(--gold-light);
+    font-weight: 600;
+}
+
+.loc-announce-bar__cta {
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.loc-announce-bar:hover .loc-announce-bar__cta {
+    color: var(--gold-light);
+}
+
+@media (max-width: 768px) {
+    .loc-announce-bar {
+        font-size: var(--text-sm);
+    }
+
+    .loc-announce-bar__until {
+        display: none;
+    }
+}
+
+.loc-earlybird-note {
+    color: var(--gold);
+    font-size: var(--text-ui);
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0 0 var(--space-3);
+}
+
+.loc-price-was {
+    color: var(--grey-400);
+    font-weight: 400;
+    font-size: var(--text-sm);
+    text-decoration: line-through;
+    margin-left: var(--space-1);
 }

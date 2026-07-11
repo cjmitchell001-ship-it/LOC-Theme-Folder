@@ -14,6 +14,12 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
+<?php if ( loc_earlybird_active() ) : ?>
+<a href="/reserve-step-1" class="loc-announce-bar">
+    Early bird pricing<span class="loc-announce-bar__until"> until Monday 10th August</span> — <span class="loc-announce-bar__prices">Single Oven £55 · Double Oven £70</span> — <span class="loc-announce-bar__cta">Reserve your slot →</span>
+</a>
+<?php endif; ?>
+
 <header class="loc-header" id="loc-header">
     
     <!-- LOGO -->

@@ -65,6 +65,7 @@
 <!-- ============================================================
      MAIN CONTENT
      ============================================================ -->
+<?php $loc_eb = loc_earlybird_active(); ?>
 <main class="loc-step1-body" style="position:relative;">
     <!-- LEFT: APPLIANCE SELECTION -->
     <div class="loc-step1-selection">
@@ -74,10 +75,11 @@
         <!-- OVENS GROUP -->
         <div class="loc-appliance-group">
             <p class="loc-appliance-group__label">Ovens</p>
+            <?php if ( $loc_eb ) : ?><p class="loc-earlybird-note">Early bird pricing — ends 10th August</p><?php endif; ?>
             <div class="loc-appliance-cards">
 
                 <!-- Single Oven -->
-                <div class="loc-appliance-card" data-name="Single Oven" data-price="70">
+                <div class="loc-appliance-card" data-name="Single Oven" data-price="<?php echo $loc_eb ? '55' : '70'; ?>">
                     <svg width="64" height="64" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16" y="22" width="88" height="76" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
                         <rect x="16" y="22" width="88" height="20" rx="4" stroke="#1A3A6E" stroke-width="3" fill="#F0F4FA"/>
@@ -90,7 +92,7 @@
                         <line x1="40" y1="94" x2="80" y2="94" stroke="#1A3A6E" stroke-width="3" stroke-linecap="round"/>
                     </svg>
                     <p class="loc-appliance-card__name">Single Oven</p>
-                    <p class="loc-appliance-card__price">From £70</p>
+                    <p class="loc-appliance-card__price"><?php echo $loc_eb ? '£55 <s class="loc-price-was">from £70</s>' : 'From £70'; ?></p>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
                         <div class="loc-qty-stepper__controls">
@@ -101,7 +103,7 @@
                 </div>
 
                 <!-- Double Oven -->
-                <div class="loc-appliance-card" data-name="Double Oven" data-price="90">
+                <div class="loc-appliance-card" data-name="Double Oven" data-price="<?php echo $loc_eb ? '70' : '90'; ?>">
                     <svg width="64" height="64" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="14" y="14" width="92" height="92" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
                         <rect x="14" y="14" width="92" height="16" rx="4" stroke="#1A3A6E" stroke-width="3" fill="#F0F4FA"/>
@@ -117,7 +119,7 @@
                         <line x1="34" y1="100" x2="86" y2="100" stroke="#1A3A6E" stroke-width="2.5" stroke-linecap="round"/>
                     </svg>
                     <p class="loc-appliance-card__name">Double Oven</p>
-                    <p class="loc-appliance-card__price">From £90</p>
+                    <p class="loc-appliance-card__price"><?php echo $loc_eb ? '£70 <s class="loc-price-was">from £90</s>' : 'From £90'; ?></p>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
                         <div class="loc-qty-stepper__controls">
@@ -155,7 +157,7 @@
                 </div>
 
                 <!-- Free-Standing Oven -->
-                <div class="loc-appliance-card" data-name="Free-Standing Oven" data-price="70">
+                <div class="loc-appliance-card" data-name="Free-Standing Oven" data-price="<?php echo $loc_eb ? '55' : '70'; ?>">
                     <svg width="64" height="64" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="14" y="14" width="92" height="88" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
                         <rect x="14" y="14" width="92" height="22" rx="4" stroke="#1A3A6E" stroke-width="3" fill="#F0F4FA"/>
@@ -170,7 +172,7 @@
                         <line x1="92" y1="102" x2="92" y2="114" stroke="#1A3A6E" stroke-width="2.5" stroke-linecap="round"/>
                     </svg>
                     <p class="loc-appliance-card__name">Free-Standing Oven</p>
-                    <p class="loc-appliance-card__price">From £70</p>
+                    <p class="loc-appliance-card__price"><?php echo $loc_eb ? '£55 <s class="loc-price-was">from £70</s>' : 'From £70'; ?></p>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
                         <div class="loc-qty-stepper__controls">

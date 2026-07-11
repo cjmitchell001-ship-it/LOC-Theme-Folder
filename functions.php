@@ -9,6 +9,19 @@
 require_once get_stylesheet_directory() . '/calendar-api.php';
 require_once get_stylesheet_directory() . '/reservation-handler.php';
 
+// ============================================================
+// EARLY BIRD OFFER — Single Oven £55 / Double Oven £70 /
+// Free-Standing Oven £55. Auto-reverts to standard pricing on
+// LOC_EARLYBIRD_END with zero edits (bar, notes, strike-through
+// prices and data-price values all key off loc_earlybird_active()).
+// ============================================================
+
+define( 'LOC_EARLYBIRD_END', '2026-08-10' ); // offer shows while today < this date
+
+function loc_earlybird_active() {
+    return current_time( 'Y-m-d' ) < LOC_EARLYBIRD_END;
+}
+
 add_action( 'wp_ajax_nopriv_loc_reservation', 'loc_handle_reservation' ); // unauthenticated visitors
 add_action( 'wp_ajax_loc_reservation',        'loc_handle_reservation' ); // logged-in users
 
@@ -281,6 +294,12 @@ function loc_step1_script() {
         var isSkipped   = false;
         var skipBtn     = document.getElementById('loc-skip-btn');
 
+        // Original price markup can include early-bird strike-through HTML —
+        // snapshot it so deselect/skip resets restore it instead of plain text
+        document.querySelectorAll('.loc-appliance-card__price').forEach(function(p) {
+            p.dataset.origHtml = p.innerHTML;
+        });
+
         // ── STANDARD CARDS (qty stepper) ──
         var cards = document.querySelectorAll('.loc-appliance-card:not(.loc-appliance-card--aga)');
         cards.forEach(function(card) {
@@ -297,7 +316,7 @@ function loc_step1_script() {
                     delete selections[name];
                     card.classList.remove('is-selected');
                     stepperPanel.classList.remove('is-visible');
-                    priceEl.textContent = '£' + basePrice;
+                    priceEl.innerHTML = priceEl.dataset.origHtml;
                 } else {
                     var total = basePrice * qty;
                     selections[name] = qty === 1 ? basePrice : { price: total, qty: qty, basePrice: basePrice };
@@ -367,7 +386,7 @@ function loc_step1_script() {
                 var priceEl      = c.querySelector('.loc-appliance-card__price');
                 var stepperPanel = c.querySelector('.loc-aga-options');
                 var basePrice    = parseInt(c.dataset.price, 10);
-                if (priceEl && basePrice) { priceEl.textContent = '£' + basePrice; }
+                if (priceEl && basePrice) { priceEl.innerHTML = priceEl.dataset.origHtml; }
                 if (stepperPanel) { stepperPanel.classList.remove('is-visible'); }
             });
             var stickyTotal  = document.getElementById('loc-step1-sticky-total');

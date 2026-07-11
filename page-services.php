@@ -28,12 +28,14 @@ get_header();
             <h2 class="loc-services-section__heading">For Your Home</h2>
             <p class="loc-services-section__intro">We come to your home, treat it with care, and give your oven, hob, or extractor a full professional clean — stripped down, professionally cleaned component by component, and reassembled — all in a single visit.</p>
 
+            <?php $loc_eb = loc_earlybird_active(); ?>
+            <?php if ( $loc_eb ) : ?><p class="loc-earlybird-note">Early bird pricing on ovens — ends 10th August</p><?php endif; ?>
             <div class="loc-services-grid">
 
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Single Oven</h3>
-                        <span class="loc-services-card__price">from £70</span>
+                        <span class="loc-services-card__price"><?php echo $loc_eb ? '£55 <s class="loc-price-was">from £70</s>' : 'from £70'; ?></span>
                     </div>
                     <p class="loc-services-card__desc">A full strip-down clean, done carefully in your kitchen — interior cavity, door glass (both sides), racks, trays, fan housing, and exterior.</p>
                 </div>
@@ -41,7 +43,7 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Double Oven</h3>
-                        <span class="loc-services-card__price">from £90</span>
+                        <span class="loc-services-card__price"><?php echo $loc_eb ? '£70 <s class="loc-price-was">from £90</s>' : 'from £90'; ?></span>
                     </div>
                     <p class="loc-services-card__desc">Both cavities cleaned independently, with the same care throughout — all racks, trays, glass panels, and fan housings.</p>
                 </div>
@@ -57,7 +59,7 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Free-Standing Oven</h3>
-                        <span class="loc-services-card__price">from £70</span>
+                        <span class="loc-services-card__price"><?php echo $loc_eb ? '£55 <s class="loc-price-was">from £70</s>' : 'from £70'; ?></span>
                     </div>
                     <p class="loc-services-card__desc">A full clean of the oven cavity, door, glass, racks, and trays — with the same care as a built-in.</p>
                 </div>
