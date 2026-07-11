@@ -41,8 +41,15 @@ function loc_get_google_client() {
         if ( $client->isAccessTokenExpired() ) {
             $refreshToken = $client->getRefreshToken();
             if ( $refreshToken ) {
-                $client->fetchAccessTokenWithRefreshToken( $refreshToken );
-                file_put_contents( $_LOC_TOKEN_FILE, json_encode( $client->getAccessToken() ) );
+                $newToken = $client->fetchAccessTokenWithRefreshToken( $refreshToken );
+                // Only persist a successful refresh — a failed refresh returns
+                // an error array, and writing that to token.json destroys the
+                // stored refresh token.
+                if ( empty( $newToken['error'] ) ) {
+                    file_put_contents( $_LOC_TOKEN_FILE, json_encode( $client->getAccessToken() ) );
+                } else {
+                    error_log( 'LOC calendar: token refresh failed — ' . $newToken['error'] . '. Re-auth needed at /?loc_calendar_auth=1' );
+                }
             }
         }
     }
@@ -60,7 +67,14 @@ function loc_get_calendar_service() {
     $client = loc_get_google_client();
 
     if ( ! $client->getAccessToken() || $client->isAccessTokenExpired() ) {
-        $authUrl = $client->createAuthUrl();
+        // createAuthUrl() throws if no redirect URI is configured (it only is
+        // during the interactive OAuth flow) — never let that fatal a
+        // customer-facing request.
+        try {
+            $authUrl = $client->createAuthUrl();
+        } catch ( \Exception $e ) {
+            $authUrl = '';
+        }
         return 'AUTH_REQUIRED:' . $authUrl;
     }
 
