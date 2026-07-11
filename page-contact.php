@@ -40,7 +40,7 @@ get_header();
                         </div>
                         <div class="loc-contact-method__text">
                             <p class="loc-contact-method__label">Phone</p>
-                            <p class="loc-contact-method__value"><a href="tel:PLACEHOLDER">Number TBC — coming soon</a></p>
+                            <p class="loc-contact-method__value"><a href="tel:+447710649360">07710 649 360</a></p>
                             <p class="loc-contact-method__note">Mon–Sat, 8am–6pm</p>
                         </div>
                     </div>

@@ -110,7 +110,7 @@
             <p class="loc-step3-date-escape__heading">Need a specific date?</p>
             <p class="loc-step3-date-escape__body">If you need your oven cleaned by a particular date — or you can't see a slot that works for you — just let us know. We'll sort it over the phone.</p>
             <div class="loc-step3-date-escape__btns">
-                <a href="tel:+441234567890" class="loc-step3-date-escape__btn loc-step3-date-escape__btn--call">Call Us</a>
+                <a href="tel:+447710649360" class="loc-step3-date-escape__btn loc-step3-date-escape__btn--call">Call Us</a>
                 <button class="loc-step3-date-escape__btn loc-step3-date-escape__btn--discuss" id="loc-date-escape-btn">Confirm On Call</button>
             </div>
         </div>

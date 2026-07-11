@@ -94,7 +94,7 @@ get_header();
                 <div class="loc-biz-how__step">
                     <div class="loc-biz-how__step-num">1</div>
                     <p class="loc-biz-how__step-title">Get in touch</p>
-                    <p class="loc-biz-how__step-text">Fill in the enquiry form or <a href="tel:PLACEHOLDER">call us directly</a>. Tell us about your property and what you need.</p>
+                    <p class="loc-biz-how__step-text">Fill in the enquiry form or <a href="tel:+447710649360">call us directly</a>. Tell us about your property and what you need.</p>
                 </div>
 
                 <div class="loc-biz-how__step">
@@ -279,7 +279,7 @@ get_header();
                     <div class="loc-biz-contact__option-num">2</div>
                     <div class="loc-biz-contact__option-text">
                         <p class="loc-biz-contact__option-title">Call us directly</p>
-                        <p class="loc-biz-contact__option-desc"><strong>[Number TBC]</strong> — Mon–Sat, 8am–6pm. <a href="tel:PLACEHOLDER">Speak directly with Chris</a>.</p>
+                        <p class="loc-biz-contact__option-desc"><strong>07710 649 360</strong> — Mon–Sat, 8am–6pm. <a href="tel:+447710649360">Speak directly with Chris</a>.</p>
                     </div>
                 </div>
 

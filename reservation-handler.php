@@ -198,7 +198,7 @@ WHAT TO HAVE READY ON THE DAY
 - Clear access to the oven(s) — please remove any trays, shelves, or items stored inside before we arrive
 - Access to a cold water tap — and hot water where available
 
-If you need to reach us before we call, you can contact us at tel:PLACEHOLDER or hello@leicesterovencleaning.co.uk.
+If you need to reach us before we call, you can contact us on 07710 649 360 or hello@leicesterovencleaning.co.uk.
 
 Leicester Oven Cleaning
 hello@leicesterovencleaning.co.uk
