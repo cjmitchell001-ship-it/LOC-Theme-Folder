@@ -126,6 +126,23 @@ add_action( 'wp_enqueue_scripts', 'loc_enqueue_styles' );
 
 
 // ============================================================
+// PRELOAD FIRST HERO SLIDE — LCP
+// The hero uses CSS background-image, which the browser only
+// discovers after parsing style.css. Preloading the first slide
+// starts the fetch immediately. Keep in sync with the first
+// .loc-hero__slide in front-page.php.
+// ============================================================
+
+function loc_preload_hero_image() {
+    if ( ! is_front_page() ) {
+        return;
+    }
+    echo '<link rel="preload" as="image" fetchpriority="high" href="' . esc_url( get_stylesheet_directory_uri() . '/images/Gemini_Generated_Image_ybbxmmybbxmmybbx.webp' ) . '">' . "\n";
+}
+add_action( 'wp_head', 'loc_preload_hero_image', 1 );
+
+
+// ============================================================
 // ADD CUSTOM FUNCTIONS BELOW THIS LINE
 // ============================================================
 
