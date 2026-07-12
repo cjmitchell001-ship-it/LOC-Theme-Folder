@@ -143,6 +143,21 @@ add_action( 'wp_head', 'loc_preload_hero_image', 1 );
 
 
 // ============================================================
+// EMAIL FROM IDENTITY — one home for every wp_mail() call
+// (customer confirmation AND internal notification both inherit
+// this; no per-call From headers needed).
+// ============================================================
+
+add_filter( 'wp_mail_from', function () {
+    return 'hello@leicesterovencleaning.co.uk';
+} );
+
+add_filter( 'wp_mail_from_name', function () {
+    return 'Leicester Oven Cleaning';
+} );
+
+
+// ============================================================
 // ADD CUSTOM FUNCTIONS BELOW THIS LINE
 // ============================================================
 

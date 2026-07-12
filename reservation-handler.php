@@ -208,10 +208,7 @@ EOT;
         $email,
         $confirm_subject,
         $confirm_body,
-        [
-            'Content-Type: text/plain; charset=UTF-8',
-            'From: Leicester Oven Cleaning <hello@leicesterovencleaning.co.uk>',
-        ]
+        [ 'Content-Type: text/plain; charset=UTF-8' ]
     );
 
 
