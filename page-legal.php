@@ -99,7 +99,7 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                         <li>The content of your message</li>
                     </ul>
                     <h3>Information collected automatically</h3>
-                    <p>When you visit our website, certain technical information is collected automatically by our hosting provider and any analytics tools we use. This may include your IP address, browser type, device type, pages visited, and time of visit. This data is used only for website performance and security purposes.</p>
+                    <p>When you visit our website, certain technical information is collected automatically by our hosting provider for performance and security purposes — this may include your IP address, browser type, and time of visit. We also use Cloudflare Web Analytics, a cookieless, privacy-first tool that gives us only aggregate statistics (page views, referrers, country, and device type). It sets no cookies, uses no personal identifiers, and does not track you across other websites.</p>
                 </div>
 
                 <div class="loc-legal-section" id="section-why">
@@ -130,7 +130,7 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                     <p class="loc-legal-section__label">Section 4</p>
                     <h2>Who we share your information with</h2>
                     <p>We do not sell, rent, or trade your personal information to any third party.</p>
-                    <p>Right now, your information is handled directly by us — when you submit a reservation or enquiry, your details are used only to call or email you back and arrange your booking. We don't currently use any third-party booking, payment, or analytics software.</p>
+                    <p>Right now, your information is handled directly by us — when you submit a reservation or enquiry, your details are used only to call or email you back and arrange your booking. We don't currently use any third-party booking or payment software. Our website statistics come from Cloudflare Web Analytics, which is cookieless and aggregate-only — it never receives your name, contact details, or anything else that identifies you.</p>
                     <p>As the business grows, we may begin using third-party tools to help manage bookings, payments, or website performance. If we do, this policy will be updated to name those providers before they're put into use, and they will always be required to handle your data securely and in line with UK data protection law.</p>
                 </div>
 
@@ -150,7 +150,7 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                                 <tr><td>Booking records (name, contact details, job details)</td><td>6 years from the date of the booking</td><td>Legal requirement for financial records under HMRC guidelines</td></tr>
                                 <tr><td>Unpaid reservation enquiries (no booking completed)</td><td>90 days from the slot release date</td><td>Legitimate interest — to follow up on incomplete bookings</td></tr>
                                 <tr><td>General contact enquiries (no booking made)</td><td>12 months from the date of contact</td><td>Legitimate interest — in case of follow-up queries</td></tr>
-                                <tr><td>Website analytics data</td><td>Up to 26 months</td><td>Standard analytics retention period</td></tr>
+                                <tr><td>Website analytics data</td><td>Not held by us — aggregate, anonymous statistics only</td><td>Cloudflare Web Analytics is cookieless and collects no personal data</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -347,7 +347,7 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 1</p>
                     <h2>What this page covers</h2>
-                    <p>This website uses Google Analytics to help us understand how visitors use the site. Google Analytics sets cookies on your device to collect anonymised information about pages visited, time spent on the site, and how you arrived here. This data is used only to improve the website — it is never used to identify you personally or shared with third parties for advertising purposes. A cookie consent banner will be in place before this site goes live.</p>
+                    <p>This website uses Cloudflare Web Analytics to help us understand how visitors use the site. It is a privacy-first, cookieless tool — it sets no cookies on your device, uses no personal identifiers, and does not track you across other websites. It gives us only aggregate statistics such as page views, referrers, country, and device type. Because it stores nothing on your device and collects no personal data, no cookie consent is required for it.</p>
                 </div>
 
                 <div class="loc-legal-section">
@@ -359,7 +359,7 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 3</p>
                     <h2>If this changes</h2>
-                    <p>If we introduce analytics or other tracking in future, we'll update this page and add a consent mechanism where required by law, before any such tool goes live.</p>
+                    <p>If we introduce any tool that does set cookies or track you in future, we'll update this page and add a consent mechanism where required by law, before any such tool goes live.</p>
                 </div>
 
                 <div class="loc-legal-section">
