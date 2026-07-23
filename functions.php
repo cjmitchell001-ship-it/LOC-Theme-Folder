@@ -1545,22 +1545,21 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             var calBody     = document.getElementById('loc-cal-body');
             var calMonth    = document.getElementById('loc-cal-month');
 
-            // Only fall back to unfiltered mode if zone is genuinely unknown.
             // Missing duration (skip route / inline Step 2 route) uses a 60-min
-            // default so zone filtering still applies.
-            if (!locZone || locZone === 'unknown') {
-                isFallbackMode = true;
-                renderCalendar();
-                return;
-            }
-
+            // default so zone filtering still applies. An unrecognised postcode
+            // ('unknown' zone, or no zone at all) still hits the real
+            // availability API below — it only affects zone-labelled date
+            // visibility server-side, not the Unavailable-block/job-cap checks.
+            // Fallback mode (showing every date) is reserved for genuine
+            // fetch/API failures, caught further down.
+            var fetchZone     = locZone || 'unknown';
             var fetchDuration = locDuration > 0 ? locDuration : 60;
 
             // Show loading state
             if (calMonth) calMonth.textContent = ' ';
             if (calBody)  calBody.innerHTML    = '<tr><td colspan="7" style="text-align:center;padding:var(--space-8) 0;color:var(--grey-400);font-size:var(--text-ui);">Loading available dates…</td></tr>';
 
-            fetch('/wp-admin/admin-ajax.php?action=loc_calendar_availability&zone=' + encodeURIComponent(locZone) + '&duration_minutes=' + fetchDuration)
+            fetch('/wp-admin/admin-ajax.php?action=loc_calendar_availability&zone=' + encodeURIComponent(fetchZone) + '&duration_minutes=' + fetchDuration)
                 .then(function(r) { return r.json(); })
                 .then(function(data) {
                     if (!data || data.error || !Array.isArray(data)) {
