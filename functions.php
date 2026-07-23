@@ -684,6 +684,11 @@ function loc_step2_script() {
                 // Populate input
                 var newPostcode = tag.dataset.postcode;
                 postcodeInput.value = newPostcode;
+                // Capture the specific area name (tag text minus the postcode span)
+                var tagClone = tag.cloneNode(true);
+                var tagSpan  = tagClone.querySelector('span');
+                if (tagSpan) tagSpan.remove();
+                sessionStorage.setItem('loc_area_name', tagClone.textContent.trim());
                 // If postcode was already confirmed, keep sessionStorage in sync
                 if (continueWrap.style.display !== 'none' && continueWrap.style.display !== '' ||
                     inlineSection.style.display !== 'none' && inlineSection.style.display !== '') {
@@ -704,6 +709,7 @@ function loc_step2_script() {
         postcodeInput.addEventListener('input', function() {
             areaTags.forEach(function(t) { t.classList.remove('is-selected'); });
             sessionStorage.removeItem('loc_postcode');
+            sessionStorage.removeItem('loc_area_name');
             confirmedBanner.style.display = 'none';
             continueWrap.style.display = 'none';
             inlineSection.style.display = 'none';
@@ -1410,6 +1416,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             var ssDuration      = parseInt(sessionStorage.getItem('loc_duration'), 10) || 0;
             var ssZone          = sessionStorage.getItem('loc_zone') || '';
             var ssPostcode      = sessionStorage.getItem('loc_postcode') || '';
+            var ssAreaName      = sessionStorage.getItem('loc_area_name') || '';
 
             var first = document.getElementById('loc-first-name').value.trim();
             var last  = document.getElementById('loc-last-name').value.trim();
@@ -1457,6 +1464,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 duration_minutes: ssDuration,
                 zone:             ssZone,
                 postcode:         ssPostcode,
+                area_name:        ssAreaName,
                 appliances:       ssSelections,
                 total:            ssTotal
             };

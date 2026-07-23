@@ -26,6 +26,8 @@ function loc_handle_reservation() {
     $duration_minutes = intval(                          $_POST['duration_minutes'] ?? 0    );
     $zone             = sanitize_text_field( wp_unslash( $_POST['zone']             ?? '' ) );
     $postcode         = sanitize_text_field( wp_unslash( $_POST['postcode']         ?? '' ) );
+    $area_name        = sanitize_text_field( wp_unslash( $_POST['area_name']        ?? '' ) );
+    $area_display     = $area_name !== '' ? $area_name : '—';
     $appliances_raw   = wp_unslash(          $_POST['appliances']       ?? '' );
     $total            = intval(              $_POST['total']            ?? 0  );
 
@@ -131,6 +133,7 @@ Date:      {$date_formatted}
 Slot:      {$slot_display}
 Zone:      {$zone}
 Postcode:  {$postcode}
+Area:      {$area_display}
 Callback:  {$callback_time}
 ----------------------------------
 Appliances:
