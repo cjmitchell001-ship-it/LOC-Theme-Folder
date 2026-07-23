@@ -30,7 +30,7 @@ get_header();
     <!-- HERO CONTENT -->
     <div class="loc-hero__content">
         <p class="section-eyebrow">Leicester Oven Cleaning</p>
-        <h1 class="loc-hero__title">Your oven, cleaned properly. Honest pricing, same day.</h1>
+        <h1 class="loc-hero__title">Your oven, cleaned properly.</h1>
         <p class="loc-hero__tagline" id="loc-hero-tagline">Serving Leicester &amp; Leicestershire — we call to confirm everything before we start.</p>
         <div class="loc-hero__ctas">
             <div class="loc-hero__cta-group">

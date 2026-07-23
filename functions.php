@@ -1409,6 +1409,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             var ssTotal         = parseInt(sessionStorage.getItem('loc_total'), 10) || 0;
             var ssDuration      = parseInt(sessionStorage.getItem('loc_duration'), 10) || 0;
             var ssZone          = sessionStorage.getItem('loc_zone') || '';
+            var ssPostcode      = sessionStorage.getItem('loc_postcode') || '';
 
             var first = document.getElementById('loc-first-name').value.trim();
             var last  = document.getElementById('loc-last-name').value.trim();
@@ -1455,6 +1456,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 slot:             selTimeLabel || '',
                 duration_minutes: ssDuration,
                 zone:             ssZone,
+                postcode:         ssPostcode,
                 appliances:       ssSelections,
                 total:            ssTotal
             };
