@@ -206,7 +206,17 @@
             </div>
         </div>
 
-        <p class="loc-step3-confirm-email-note">A confirmation email is on its way to you now &mdash; if it doesn&rsquo;t land in your inbox within a few minutes, please check your junk/spam folder.</p>
+        <!-- CONFIRMATION EMAIL NOTE -->
+        <div class="loc-step3-email-message">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M4 4h16v16H4z" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 6l8 7 8-7" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>
+                <strong>Check your inbox</strong>
+                <p>A confirmation email is on its way to you now &mdash; if it doesn&rsquo;t land within a few minutes, please check your junk/spam folder.</p>
+            </div>
+        </div>
 
         <a href="<?php echo home_url('/'); ?>" class="loc-step3-btn-home">&larr; Back to Home</a>
 
