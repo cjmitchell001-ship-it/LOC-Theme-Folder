@@ -206,6 +206,8 @@
             </div>
         </div>
 
+        <p class="loc-step3-confirm-email-note">A confirmation email is on its way to you now &mdash; if it doesn&rsquo;t land in your inbox within a few minutes, please check your junk/spam folder.</p>
+
         <a href="<?php echo home_url('/'); ?>" class="loc-step3-btn-home">&larr; Back to Home</a>
 
     </div>
