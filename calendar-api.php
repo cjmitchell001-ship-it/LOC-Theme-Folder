@@ -492,6 +492,7 @@ Just a reminder — we're booked in to clean your oven on {$dateFormatted} ({$sl
 WHAT TO HAVE READY ON THE DAY
 - Clear access to the oven(s) — please remove any trays, shelves, or items stored inside before we arrive
 - Access to a cold water tap — and hot water where available
+- Remaining balance ready to pay on the day — cash or bank transfer
 
 If anything's changed or you need to reschedule, just get in touch on 07710 649 360 or hello@leicesterovencleaning.co.uk.
 
