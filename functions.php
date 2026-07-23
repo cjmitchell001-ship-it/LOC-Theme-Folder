@@ -57,6 +57,36 @@ add_action( 'wp_ajax_nopriv_loc_calendar_availability', 'loc_handle_calendar_ava
 add_action( 'wp_ajax_loc_calendar_availability',        'loc_handle_calendar_availability' );
 
 // ============================================================
+// UPCOMING VISIT REMINDER — 3 days before, confirmed jobs only
+// See loc_send_upcoming_reminders() in calendar-api.php for the logic.
+//
+// Two triggers, either is sufficient on its own:
+//   1. WP-Cron daily event (built-in, but only fires on site traffic —
+//      not reliable pre-launch with low visitor numbers).
+//   2. External cron ping — set a SiteGround Cron Job (Site Tools →
+//      Devs → Cron Jobs) to hit this URL once a day:
+//      https://leicesterovencleaning.co.uk/wp-admin/admin-ajax.php?action=loc_send_reminders&key=be7174092a5735fa934ed2e7b7316c26
+// ============================================================
+
+define( 'LOC_REMINDER_CRON_KEY', 'be7174092a5735fa934ed2e7b7316c26' );
+
+add_action( 'loc_daily_reminder_check', 'loc_send_upcoming_reminders' );
+if ( ! wp_next_scheduled( 'loc_daily_reminder_check' ) ) {
+    wp_schedule_event( time(), 'daily', 'loc_daily_reminder_check' );
+}
+
+function loc_handle_send_reminders() {
+    if ( ! isset( $_GET['key'] ) || ! hash_equals( LOC_REMINDER_CRON_KEY, (string) $_GET['key'] ) ) {
+        wp_die( 'Unauthorised.', '', [ 'response' => 403 ] );
+    }
+    loc_send_upcoming_reminders();
+    echo 'OK';
+    wp_die();
+}
+add_action( 'wp_ajax_nopriv_loc_send_reminders', 'loc_handle_send_reminders' );
+add_action( 'wp_ajax_loc_send_reminders',        'loc_handle_send_reminders' );
+
+// ============================================================
 // GOOGLE CALENDAR OAUTH — WordPress-routed endpoint
 // Access: https://leicesterovencleaning.co.uk/?loc_calendar_auth=1
 // Must be visited while logged in as a WordPress admin.

@@ -396,3 +396,118 @@ function loc_ensure_zone_label( $service, $date, $zone ) {
     ] );
     $service->events->insert( $_LOC_CALENDAR_ID, $label );
 }
+
+
+// ============================================================
+// loc_send_upcoming_reminders()
+//
+// Finds CONFIRMED jobs (Chris has manually renamed the event
+// "Confirmed: Name" after the confirmation call) starting exactly
+// LOC_REMINDER_DAYS_BEFORE days from today, and emails the customer
+// a reminder. Provisional (unconfirmed) bookings are skipped — they
+// haven't had the confirmation call yet, so a reminder would be
+// premature.
+//
+// Idempotent: once a reminder is sent, the event description is
+// patched with a "Reminder: sent" marker so a duplicate run (cron
+// misfire, manual re-trigger) never emails the customer twice.
+//
+// Called by a WP-Cron daily event and by an external cron ping
+// (see loc_handle_send_reminders() in functions.php) — the latter
+// is the reliable trigger pre-launch, since WP-Cron only fires on
+// site traffic.
+// ============================================================
+
+define( 'LOC_REMINDER_DAYS_BEFORE', 3 );
+
+function loc_send_upcoming_reminders() {
+    global $_LOC_CALENDAR_ID;
+
+    $service = loc_get_calendar_service();
+    if ( is_string( $service ) ) {
+        return; // not authorised — nothing to do
+    }
+
+    $tz     = new DateTimeZone( 'Europe/London' );
+    $target = new DateTime( 'today', $tz );
+    $target->modify( '+' . LOC_REMINDER_DAYS_BEFORE . ' days' );
+    $dayStart = clone $target;
+    $dayEnd   = clone $target;
+    $dayEnd->modify( '+1 day' );
+
+    try {
+        $events = $service->events->listEvents( $_LOC_CALENDAR_ID, [
+            'timeMin'      => $dayStart->format( DateTime::RFC3339 ),
+            'timeMax'      => $dayEnd->format( DateTime::RFC3339 ),
+            'singleEvents' => true,
+            'orderBy'      => 'startTime',
+        ] );
+    } catch ( Exception $e ) {
+        return;
+    }
+
+    foreach ( $events->getItems() as $event ) {
+        $start = $event->getStart();
+        if ( ! $start->getDateTime() ) {
+            continue; // all-day zone label, not a job
+        }
+
+        $title = trim( (string) $event->getSummary() );
+        if ( stripos( $title, 'confirmed:' ) !== 0 ) {
+            continue; // only remind confirmed jobs
+        }
+
+        $description = (string) $event->getDescription();
+
+        if ( stripos( $description, 'Reminder: sent' ) !== false ) {
+            continue; // already reminded
+        }
+
+        if ( ! preg_match( '/^Name:\s*(.+)$/mi', $description, $mName ) ) {
+            continue;
+        }
+        if ( ! preg_match( '/^Email:\s*(.+)$/mi', $description, $mEmail ) ) {
+            continue;
+        }
+
+        $customerName = trim( $mName[1] );
+        $email        = trim( $mEmail[1] );
+        $firstName    = trim( explode( ' ', $customerName )[0] );
+
+        if ( ! is_email( $email ) ) {
+            continue;
+        }
+
+        $startDt = new DateTime( $start->getDateTime() );
+        $startDt->setTimezone( $tz );
+        $dateFormatted = $startDt->format( 'l j F Y' );
+        $slotDisplay   = ( (int) $startDt->format( 'H' ) < 13 ) ? 'Morning (7am – 1pm)' : 'Afternoon (1pm – 6pm)';
+
+        $subject = 'Reminder — your oven clean is on ' . $startDt->format( 'l j F' );
+        $body    = <<<EOT
+Hi {$firstName},
+
+Just a reminder — we're booked in to clean your oven on {$dateFormatted} ({$slotDisplay}).
+
+WHAT TO HAVE READY ON THE DAY
+- Clear access to the oven(s) — please remove any trays, shelves, or items stored inside before we arrive
+- Access to a cold water tap — and hot water where available
+
+If anything's changed or you need to reschedule, just get in touch on 07710 649 360 or hello@leicesterovencleaning.co.uk.
+
+See you soon,
+Leicester Oven Cleaning
+EOT;
+
+        $sent = wp_mail( $email, $subject, $body, [ 'Content-Type: text/plain; charset=UTF-8' ] );
+
+        if ( $sent ) {
+            try {
+                $event->setDescription( $description . "\nReminder: sent " . ( new DateTime( 'now', $tz ) )->format( 'Y-m-d H:i' ) );
+                $service->events->patch( $_LOC_CALENDAR_ID, $event->getId(), $event );
+            } catch ( Exception $e ) {
+                // Non-fatal — worst case a duplicate trigger re-sends once more.
+            }
+        }
+    }
+}
