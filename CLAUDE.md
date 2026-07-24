@@ -3,7 +3,7 @@ title: Leicester Oven Cleaning — Claude Code Project Context
 description: Single source of truth for the theme/codebase — design tokens, working conventions, funnel architecture, known bugs, the migration plan, and the founder privacy requirement. Read at the start of every session.
 tags: [technical, design-tokens, wordpress, css, leicester-oven-cleaning]
 type: reference
-updated: 2026-06-16
+updated: 2026-07-23
 ---
 
 # Leicester Oven Cleaning — Claude Code Project Context
@@ -224,6 +224,8 @@ Migration off WordPress to a static stack is **agreed**. WordPress is only used 
 Chris (the founder) wants his name, face, and personal/employment history kept OFF all public-facing pages for now — he is deliberately staying anonymous from some people while the business is pre-launch. Do not add a name, photo, or biographical detail (employment history, how the business started, personal anecdotes) to any page. The About page profile card shows role/location/quote only, no name. The intro and story sections are written in first person without self-identifying detail.
 
 **Exception: `page-business-commercial.php` intentionally uses the founder's first name ("Chris") three times**, in the "What Makes Us Different" section and contact options (~L130, ~L172, ~L283). This was a deliberate, reconsidered decision (June 2026) — the blanket no-name rule still applies to all other pages (About page remains fully anonymous), but this page is treated as an intentional exception. Do not depersonalise this page in future sessions without explicit instruction.
+
+**Update (July 2026) — phone number is a separate concern from this rule.** Chris's personal mobile number is now deliberately public on the Facebook page (Contact info, WhatsApp, Call Now-eligible) and live sitewide as the site's call number. This does NOT relax the name/face/employment-history rule above — the "we" voice and no-name/no-photo policy for the business itself remains fully intact. The phone number decision was made independently and applies only to the number itself.
 
 ---
 
