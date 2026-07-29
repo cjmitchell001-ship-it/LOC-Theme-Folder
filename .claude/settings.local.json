@@ -55,7 +55,27 @@
       "WebSearch",
       "Bash(awk 'NR==7238,NR==7248{print}' \"style.css\")",
       "Bash(awk 'NR==7220,NR==7260{print}' \"style.css\")",
-      "PowerShell(& \"C:\\\\Users\\\\cjmit\\\\AppData\\\\Roaming\\\\Local\\\\lightning-services\\\\php-8.2.29+0\\\\bin\\\\win64\\\\php.exe\" -l \"C:\\\\Users\\\\cjmit\\\\Local Sites\\\\leicester-oven-cleaning\\\\app\\\\public\\\\wp-content\\\\themes\\\\leicester-oven-cleaning-child\\\\page-reserve-step3.php\")"
+      "PowerShell(& \"C:\\\\Users\\\\cjmit\\\\AppData\\\\Roaming\\\\Local\\\\lightning-services\\\\php-8.2.29+0\\\\bin\\\\win64\\\\php.exe\" -l \"C:\\\\Users\\\\cjmit\\\\Local Sites\\\\leicester-oven-cleaning\\\\app\\\\public\\\\wp-content\\\\themes\\\\leicester-oven-cleaning-child\\\\page-reserve-step3.php\")",
+      "Bash(mv \"Business_strategy_v2_2.md\" \"Business-Strategist-Checklist.md\" \"Business-Strategist-Skill.md\" \"LOC-Project-Checklist.md\" \"LOC-Pricing.md\" \"Codemaster-Skill.md\" \"01-Business/\")",
+      "Bash(mv \"Content-Ideas-v1_3.md\" \"LOC-Facebook-Launch-Pack.md\" \"LOC-Promo-Post-Templates.md\" \"LOCGroupPostingTracker.xlsx\" \"social-skill.md\" \"visual-brand-skill.md\" \"02-Marketing/\")",
+      "Bash(mv \"SOP_V0.2\" \"03-Operations/SOP_v0.2.md\")",
+      "Bash(mv \"chem-advisor\" \"03-Operations/chemical-advisor-skill.md\")",
+      "Bash(mv \"Equipment-and-Consumables.md\" \"LOC_Health_and_Safety.docx\" \"SDS_EPIG_Heavy_Duty_Oven_Cleaner.pdf\" \"SDS_EPIG_Multi_Surface_Cleaner.pdf\" \"spray_bottle_labels.docx\" \"03-Operations/\")",
+      "Bash(nslookup leicesterovencleaning.co.uk)",
+      "Bash(dig +short leicesterovencleaning.co.uk)",
+      "Bash(grep -oE 'ChIJ[a-zA-Z0-9_-]{20,30}')",
+      "Bash(php -m)",
+      "Bash(identify \"/c/Users/cjmit/Desktop/LOC/02-Marketing/Site-Images/leicester_oven_cleaning_full_wordmark_blue.png\")",
+      "Bash(\"/c/WINDOWS/system32/convert\" --version)",
+      "Bash(where magick *)",
+      "Bash(python3 -c \"from PIL import Image; print\\('PIL ok'\\)\")",
+      "Bash(python -c \"from PIL import Image; print\\('PIL ok'\\)\")",
+      "Bash(/c/Users/cjmit/AppData/Roaming/Local/lightning-services/php-8.2.29+0/bin/win64/php.exe -m)",
+      "Bash(git config *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(git log *)"
     ]
   }
 }
