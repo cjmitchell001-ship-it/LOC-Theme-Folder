@@ -200,6 +200,25 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
         }
     }
 
+    // Self-healing fallback: reconstruct the zone restriction directly from
+    // the real bookings on any date that has no (or no longer has a valid)
+    // label event. This covers a label that was never created (a failed
+    // loc_ensure_zone_label call) or one that's manually deleted/edited on
+    // the calendar — the booking's own "Zone:" line is the source of truth,
+    // the label is just a visual aid, so its absence must never silently
+    // reopen a zoned day to every zone.
+    foreach ( $jobZonesByDay as $jobDate => $zones ) {
+        if ( isset( $zonedDates[ $jobDate ] ) ) {
+            continue; // already resolved above from an existing, valid label
+        }
+        foreach ( $zones as $z ) {
+            if ( $z !== 'central' && in_array( $z, $knownZones, true ) ) {
+                $zonedDates[ $jobDate ] = $z;
+                break;
+            }
+        }
+    }
+
     $slots     = [];
     $zoneLower = strtolower( $zone );
     $cursor    = clone $now;
