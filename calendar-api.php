@@ -91,6 +91,12 @@ function loc_get_calendar_service() {
 //     shown only to customers whose $zone matches that label.
 //   - Fully booked date (both morning and afternoon taken): hidden for everyone.
 //   - Past dates: always hidden.
+//   - "Open: N" / "Open: N AM" / "Open: N PM" override date (all-day event,
+//     can span multiple days e.g. a holiday): replaces the normal weekday/
+//     weekend job cap with N for that date, and ignores that date's
+//     recurring "Unavailable" block entirely — the override is treated as
+//     the whole truth for that date, not layered on top of normal rules.
+//     AM/PM restricts which single window is open; omitting it opens both.
 //
 // Returns array of [ 'date' => 'YYYY-MM-DD', 'morning' => bool, 'afternoon' => bool ]
 // ============================================================
@@ -127,31 +133,50 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
 
     // Index zone all-day events and timed events by date
     $zonedDates    = []; // date => zone label (lowercase) — only dates with a zone all-day event
-    $timedByDay    = []; // date => array of [start_ts, end_ts]
+    $timedByDay    = []; // date => array of [start_ts, end_ts, title]
     $jobCountByDay = []; // date => number of genuine job bookings (provisional or confirmed)
     $jobZonesByDay = []; // date => array of booking zones (lowercase), parsed from event descriptions
+    $openOverride  = []; // date => [ 'cap' => int, 'window' => 'both'|'am'|'pm' ]
 
     foreach ( $events->getItems() as $event ) {
         $start = $event->getStart();
         $end_e = $event->getEnd();
 
         if ( $start->getDate() ) {
-            // All-day event — record if it carries a known zone label
+            // All-day event — record if it carries a known zone label or an
+            // "Open: N [AM|PM]" capacity override. Can span multiple days
+            // (e.g. a holiday block), so expand across the full date range —
+            // Google returns multi-day all-day events as one item with a
+            // start/end pair, not one item per day.
             $title = strtolower( trim( $event->getSummary() ) );
-            if ( in_array( $title, $knownZones ) ) {
+
+            if ( in_array( $title, $knownZones, true ) ) {
                 $zonedDates[ $start->getDate() ] = $title;
+            } elseif ( preg_match( '/^open\s*:\s*(\d+)\s*(am|pm)?$/', $title, $om ) ) {
+                $tzL      = new DateTimeZone( 'Europe/London' );
+                $dCursor  = new DateTime( $start->getDate(), $tzL );
+                $dEnd     = new DateTime( $end_e->getDate(), $tzL ); // exclusive
+                $window   = isset( $om[2] ) ? $om[2] : 'both';
+                while ( $dCursor < $dEnd ) {
+                    $openOverride[ $dCursor->format( 'Y-m-d' ) ] = [
+                        'cap'    => (int) $om[1],
+                        'window' => $window,
+                    ];
+                    $dCursor->modify( '+1 day' );
+                }
             }
         } else {
             // Timed event — record as an occupied block
-            $date = ( new DateTime( $start->getDateTime() ) )->format( 'Y-m-d' );
+            $date  = ( new DateTime( $start->getDateTime() ) )->format( 'Y-m-d' );
+            $title = strtolower( trim( $event->getSummary() ) );
             $timedByDay[ $date ][] = [
                 strtotime( $start->getDateTime() ),
                 strtotime( $end_e->getDateTime() ),
+                $title,
             ];
 
             // Count genuine job bookings only — excludes the recurring
             // "Unavailable" day-blocking events, which are not jobs.
-            $title = strtolower( trim( $event->getSummary() ) );
             if ( strpos( $title, 'provisional:' ) === 0 || strpos( $title, 'confirmed:' ) === 0 ) {
                 $jobCountByDay[ $date ] = ( $jobCountByDay[ $date ] ?? 0 ) + 1;
 
@@ -189,15 +214,32 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
             continue;
         }
 
+        $override = $openOverride[ $dateStr ] ?? null;
+
+        // On an override date, the recurring "Unavailable" block is ignored
+        // entirely — the override is the whole truth for that date, not
+        // layered on top of the normal weekday/weekend window rules.
+        $excludeTitles = $override ? [ 'unavailable' ] : [];
+
         // Check morning (07:00–13:00) and afternoon (13:00–18:00) slots
-        $morning   = loc_slot_is_free( $dateStr, '07:00', '13:00', $duration_minutes, $timedByDay );
-        $afternoon = loc_slot_is_free( $dateStr, '13:00', '18:00', $duration_minutes, $timedByDay );
+        $morning   = loc_slot_is_free( $dateStr, '07:00', '13:00', $duration_minutes, $timedByDay, $excludeTitles );
+        $afternoon = loc_slot_is_free( $dateStr, '13:00', '18:00', $duration_minutes, $timedByDay, $excludeTitles );
+
+        if ( $override ) {
+            // AM/PM restricts to a single window; omitting it opens both.
+            if ( $override['window'] === 'am' ) {
+                $afternoon = false;
+            } elseif ( $override['window'] === 'pm' ) {
+                $morning = false;
+            }
+        }
 
         // Day-level job cap — sits alongside the time-window check above.
         // Once a day hits its cap, it's fully unavailable regardless of
-        // remaining unused hours in the window.
+        // remaining unused hours in the window. An override date uses its
+        // own cap instead of the normal weekday/weekend cap.
         $isWeekend = in_array( (int) $cursor->format( 'N' ), [ 6, 7 ], true );
-        $jobCap    = $isWeekend ? LOC_WEEKEND_JOB_CAP : LOC_WEEKDAY_JOB_CAP;
+        $jobCap    = $override ? $override['cap'] : ( $isWeekend ? LOC_WEEKEND_JOB_CAP : LOC_WEEKDAY_JOB_CAP );
         $jobCount  = $jobCountByDay[ $dateStr ] ?? 0;
 
         if ( $jobCount >= $jobCap ) {
@@ -223,7 +265,9 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
 
 // Helper: checks whether a contiguous block of $duration_minutes fits within
 // a slot window (e.g. 07:00-13:00) given existing timed events on that date.
-function loc_slot_is_free( $date, $slot_start, $slot_end, $duration_minutes, $timedByDay ) {
+// $excludeTitles: lowercase event titles to ignore entirely (e.g. the
+// recurring "Unavailable" block, on a date with an "Open: N" override).
+function loc_slot_is_free( $date, $slot_start, $slot_end, $duration_minutes, $timedByDay, $excludeTitles = [] ) {
     $tz        = new DateTimeZone( 'Europe/London' );
     $windowStart = strtotime( ( new DateTime( $date . ' ' . $slot_start, $tz ) )->format( DateTime::RFC3339 ) );
     $windowEnd   = strtotime( ( new DateTime( $date . ' ' . $slot_end,   $tz ) )->format( DateTime::RFC3339 ) );
@@ -233,6 +277,9 @@ function loc_slot_is_free( $date, $slot_start, $slot_end, $duration_minutes, $ti
     $busy = [];
     if ( isset( $timedByDay[ $date ] ) ) {
         foreach ( $timedByDay[ $date ] as $block ) {
+            if ( $excludeTitles && in_array( $block[2] ?? '', $excludeTitles, true ) ) {
+                continue;
+            }
             $bs = max( $block[0], $windowStart );
             $be = min( $block[1], $windowEnd );
             if ( $bs < $be ) {
