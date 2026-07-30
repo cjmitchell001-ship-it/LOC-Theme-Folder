@@ -75,7 +75,11 @@
       "Bash(git remote *)",
       "Bash(git branch *)",
       "Bash(git push *)",
-      "Bash(git log *)"
+      "Bash(git log *)",
+      "Bash(\"/c/Users/cjmit/AppData/Roaming/Local/lightning-services/php-8.2.29+0/bin/win64/php.exe\" -l \"C:\\\\Users\\\\cjmit\\\\Local Sites\\\\leicester-oven-cleaning\\\\app\\\\public\\\\wp-content\\\\themes\\\\leicester-oven-cleaning-child\\\\calendar-api.php\")",
+      "Bash(scp -i ~/.ssh/siteground_leicesterovencleaning -P 18765 calendar-api.php u2218-ogxjkzvty3ee@uk12.siteground.eu:/home/customer/www/leicesterovencleaning.co.uk/public_html/wp-content/themes/leicester-oven-cleaning-child/calendar-api.php.new)",
+      "Bash(php -l \"calendar-api.php\")",
+      "Bash(git fetch *)"
     ]
   }
 }
