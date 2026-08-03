@@ -76,7 +76,7 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Gas Hob</h3>
-                        <span class="loc-services-card__price">from £25</span>
+                        <span class="loc-services-card__price">from £15</span>
                     </div>
                     <p class="loc-services-card__desc">Burner heads, caps, pan supports, and hob surface — all removed, soaked, and cleaned individually.</p>
                 </div>
@@ -84,7 +84,7 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Ceramic / Induction Hob</h3>
-                        <span class="loc-services-card__price">£25</span>
+                        <span class="loc-services-card__price">£15</span>
                     </div>
                     <p class="loc-services-card__desc">A careful surface clean and polish, using a scratch-safe technique throughout.</p>
                 </div>
@@ -92,7 +92,7 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Extractor Hood</h3>
-                        <span class="loc-services-card__price">from £25</span>
+                        <span class="loc-services-card__price">from £15</span>
                     </div>
                     <p class="loc-services-card__desc">Grease filters removed, soaked, and degreased, with fan housing and exterior surfaces cleaned and polished to finish.</p>
                 </div>
@@ -100,7 +100,7 @@ get_header();
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Microwave</h3>
-                        <span class="loc-services-card__price">£25</span>
+                        <span class="loc-services-card__price">£15</span>
                     </div>
                     <p class="loc-services-card__desc">Interior cavity, turntable, and door, fully cleaned, dried, and left ready to use.</p>
                 </div>
