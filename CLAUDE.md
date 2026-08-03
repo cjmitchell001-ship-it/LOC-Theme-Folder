@@ -10,6 +10,8 @@ updated: 2026-07-23
 
 > This file is the single source of truth for the project. It is maintained alongside the code and updated as decisions are made. Read it at the start of every session. Do not treat the V10 context document as authoritative — this file supersedes it.
 
+> **Also check `C:\Users\cjmit\Desktop\LOC\CLAUDE.md` for business-side context.** This file (the theme repo) covers code/design/funnel/technical decisions only. Strategy, marketing, GBP, operations, pricing decisions, and — importantly — the current priority order for website-content work (location pages, blog posts, SEO) live in the separate `Desktop\LOC\` repo, not here. A session that only reads this file will miss that context entirely (this has already happened once — a fresh session concluded website-content work was "done ages ago" based only on this file's old copywriting-pass log entries, when the real current status was sitting in the other repo). If the task is anything beyond a direct code/CSS/PHP change, read the other file too before concluding anything about project status.
+
 ---
 
 ## Project
@@ -62,7 +64,7 @@ WordPress is used for routing and template loading only. There are no plugin dep
 | `page-reserve-step2.php` | Funnel Step 2 — postcode / area |
 | `page-reserve-step3.php` | Funnel Step 3 — calendar + reservation modal |
 
-Companion docs in the repo: `STYLE-CONFLICTS.md` (conflict/duplication audit — the structural to-do list) and `STYLE-AUDIT.md` (original value audit). Read alongside this file.
+Companion doc in the repo: `STYLE-AUDIT.md` (original value audit). `STYLE-CONFLICTS.md` no longer exists (confirmed Aug 2026) — do not reference it as a live file.
 
 ---
 
@@ -168,11 +170,11 @@ All four routes implemented and tested on mobile (June 2026).
 - **Reserve URLs:** Reserve buttons point to `/reserve-step-1` (the earlier `/reserve` 404 bug is fixed).
 - **ICO number:** Footer wording reworded (m8) to remove the implication of a current registration number — still placeholder, no real ICO number yet.
 - **Companies House:** Badge/claim removed from footer entirely (m8) — company not registered, no number to show.
-- **Cancellation policy:** Placeholder page created (m8) — content still to be written before go-live.
+- ~~**Cancellation policy:** Placeholder page created (m8) — content still to be written~~ Stale — Chris confirmed (Aug 2026) the cancellation policy content is already done.
 - **Social links:** Facebook is real (`https://www.facebook.com/LeicesterOvenCleaning`); Instagram and Google Business Profile icons removed from `footer.php` until those profiles exist — re-add when live.
 - ~~**All pricing figures:**~~ REAL as of July 2026 — verified against the locked price list (see LOC-Pricing; Single £70 / Double £90 / Range £125 / Free-Standing £70 / Gas Hob from £25 / Induction £25 / Extractor from £25 / Microwave £25 / Combi £30 / AGA & BBQ contact-us). Early bird offer overlays this until 10 Aug 2026 (see Session Log).
-- **Areas map image:** AI-generated placeholder
-- **Hero carousel images:** Mix of AI/stock — real photos needed
+- ~~**Areas map image:** AI-generated placeholder~~ Stale — Chris confirmed (Aug 2026) a map is no longer used on the Areas page.
+- ~~**Hero carousel images:** Mix of AI/stock — real photos needed~~ Wrong/stale — Chris's call (Aug 2026): keep the current polished AI/stock carousel images intentionally, not his own before/after oven photos. Do not flag this as needing real photos again.
 
 ---
 
@@ -182,7 +184,7 @@ All four routes implemented and tested on mobile (June 2026).
 - ~~**Mobile header overflow:** RESERVE/CALL/hamburger clipped off right edge~~ Fixed — Call moved into the dropdown menu, header row is now logo · Reserve · hamburger. (This was the root cause of the funnel's 780/781 breakpoint hack — see breakpoint note below.)
 - ~~**Token rendering bugs from the refactor:** `--space-18`/`--space-25` undefined (8 sections zero-padding); `ox-shadow` typo (21 shadows not rendering)~~ Both found by the conflict audit and fixed June 2026.
 - ~~**Step 3 skip route text:** `#loc-summary-items` shows "No selection found" when skip route used~~ Already fixed — `functions.php` branches on `isSkip`, showing "Appliances to be discussed on the call" for the skip route; "No selection found" only shows for the genuine no-selection case now.
-- **Step 1 desktop right rail:** Empty after summary panel was removed — needs a plan for the responsive pass. Still open (confirmed July 2026).
+- ~~**Step 1 desktop right rail:** Empty after summary panel was removed~~ Stale — not actually empty. Sidebar is fully populated (Discuss-on-the-call panel, totals/CTA, price guarantee note) per `.loc-step1-sidebar` desktop CSS and confirmed by browser screenshot (Aug 2026). Marking resolved/non-issue.
 - ~~**Clickable contact references — pre-launch task:**~~ Completed June 2026 (m12). 17 instances linked across 6 files (`front-page.php`, `page-areas.php`, `page-business-commercial.php`, `page-faq.php`, `page-legal.php`, `page-services.php`). Call references use `tel:PLACEHOLDER`; all others use `/contact`. Final sweep confirmed zero unlinked instances remain.
 
 ---
@@ -199,8 +201,8 @@ Token system and all 6 structural cleanup objectives are done. 9 commits, ~550 l
 6. ✅ **Media query collection.** Duplicate Step 2 responsive block merged; 3 back-to-back layout-cap blocks collapsed into one.
 
 **What remains (deferred):**
-- Sticky-bar full CSS/JS unification (Option B) — JS references sub-element class names; deferred until a JS refactor pass.
-- `STYLE-CONFLICTS.md` is stale — all items resolved; archive or rewrite before Phase 2.
+- ~~Sticky-bar full CSS/JS unification (Option B)~~ Stale — no longer considered outstanding (Aug 2026).
+- ~~`STYLE-CONFLICTS.md` is stale — all items resolved; archive or rewrite before Phase 2.~~ Confirmed (Aug 2026): the file no longer exists in the theme folder at all — nothing to archive/rewrite.
 - `loc-step3-summary-col { order: 1 }` formatting inconsistency (unindented inside `@media`) — low priority.
 
 ---
