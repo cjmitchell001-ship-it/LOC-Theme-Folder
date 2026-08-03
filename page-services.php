@@ -29,7 +29,7 @@ get_header();
             <p class="loc-services-section__intro">We come to your home, treat it with care, and give your oven, hob, or extractor a full professional clean — stripped down, professionally cleaned component by component, and reassembled — all in a single visit.</p>
 
             <?php $loc_eb = loc_earlybird_active(); ?>
-            <?php if ( $loc_eb ) : ?><p class="loc-earlybird-note">Early bird pricing on ovens — ends 10th August</p><?php endif; ?>
+            <?php if ( $loc_eb ) : ?><p class="loc-earlybird-note">Early rates on ovens — extended while we build our client base</p><?php endif; ?>
             <div class="loc-services-grid">
 
                 <div class="loc-services-card">

@@ -171,7 +171,7 @@
         <!-- OVENS -->
         <div class="loc-appliance-group">
             <p class="loc-appliance-group__label">Ovens</p>
-            <?php if ( $loc_eb ) : ?><p class="loc-earlybird-note">Early bird pricing — ends 10th August</p><?php endif; ?>
+            <?php if ( $loc_eb ) : ?><p class="loc-earlybird-note">Early rates — extended while we build our client base</p><?php endif; ?>
             <div class="loc-appliance-cards loc-appliance-cards--inline">
 
                 <div class="loc-appliance-card loc-appliance-card--inline" data-name="Single Oven" data-price="<?php echo $loc_eb ? '55' : '70'; ?>">

@@ -14,9 +14,18 @@ require_once get_stylesheet_directory() . '/reservation-handler.php';
 // Free-Standing Oven £55. Auto-reverts to standard pricing on
 // LOC_EARLYBIRD_END with zero edits (bar, notes, strike-through
 // prices and data-price values all key off loc_earlybird_active()).
+//
+// EXTENDED (3 Aug 2026): originally a 10 Aug 2026 cutoff. Chris
+// decided to keep early rates running while still building the
+// initial client base, rather than reverting to £70/£90 — see
+// LOC-Pricing.md "Early-Bird pricing made permanent" entry, now
+// superseded by "Early-Bird extended, not made permanent" (3 Aug
+// 2026). This is a soft review date, not a hard deadline — revisit
+// before it lapses and push forward again if still building the
+// client base, or make a final pricing call at that point.
 // ============================================================
 
-define( 'LOC_EARLYBIRD_END', '2026-08-10' ); // offer shows while today < this date
+define( 'LOC_EARLYBIRD_END', '2026-12-31' ); // offer shows while today < this date — review before this date
 
 function loc_earlybird_active() {
     return current_time( 'Y-m-d' ) < LOC_EARLYBIRD_END;
