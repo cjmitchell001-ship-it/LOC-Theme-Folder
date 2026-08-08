@@ -96,6 +96,34 @@ add_action( 'wp_ajax_nopriv_loc_send_reminders', 'loc_handle_send_reminders' );
 add_action( 'wp_ajax_loc_send_reminders',        'loc_handle_send_reminders' );
 
 // ============================================================
+// CAPACITY VIEW — private, admin-only
+// Access: https://leicesterovencleaning.co.uk/?loc_capacity=1
+// Must be visited while logged in as a WordPress admin.
+//
+// Routed through WordPress rather than served as a direct theme file:
+// SiteGround's NGINX returns 403 on direct theme PHP execution.
+// ============================================================
+
+add_action( 'template_redirect', function() {
+    if ( empty( $_GET['loc_capacity'] ) || $_GET['loc_capacity'] !== '1' ) {
+        return;
+    }
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return; // fall through to a normal 404 — no hint the page exists
+    }
+
+    require_once get_stylesheet_directory() . '/calendar-api.php';
+    require_once get_stylesheet_directory() . '/capacity-view.php';
+
+    $days = isset( $_GET['days'] ) ? max( 7, min( 180, intval( $_GET['days'] ) ) ) : 60;
+
+    nocache_headers();
+    header( 'Content-Type: text/html; charset=utf-8' );
+    echo loc_render_capacity_view( loc_get_capacity_overview( $days ) );
+    exit;
+} );
+
+// ============================================================
 // GOOGLE CALENDAR OAUTH — WordPress-routed endpoint
 // Access: https://leicesterovencleaning.co.uk/?loc_calendar_auth=1
 // Must be visited while logged in as a WordPress admin.
