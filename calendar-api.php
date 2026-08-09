@@ -101,7 +101,74 @@ function loc_get_calendar_service() {
 // Returns array of [ 'date' => 'YYYY-MM-DD', 'morning' => bool, 'afternoon' => bool ]
 // ============================================================
 
-function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
+// $events: optional pre-fetched event list. Production callers omit it and the
+// events are fetched here; passing it lets the rules be exercised against
+// fixture events without touching the Google API.
+function loc_get_available_slots( $zone, $duration_minutes, $days_ahead, $events = null ) {
+    if ( $events === null ) {
+        $events = loc_fetch_calendar_events( $days_ahead );
+    }
+    if ( is_string( $events ) ) {
+        return $events; // AUTH_REQUIRED:...
+    }
+
+    $tz  = new DateTimeZone( 'Europe/London' );
+    $now = new DateTime( 'today', $tz );
+    $end = clone $now;
+    $end->modify( '+' . intval( $days_ahead ) . ' days' );
+
+    $state     = loc_build_calendar_state( $events );
+    $slots     = [];
+    $zoneLower = strtolower( $zone );
+    $cursor    = clone $now;
+
+    while ( $cursor < $end ) {
+        $dateStr = $cursor->format( 'Y-m-d' );
+
+        // Zone-labelled date: visible to that zone's customers AND Central
+        // customers (Central is zone-neutral). Everyone else skips the day.
+        if ( isset( $state['zonedDates'][ $dateStr ] )
+             && $state['zonedDates'][ $dateStr ] !== $zoneLower
+             && $zoneLower !== 'central' ) {
+            $cursor->modify( '+1 day' );
+            continue;
+        }
+
+        $day = loc_resolve_day( $dateStr, $state, $duration_minutes );
+
+        // Only include if at least one slot is free
+        if ( $day['morning'] || $day['afternoon'] ) {
+            $slots[] = [
+                'date'      => $dateStr,
+                'morning'   => $day['morning'],
+                'afternoon' => $day['afternoon'],
+            ];
+        }
+
+        $cursor->modify( '+1 day' );
+    }
+
+    return $slots;
+}
+
+
+// ============================================================
+// loc_fetch_calendar_events( $days_ahead )
+// Fetches every event in the window from the Jobs calendar.
+//
+// Returns an array of Google event objects, or an error STRING
+// ('AUTH_REQUIRED:<url>' or 'FETCH_FAILED:<reason>').
+//
+// It deliberately does NOT return [] on failure. An empty array is a
+// legitimate answer meaning "this calendar is genuinely clear", which
+// makes every date look bookable — so a failed API call returning []
+// would silently advertise full availability and take bookings against
+// a calendar we cannot read. (Seen for real: a token authorised to the
+// wrong Google account returned 404, which presented as 60 empty days.)
+// Callers must treat a string as fatal and refuse to offer slots.
+// ============================================================
+
+function loc_fetch_calendar_events( $days_ahead ) {
     global $_LOC_CALENDAR_ID;
 
     $service = loc_get_calendar_service();
@@ -114,31 +181,51 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
     $end = clone $now;
     $end->modify( '+' . intval( $days_ahead ) . ' days' );
 
-    $timeMin = $now->format( DateTime::RFC3339 );
-    $timeMax = $end->format( DateTime::RFC3339 );
-
-    // Fetch all events in window
     try {
         $events = $service->events->listEvents( $_LOC_CALENDAR_ID, [
-            'timeMin'      => $timeMin,
-            'timeMax'      => $timeMax,
+            'timeMin'      => $now->format( DateTime::RFC3339 ),
+            'timeMax'      => $end->format( DateTime::RFC3339 ),
             'singleEvents' => true,
             'orderBy'      => 'startTime',
         ] );
     } catch ( Exception $e ) {
-        return [];
+        error_log( 'LOC calendar: event fetch failed — ' . $e->getMessage() );
+        return 'FETCH_FAILED:' . $e->getMessage();
     }
 
+    return $events->getItems();
+}
+
+
+// ============================================================
+// loc_build_calendar_state( $eventItems )
+//
+// Turns raw calendar events into the per-date index every availability
+// decision is made from. Pure — no API calls, no clock reads — so it can
+// be exercised directly against fixture events.
+//
+// Returns [
+//   'zonedDates'    => date => zone (lowercase), validated + self-healed
+//   'timedByDay'    => date => [ [start_ts, end_ts, title], ... ]
+//   'jobCountByDay' => date => int
+//   'jobsByDay'     => date => [ [ 'title', 'start_ts', 'status', 'zone' ], ... ]
+//   'openOverride'  => date => [ 'cap' => int, 'window' => 'both'|'am'|'pm' ]
+//   'zoneSrc'       => date => 'label'|'booking'  (where the zone came from)
+// ]
+// ============================================================
+
+function loc_build_calendar_state( $eventItems ) {
     $knownZones = [ 'north', 'south', 'east', 'west', 'central' ];
 
-    // Index zone all-day events and timed events by date
     $zonedDates    = []; // date => zone label (lowercase) — only dates with a zone all-day event
     $timedByDay    = []; // date => array of [start_ts, end_ts, title]
     $jobCountByDay = []; // date => number of genuine job bookings (provisional or confirmed)
     $jobZonesByDay = []; // date => array of booking zones (lowercase), parsed from event descriptions
+    $jobsByDay     = []; // date => array of job detail rows (for the owner-facing capacity view)
     $openOverride  = []; // date => [ 'cap' => int, 'window' => 'both'|'am'|'pm' ]
+    $zoneSrc       = []; // date => 'label' | 'booking'
 
-    foreach ( $events->getItems() as $event ) {
+    foreach ( $eventItems as $event ) {
         $start = $event->getStart();
         $end_e = $event->getEnd();
 
@@ -183,9 +270,23 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
                 // Record the booking's zone (from the "Zone:" line written
                 // into the description at booking time) so stale zone labels
                 // can be detected below.
+                $jobZone = null;
                 if ( preg_match( '/^Zone:\s*(\S+)/mi', (string) $event->getDescription(), $m ) ) {
-                    $jobZonesByDay[ $date ][] = strtolower( $m[1] );
+                    $jobZone = strtolower( $m[1] );
+                    $jobZonesByDay[ $date ][] = $jobZone;
                 }
+
+                // Keep a NON-IDENTIFYING record of the booking for the capacity
+                // view. Deliberately no name, phone, email or address: the view
+                // answers "how much room is left", which never requires knowing
+                // who is booked. Customer details are not carried out of this
+                // function at all, so they cannot be rendered by accident.
+                $jobsByDay[ $date ][] = [
+                    'start_ts' => strtotime( $start->getDateTime() ),
+                    'end_ts'   => strtotime( $end_e->getDateTime() ),
+                    'status'   => strpos( $title, 'confirmed:' ) === 0 ? 'confirmed' : 'provisional',
+                    'zone'     => $jobZone,
+                ];
             }
         }
     }
@@ -197,6 +298,8 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
     foreach ( $zonedDates as $labelDate => $label ) {
         if ( ! in_array( $label, $jobZonesByDay[ $labelDate ] ?? [], true ) ) {
             unset( $zonedDates[ $labelDate ] );
+        } else {
+            $zoneSrc[ $labelDate ] = 'label';
         }
     }
 
@@ -214,71 +317,213 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead ) {
         foreach ( $zones as $z ) {
             if ( $z !== 'central' && in_array( $z, $knownZones, true ) ) {
                 $zonedDates[ $jobDate ] = $z;
+                $zoneSrc[ $jobDate ]    = 'booking';
                 break;
             }
         }
     }
 
-    $slots     = [];
-    $zoneLower = strtolower( $zone );
+    return [
+        'zonedDates'    => $zonedDates,
+        'timedByDay'    => $timedByDay,
+        'jobCountByDay' => $jobCountByDay,
+        'jobsByDay'     => $jobsByDay,
+        'openOverride'  => $openOverride,
+        'zoneSrc'       => $zoneSrc,
+    ];
+}
+
+
+// ============================================================
+// loc_resolve_day( $dateStr, $state, $duration_minutes )
+//
+// Applies the window, override and job-cap rules to a single date.
+// This is the ONLY place those rules live — both the customer-facing
+// availability lookup and the owner-facing capacity view call it, so
+// the two can never drift apart on what "free" means.
+//
+// Zone filtering is deliberately NOT done here: the customer view hides
+// a mismatched zone entirely, the owner view shows it with a label.
+//
+// Returns [ 'cap', 'booked', 'free', 'morning', 'afternoon', 'override' ]
+// ============================================================
+
+function loc_resolve_day( $dateStr, $state, $duration_minutes ) {
+    $override = $state['openOverride'][ $dateStr ] ?? null;
+
+    // On an override date, the recurring "Unavailable" block is ignored
+    // entirely — the override is the whole truth for that date, not
+    // layered on top of the normal weekday/weekend window rules.
+    $excludeTitles = $override ? [ 'unavailable' ] : [];
+
+    // Check morning (07:00–13:00) and afternoon (13:00–18:00) slots
+    $morning   = loc_slot_is_free( $dateStr, '07:00', '13:00', $duration_minutes, $state['timedByDay'], $excludeTitles );
+    $afternoon = loc_slot_is_free( $dateStr, '13:00', '18:00', $duration_minutes, $state['timedByDay'], $excludeTitles );
+
+    if ( $override ) {
+        // AM/PM restricts to a single window; omitting it opens both.
+        if ( $override['window'] === 'am' ) {
+            $afternoon = false;
+        } elseif ( $override['window'] === 'pm' ) {
+            $morning = false;
+        }
+    }
+
+    // Day-level job cap — sits alongside the time-window check above.
+    // Once a day hits its cap, it's fully unavailable regardless of
+    // remaining unused hours in the window. An override date uses its
+    // own cap instead of the normal weekday/weekend cap.
+    $tz        = new DateTimeZone( 'Europe/London' );
+    $isWeekend = in_array( (int) ( new DateTime( $dateStr, $tz ) )->format( 'N' ), [ 6, 7 ], true );
+    $jobCap    = $override ? $override['cap'] : ( $isWeekend ? LOC_WEEKEND_JOB_CAP : LOC_WEEKDAY_JOB_CAP );
+    $jobCount  = $state['jobCountByDay'][ $dateStr ] ?? 0;
+
+    if ( $jobCount >= $jobCap ) {
+        $morning   = false;
+        $afternoon = false;
+    }
+
+    return [
+        'cap'        => $jobCap,
+        'booked'     => $jobCount,
+        'free'       => max( 0, $jobCap - $jobCount ),
+        'morning'    => $morning,
+        'afternoon'  => $afternoon,
+        'is_weekend' => $isWeekend,
+        'override'   => $override,
+    ];
+}
+
+
+// ============================================================
+// loc_get_capacity_overview( $days_ahead, $events = null )
+//
+// Owner-facing counterpart to loc_get_available_slots(). Same rules
+// (both call loc_resolve_day), different question: not "which dates may
+// THIS customer book" but "how much room is left, everywhere".
+//
+// Differences from the customer view, all deliberate:
+//   - every date is returned, including closed ones (the customer view
+//     omits them; a wall calendar needs the gaps drawn)
+//   - no zone filtering — the day's zone is reported, not applied
+//   - job details are included so the view can show who is booked
+//
+// The probe duration is a nominal "typical job" (single oven, 105 min).
+// A day reported free therefore has room for a standard job; a longer
+// job (double oven 135, range 150) may still not fit.
+// ============================================================
+
+define( 'LOC_CAPACITY_PROBE_MINUTES', 105 );
+
+function loc_get_capacity_overview( $days_ahead = 60, $events = null ) {
+    if ( $events === null ) {
+        $events = loc_fetch_calendar_events( $days_ahead );
+    }
+    // A string is a failure, not an empty calendar. Report it as such —
+    // rendering "no events" as "everything free" is the exact trap this
+    // page exists to avoid.
+    if ( is_string( $events ) ) {
+        return [
+            'auth_ok'    => false,
+            'error_kind' => strpos( $events, 'AUTH_REQUIRED:' ) === 0 ? 'auth' : 'fetch',
+            'days'       => [],
+            'next_free'  => null,
+            'totals'     => null,
+        ];
+    }
+
+    $tz     = new DateTimeZone( 'Europe/London' );
+    $now    = new DateTime( 'today', $tz );
+    $end    = clone $now;
+    $end->modify( '+' . intval( $days_ahead ) . ' days' );
+    $state  = loc_build_calendar_state( $events );
+    $probe  = LOC_CAPACITY_PROBE_MINUTES;
+
+    $days      = [];
+    $nextFree  = null;
+    $freeIn7   = 0;
+    $freeIn14  = 0;
+    $fullDays  = [];
+    $warnings  = [];
     $cursor    = clone $now;
+    $index     = 0;
 
     while ( $cursor < $end ) {
         $dateStr = $cursor->format( 'Y-m-d' );
+        $day     = loc_resolve_day( $dateStr, $state, $probe );
 
-        // Zone-labelled date: visible to that zone's customers AND Central
-        // customers (Central is zone-neutral). Everyone else skips the day.
-        if ( isset( $zonedDates[ $dateStr ] ) && $zonedDates[ $dateStr ] !== $zoneLower && $zoneLower !== 'central' ) {
-            $cursor->modify( '+1 day' );
-            continue;
-        }
+        $zone    = $state['zonedDates'][ $dateStr ] ?? null;
+        $zoneSrc = $state['zoneSrc'][ $dateStr ] ?? null;
+        $jobs    = $state['jobsByDay'][ $dateStr ] ?? [];
+        usort( $jobs, function( $a, $b ) { return $a['start_ts'] - $b['start_ts']; } );
 
-        $override = $openOverride[ $dateStr ] ?? null;
+        $openWindows = [];
+        if ( $day['morning'] )   { $openWindows[] = 'morning'; }
+        if ( $day['afternoon'] ) { $openWindows[] = 'afternoon'; }
 
-        // On an override date, the recurring "Unavailable" block is ignored
-        // entirely — the override is the whole truth for that date, not
-        // layered on top of the normal weekday/weekend window rules.
-        $excludeTitles = $override ? [ 'unavailable' ] : [];
+        // "Free" for display means: the cap allows another job AND at least
+        // one window can actually fit one. Both must hold.
+        $freeSlots = $openWindows ? $day['free'] : 0;
 
-        // Check morning (07:00–13:00) and afternoon (13:00–18:00) slots
-        $morning   = loc_slot_is_free( $dateStr, '07:00', '13:00', $duration_minutes, $timedByDay, $excludeTitles );
-        $afternoon = loc_slot_is_free( $dateStr, '13:00', '18:00', $duration_minutes, $timedByDay, $excludeTitles );
-
-        if ( $override ) {
-            // AM/PM restricts to a single window; omitting it opens both.
-            if ( $override['window'] === 'am' ) {
-                $afternoon = false;
-            } elseif ( $override['window'] === 'pm' ) {
-                $morning = false;
+        if ( $freeSlots > 0 ) {
+            if ( $index < 7 )  { $freeIn7  += $freeSlots; }
+            if ( $index < 14 ) { $freeIn14 += $freeSlots; }
+            if ( $nextFree === null ) {
+                $nextFree = [
+                    'date'   => $dateStr,
+                    'window' => $openWindows[0],
+                    'label'  => $cursor->format( 'D j M' ) . ', ' . $openWindows[0],
+                    'free'   => $freeSlots,
+                    'zone'   => $zone,
+                ];
             }
+        } elseif ( $day['booked'] > 0 ) {
+            $fullDays[] = $dateStr;
         }
 
-        // Day-level job cap — sits alongside the time-window check above.
-        // Once a day hits its cap, it's fully unavailable regardless of
-        // remaining unused hours in the window. An override date uses its
-        // own cap instead of the normal weekday/weekend cap.
-        $isWeekend = in_array( (int) $cursor->format( 'N' ), [ 6, 7 ], true );
-        $jobCap    = $override ? $override['cap'] : ( $isWeekend ? LOC_WEEKEND_JOB_CAP : LOC_WEEKDAY_JOB_CAP );
-        $jobCount  = $jobCountByDay[ $dateStr ] ?? 0;
-
-        if ( $jobCount >= $jobCap ) {
-            $morning   = false;
-            $afternoon = false;
+        // A zone restriction reconstructed from a booking means the all-day
+        // label event is missing from the calendar. Availability is still
+        // correct (that's the self-healing path), but the calendar is
+        // visually lying about the day — worth surfacing.
+        if ( $zone && $zoneSrc === 'booking' ) {
+            $warnings[] = [ 'date' => $dateStr, 'type' => 'missing_label', 'zone' => $zone ];
         }
 
-        // Only include if at least one slot is free
-        if ( $morning || $afternoon ) {
-            $slots[] = [
-                'date'      => $dateStr,
-                'morning'   => $morning,
-                'afternoon' => $afternoon,
-            ];
-        }
+        $days[ $dateStr ] = [
+            'date'       => $dateStr,
+            'dow'        => $cursor->format( 'D' ),
+            'dom'        => (int) $cursor->format( 'j' ),
+            'month'      => $cursor->format( 'M' ),
+            'is_weekend' => $day['is_weekend'],
+            'is_today'   => ( $index === 0 ),
+            'cap'        => $day['cap'],
+            'booked'     => $day['booked'],
+            'free'       => $freeSlots,
+            'morning'    => $day['morning'],
+            'afternoon'  => $day['afternoon'],
+            'zone'       => $zone,
+            'zone_src'   => $zoneSrc,
+            'override'   => $day['override'],
+            'jobs'       => $jobs,
+        ];
 
         $cursor->modify( '+1 day' );
+        $index++;
     }
 
-    return $slots;
+    return [
+        'auth_ok'      => true,
+        'generated_at' => ( new DateTime( 'now', $tz ) )->format( 'D j M, H:i' ),
+        'probe'        => $probe,
+        'next_free'    => $nextFree,
+        'totals'       => [
+            'next_7'    => $freeIn7,
+            'next_14'   => $freeIn14,
+            'full_days' => $fullDays,
+        ],
+        'warnings'     => $warnings,
+        'days'         => $days,
+    ];
 }
 
 

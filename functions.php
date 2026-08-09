@@ -54,8 +54,15 @@ function loc_handle_calendar_availability() {
 
     $result = loc_get_available_slots( $zone, $duration_minutes, 180 );
 
-    if ( is_string( $result ) && strpos( $result, 'AUTH_REQUIRED:' ) === 0 ) {
-        echo json_encode( [ 'error' => 'Calendar not authorised. Please complete the OAuth flow.' ] );
+    // Any string result is a failure (AUTH_REQUIRED: or FETCH_FAILED:). Never
+    // fall through to rendering slots — we cannot see the calendar, so we do
+    // not know what is free.
+    if ( is_string( $result ) ) {
+        $reason = strpos( $result, 'AUTH_REQUIRED:' ) === 0 ? 'auth' : 'fetch';
+        echo json_encode( [
+            'error'  => 'Calendar unavailable.',
+            'reason' => $reason,
+        ] );
         wp_die();
     }
 
@@ -96,6 +103,34 @@ add_action( 'wp_ajax_nopriv_loc_send_reminders', 'loc_handle_send_reminders' );
 add_action( 'wp_ajax_loc_send_reminders',        'loc_handle_send_reminders' );
 
 // ============================================================
+// CAPACITY VIEW — private, admin-only
+// Access: https://leicesterovencleaning.co.uk/?loc_capacity=1
+// Must be visited while logged in as a WordPress admin.
+//
+// Routed through WordPress rather than served as a direct theme file:
+// SiteGround's NGINX returns 403 on direct theme PHP execution.
+// ============================================================
+
+add_action( 'template_redirect', function() {
+    if ( empty( $_GET['loc_capacity'] ) || $_GET['loc_capacity'] !== '1' ) {
+        return;
+    }
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return; // fall through to a normal 404 — no hint the page exists
+    }
+
+    require_once get_stylesheet_directory() . '/calendar-api.php';
+    require_once get_stylesheet_directory() . '/capacity-view.php';
+
+    $days = isset( $_GET['days'] ) ? max( 7, min( 180, intval( $_GET['days'] ) ) ) : 60;
+
+    nocache_headers();
+    header( 'Content-Type: text/html; charset=utf-8' );
+    echo loc_render_capacity_view( loc_get_capacity_overview( $days ) );
+    exit;
+} );
+
+// ============================================================
 // GOOGLE CALENDAR OAUTH — WordPress-routed endpoint
 // Access: https://leicesterovencleaning.co.uk/?loc_calendar_auth=1
 // Must be visited while logged in as a WordPress admin.
@@ -110,7 +145,13 @@ add_action( 'template_redirect', function() {
         wp_die( 'Unauthorised.', '', [ 'response' => 403 ] );
     }
 
-    $redirectUri = 'https://leicesterovencleaning.co.uk/?loc_calendar_auth=1';
+    // Derive from the site actually being used, rather than hardcoding the
+    // live domain — a hardcoded production URI sends the auth code to the
+    // live site no matter which environment started the flow, so the flow
+    // can never complete anywhere else. Whatever URI is used must also be
+    // registered in Google Cloud Console → Credentials → Authorised
+    // redirect URIs.
+    $redirectUri = add_query_arg( 'loc_calendar_auth', '1', home_url( '/' ) );
     $client      = loc_get_google_client();
     $client->setRedirectUri( $redirectUri );
 
@@ -1598,12 +1639,25 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             if (calMonth) calMonth.textContent = ' ';
             if (calBody)  calBody.innerHTML    = '<tr><td colspan="7" style="text-align:center;padding:var(--space-8) 0;color:var(--grey-400);font-size:var(--text-ui);">Loading available dates…</td></tr>';
 
+            // FAIL CLOSED. If availability cannot be read we show no dates at
+            // all, rather than showing every date and hoping. Offering a day
+            // we cannot verify risks double-booking an evening that only ever
+            // holds one job, or a day away — a missed enquiry can be called
+            // back, a clashed booking cannot be un-made.
+            function showCalendarDown() {
+                if (calMonth) calMonth.textContent = ' ';
+                if (calBody)  calBody.innerHTML =
+                    '<tr><td colspan="7" style="text-align:center;padding:var(--space-8) var(--space-4);color:var(--grey-500);font-size:var(--text-body-sm);line-height:1.6;">'
+                  + '<strong style="display:block;color:var(--blue);font-size:var(--text-body);margin-bottom:var(--space-2);">Our booking calendar is temporarily down for maintenance</strong>'
+                  + 'Please <a href="tel:+447710649360" style="color:var(--gold);font-weight:600;">call us on 07710 649 360</a> to arrange your slot.'
+                  + '</td></tr>';
+            }
+
             fetch('/wp-admin/admin-ajax.php?action=loc_calendar_availability&zone=' + encodeURIComponent(fetchZone) + '&duration_minutes=' + fetchDuration)
                 .then(function(r) { return r.json(); })
                 .then(function(data) {
                     if (!data || data.error || !Array.isArray(data)) {
-                        isFallbackMode = true;
-                        renderCalendar();
+                        showCalendarDown();
                         return;
                     }
                     if (data.length === 0) {
@@ -1618,8 +1672,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                     renderCalendar();
                 })
                 .catch(function() {
-                    isFallbackMode = true;
-                    renderCalendar();
+                    showCalendarDown();
                 });
         })();
     });
