@@ -155,8 +155,17 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead, $events
 // ============================================================
 // loc_fetch_calendar_events( $days_ahead )
 // Fetches every event in the window from the Jobs calendar.
-// Returns an array of Google event objects, an empty array on API
-// failure, or an 'AUTH_REQUIRED:<url>' string.
+//
+// Returns an array of Google event objects, or an error STRING
+// ('AUTH_REQUIRED:<url>' or 'FETCH_FAILED:<reason>').
+//
+// It deliberately does NOT return [] on failure. An empty array is a
+// legitimate answer meaning "this calendar is genuinely clear", which
+// makes every date look bookable — so a failed API call returning []
+// would silently advertise full availability and take bookings against
+// a calendar we cannot read. (Seen for real: a token authorised to the
+// wrong Google account returned 404, which presented as 60 empty days.)
+// Callers must treat a string as fatal and refuse to offer slots.
 // ============================================================
 
 function loc_fetch_calendar_events( $days_ahead ) {
@@ -180,7 +189,8 @@ function loc_fetch_calendar_events( $days_ahead ) {
             'orderBy'      => 'startTime',
         ] );
     } catch ( Exception $e ) {
-        return [];
+        error_log( 'LOC calendar: event fetch failed — ' . $e->getMessage() );
+        return 'FETCH_FAILED:' . $e->getMessage();
     }
 
     return $events->getItems();
@@ -266,12 +276,14 @@ function loc_build_calendar_state( $eventItems ) {
                     $jobZonesByDay[ $date ][] = $jobZone;
                 }
 
-                // Keep the booking itself for the owner-facing capacity view.
-                // Availability never reads this — it exists so the view can
-                // show WHO is booked, not just how many.
+                // Keep a NON-IDENTIFYING record of the booking for the capacity
+                // view. Deliberately no name, phone, email or address: the view
+                // answers "how much room is left", which never requires knowing
+                // who is booked. Customer details are not carried out of this
+                // function at all, so they cannot be rendered by accident.
                 $jobsByDay[ $date ][] = [
-                    'title'    => trim( (string) $event->getSummary() ),
                     'start_ts' => strtotime( $start->getDateTime() ),
+                    'end_ts'   => strtotime( $end_e->getDateTime() ),
                     'status'   => strpos( $title, 'confirmed:' ) === 0 ? 'confirmed' : 'provisional',
                     'zone'     => $jobZone,
                 ];
@@ -407,8 +419,17 @@ function loc_get_capacity_overview( $days_ahead = 60, $events = null ) {
     if ( $events === null ) {
         $events = loc_fetch_calendar_events( $days_ahead );
     }
+    // A string is a failure, not an empty calendar. Report it as such —
+    // rendering "no events" as "everything free" is the exact trap this
+    // page exists to avoid.
     if ( is_string( $events ) ) {
-        return [ 'auth_ok' => false, 'days' => [], 'next_free' => null, 'totals' => null ];
+        return [
+            'auth_ok'    => false,
+            'error_kind' => strpos( $events, 'AUTH_REQUIRED:' ) === 0 ? 'auth' : 'fetch',
+            'days'       => [],
+            'next_free'  => null,
+            'totals'     => null,
+        ];
     }
 
     $tz     = new DateTimeZone( 'Europe/London' );

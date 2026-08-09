@@ -114,9 +114,18 @@ body{margin:0;padding:16px 14px 56px;background:var(--lightgrey);color:var(--off
 <?php if ( empty( $data['auth_ok'] ) ) : ?>
   <div class="answer">
     <p class="eyebrow">Calendar</p>
-    <p class="big">Not connected</p>
-    <p class="meta">The Google Calendar authorisation has expired. Re-authorise at
-       <code>/?loc_calendar_auth=1</code> while logged in as admin, then reload this page.</p>
+    <p class="big">Can&rsquo;t read the calendar</p>
+    <?php if ( ( $data['error_kind'] ?? '' ) === 'auth' ) : ?>
+      <p class="meta">The Google authorisation has expired. Re-authorise at
+         <code>/?loc_calendar_auth=1</code> while logged in as admin, then reload.</p>
+    <?php else : ?>
+      <p class="meta">The calendar request failed — the token may be pointing at the
+         wrong Google account, or the API is down. Check the PHP error log for
+         the reason, then reload.</p>
+    <?php endif; ?>
+    <p class="meta" style="margin-top:10px;opacity:.75">
+      No availability is shown, because none is known. This is deliberate:
+      an empty grid here would be indistinguishable from a clear diary.</p>
   </div>
 </div></body></html>
 <?php

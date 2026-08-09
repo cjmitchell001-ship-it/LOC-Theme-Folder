@@ -54,8 +54,15 @@ function loc_handle_calendar_availability() {
 
     $result = loc_get_available_slots( $zone, $duration_minutes, 180 );
 
-    if ( is_string( $result ) && strpos( $result, 'AUTH_REQUIRED:' ) === 0 ) {
-        echo json_encode( [ 'error' => 'Calendar not authorised. Please complete the OAuth flow.' ] );
+    // Any string result is a failure (AUTH_REQUIRED: or FETCH_FAILED:). Never
+    // fall through to rendering slots — we cannot see the calendar, so we do
+    // not know what is free.
+    if ( is_string( $result ) ) {
+        $reason = strpos( $result, 'AUTH_REQUIRED:' ) === 0 ? 'auth' : 'fetch';
+        echo json_encode( [
+            'error'  => 'Calendar unavailable.',
+            'reason' => $reason,
+        ] );
         wp_die();
     }
 
@@ -138,7 +145,13 @@ add_action( 'template_redirect', function() {
         wp_die( 'Unauthorised.', '', [ 'response' => 403 ] );
     }
 
-    $redirectUri = 'https://leicesterovencleaning.co.uk/?loc_calendar_auth=1';
+    // Derive from the site actually being used, rather than hardcoding the
+    // live domain — a hardcoded production URI sends the auth code to the
+    // live site no matter which environment started the flow, so the flow
+    // can never complete anywhere else. Whatever URI is used must also be
+    // registered in Google Cloud Console → Credentials → Authorised
+    // redirect URIs.
+    $redirectUri = add_query_arg( 'loc_calendar_auth', '1', home_url( '/' ) );
     $client      = loc_get_google_client();
     $client->setRedirectUri( $redirectUri );
 
