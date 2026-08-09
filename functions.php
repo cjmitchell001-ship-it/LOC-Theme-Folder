@@ -1639,12 +1639,25 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             if (calMonth) calMonth.textContent = ' ';
             if (calBody)  calBody.innerHTML    = '<tr><td colspan="7" style="text-align:center;padding:var(--space-8) 0;color:var(--grey-400);font-size:var(--text-ui);">Loading available dates…</td></tr>';
 
+            // FAIL CLOSED. If availability cannot be read we show no dates at
+            // all, rather than showing every date and hoping. Offering a day
+            // we cannot verify risks double-booking an evening that only ever
+            // holds one job, or a day away — a missed enquiry can be called
+            // back, a clashed booking cannot be un-made.
+            function showCalendarDown() {
+                if (calMonth) calMonth.textContent = ' ';
+                if (calBody)  calBody.innerHTML =
+                    '<tr><td colspan="7" style="text-align:center;padding:var(--space-8) var(--space-4);color:var(--grey-500);font-size:var(--text-body-sm);line-height:1.6;">'
+                  + '<strong style="display:block;color:var(--blue);font-size:var(--text-body);margin-bottom:var(--space-2);">Our booking calendar is temporarily down for maintenance</strong>'
+                  + 'Please <a href="tel:+447710649360" style="color:var(--gold);font-weight:600;">call us on 07710 649 360</a> to arrange your slot.'
+                  + '</td></tr>';
+            }
+
             fetch('/wp-admin/admin-ajax.php?action=loc_calendar_availability&zone=' + encodeURIComponent(fetchZone) + '&duration_minutes=' + fetchDuration)
                 .then(function(r) { return r.json(); })
                 .then(function(data) {
                     if (!data || data.error || !Array.isArray(data)) {
-                        isFallbackMode = true;
-                        renderCalendar();
+                        showCalendarDown();
                         return;
                     }
                     if (data.length === 0) {
@@ -1659,8 +1672,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                     renderCalendar();
                 })
                 .catch(function() {
-                    isFallbackMode = true;
-                    renderCalendar();
+                    showCalendarDown();
                 });
         })();
     });
