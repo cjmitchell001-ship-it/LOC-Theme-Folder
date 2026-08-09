@@ -1645,6 +1645,13 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             // holds one job, or a day away — a missed enquiry can be called
             // back, a clashed booking cannot be un-made.
             function showCalendarDown() {
+                // Hide the controls that imply there is something to browse —
+                // month paging and the available/unavailable key are both
+                // meaningless when no dates can be shown.
+                ['.loc-step3-legend', '.loc-step3-cal-nav'].forEach(function(sel) {
+                    var el = document.querySelector(sel);
+                    if (el) el.style.display = 'none';
+                });
                 if (calMonth) calMonth.textContent = ' ';
                 if (calBody)  calBody.innerHTML =
                     '<tr><td colspan="7" style="text-align:center;padding:var(--space-8) var(--space-4);color:var(--grey-500);font-size:var(--text-body-sm);line-height:1.6;">'
