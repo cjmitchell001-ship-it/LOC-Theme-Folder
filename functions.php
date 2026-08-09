@@ -81,10 +81,21 @@ add_action( 'wp_ajax_loc_calendar_availability',        'loc_handle_calendar_ava
 //      not reliable pre-launch with low visitor numbers).
 //   2. External cron ping — set a SiteGround Cron Job (Site Tools →
 //      Devs → Cron Jobs) to hit this URL once a day:
-//      https://leicesterovencleaning.co.uk/wp-admin/admin-ajax.php?action=loc_send_reminders&key=be7174092a5735fa934ed2e7b7316c26
+//      https://leicesterovencleaning.co.uk/wp-admin/admin-ajax.php?action=loc_send_reminders&key=<LOC_REMINDER_CRON_KEY>
+//      (substitute the key from wp-config.php — never write it down here)
 // ============================================================
 
-define( 'LOC_REMINDER_CRON_KEY', 'be7174092a5735fa934ed2e7b7316c26' );
+// The key lives in wp-config.php, NOT here — this theme folder is a public
+// git repository, so a literal key in this file is readable by anyone and
+// lets them trigger reminder emails to real customers at will.
+//
+// If the constant is missing the endpoint is disabled entirely rather than
+// falling back to a default: a shared fallback in public code would be no
+// protection at all. The WP-Cron daily event (below) is unaffected and keeps
+// sending reminders either way, so a missing key never silently stops them.
+if ( ! defined( 'LOC_REMINDER_CRON_KEY' ) ) {
+    define( 'LOC_REMINDER_CRON_KEY', '' );
+}
 
 add_action( 'loc_daily_reminder_check', 'loc_send_upcoming_reminders' );
 if ( ! wp_next_scheduled( 'loc_daily_reminder_check' ) ) {
@@ -92,6 +103,12 @@ if ( ! wp_next_scheduled( 'loc_daily_reminder_check' ) ) {
 }
 
 function loc_handle_send_reminders() {
+    // No configured key => endpoint disabled. Checked FIRST and separately:
+    // without this, an empty constant would make hash_equals('', '') true and
+    // an empty ?key= would pass, opening the endpoint to anyone.
+    if ( LOC_REMINDER_CRON_KEY === '' ) {
+        wp_die( 'Unauthorised.', '', [ 'response' => 403 ] );
+    }
     if ( ! isset( $_GET['key'] ) || ! hash_equals( LOC_REMINDER_CRON_KEY, (string) $_GET['key'] ) ) {
         wp_die( 'Unauthorised.', '', [ 'response' => 403 ] );
     }
