@@ -180,6 +180,8 @@ All four routes implemented and tested on mobile (June 2026).
 
 ## Known Bugs / Open Items
 
+- **Server backup files to clear (created 9 Aug 2026, review from ~16 Aug 2026):** `.bak-20260809` copies of `calendar-api.php`, `functions.php` and `header.php` sit in the live theme folder (`/home/customer/www/leicesterovencleaning.co.uk/public_html/wp-content/themes/leicester-oven-cleaning-child/`), made before deploying the capacity view / fail-closed / cron-key work. `wp-config.php.bak-20260809` sits one level up in `public_html/`, from the reminder-cron-key move. All are harmless (not web-accessible, not in git) but should be deleted via SSH once the deploy has been stable for about a week and they're no longer needed as a rollback. There are also older stragglers from a previous session: `calendar-api.php.bak-20260730` and `calendar-api.php.bak-20260730-203447` — same theme folder, safe to remove now.
+
 - ~~**Reserve button URLs** `/reserve` → `/reserve-step-1`~~ Fixed June 2026
 - ~~**Mobile header overflow:** RESERVE/CALL/hamburger clipped off right edge~~ Fixed — Call moved into the dropdown menu, header row is now logo · Reserve · hamburger. (This was the root cause of the funnel's 780/781 breakpoint hack — see breakpoint note below.)
 - ~~**Token rendering bugs from the refactor:** `--space-18`/`--space-25` undefined (8 sections zero-padding); `ox-shadow` typo (21 shadows not rendering)~~ Both found by the conflict audit and fixed June 2026.
