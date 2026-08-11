@@ -153,7 +153,6 @@ EOT;
         [ 'Content-Type: text/plain; charset=UTF-8' ]
     );
 
-
     // ── CONFIRMATION EMAIL TO CUSTOMER ────────────────────────────────────
 
     // Work out natural-language call timing
@@ -213,7 +212,7 @@ EOT;
         $email,
         $confirm_subject,
         $confirm_body,
-        [ 'Content-Type: text/plain; charset=UTF-8' ]
+        [ 'Content-Type: text/plain; charset=UTF-8', 'Bcc: hello@leicesterovencleaning.co.uk' ]
     );
 
 
