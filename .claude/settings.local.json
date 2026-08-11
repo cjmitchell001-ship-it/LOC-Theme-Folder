@@ -90,7 +90,13 @@
       "mcp__claude_ai_Notion__notion-create-pages",
       "Bash(\"/c/Users/cjmit/AppData/Roaming/Local/lightning-services/php-8.2.29+0/bin/win64/php.exe\" -l \"C:\\\\Users\\\\cjmit\\\\Local Sites\\\\leicester-oven-cleaning\\\\app\\\\public\\\\wp-content\\\\themes\\\\leicester-oven-cleaning-child\\\\page-reserve-step1.php\")",
       "Bash(\"/c/Users/cjmit/AppData/Roaming/Local/lightning-services/php-8.2.29+0/bin/win64/php.exe\" -l \"C:\\\\Users\\\\cjmit\\\\Local Sites\\\\leicester-oven-cleaning\\\\app\\\\public\\\\wp-content\\\\themes\\\\leicester-oven-cleaning-child\\\\page-reserve-step2.php\")",
-      "Bash(\"/c/Users/cjmit/AppData/Roaming/Local/lightning-services/php-8.2.29+0/bin/win64/php.exe\" -l \"C:\\\\Users\\\\cjmit\\\\Local Sites\\\\leicester-oven-cleaning\\\\app\\\\public\\\\wp-content\\\\themes\\\\leicester-oven-cleaning-child\\\\page-services.php\")"
+      "Bash(\"/c/Users/cjmit/AppData/Roaming/Local/lightning-services/php-8.2.29+0/bin/win64/php.exe\" -l \"C:\\\\Users\\\\cjmit\\\\Local Sites\\\\leicester-oven-cleaning\\\\app\\\\public\\\\wp-content\\\\themes\\\\leicester-oven-cleaning-child\\\\page-services.php\")",
+      "Bash(/c/Users/cjmit/AppData/Roaming/Local/lightning-services/php-8.2.29+0/bin/win64/php.exe -l 'C:\\\\Users\\\\cjmit\\\\Local Sites\\\\leicester-oven-cleaning\\\\app\\\\public\\\\wp-content\\\\themes\\\\leicester-oven-cleaning-child$f')",
+      "mcp__claude_ai_Todoist__get-overview",
+      "mcp__claude_ai_Todoist__find-tasks",
+      "mcp__claude_ai_Todoist__complete-tasks",
+      "Bash(php -l calendar-api.php)",
+      "Bash(php -l front-page.php)"
     ]
   }
 }
