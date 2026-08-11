@@ -224,6 +224,7 @@ function loc_build_calendar_state( $eventItems ) {
     $jobsByDay     = []; // date => array of job detail rows (for the owner-facing capacity view)
     $openOverride  = []; // date => [ 'cap' => int, 'window' => 'both'|'am'|'pm' ]
     $zoneSrc       = []; // date => 'label' | 'booking'
+    $closedDates   = []; // date => true — all-day "Unavailable" event, whole day shut
 
     foreach ( $eventItems as $event ) {
         $start = $event->getStart();
@@ -249,6 +250,14 @@ function loc_build_calendar_state( $eventItems ) {
                         'cap'    => (int) $om[1],
                         'window' => $window,
                     ];
+                    $dCursor->modify( '+1 day' );
+                }
+            } elseif ( $title === 'unavailable' ) {
+                $tzL     = new DateTimeZone( 'Europe/London' );
+                $dCursor = new DateTime( $start->getDate(), $tzL );
+                $dEnd    = new DateTime( $end_e->getDate(), $tzL ); // exclusive
+                while ( $dCursor < $dEnd ) {
+                    $closedDates[ $dCursor->format( 'Y-m-d' ) ] = true;
                     $dCursor->modify( '+1 day' );
                 }
             }
@@ -330,6 +339,7 @@ function loc_build_calendar_state( $eventItems ) {
         'jobsByDay'     => $jobsByDay,
         'openOverride'  => $openOverride,
         'zoneSrc'       => $zoneSrc,
+        'closedDates'   => $closedDates,
     ];
 }
 
@@ -383,10 +393,19 @@ function loc_resolve_day( $dateStr, $state, $duration_minutes ) {
         $afternoon = false;
     }
 
+    // An all-day "Unavailable" event shuts the whole date, and deliberately
+    // wins over an "Open: N" override — a date carrying both is being closed
+    // after the fact (e.g. a holiday period dropped over an open block).
+    $isClosed = ! empty( $state['closedDates'][ $dateStr ] );
+    if ( $isClosed ) {
+        $morning   = false;
+        $afternoon = false;
+    }
+
     return [
         'cap'        => $jobCap,
         'booked'     => $jobCount,
-        'free'       => max( 0, $jobCap - $jobCount ),
+        'free'       => $isClosed ? 0 : max( 0, $jobCap - $jobCount ),
         'morning'    => $morning,
         'afternoon'  => $afternoon,
         'is_weekend' => $isWeekend,
