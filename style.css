@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.2.2
+Version:           2.2.3
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -1284,6 +1284,15 @@ a:hover {
     color: rgba(255,255,255,0.75);
     line-height: 1.6;
     max-width: 540px;
+}
+
+.loc-business-banner__sub a {
+    color: var(--white);
+    text-decoration: underline;
+}
+
+.loc-business-banner__sub a:hover {
+    color: var(--gold);
 }
 
 .loc-business-banner__right {
@@ -7778,9 +7787,10 @@ a.loc-funnel-step--complete:hover {
     background: var(--blue);
     color: var(--white);
     text-align: center;
-    padding: var(--space-2) var(--space-4);
+    padding: var(--space-4) var(--space-4);
     font-family: 'Open Sans', sans-serif;
-    font-size: var(--text-ui);
+    font-size: var(--text-body-lg);
+    font-weight: 600;
     line-height: 1.5;
     text-decoration: none;
 }
@@ -7802,7 +7812,7 @@ a.loc-funnel-step--complete:hover {
 
 @media (max-width: 768px) {
     .loc-announce-bar {
-        font-size: var(--text-sm);
+        font-size: var(--text-ui-lg);
     }
 
     .loc-announce-bar__until {
