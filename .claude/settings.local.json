@@ -96,7 +96,11 @@
       "mcp__claude_ai_Todoist__find-tasks",
       "mcp__claude_ai_Todoist__complete-tasks",
       "Bash(php -l calendar-api.php)",
-      "Bash(php -l front-page.php)"
+      "Bash(php -l front-page.php)",
+      "mcp__claude_ai_Google_Calendar__list_calendars",
+      "Bash(/c/Users/cjmit/AppData/Roaming/Local/lightning-services/php-8.2.29+0/bin/win64/php.exe -l calendar-api.php)",
+      "Bash(/c/Users/cjmit/AppData/Roaming/Local/lightning-services/php-8.2.29+0/bin/win64/php.exe -l capacity-view.php)",
+      "Bash(/c/Users/cjmit/AppData/Roaming/Local/lightning-services/php-8.2.29+0/bin/win64/php.exe -d extension=phar test-anyzone.php)"
     ]
   }
 }

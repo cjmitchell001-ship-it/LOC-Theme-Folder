@@ -126,8 +126,11 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead, $events
         $dateStr = $cursor->format( 'Y-m-d' );
 
         // Zone-labelled date: visible to that zone's customers AND Central
-        // customers (Central is zone-neutral). Everyone else skips the day.
+        // customers (Central is zone-neutral). Everyone else skips the day —
+        // unless the date carries an all-day "Any Zone" event, which lifts
+        // the restriction for that date only.
         if ( isset( $state['zonedDates'][ $dateStr ] )
+             && empty( $state['anyZoneDates'][ $dateStr ] )
              && $state['zonedDates'][ $dateStr ] !== $zoneLower
              && $zoneLower !== 'central' ) {
             $cursor->modify( '+1 day' );
@@ -211,6 +214,8 @@ function loc_fetch_calendar_events( $days_ahead ) {
 //   'jobsByDay'     => date => [ [ 'title', 'start_ts', 'status', 'zone' ], ... ]
 //   'openOverride'  => date => [ 'cap' => int, 'window' => 'both'|'am'|'pm' ]
 //   'zoneSrc'       => date => 'label'|'booking'  (where the zone came from)
+//   'closedDates'   => date => true  (all-day "Unavailable")
+//   'anyZoneDates'  => date => true  (all-day "Any Zone" — zone gate lifted)
 // ]
 // ============================================================
 
@@ -225,6 +230,7 @@ function loc_build_calendar_state( $eventItems ) {
     $openOverride  = []; // date => [ 'cap' => int, 'window' => 'both'|'am'|'pm' ]
     $zoneSrc       = []; // date => 'label' | 'booking'
     $closedDates   = []; // date => true — all-day "Unavailable" event, whole day shut
+    $anyZoneDates  = []; // date => true — all-day "Any Zone" event, zone restriction lifted
 
     foreach ( $eventItems as $event ) {
         $start = $event->getStart();
@@ -258,6 +264,18 @@ function loc_build_calendar_state( $eventItems ) {
                 $dEnd    = new DateTime( $end_e->getDate(), $tzL ); // exclusive
                 while ( $dCursor < $dEnd ) {
                     $closedDates[ $dCursor->format( 'Y-m-d' ) ] = true;
+                    $dCursor->modify( '+1 day' );
+                }
+            } elseif ( preg_match( '/^any[\s-]*zone$/', $title ) ) {
+                // Lifts the zone restriction for these dates only: a day that
+                // already carries a booking from one zone stays bookable by
+                // every other zone too. Caps, windows and "Unavailable" are
+                // untouched — this affects the zone gate and nothing else.
+                $tzL     = new DateTimeZone( 'Europe/London' );
+                $dCursor = new DateTime( $start->getDate(), $tzL );
+                $dEnd    = new DateTime( $end_e->getDate(), $tzL ); // exclusive
+                while ( $dCursor < $dEnd ) {
+                    $anyZoneDates[ $dCursor->format( 'Y-m-d' ) ] = true;
                     $dCursor->modify( '+1 day' );
                 }
             }
@@ -340,6 +358,7 @@ function loc_build_calendar_state( $eventItems ) {
         'openOverride'  => $openOverride,
         'zoneSrc'       => $zoneSrc,
         'closedDates'   => $closedDates,
+        'anyZoneDates'  => $anyZoneDates,
     ];
 }
 
@@ -522,6 +541,7 @@ function loc_get_capacity_overview( $days_ahead = 60, $events = null ) {
             'afternoon'  => $day['afternoon'],
             'zone'       => $zone,
             'zone_src'   => $zoneSrc,
+            'any_zone'   => ! empty( $state['anyZoneDates'][ $dateStr ] ),
             'override'   => $day['override'],
             'jobs'       => $jobs,
         ];

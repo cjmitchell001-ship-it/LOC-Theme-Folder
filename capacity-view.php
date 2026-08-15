@@ -223,6 +223,9 @@ foreach ( $byMonth as $ym => $daysIn ) :
               <?php echo $esc( strtoupper( substr( $d['zone'], 0, 4 ) ) ); ?>
             </div>
           <?php endif; ?>
+          <?php if ( $d['any_zone'] ) : ?>
+            <div class="zlabel" style="color:var(--grey-500)" title="Any Zone — zone restriction lifted for this date">ANY</div>
+          <?php endif; ?>
 
           <div class="dots">
             <?php
@@ -253,6 +256,7 @@ foreach ( $byMonth as $ym => $daysIn ) :
   <span><i style="background:#eeeef0;border:1px dashed #bbb"></i>Day closed</span>
   <span><b style="color:var(--gold)">OPEN&nbsp;N</b> capacity override</span>
   <span><span style="color:var(--gold)">⚑</span> label missing</span>
+  <span><b style="color:var(--grey-500)">ANY</b> zone restriction lifted</span>
 </div>
 <div class="zk">
   <?php foreach ( [ 'north','south','east','west','central' ] as $z ) : ?>
