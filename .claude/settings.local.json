@@ -100,7 +100,10 @@
       "mcp__claude_ai_Google_Calendar__list_calendars",
       "Bash(/c/Users/cjmit/AppData/Roaming/Local/lightning-services/php-8.2.29+0/bin/win64/php.exe -l calendar-api.php)",
       "Bash(/c/Users/cjmit/AppData/Roaming/Local/lightning-services/php-8.2.29+0/bin/win64/php.exe -l capacity-view.php)",
-      "Bash(/c/Users/cjmit/AppData/Roaming/Local/lightning-services/php-8.2.29+0/bin/win64/php.exe -d extension=phar test-anyzone.php)"
+      "Bash(/c/Users/cjmit/AppData/Roaming/Local/lightning-services/php-8.2.29+0/bin/win64/php.exe -d extension=phar test-anyzone.php)",
+      "Bash(scp -i ~/.ssh/siteground_leicesterovencleaning -P 18765 calendar-api.php capacity-view.php u2218-ogxjkzvty3ee@uk12.siteground.eu:/home/customer/www/leicesterovencleaning.co.uk/public_html/wp-content/themes/leicester-oven-cleaning-child/)",
+      "Bash(scp -i ~/.ssh/siteground_leicesterovencleaning -P 18765 anyzone-test.php u2218-ogxjkzvty3ee@uk12.siteground.eu:/home/customer/anyzone-test.php)",
+      "Read(//c/Users/cjmit/.claude/uploads/0e459712-fca2-4130-affb-50bc1b03692e/**)"
     ]
   }
 }
