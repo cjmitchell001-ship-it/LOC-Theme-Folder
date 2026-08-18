@@ -160,6 +160,12 @@
         <div class="loc-step3-price-guarantee">
             <p>No payment online. We'll call to confirm your slot and arrange a £25 deposit by bank transfer.</p>
         </div>
+
+        <div class="loc-step3-weekend-card">
+            <p class="loc-step3-weekend-card__eyebrow">Weekends included</p>
+            <h3 class="loc-step3-weekend-card__title">We work Saturdays &amp; Sundays</h3>
+            <p class="loc-step3-weekend-card__body">Most oven cleaners don't. If a weekday is awkward around work or the school run, pick a weekend date above — they're often the easiest slots to get, and there's no weekend surcharge.</p>
+        </div>
     </aside>
 
 </div><!-- /loc-step3-body -->

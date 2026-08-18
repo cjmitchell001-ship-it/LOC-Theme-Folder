@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.3.1
+Version:           2.3.2
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -6469,11 +6469,58 @@ a:hover {
     margin-bottom: var(--space-2);
 }
 
+/* Mobile only. On desktop the weekend card in the right rail carries
+   this message properly; on mobile the summary column sits BELOW the
+   calendar, so the card would arrive after the date has been chosen. */
 .loc-step3-weekend-note {
+    display: none;
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-ui);
     color: var(--grey-600);
     margin-bottom: var(--space-3);
+}
+
+@media (max-width: 768px) {
+    .loc-step3-weekend-note {
+        display: block;
+    }
+}
+
+/* Weekend card — fills the empty right rail below the deposit note and
+   actively points people at Saturday and Sunday, which is the genuine
+   point of difference rather than a footnote. */
+.loc-step3-weekend-card {
+    background: var(--blue-pale);
+    border: 1px solid var(--blue);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    margin-top: var(--space-5);
+}
+
+.loc-step3-weekend-card__eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: var(--space-2);
+}
+
+.loc-step3-weekend-card__title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: var(--text-body-lg);
+    font-weight: 800;
+    color: var(--blue);
+    line-height: 1.3;
+    margin-bottom: var(--space-3);
+}
+
+.loc-step3-weekend-card__body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--text-ui);
+    color: var(--grey-600);
+    line-height: 1.6;
 }
 
 
