@@ -227,7 +227,7 @@
             <div class="loc-appliance-cards">
 
                 <!-- Gas Hob -->
-                <div class="loc-appliance-card" data-name="Gas Hob" data-price="15">
+                <div class="loc-appliance-card" data-name="Gas Hob" data-price="25">
                     <svg width="64" height="64" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="10" y="20" width="100" height="80" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
                         <!-- top-left burner -->
@@ -248,7 +248,7 @@
                         <circle cx="85" cy="80" r="2" fill="#1A3A6E"/>
                     </svg>
                     <p class="loc-appliance-card__name">Gas Hob</p>
-                    <p class="loc-appliance-card__price">From £15</p>
+                    <p class="loc-appliance-card__price">From £25</p>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
                         <div class="loc-qty-stepper__controls">
@@ -259,7 +259,7 @@
                 </div>
 
                 <!-- Ceramic / Induction Hob -->
-                <div class="loc-appliance-card" data-name="Ceramic / Induction Hob" data-price="15">
+                <div class="loc-appliance-card" data-name="Ceramic / Induction Hob" data-price="25">
                     <svg width="64" height="64" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="10" y="20" width="100" height="80" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
                         <circle cx="35" cy="40" r="13" stroke="#1A3A6E" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
@@ -268,7 +268,7 @@
                         <circle cx="85" cy="80" r="13" stroke="#1A3A6E" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
                     </svg>
                     <p class="loc-appliance-card__name">Ceramic / Induction Hob</p>
-                    <p class="loc-appliance-card__price">£15</p>
+                    <p class="loc-appliance-card__price">From £25</p>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
                         <div class="loc-qty-stepper__controls">
@@ -279,7 +279,7 @@
                 </div>
 
                 <!-- Extractor Hood -->
-                <div class="loc-appliance-card" data-name="Extractor Hood" data-price="15">
+                <div class="loc-appliance-card" data-name="Extractor Hood" data-price="25">
                     <svg width="64" height="64" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <!-- duct pipe at top -->
                         <rect x="40" y="18" width="40" height="12" rx="2" stroke="#1A3A6E" stroke-width="2" fill="none"/>
@@ -296,7 +296,7 @@
                         <circle cx="65" cy="38" r="3" stroke="#1A3A6E" stroke-width="1.5" fill="none"/>
                     </svg>
                     <p class="loc-appliance-card__name">Extractor Hood</p>
-                    <p class="loc-appliance-card__price">From £15</p>
+                    <p class="loc-appliance-card__price">From £25</p>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
                         <div class="loc-qty-stepper__controls">
