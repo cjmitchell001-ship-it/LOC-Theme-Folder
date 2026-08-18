@@ -315,11 +315,11 @@ function loc_hero_script() {
         // TAGLINES — edit these freely without touching anything else
         var taglines = [
             'Professional oven cleaning in Leicester & Leicestershire',
-            'Extractor hoods cleaned and degreased — same visit, same price',
-            'Gas hobs restored to factory clean — no hidden extras',
-            'Ceramic and induction hobs — spotless without the scratches',
-            'Small business? We work around you — minimal disruption guaranteed',
-            'Staff kitchens and office facilities — ask about our business rates',
+            'Extractor hoods cleaned and degreased — filters included',
+            'Gas hobs stripped down and cleaned — burners, caps and pan supports',
+            'Ceramic and induction hobs — cleaned with a scratch-safe technique',
+            'Small business? We work around you — including weekends and out of hours',
+            'Staff kitchens and office facilities — ask about our commercial pricing',
             'Multiple appliances, single visit — enquire about our commercial service'
         ];
 

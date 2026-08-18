@@ -14,11 +14,15 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<?php if ( loc_earlybird_active() ) : ?>
+<?php
+// Announcement bar. Weekend availability is permanent and always shown —
+// it is the genuinely unusual thing most oven cleaners don't offer. The
+// early-rate half is conditional, so when LOC_EARLYBIRD_END passes the
+// prices drop out but the bar itself stays.
+?>
 <a href="/reserve-step-1" class="loc-announce-bar">
-    Early rates<span class="loc-announce-bar__until"> extended while we grow our client base</span> — <span class="loc-announce-bar__prices">Single Oven £55 · Double Oven £70</span> — <span class="loc-announce-bar__cta">Reserve your slot →</span>
+    <span class="loc-announce-bar__lead">We work weekends</span><span class="loc-announce-bar__until"> — Saturday &amp; Sunday slots available</span><?php if ( loc_earlybird_active() ) : ?> — <span class="loc-announce-bar__prices">Early rates: Single Oven £55 · Double Oven £70</span><?php endif; ?> — <span class="loc-announce-bar__cta">Reserve your slot →</span>
 </a>
-<?php endif; ?>
 
 <header class="loc-header" id="loc-header">
     
