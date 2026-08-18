@@ -63,7 +63,7 @@ get_header();
             <div class="loc-trust__icon">✓</div>
             <div class="loc-trust__text">
                 <strong>Insured Including Items Worked Upon</strong>
-                <span>Your oven is covered — not just our public liability</span>
+                <span>£1m cover that includes the appliance we&rsquo;re working on</span>
             </div>
         </div>
 
@@ -91,7 +91,7 @@ get_header();
 <section class="loc-reserve">
     <p class="loc-reserve__eyebrow section-eyebrow">Simple &amp; Straightforward</p>
     <h2 class="loc-reserve__title">How to Reserve Your Slot</h2>
-    <p class="loc-reserve__subtitle">Three quick steps — no commitment. We call you to confirm everything.</p>
+    <p class="loc-reserve__subtitle">Three quick steps — no commitment. Weekends and weekday evenings available, and we call you to confirm everything.</p>
 
     <div class="loc-reserve__grid">
 

@@ -75,7 +75,12 @@ get_header();
 
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">Will my oven look brand new after the clean?</h3>
-                    <p class="loc-faq-page__a">We always do our best — but results depend on the age and condition of the appliance. A heavily used or older oven will come out significantly cleaner than it went in, but we won't promise showroom condition if it isn't realistic. We'll give you an honest assessment before we start, so you know what to expect.</p>
+                    <p class="loc-faq-page__a">It'll look dramatically better, and on most ovens the difference is genuinely surprising. But an oven that's been used for years won't come back to showroom condition, and anyone promising that isn't being straight with you. Carbon and grease come off. Discolouration, staining, pitting, scratches and heat damage are permanent — those are marks in the material itself, not dirt sitting on top of it. We'll tell you which is which when we look at it, before we start.</p>
+                </div>
+
+                <div class="loc-faq-page__item">
+                    <h3 class="loc-faq-page__q">What if the grill element doesn't lower?</h3>
+                    <p class="loc-faq-page__a">Some grill elements are designed to drop down for cleaning and some aren't, and on older cookers a fitting can seize. Where an element doesn't lower safely, we clean everything we can reach around it and leave the rest — forcing it risks damaging the element or the wiring behind it, which is a far bigger problem than a patch you can't see. We'll always point this out at the start so you know what to expect.</p>
                 </div>
 
                 <div class="loc-faq-page__item">
@@ -112,6 +117,11 @@ get_header();
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">What if I need to cancel?</h3>
                     <p class="loc-faq-page__a">Cancel with 48 hours or more notice and we'll refund your deposit in full. Within 48 hours the deposit is forfeit. No-shows forfeit the deposit automatically.</p>
+                </div>
+
+                <div class="loc-faq-page__item">
+                    <h3 class="loc-faq-page__q">Do you work weekends?</h3>
+                    <p class="loc-faq-page__a">Yes — Saturdays and Sundays, as well as weekday evenings. Weekend slots are often the easiest to get. Pick any available date in the booking calendar and we'll confirm it with you on the call.</p>
                 </div>
             </div>
 
@@ -172,6 +182,11 @@ get_header();
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">What's included in the price?</h3>
                     <p class="loc-faq-page__a">Your confirmed price covers a full clean of the oven itself — including the interior, door glass, and standard racks and shelves. If you have additional loose trays, baking tins, or extra items you'd like cleaned, just mention it when we call to confirm — we'll agree any additional cost (if any) before we start, so there are no surprises.</p>
+                </div>
+
+                <div class="loc-faq-page__item">
+                    <h3 class="loc-faq-page__q">Are the extractor filters included?</h3>
+                    <p class="loc-faq-page__a">Yes — cleaning the filters is part of the extractor hood price, not an extra. One honest caveat: mesh filters that are heavily saturated sometimes can't be brought back, because the grease sets deep into the mesh and no amount of soaking shifts it. If yours are past saving we'll tell you straight and recommend replacements, which are inexpensive and easy to fit yourself.</p>
                 </div>
             </div>
 
