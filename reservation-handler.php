@@ -30,6 +30,8 @@ function loc_handle_reservation() {
     $area_display     = $area_name !== '' ? $area_name : '—';
     $appliances_raw   = wp_unslash(          $_POST['appliances']       ?? '' );
     $total            = intval(              $_POST['total']            ?? 0  );
+    $terms_accepted   = ( $_POST['terms_accepted'] ?? '' ) === '1';
+    $terms_display    = $terms_accepted ? 'Accepted at reservation' : 'NOT RECORDED';
 
     // Parse appliances JSON string (sent as-is from sessionStorage)
     $appliances = [];
@@ -87,7 +89,8 @@ function loc_handle_reservation() {
         $appliances,
         $duration_minutes,
         $zone,
-        $callback_time
+        $callback_time,
+        $terms_accepted
     );
 
     if ( ! $booked ) {
@@ -135,6 +138,7 @@ Zone:      {$zone}
 Postcode:  {$postcode}
 Area:      {$area_display}
 Callback:  {$callback_time}
+Terms:     {$terms_display}
 ----------------------------------
 Appliances:
 {$appliance_lines}

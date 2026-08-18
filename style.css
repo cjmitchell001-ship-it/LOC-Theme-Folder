@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.2.3
+Version:           2.3.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -7108,6 +7108,40 @@ a:hover {
 }
 
 .loc-step3-form-privacy a { color: var(--blue); }
+
+/* Terms acceptance — required before a reservation can be submitted.
+   Deliberately darker than the privacy line above it: this is the text
+   the customer is agreeing to be bound by, not a footnote. */
+.loc-step3-terms {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+    cursor: pointer;
+}
+
+.loc-step3-terms__box {
+    flex-shrink: 0;
+    width: var(--space-5);
+    height: var(--space-5);
+    margin: 0;
+    accent-color: var(--blue);
+    cursor: pointer;
+}
+
+.loc-step3-terms__text {
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--text-ui);
+    color: var(--grey-600);
+    line-height: 1.5;
+}
+
+.loc-step3-terms__text a {
+    color: var(--blue);
+    text-decoration: underline;
+}
+
+.loc-step3-terms__text a:hover { color: var(--gold); }
 
 .loc-step3-btn-submit {
     width: 100%;

@@ -284,6 +284,11 @@
 
             <p class="loc-step3-form-privacy">Your details are used only to confirm this reservation. We&rsquo;ll never share them. <a href="<?php echo home_url('/privacy-policy'); ?>">Privacy Policy</a>.</p>
 
+            <label class="loc-step3-terms" for="loc-terms-agree">
+                <input type="checkbox" class="loc-step3-terms__box" id="loc-terms-agree">
+                <span class="loc-step3-terms__text">I&rsquo;ve read and agree to the <a href="<?php echo home_url('/terms-and-conditions'); ?>" target="_blank" rel="noopener">Terms &amp; Conditions</a>.</span>
+            </label>
+
             <p class="loc-step3-submit-error" id="loc-submit-error" style="display:none;"></p>
 
             <button class="loc-step3-btn-submit" id="loc-submit-btn">Confirm My Reservation &rarr;</button>

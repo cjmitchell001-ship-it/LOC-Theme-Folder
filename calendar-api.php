@@ -614,7 +614,7 @@ function loc_slot_is_free( $date, $slot_start, $slot_end, $duration_minutes, $ti
 // Returns true on success, false on failure.
 // ============================================================
 
-function loc_create_provisional_booking( $date, $slot, $customer_name, $phone, $email, $appliances, $duration_minutes, $zone, $callback_time = '' ) {
+function loc_create_provisional_booking( $date, $slot, $customer_name, $phone, $email, $appliances, $duration_minutes, $zone, $callback_time = '', $terms_accepted = false ) {
     global $_LOC_CALENDAR_ID;
 
     $service = loc_get_calendar_service();
@@ -646,6 +646,7 @@ function loc_create_provisional_booking( $date, $slot, $customer_name, $phone, $
         'Callback:   ' . ( $callback_time ?: 'Not specified' ),
         'Duration:   ' . $duration_minutes . ' min',
         'Status:     PROVISIONAL — awaiting confirmation call',
+        'Terms:      ' . ( $terms_accepted ? 'Accepted at reservation' : 'NOT RECORDED' ),
         '',
         'Appliances:',
         $applianceBlock,

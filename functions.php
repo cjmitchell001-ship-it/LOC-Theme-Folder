@@ -1546,6 +1546,14 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 return;
             }
 
+            // Terms acceptance — must be ticked, and the answer is sent with
+            // the booking so there is a dated record of what was agreed.
+            var termsBox = document.getElementById('loc-terms-agree');
+            if (!termsBox || !termsBox.checked) {
+                alert('Please confirm you have read and agree to the Terms & Conditions.');
+                return;
+            }
+
             // ── COLLECT POST DATA ──
             var submitBtn   = document.getElementById('loc-submit-btn');
             var submitErrEl = document.getElementById('loc-submit-error');
@@ -1563,7 +1571,8 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 postcode:         ssPostcode,
                 area_name:        ssAreaName,
                 appliances:       ssSelections,
-                total:            ssTotal
+                total:            ssTotal,
+                terms_accepted:   '1'
             };
 
             // ── DISABLE BUTTON WHILE FETCHING ──
