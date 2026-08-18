@@ -198,6 +198,8 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                     <p class="loc-legal-section__label">Section 1</p>
                     <h2>The service</h2>
                     <p>Leicester Oven Cleaning provides professional domestic oven cleaning services to customers in Leicester and Leicestershire. Our service includes the cleaning of ovens, hobs, extractor hoods, and related appliances as selected and confirmed at the time of booking.</p>
+                    <p>We clean each appliance to the best achievable condition for its age and use. Removable parts are degreased and cleaned, the oven interior is cleared of carbon and grease deposits, glass is cleaned, and everything is reassembled and tested before we leave.</p>
+                    <p>Some things cannot be reversed by cleaning. Discolouration, staining, pitting, scratches, heat damage, and worn finishes are permanent, and we will not attempt to force a result that risks damaging the appliance. Where we can see that something will not come out, we will tell you rather than leave you wondering.</p>
                     <p>All work is carried out by the founder personally. We do not subcontract or delegate jobs to third parties.</p>
                 </div>
 
@@ -216,7 +218,9 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 3</p>
                     <h2>Pricing and payment</h2>
-                    <p>All prices quoted are fixed and inclusive. The price agreed at the time of booking confirmation is the price you will pay. This is subject to the appliance being as described at the time of booking — if we arrive and find the scope of work is materially different from what was agreed, we will discuss this with you before proceeding. We will never start work at a different price without your agreement.</p>
+                    <p>Our prices start from the figures shown on our website and are confirmed before any work begins. The price we agree on the confirmation call is based on the appliances you have described to us.</p>
+                    <p>Where an appliance is in significantly heavier condition than described — for example an extractor hood with commercial-level grease build-up — we will tell you before starting, explain what is involved, and agree a revised price with you. You are free to decline, and you will not be charged. We will never begin work at a different price without your agreement.</p>
+                    <p>Photographs you send us help us prepare and are welcome, but they are an indication rather than a quotation. The price is confirmed once we have seen the appliance in person.</p>
 
                     <h3>Domestic bookings</h3>
                     <p>A deposit of £25 is required to confirm your booking. This deposit is arranged on the confirmation call by bank transfer — we will provide our bank details when we speak. The deposit is deducted from the total price of the job on the day. The remaining balance is due on the day of the clean, upon satisfactory completion of the work. We accept bank transfer or cash on the day.</p>
@@ -242,26 +246,53 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 6</p>
                     <h2>Pre-existing damage and appliance condition</h2>
-                    <p>We carry out a pre-clean inspection before commencing any work. Any pre-existing damage, faults, or areas of concern will be noted and brought to your attention before work begins.</p>
+                    <p>We carry out a pre-clean inspection before commencing any work and will note and bring to your attention any pre-existing damage, faults, or areas of concern that we can reasonably identify.</p>
+                    <p>This inspection is a visual safety check, not a certification that an appliance is fault-free. Heavy grease or carbon build-up can conceal existing damage, and many faults are not visible from the outside at all — deterioration inside a heating element, for example, may only become apparent electrically, when the appliance is under load. A clear inspection means no visible fault was found. It does not mean no fault exists.</p>
                     <p>We will not proceed with work on an appliance if we believe it presents a safety risk. If we are unable to proceed due to a safety concern with the appliance, we will discuss the situation with you before making any decision regarding the deposit. Where the concern is genuine and could not have been reasonably foreseen, a full deposit refund will be issued.</p>
-                    <p>We are not liable for damage to appliances that was pre-existing, concealed, or that results from a pre-existing fault that was not apparent during our pre-clean inspection.</p>
+                    <p>We are not liable for damage that was pre-existing or concealed, or for faults arising from wear, age, or an existing defect that was not apparent at inspection. Components such as heating elements, seals, thermostats, and switches degrade over time, and a fault may become apparent during or shortly after a clean without the clean having caused it.</p>
                 </div>
 
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 7</p>
-                    <h2>Insurance</h2>
-                    <p>We hold public liability insurance and treatment risk insurance. Treatment risk insurance specifically covers the appliances being worked on during the clean. Details of our insurance are available on request.</p>
+                    <h2>Older appliances and appliances that have been unused</h2>
+                    <p>Cleaning involves operating an appliance — running a heat cycle, using the fan, turning the hob on to check it works. On an older appliance, or one that has stood unused for a long period, that can be the first time it has run properly in months or years.</p>
+                    <p>Appliances near the end of their working life, and those affected by long disuse, can develop or reveal faults when brought back into normal use. This is a function of the appliance's age and history, not of the clean. We mention it particularly for pre-sale cleans and properties that have been standing empty, where it is most common.</p>
+                    <p>We will always tell you what we have observed, in plain terms, and we will never leave an appliance in a state where someone could unknowingly use a faulty function.</p>
                 </div>
 
                 <div class="loc-legal-section">
                     <p class="loc-legal-section__label">Section 8</p>
+                    <h2>If a fault appears during or after our visit</h2>
+                    <p>If something fails while we are there — an appliance trips the electrics, or a function stops working — we will stop, leave the appliance safely isolated rather than forcing it back into use, and explain plainly what we saw and when. We will not repeatedly re-test a fault that has already tripped a safety device; doing so tells us nothing new and can make an existing electrical fault worse.</p>
+                    <p>If something is not right after we have left, please contact us first, before arranging any repair. Many issues of this kind are straightforward — residue or moisture on a component that needs time to dry, or a part that needs reseating — and we will return and put it right at no cost to you.</p>
+                    <p>Where a fault has been caused by our work, we will resolve it at our expense. Where it is pre-existing, age-related, or otherwise not caused by us, we will tell you honestly what we have found.</p>
+                    <p>Cleaning products are applied as intended — sprayed across the cavity rather than directed at heating elements, with controlled application by hand where needed. This is normal practice and does not, in itself, damage a sound appliance.</p>
+                    <p>Identifying and reporting a fault is part of doing the job properly and we do not charge for it. Diagnosing or repairing that fault is separate work — where it falls outside what we do, we will tell you what we observed so that you can pass it to an appropriate engineer.</p>
+                    <p>Contacting us first matters: it allows us to put our own mistakes right quickly, and it protects your position if a claim ever becomes necessary.</p>
+                </div>
+
+                <div class="loc-legal-section">
+                    <p class="loc-legal-section__label">Section 9</p>
+                    <h2>Gas appliances</h2>
+                    <p>We clean gas ovens and hobs, including removable burner caps, crowns, and pan supports. This is cleaning work only.</p>
+                    <p>We are not Gas Safe registered and do not carry out any gas work. We will not adjust, dismantle, or repair gas pipework, injectors, valves, or fittings. If we identify a fault with a gas appliance, or an appliance is not operating correctly, we will tell you and recommend that you contact a Gas Safe registered engineer. We cannot advise on or carry out that work ourselves.</p>
+                </div>
+
+                <div class="loc-legal-section">
+                    <p class="loc-legal-section__label">Section 10</p>
+                    <h2>Insurance</h2>
+                    <p>We hold £1,000,000 public and products liability insurance with Hiscox, which includes cover for accidental damage to the appliances we are working on. Details of our insurance are available on request.</p>
+                </div>
+
+                <div class="loc-legal-section">
+                    <p class="loc-legal-section__label">Section 11</p>
                     <h2>Liability</h2>
                     <p>Our liability for any claim arising from our services is limited to the value of the job for which the claim arises. We are not liable for any indirect, consequential, or economic loss.</p>
                     <p>Nothing in these terms limits our liability for death, personal injury, fraud, or any other matter that cannot be excluded by law.</p>
                 </div>
 
                 <div class="loc-legal-section">
-                    <p class="loc-legal-section__label">Section 9</p>
+                    <p class="loc-legal-section__label">Section 12</p>
                     <h2>Governing law</h2>
                     <p>These Terms and Conditions are governed by the laws of England and Wales. Any disputes will be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
                 </div>
