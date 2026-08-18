@@ -122,7 +122,7 @@ get_header();
 
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">Do you work weekends?</h3>
-                    <p class="loc-faq-page__a">Yes — Saturdays and Sundays, as well as weekday evenings. Weekend slots are often the easiest to get. Pick any available date in the booking calendar and we'll confirm it with you on the call.</p>
+                    <p class="loc-faq-page__a">Yes — Saturdays and Sundays, which is unusual for oven cleaning and often the easiest slot to get. Pick any available date in the booking calendar and we'll confirm it with you on the call.</p>
                 </div>
             </div>
 
