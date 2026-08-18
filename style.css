@@ -6469,6 +6469,13 @@ a:hover {
     margin-bottom: var(--space-2);
 }
 
+.loc-step3-weekend-note {
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--text-ui);
+    color: var(--grey-600);
+    margin-bottom: var(--space-3);
+}
+
 
 /* LEGEND */
 .loc-step3-legend {

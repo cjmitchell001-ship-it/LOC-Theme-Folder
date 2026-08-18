@@ -107,6 +107,7 @@ get_header();
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">Is there a deposit?</h3>
                     <p class="loc-faq-page__a">Yes — £25, arranged on the confirmation call. After you reserve online, we'll call to confirm your booking and give you our bank details to transfer the deposit. Nothing is charged at the point of reservation, and the deposit is only requested once you're happy to go ahead.</p>
+                    <p class="loc-faq-page__a">The deposit holds your slot and covers our visit and the pre-clean inspection. If the clean goes ahead it comes straight off the price, so it costs you nothing extra. If we arrive and find the appliance has a fault or safety issue that means we can't clean it, the deposit covers the visit and the inspection — we'll always explain exactly what we've found.</p>
                 </div>
 
                 <div class="loc-faq-page__item">

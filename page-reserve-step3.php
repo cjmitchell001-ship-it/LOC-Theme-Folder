@@ -60,6 +60,7 @@
 
         <p class="loc-step3-eyebrow section-eyebrow">Available Slots</p>
         <h2 class="loc-step3-section-heading">Select a date</h2>
+        <p class="loc-step3-weekend-note">We work weekends too — Saturdays and Sundays are often the easiest slots to get.</p>
         <!-- LEGEND -->
         <div class="loc-step3-legend">
             <div class="loc-step3-legend-item">

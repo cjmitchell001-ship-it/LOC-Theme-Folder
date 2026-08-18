@@ -223,7 +223,10 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                     <p>Photographs you send us help us prepare and are welcome, but they are an indication rather than a quotation. The price is confirmed once we have seen the appliance in person.</p>
 
                     <h3>Domestic bookings</h3>
-                    <p>A deposit of £25 is required to confirm your booking. This deposit is arranged on the confirmation call by bank transfer — we will provide our bank details when we speak. The deposit is deducted from the total price of the job on the day. The remaining balance is due on the day of the clean, upon satisfactory completion of the work. We accept bank transfer or cash on the day.</p>
+                    <p>A deposit of £25 is required to confirm your booking. This deposit is arranged on the confirmation call by bank transfer — we will provide our bank details when we speak.</p>
+                    <p>The deposit secures your slot and covers our attendance and the pre-clean inspection we carry out when we arrive. Where the clean goes ahead, it is deducted in full from the price of the job, so it costs you nothing extra. The remaining balance is due on the day of the clean, upon satisfactory completion of the work. We accept bank transfer or cash on the day.</p>
+                    <p>Where we attend and the clean cannot go ahead because of the condition of the appliance — for example an existing fault or a safety issue that makes it unsafe to work on — the deposit is retained. It covers the visit, the inspection, and the slot that was held for you and can no longer be filled. We will always explain what we have found before this applies.</p>
+                    <p>If we are unable to carry out the work for reasons of our own, your deposit is refunded in full.</p>
 
                     <h3>Business and commercial bookings</h3>
                     <p>Deposit amounts and payment terms for business and commercial bookings are agreed individually at the time of booking confirmation and confirmed in writing before the booking is finalised.</p>
@@ -248,7 +251,8 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                     <h2>Pre-existing damage and appliance condition</h2>
                     <p>We carry out a pre-clean inspection before commencing any work and will note and bring to your attention any pre-existing damage, faults, or areas of concern that we can reasonably identify.</p>
                     <p>This inspection is a visual safety check, not a certification that an appliance is fault-free. Heavy grease or carbon build-up can conceal existing damage, and many faults are not visible from the outside at all — deterioration inside a heating element, for example, may only become apparent electrically, when the appliance is under load. A clear inspection means no visible fault was found. It does not mean no fault exists.</p>
-                    <p>We will not proceed with work on an appliance if we believe it presents a safety risk. If we are unable to proceed due to a safety concern with the appliance, we will discuss the situation with you before making any decision regarding the deposit. Where the concern is genuine and could not have been reasonably foreseen, a full deposit refund will be issued.</p>
+                    <p>We will not proceed with work on an appliance if we believe it presents a safety risk. If that happens we will explain clearly what we have found and why we are not willing to continue, and we will tell you what we think it needs.</p>
+                    <p>In that situation the deposit is retained, as set out in Section 3. We have attended, inspected the appliance, and held a slot that can no longer be filled. Identifying a fault you may not have known about is part of the value of that visit, and no charge beyond the deposit is made for it.</p>
                     <p>We are not liable for damage that was pre-existing or concealed, or for faults arising from wear, age, or an existing defect that was not apparent at inspection. Components such as heating elements, seals, thermostats, and switches degrade over time, and a fault may become apparent during or shortly after a clean without the clean having caused it.</p>
                 </div>
 
@@ -346,6 +350,7 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                         <li>A rescheduled appointment at a date that suits you</li>
                     </ul>
                     <p>We will never retain your deposit where the cancellation is made by us.</p>
+                    <p>This covers cancellations for our own reasons — illness, vehicle trouble, a scheduling problem at our end. It does not cover the situation where we attend as arranged and find the appliance cannot be safely or sensibly cleaned because of its condition. That is not a cancellation by us: we have travelled, attended and inspected. See Sections 3 and 6 of our <a href="/terms-and-conditions">Terms &amp; Conditions</a>.</p>
                 </div>
 
                 <div class="loc-legal-section">
