@@ -321,10 +321,40 @@ get_header();
     <div class="loc-reviews__inner">
         <p class="section-eyebrow">Our Standard</p>
         <h2 class="loc-reviews__title">What Our Customers Say</h2>
-        <div class="loc-reviews__stars">
-            <p class="loc-reviews__statement">No reviews yet — we're building our reputation one oven at a time.</p>
-            <p class="loc-reviews__invite">Be one of our first customers and tell us how we did.</p>
-            <a href="/reserve-step-1" class="btn-primary" style="margin-top: 16px;">Reserve Your Slot — we'll call to confirm</a>
+
+        <div class="loc-reviews__rating">
+            <span class="loc-reviews__rating-score">5.0</span>
+            <span class="loc-reviews__rating-stars" aria-hidden="true">★★★★★</span>
+            <span class="loc-reviews__rating-count">7 reviews on Google</span>
+        </div>
+
+        <div class="loc-reviews__grid">
+
+            <blockquote class="loc-reviews__card">
+                <p class="loc-reviews__quote">Chris was so fantastic, I wish I had before pictures. We got Chris over for a double oven clean before we moved in and it was amazing. We had ovens like brand new! So happy and he&rsquo;s so friendly and kind too!</p>
+                <cite class="loc-reviews__author">Raakhi Tanvi</cite>
+            </blockquote>
+
+            <blockquote class="loc-reviews__card">
+                <p class="loc-reviews__quote">Chris was fantastic, arrived on time, very professional and courteous. As for the cleaning of the oven, it is beyond recognition! Chris took his time and ensured a great job was completed. Highly recommend!</p>
+                <cite class="loc-reviews__author">Tim Patel</cite>
+            </blockquote>
+
+            <blockquote class="loc-reviews__card">
+                <p class="loc-reviews__quote">Chris did an amazing job with the oven cleaning. It absolutely looks quite new now! He did a brilliant job with microwave, cooker and hood cleaning as well. I would highly recommend Chris and the price is quite reasonable as well.</p>
+                <cite class="loc-reviews__author">Disha Darpan Rathod</cite>
+            </blockquote>
+
+            <blockquote class="loc-reviews__card">
+                <p class="loc-reviews__quote">Excellent communications. Arrived promptly after a prearranged time change. Clean and tidy. Clear explanations and a clean oven at the end.</p>
+                <cite class="loc-reviews__author">Jonathan Rashleigh</cite>
+            </blockquote>
+
+        </div>
+
+        <div class="loc-reviews__footer">
+            <a href="https://www.google.com/maps?cid=1756949504363706380" class="loc-reviews__google-link" target="_blank" rel="noopener">Read all our reviews on Google &rarr;</a>
+            <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &mdash; we&rsquo;ll call to confirm</a>
         </div>
     </div>
 </section>

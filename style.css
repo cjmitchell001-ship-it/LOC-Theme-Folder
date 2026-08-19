@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.3.3
+Version:           2.4.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -783,10 +783,6 @@ a:hover {
 
     .loc-reviews {
         padding: var(--space-12) var(--space-10);
-    }
-
-    .loc-reviews__subtitle {
-        margin: 0 auto var(--space-7);
     }
 
     .loc-areas {
@@ -1765,46 +1761,99 @@ a:hover {
     line-height: 1.15;
 }
 
-.loc-reviews__subtitle {
-    font-family: 'Open Sans', sans-serif;
-    font-size: var(--text-body);
-    color: var(--grey-500);
-    max-width: 560px;
-    margin: 0 auto var(--space-10);
-    line-height: 1.6;
-}
-
 .loc-reviews__inner {
     max-width: 1080px;
     margin: 0 auto;
 }
 
-.loc-reviews__stars {
+/* Rating summary — the number does the persuading, so it leads. */
+.loc-reviews__rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-bottom: var(--space-10);
+}
+
+.loc-reviews__rating-score {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: var(--text-h2);
+    color: var(--white);
+    line-height: 1;
+}
+
+.loc-reviews__rating-stars {
+    font-size: var(--text-h4);
+    color: var(--gold-light);
+    letter-spacing: 2px;
+}
+
+.loc-reviews__rating-count {
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--text-body);
+    color: var(--white-a85);
+}
+
+/* Quote cards — glass panels on the blue section background. */
+.loc-reviews__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+    text-align: left;
+    margin-bottom: var(--space-10);
+}
+
+.loc-reviews__card {
+    background: var(--white-a05);
+    border: 1px solid var(--white-a15);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    margin: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: var(--space-4);
 }
 
-.loc-reviews__stars-row {
-    display: flex;
-    gap: var(--space-2);
-    align-items: center;
+.loc-reviews__quote {
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--text-body-sm);
+    color: var(--white);
+    line-height: 1.65;
 }
 
-.loc-reviews__statement {
+.loc-reviews__author {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: var(--text-body-lg);
-    color: var(--white);
-    max-width: 500px;
-    line-height: 1.4;
+    font-size: var(--text-ui);
+    color: var(--gold-light);
+    font-style: normal;
+    margin-top: auto;
 }
 
-.loc-reviews__invite {
+.loc-reviews__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+}
+
+.loc-reviews__google-link {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-ui-lg);
-    color: var(--grey-400);
+    font-weight: 600;
+    color: var(--white);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.loc-reviews__google-link:hover { color: var(--gold-light); }
+
+@media (max-width: 768px) {
+    .loc-reviews__grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* RESPONSIVE */
@@ -1813,26 +1862,13 @@ a:hover {
         padding: var(--space-8) var(--space-5);
     }
 
-    .loc-reviews__subtitle {
-        margin-bottom: var(--space-5);
-        font-size: var(--text-ui-lg);
+    .loc-reviews__rating {
+        gap: var(--space-2);
+        margin-bottom: var(--space-8);
     }
 
-    .loc-reviews__stars {
-        gap: var(--space-3);
-    }
-
-    .loc-reviews__stars-row svg {
-        width: 28px;
-        height: 28px;
-    }
-
-    .loc-reviews__statement {
-        font-size: var(--text-body-sm);
-    }
-
-    .loc-reviews__invite {
-        margin-bottom: -var(--space-2);
+    .loc-reviews__card {
+        padding: var(--space-5);
     }
 
     .loc-reviews__title {
