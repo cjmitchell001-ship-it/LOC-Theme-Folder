@@ -35,7 +35,7 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                 </div>
                 <div class="loc-legal-meta-item">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="rgba(255,255,255,0.5)" stroke-width="2"/></svg>
-                    <span>ICO Registration: <strong>[Pending — inserting before go-live]</strong></span>
+                    <span>ICO Registration: <strong>Pending</strong></span>
                 </div>
             </div>
         </div>
@@ -426,8 +426,8 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                 <!-- ICO BOX -->
                 <div class="loc-legal-sidebar__ico">
                     <p class="loc-legal-sidebar__ico-label">ICO Registration</p>
-                    <p>Leicester Oven Cleaning is registered with the <strong>Information Commissioner's Office</strong> as required by UK data protection law.</p>
-                    <p>Registration number: <strong>[Pending — inserting before go-live]</strong></p>
+                    <p>Leicester Oven Cleaning's registration with the <strong>Information Commissioner's Office</strong> is in progress, as required by UK data protection law.</p>
+                    <p>Registration number: <strong>Pending</strong></p>
                 </div>
 
                 <!-- CONTACT BOX -->
