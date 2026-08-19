@@ -117,7 +117,7 @@ get_header();
 
                 <div class="loc-faq-page__item">
                     <h3 class="loc-faq-page__q">What if I need to cancel?</h3>
-                    <p class="loc-faq-page__a">Cancel with 48 hours or more notice and we'll refund your deposit in full. Within 48 hours the deposit is forfeit. No-shows forfeit the deposit automatically.</p>
+                    <p class="loc-faq-page__a">Cancel with 48 hours or more notice and we'll refund your deposit in full. Inside 48 hours the deposit is normally non-refundable, since the slot is rarely possible to fill at short notice — but things happen, so tell us and we'll be reasonable about it. No-shows forfeit the deposit.</p>
                 </div>
 
                 <div class="loc-faq-page__item">

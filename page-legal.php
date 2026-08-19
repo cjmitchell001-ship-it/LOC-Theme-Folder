@@ -323,11 +323,12 @@ $current = $page_titles[$slug] ?? ['eyebrow' => 'Legal', 'title' => get_the_titl
                             </thead>
                             <tbody>
                                 <tr><td>48 hours or more before the appointment</td><td>Full refund of deposit</td></tr>
-                                <tr><td>Less than 48 hours before the appointment</td><td>Deposit forfeited</td></tr>
+                                <tr><td>Less than 48 hours before the appointment</td><td>Deposit normally non-refundable</td></tr>
                                 <tr><td>No-show (no contact made)</td><td>Deposit forfeited</td></tr>
                             </tbody>
                         </table>
                     </div>
+                    <p>Inside 48 hours the deposit is normally non-refundable, because the slot is rarely possible to fill at short notice. That said, if something genuinely unavoidable has come up, tell us — we understand things happen and we'll be reasonable about it.</p>
                     <p>To cancel, <a href="/contact">contact us</a> as soon as possible by phone or email. The cancellation time is recorded from when we receive your message.</p>
                 </div>
 
