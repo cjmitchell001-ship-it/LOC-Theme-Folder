@@ -332,22 +332,34 @@ get_header();
 
             <blockquote class="loc-reviews__card">
                 <p class="loc-reviews__quote">Chris was so fantastic, I wish I had before pictures. We got Chris over for a double oven clean before we moved in and it was amazing. We had ovens like brand new! So happy and he&rsquo;s so friendly and kind too!</p>
-                <cite class="loc-reviews__author">Raakhi Tanvi</cite>
+                <footer class="loc-reviews__card-foot">
+                    <cite class="loc-reviews__author">Raakhi Tanvi</cite>
+                    <span class="loc-reviews__card-stars" role="img" aria-label="Rated 5 out of 5">★★★★★</span>
+                </footer>
             </blockquote>
 
             <blockquote class="loc-reviews__card">
                 <p class="loc-reviews__quote">Chris was fantastic, arrived on time, very professional and courteous. As for the cleaning of the oven, it is beyond recognition! Chris took his time and ensured a great job was completed. Highly recommend!</p>
-                <cite class="loc-reviews__author">Tim Patel</cite>
+                <footer class="loc-reviews__card-foot">
+                    <cite class="loc-reviews__author">Tim Patel</cite>
+                    <span class="loc-reviews__card-stars" role="img" aria-label="Rated 5 out of 5">★★★★★</span>
+                </footer>
             </blockquote>
 
             <blockquote class="loc-reviews__card">
                 <p class="loc-reviews__quote">Chris did an amazing job with the oven cleaning. It absolutely looks quite new now! He did a brilliant job with microwave, cooker and hood cleaning as well. I would highly recommend Chris and the price is quite reasonable as well.</p>
-                <cite class="loc-reviews__author">Disha Darpan Rathod</cite>
+                <footer class="loc-reviews__card-foot">
+                    <cite class="loc-reviews__author">Disha Darpan Rathod</cite>
+                    <span class="loc-reviews__card-stars" role="img" aria-label="Rated 5 out of 5">★★★★★</span>
+                </footer>
             </blockquote>
 
             <blockquote class="loc-reviews__card">
                 <p class="loc-reviews__quote">Excellent communications. Arrived promptly after a prearranged time change. Clean and tidy. Clear explanations and a clean oven at the end.</p>
-                <cite class="loc-reviews__author">Jonathan Rashleigh</cite>
+                <footer class="loc-reviews__card-foot">
+                    <cite class="loc-reviews__author">Jonathan Rashleigh</cite>
+                    <span class="loc-reviews__card-stars" role="img" aria-label="Rated 5 out of 5">★★★★★</span>
+                </footer>
             </blockquote>
 
         </div>
