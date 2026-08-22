@@ -9,6 +9,19 @@
 require_once get_stylesheet_directory() . '/calendar-api.php';
 require_once get_stylesheet_directory() . '/reservation-handler.php';
 
+/**
+ * Register title-tag support.
+ *
+ * The theme has emitted no <title> on any page since the GeneratePress
+ * parent was removed (m6) — title-tag support went with it and nothing
+ * replaced it. Yoast writes titles through the pre_get_document_title
+ * filter, which WordPress only runs when the theme declares this support,
+ * so Yoast has been silently unable to output a title since then.
+ */
+add_action( 'after_setup_theme', function () {
+	add_theme_support( 'title-tag' );
+} );
+
 // ============================================================
 // EARLY BIRD OFFER — Single Oven £55 / Double Oven £70 /
 // Free-Standing Oven £55. Auto-reverts to standard pricing on
