@@ -189,7 +189,7 @@ function loc_location_cta() {
 				<div class="loc-location-price"><span>Combi microwave</span><span>&pound;20</span></div>
 			</div>
 
-			<p>A word on range cookers. The &pound;125 covers the whole appliance &mdash; every cavity, the hob and the exterior. If you only want part of it done, the price reflects that: a single cavity on its own starts at the same price as a single oven. Tell us what you actually want cleaning and we will price that, rather than the whole thing.</p>
+			<p>Range cookers vary more than anything else we clean, so the price does too. The from-price covers all the cavities, the grill compartment and the exterior; a hob is priced separately. If you only want part of it cleaned, say so when you reserve and we will price what you actually want doing.</p>
 			<p>Prices are confirmed before we start, not after we finish. If an oven turns out to be heavily soiled and needs longer than a standard clean, we will say so and re-quote before any work begins.</p>
 			<p><a href="/services">See everything we clean &rarr;</a></p>
 
