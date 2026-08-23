@@ -55,7 +55,7 @@ $loc_towns = [
 			'Syston and LE7'     => [ 'Syston', 'Queniborough', 'Anstey', 'Cropston' ],
 			'Neighbouring (LE4)' => [ 'Thurmaston', 'Birstall' ],
 		],
-		'coverage_note'   => 'Not sure whether you are inside the line? Put your postcode into the booking page and it will tell you straight away.',
+		'coverage_note'   => 'Syston is one of many areas we cover across Leicester and the wider county. Put your postcode into the booking page and it will confirm in seconds &mdash; we reach a good deal further than most people expect.',
 
 		'kitchens'   => 'Most of the Syston kitchens we work in fall into two groups &mdash; older semis, and the newer estates around the edges of the village. In both, the appliance is usually an integrated double oven, which is the most common thing we clean here by some distance. Towards the centre of Syston there is more of the older Victorian housing, and those kitchens tend to be a different job again.',
 		'kitchens_2' => 'Integrated doubles are worth knowing about before you book. There are two cavities rather than one, so there is more glass, more shelving and more door seal to work through than a single oven &mdash; which is why a double starts higher than a single, and why it takes longer on the day.',
@@ -79,12 +79,8 @@ $loc_towns = [
 
 		'faqs' => [
 			[
-				'q' => 'Do you cover all of Syston?',
-				'a' => 'Yes &mdash; the whole of Syston and the wider LE7 area, plus Thurmaston and Birstall next door. If you are slightly outside that it is still worth asking, and we will be honest if it is not practical.',
-			],
-			[
-				'q' => 'Does it cost more because I am outside Leicester?',
-				'a' => 'No. There is no travel surcharge for Syston or anywhere else we cover. The price depends on the appliance, not the postcode.',
+				'q' => 'What if I am outside the Syston area?',
+				'a' => 'You are almost certainly still covered. We work right across the LE postcodes &mdash; Leicester city, north to Loughborough, Coalville and Ashby, east to Melton and Rutland, south to Lutterworth and Market Harborough, and west to Hinckley. There is no travel surcharge anywhere on that list; the price depends on the appliance, not the postcode.',
 			],
 			[
 				'q' => 'How long will it take?',
@@ -193,6 +189,7 @@ function loc_location_cta() {
 				<div class="loc-location-price"><span>Combi microwave</span><span>&pound;20</span></div>
 			</div>
 
+			<p>A word on range cookers. The &pound;125 covers the whole appliance &mdash; every cavity, the hob and the exterior. If you only want part of it done, the price reflects that: a single cavity on its own starts at the same price as a single oven. Tell us what you actually want cleaning and we will price that, rather than the whole thing.</p>
 			<p>Prices are confirmed before we start, not after we finish. If an oven turns out to be heavily soiled and needs longer than a standard clean, we will say so and re-quote before any work begins.</p>
 			<p><a href="/services">See everything we clean &rarr;</a></p>
 
@@ -230,20 +227,7 @@ function loc_location_cta() {
 		</div>
 	</section>
 
-	<!-- 7. THE PRE-CLEAN CHECK — worded as a screen, never as a guarantee. See
-	     03-Operations/Post-Clean-Electrical-Faults.md: a visual check screens
-	     for the obvious, it does not certify that nothing is wrong. Do not
-	     reword this into a promise. -->
-	<section class="loc-location-section loc-location-section--alt">
-		<div class="loc-location-section__inner">
-			<p class="section-eyebrow">Before We Start</p>
-			<h2>The check we do first</h2>
-			<p>Before any product touches your appliance we look it over with you &mdash; the condition of the seals and the glass, any damage that is already there, and anything that needs flagging rather than cleaning. It takes a couple of minutes, and it means the price is agreed on what is actually in front of us.</p>
-			<p>We will also be straight about what that check can and cannot tell us. It catches the obvious. It is not a guarantee that an older appliance has no underlying fault, because some things simply are not visible from the outside &mdash; and we would rather say so up front than pretend otherwise.</p>
-		</div>
-	</section>
-
-	<!-- 8. REVIEWS — real customers from this town, placed BEFORE the honest
+	<!-- 7. REVIEWS — real customers from this town, placed BEFORE the honest
 	     expectations section so the page reads as delight then caveat, rather
 	     than a claim immediately contradicted. -->
 	<section class="loc-location-section">
@@ -262,6 +246,19 @@ function loc_location_cta() {
 				<?php endforeach; ?>
 			</div>
 			<?php loc_location_cta(); ?>
+		</div>
+	</section>
+
+	<!-- 8. THE PRE-CLEAN CHECK — worded as a screen, never as a guarantee. See
+	     03-Operations/Post-Clean-Electrical-Faults.md: a visual check screens
+	     for the obvious, it does not certify that nothing is wrong. Do not
+	     reword this into a promise. -->
+	<section class="loc-location-section loc-location-section--alt">
+		<div class="loc-location-section__inner">
+			<p class="section-eyebrow">Before We Start</p>
+			<h2>The check we do first</h2>
+			<p>Before any product touches your appliance we look it over with you &mdash; the condition of the seals and the glass, any damage that is already there, and anything that needs flagging rather than cleaning. It takes a couple of minutes, and it means the price is agreed on what is actually in front of us.</p>
+			<p>We will also be straight about what that check can and cannot tell us. It catches the obvious. It is not a guarantee that an older appliance has no underlying fault, because some things simply are not visible from the outside &mdash; and we would rather say so up front than pretend otherwise.</p>
 		</div>
 	</section>
 
