@@ -62,8 +62,8 @@ get_header();
         <div class="loc-trust__item">
             <div class="loc-trust__icon">✓</div>
             <div class="loc-trust__text">
-                <strong>Insured Including Items Worked Upon</strong>
-                <span>£1m cover that includes the appliance we&rsquo;re working on</span>
+                <strong>Fully Insured</strong>
+                <span>Your home and your appliances are covered</span>
             </div>
         </div>
 
