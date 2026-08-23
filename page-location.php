@@ -9,9 +9,13 @@
  * Google's scaled content abuse policy targets near-duplicate pages, and the
  * working test is that two pages which are 85%+ identical with one variable
  * swapped will fail. Every town added to $loc_towns below needs genuinely
- * different material: its own zone availability pattern, its own housing and
- * appliance mix, its own photo, its own reviews. If a town cannot fill those
- * out with real detail, it does not get a page yet.
+ * different material: its own local detail, its own housing and appliance mix,
+ * its own photo, its own reviews. If a town cannot fill those out with real
+ * detail, it does not get a page yet.
+ *
+ * NEVER publish slot patterns, working hours or day-of-week availability on
+ * these pages. It reveals more about how the business is staffed than it does
+ * about the service. Availability lives in the booking calendar only.
  */
 
 get_header();
@@ -23,18 +27,11 @@ $loc_towns = [
 	'syston' => [
 		'town'     => 'Syston',
 		'postcode' => 'LE7',
-		'zone'     => 'North',
-		'subline'  => 'LE7 &middot; North Leicester &middot; Weekend and weekday slots',
+		'subline'  => 'LE7 &middot; North Leicester &middot; One of our most regular areas',
 
-		'intro'    => 'Syston is one of the areas we cover most often. It sits just north of Leicester on the A46 corridor, and it&rsquo;s an easy run for us &mdash; which matters more than it sounds, because it&rsquo;s why we can offer Syston afternoon slots on weekdays rather than weekends only.',
+		'intro'    => 'Syston is one of the areas we cover most often &mdash; more jobs here than almost anywhere else we go. It sits just north of Leicester on the A46 corridor, which makes it a short, direct run for us, and that is a large part of why we are up here so regularly.',
 		'intro_2'  => 'We clean ovens, hobs, extractors and microwaves across Syston and the rest of LE7, including Queniborough and Anstey, and the neighbouring LE4 villages of Thurmaston and Birstall.',
 
-		// Availability pattern, not specific dates — dates go stale, the pattern
-		// is driven by the standing weekday/weekend blocks. Verified 23 Aug 2026
-		// against the live availability endpoint for zone=North.
-		'avail_weekday' => 'Weekday afternoons &mdash; 1pm to 6pm',
-		'avail_weekend' => 'Weekends &mdash; morning (7am&ndash;1pm) and afternoon (1pm&ndash;6pm)',
-		'avail_note'    => 'Weekday mornings aren&rsquo;t usually available in Syston. Weekends are wide open, and that&rsquo;s the difference most people care about &mdash; a Saturday morning oven clean is easier to fit around a working week than a weekday one.',
 
 		'expect'   => 'Most of the Syston kitchens we work in fall into two groups &mdash; older semis, and the newer estates around the edges of the village. In both, the appliance is usually an integrated double oven, which is the most common thing we clean here by some distance. Towards the centre of Syston there&rsquo;s more of the older Victorian housing, and those kitchens tend to be a different job again.',
 		'expect_2' => 'Integrated doubles are worth knowing about before you book. There are two cavities rather than one, so there&rsquo;s more glass, more shelving and more door seal to work through than a single oven &mdash; which is why a double is priced from &pound;70 rather than from &pound;55, and why it takes longer on the day.',
@@ -87,24 +84,6 @@ $loc_eb = loc_earlybird_active();
 		</div>
 	</section>
 
-	<!-- AVAILABILITY — the section that makes each town page genuinely different -->
-	<section class="loc-location-section loc-location-section--alt">
-		<div class="loc-location-section__inner">
-			<p class="section-eyebrow">Availability</p>
-			<h2>When we can come to <?php echo $t['town']; ?></h2>
-
-			<p>Because <?php echo $t['town']; ?> is in our <strong><?php echo $t['zone']; ?></strong> zone, the slots that open up here follow a particular pattern:</p>
-
-			<ul class="loc-location-avail">
-				<li><?php echo $t['avail_weekday']; ?></li>
-				<li><?php echo $t['avail_weekend']; ?></li>
-			</ul>
-
-			<p><?php echo $t['avail_note']; ?></p>
-			<p>You can see the actual dates on the booking page. It&rsquo;s a live calendar, not an enquiry form &mdash; what you see is what&rsquo;s genuinely free.</p>
-		</div>
-	</section>
-
 	<!-- PRICES -->
 	<section class="loc-location-section">
 		<div class="loc-location-section__inner">
@@ -113,9 +92,9 @@ $loc_eb = loc_earlybird_active();
 			<p>Same prices in <?php echo $t['town']; ?> as everywhere else we cover &mdash; there&rsquo;s no travel surcharge.</p>
 
 			<div class="loc-location-prices">
-				<div class="loc-location-price"><span>Single oven</span><span><?php echo $loc_eb ? '&pound;55 <s class="loc-price-was">from &pound;70</s>' : 'from &pound;70'; ?></span></div>
-				<div class="loc-location-price"><span>Double oven</span><span><?php echo $loc_eb ? '&pound;70 <s class="loc-price-was">from &pound;90</s>' : 'from &pound;90'; ?></span></div>
-				<div class="loc-location-price"><span>Free-standing cooker</span><span><?php echo $loc_eb ? '&pound;55 <s class="loc-price-was">from &pound;70</s>' : 'from &pound;70'; ?></span></div>
+				<div class="loc-location-price"><span>Single oven</span><span><?php echo $loc_eb ? 'from &pound;55 <s class="loc-price-was">from &pound;70</s>' : 'from &pound;70'; ?></span></div>
+				<div class="loc-location-price"><span>Double oven</span><span><?php echo $loc_eb ? 'from &pound;70 <s class="loc-price-was">from &pound;90</s>' : 'from &pound;90'; ?></span></div>
+				<div class="loc-location-price"><span>Free-standing cooker</span><span><?php echo $loc_eb ? 'from &pound;55 <s class="loc-price-was">from &pound;70</s>' : 'from &pound;70'; ?></span></div>
 				<div class="loc-location-price"><span>Range cooker</span><span>from &pound;125</span></div>
 				<div class="loc-location-price"><span>Gas, ceramic or induction hob</span><span>from &pound;25</span></div>
 				<div class="loc-location-price"><span>Extractor hood</span><span>from &pound;25</span></div>
@@ -181,7 +160,7 @@ $loc_eb = loc_earlybird_active();
 	<!-- CTA -->
 	<section class="loc-location-cta">
 		<div class="loc-location-cta__inner">
-			<p class="loc-location-cta__tagline">Real availability, including weekends. We&rsquo;ll call to confirm.</p>
+			<p class="loc-location-cta__tagline">See live availability and reserve in minutes. We&rsquo;ll call to confirm.</p>
 			<a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>
 			<p class="loc-location-cta__sub">No card needed to reserve. A &pound;25 deposit is arranged by bank transfer on the confirmation call, with the balance by transfer or cash on the day.</p>
 			<p class="loc-location-cta__back"><a href="/areas">&larr; See all the areas we cover</a></p>
