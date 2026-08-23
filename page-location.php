@@ -69,11 +69,11 @@ $loc_towns = [
 		'reviews' => [
 			[
 				'quote'  => 'Chris was so fantastic, I wish I had before pictures. We got Chris over for a double oven clean before we moved in and it was amazing. We had ovens like brand new! So happy and he&rsquo;s so friendly and kind too!',
-				'author' => 'Raakhi Tanvi',
+				'author' => 'Raakhi T.',
 			],
 			[
 				'quote'  => 'Chris did an amazing job with the oven cleaning. It absolutely looks quite new now! He did a brilliant job with microwave, cooker and hood cleaning as well. I would highly recommend Chris and the price is quite reasonable as well.',
-				'author' => 'Disha Darpan Rathod',
+				'author' => 'Disha R.',
 			],
 		],
 
