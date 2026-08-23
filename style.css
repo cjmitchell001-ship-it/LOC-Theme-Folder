@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.4.3
+Version:           2.4.4
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -8038,22 +8038,7 @@ a.loc-funnel-step--complete:hover {
     margin-bottom: var(--space-4);
 }
 
-.loc-location-avail {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 var(--space-5);
-}
 
-.loc-location-avail li {
-    background: var(--blue-pale);
-    border-left: 3px solid var(--gold);
-    border-radius: var(--radius-sm);
-    padding: var(--space-4) var(--space-5);
-    margin-bottom: var(--space-3);
-    font-size: var(--text-body);
-    color: var(--blue);
-    font-weight: 600;
-}
 
 .loc-location-prices {
     border: 1px solid var(--border);
@@ -8086,25 +8071,8 @@ a.loc-funnel-step--complete:hover {
     white-space: nowrap;
 }
 
-.loc-location-work {
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: var(--space-10);
-    align-items: start;
-    max-width: 960px;
-}
 
-.loc-location-work__figure {
-    margin: 0;
-}
 
-.loc-location-work__figure img {
-    width: 100%;
-    height: auto;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-md);
-    display: block;
-}
 
 .loc-location-reviews {
     display: grid;
@@ -8192,13 +8160,129 @@ a.loc-funnel-step--complete:hover {
     .loc-location-cta {
         padding: var(--space-12) var(--space-5);
     }
+}
 
-    .loc-location-work {
-        grid-template-columns: 1fr;
-        gap: var(--space-6);
+/* --- location pages: components added in the researched rebuild --- */
+
+.loc-location__price-anchor {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: var(--text-lead);
+    color: var(--gold);
+    margin-top: var(--space-4);
+}
+
+.loc-location-coverage {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-6);
+    margin: var(--space-6) 0;
+}
+
+.loc-location-coverage__title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: var(--text-ui-lg);
+    color: var(--blue);
+    margin-bottom: var(--space-3);
+}
+
+.loc-location-coverage__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.loc-location-coverage__list li {
+    background: var(--blue-pale);
+    color: var(--blue);
+    border-radius: var(--radius-pill);
+    padding: var(--space-1) var(--space-4);
+    font-size: var(--text-ui);
+    font-weight: 600;
+}
+
+.loc-location-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-5);
+    margin-top: var(--space-6);
+}
+
+.loc-location-gallery__item {
+    margin: 0;
+}
+
+.loc-location-gallery__item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+.loc-location-inline-cta {
+    background: var(--blue-pale);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    margin-top: var(--space-8);
+    text-align: center;
+}
+
+.loc-location-inline-cta__text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: var(--text-body-lg);
+    color: var(--blue);
+    margin-bottom: var(--space-4);
+}
+
+.loc-location-faqs {
+    margin-top: var(--space-6);
+}
+
+.loc-location-faq {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--white);
+    margin-bottom: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+}
+
+.loc-location-faq__q {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: var(--text-body-sm);
+    color: var(--blue);
+    cursor: pointer;
+}
+
+.loc-location-faq__a {
+    margin-top: var(--space-3);
+    margin-bottom: 0;
+    font-size: var(--text-body-sm);
+    color: var(--grey-600);
+    line-height: 1.7;
+}
+
+.loc-location-nearby {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-5) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+@media (max-width: 768px) {
+    .loc-location-inline-cta {
+        padding: var(--space-5);
     }
 
-    .loc-location-work__figure {
-        max-width: 320px;
+    .loc-location-gallery {
+        grid-template-columns: 1fr;
     }
 }
