@@ -42,7 +42,7 @@ get_header();
                         <li data-postcode="LE4">Thurmaston <span>LE4</span></li>
                         <li data-postcode="LE6">Groby <span>LE6</span></li>
                         <li data-postcode="LE7">Anstey <span>LE7</span></li>
-                        <li data-postcode="LE7">Syston <span>LE7</span></li>
+                        <li data-postcode="LE7"><a href="/areas/syston/">Syston</a> <span>LE7</span></li>
                         <li data-postcode="LE7">Scraptoft <span>LE7</span></li>
                         <li data-postcode="LE7">Queniborough <span>LE7</span></li>
                         <li data-postcode="LE11">Loughborough <span>LE11</span></li>
