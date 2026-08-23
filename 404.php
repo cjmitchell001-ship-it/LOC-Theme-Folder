@@ -29,7 +29,7 @@ get_header();
             <div class="loc-404-links">
                 <p class="loc-404-links__title">Or try one of these:</p>
                 <div class="loc-404-links__grid">
-                    <a href="/reserve" class="loc-404-link">
+                    <a href="/reserve-step-1" class="loc-404-link">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="#1A3A6E" stroke-width="2"/><line x1="16" y1="2" x2="16" y2="6" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="2" x2="8" y2="6" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round"/><line x1="3" y1="10" x2="21" y2="10" stroke="#1A3A6E" stroke-width="2"/></svg>
                         Reserve Your Slot
                     </a>

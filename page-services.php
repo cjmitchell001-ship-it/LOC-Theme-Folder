@@ -118,7 +118,7 @@ get_header();
 
             <div class="loc-services-cta">
                 <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>
-                <p class="loc-services-cta__sub">Prices from £70. Reserve online in 2 minutes — we call you to arrange the rest.</p>
+                <p class="loc-services-cta__sub">Prices from <?php echo loc_from_price(); ?>. Reserve online in 2 minutes — we call you to arrange the rest.</p>
             </div>
         </div>
     </section>

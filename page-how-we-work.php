@@ -199,7 +199,7 @@ get_header();
         <div class="loc-inner-cta__inner">
             <p class="loc-inner-cta__eyebrow section-eyebrow">Ready to book?</p>
             <h2>Reserve your slot.</h2>
-            <p>Prices from £70. Reserve online in 2 minutes — we call you to arrange the rest.</p>
+            <p>Prices from <?php echo loc_from_price(); ?>. Reserve online in 2 minutes — we call you to arrange the rest.</p>
             <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>
         </div>
     </section>

@@ -44,6 +44,14 @@ function loc_earlybird_active() {
     return current_time( 'Y-m-d' ) < LOC_EARLYBIRD_END;
 }
 
+// Single source of truth for the "Prices from £X" figure used in page and
+// blog CTAs. Six templates carried this as a hardcoded £70 and went stale
+// when the early rates came in — the homepage was the last one found, and
+// only by accident. Change the figure here, not in the templates.
+function loc_from_price() {
+    return loc_earlybird_active() ? '£55' : '£70';
+}
+
 add_action( 'wp_ajax_nopriv_loc_reservation', 'loc_handle_reservation' ); // unauthenticated visitors
 add_action( 'wp_ajax_loc_reservation',        'loc_handle_reservation' ); // logged-in users
 

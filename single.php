@@ -73,8 +73,8 @@ get_header();
 
                 <div class="loc-blog-sidebar__cta">
                     <p class="loc-blog-sidebar__cta-title">Ready to get your oven cleaned?</p>
-                    <p class="loc-blog-sidebar__cta-sub">Prices from £70. Same-day results. No card needed to reserve.</p>
-                    <a href="/reserve" class="btn-primary loc-blog-sidebar__cta-btn">Reserve Your Slot →</a>
+                    <p class="loc-blog-sidebar__cta-sub">Prices from <?php echo loc_from_price(); ?>. Back to cooking the same day. No card needed to reserve.</p>
+                    <a href="/reserve-step-1" class="btn-primary loc-blog-sidebar__cta-btn">Reserve Your Slot →</a>
                 </div>
 
             </aside>
