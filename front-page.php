@@ -325,7 +325,7 @@ get_header();
         <div class="loc-reviews__rating">
             <span class="loc-reviews__rating-score">5.0</span>
             <span class="loc-reviews__rating-stars" aria-hidden="true">★★★★★</span>
-            <span class="loc-reviews__rating-count">7 reviews on Google</span>
+            <span class="loc-reviews__rating-count">9 reviews on Google</span>
         </div>
 
         <div class="loc-reviews__grid">
@@ -358,6 +358,22 @@ get_header();
                 <p class="loc-reviews__quote">Excellent communications. Arrived promptly after a prearranged time change. Clean and tidy. Clear explanations and a clean oven at the end.</p>
                 <footer class="loc-reviews__card-foot">
                     <cite class="loc-reviews__author">Jonathan R.</cite>
+                    <span class="loc-reviews__card-stars" role="img" aria-label="Rated 5 out of 5">★★★★★</span>
+                </footer>
+            </blockquote>
+
+            <blockquote class="loc-reviews__card">
+                <p class="loc-reviews__quote">Excellent Job, everything was done throughly &amp; really pleased with my oven clean, highly recommend and will definitely use again in the future 😊</p>
+                <footer class="loc-reviews__card-foot">
+                    <cite class="loc-reviews__author">Amy G.</cite>
+                    <span class="loc-reviews__card-stars" role="img" aria-label="Rated 5 out of 5">★★★★★</span>
+                </footer>
+            </blockquote>
+
+            <blockquote class="loc-reviews__card">
+                <p class="loc-reviews__quote">Chris cleaned my oven and extractor hood. Oven was really dirty and is now spotless. Fair price and professional, thank you.</p>
+                <footer class="loc-reviews__card-foot">
+                    <cite class="loc-reviews__author">Aidan H.</cite>
                     <span class="loc-reviews__card-stars" role="img" aria-label="Rated 5 out of 5">★★★★★</span>
                 </footer>
             </blockquote>
