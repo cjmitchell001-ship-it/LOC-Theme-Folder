@@ -258,6 +258,36 @@ function loc_preload_hero_image() {
     echo '<link rel="preload" as="image" fetchpriority="high" href="' . esc_url( get_stylesheet_directory_uri() . '/images/Gemini_Generated_Image_ybbxmmybbxmmybbx.webp' ) . '">' . "\n";
 }
 add_action( 'wp_head', 'loc_preload_hero_image', 1 );
+// ============================================================
+// FAVICON / SITE ICON
+//
+// The theme has never emitted an icon link tag, and no WordPress
+// Site Icon is set — so /favicon.ico fell through to WordPress
+// core's own "W" logo, which is what Google was showing in the
+// search results. Icons are declared here in the theme rather
+// than via the Customizer so they live in git with everything
+// else (same reasoning as the title tags above).
+// ============================================================
+
+function loc_favicon_tags() {
+    $img = get_stylesheet_directory_uri() . '/images/';
+    echo '<link rel="icon" href="' . esc_url( $img . 'favicon-32x32.png' ) . '" sizes="32x32">' . "\n";
+    echo '<link rel="icon" href="' . esc_url( $img . 'favicon-192x192.png' ) . '" sizes="192x192">' . "\n";
+    echo '<link rel="icon" href="' . esc_url( $img . 'leicester_oven_cleaning_icon_v16.svg' ) . '" type="image/svg+xml">' . "\n";
+    echo '<link rel="apple-touch-icon" href="' . esc_url( $img . 'apple-touch-icon.png' ) . '">' . "\n";
+}
+add_action( 'wp_head', 'loc_favicon_tags', 2 );
+
+// Stop /favicon.ico serving the WordPress default. Google fetches
+// this path directly, so the link tags above are not enough on
+// their own.
+function loc_faviconico() {
+    wp_redirect( get_stylesheet_directory_uri() . '/images/favicon-48x48.png', 301 );
+    exit;
+}
+remove_action( 'do_faviconico', 'wp_site_icon' );
+add_action( 'do_faviconico', 'loc_faviconico' );
+
 
 
 // ============================================================
