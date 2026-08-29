@@ -86,7 +86,7 @@ get_header();
 <section class="loc-reserve">
     <p class="loc-reserve__eyebrow section-eyebrow">Simple &amp; Straightforward</p>
     <h2 class="loc-reserve__title">How to Reserve Your Slot</h2>
-    <p class="loc-reserve__subtitle">Three quick steps — no commitment. Weekend slots available, and we call you to confirm everything.</p>
+    <p class="loc-reserve__subtitle">Three quick steps — no commitment. Weekend slots available, and I call you to confirm everything.</p>
 
     <div class="loc-reserve__grid">
 
@@ -107,7 +107,7 @@ get_header();
                 <line x1="38" y1="67" x2="46" y2="67" stroke="#1A3A6E" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
             </svg>
             <h3 class="loc-reserve__step-title">Choose Your Appliances</h3>
-            <p class="loc-reserve__step-desc">Select your oven type and any extras — hob, extractor hood, or microwave. We'll confirm your price with you upfront.</p>
+            <p class="loc-reserve__step-desc">Select your oven type and any extras — hob, extractor hood, or microwave. I'll confirm your price with you upfront.</p>
         </div>
 
         <!-- CONNECTOR -->
@@ -130,7 +130,7 @@ get_header();
                 <line x1="76" y1="102" x2="86" y2="102" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
             </svg>
             <h3 class="loc-reserve__step-title">Enter Your Postcode</h3>
-            <p class="loc-reserve__step-desc">We check your area and show you the nearest available dates and times. You pick what works for you.</p>
+            <p class="loc-reserve__step-desc">I check your area and show you the nearest available dates and times. You pick what works for you.</p>
         </div>
 
         <!-- CONNECTOR -->
@@ -158,15 +158,15 @@ get_header();
                 <circle cx="88" cy="82" r="16" fill="#1A3A6E"/>
                 <path d="M80 82L85.5 88L97 75" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <h3 class="loc-reserve__step-title">Pick a Date &amp; We'll Call You</h3>
-            <p class="loc-reserve__step-desc">Choose from available slots and reserve your slot online. We'll call you at your convenience to fully confirm your booking.</p>
+            <h3 class="loc-reserve__step-title">Pick a Date &amp; I'll Call You</h3>
+            <p class="loc-reserve__step-desc">Choose from available slots and reserve your slot online. I'll call you at your convenience to fully confirm your booking.</p>
         </div>
 
     </div>
 
     <!-- CTA -->
     <div class="loc-reserve__cta">
-        <p class="loc-reserve__tagline">Reserve online in 2 minutes — we call you to arrange the rest.</p>
+        <p class="loc-reserve__tagline">Reserve online in 2 minutes — I call you to arrange the rest.</p>
         <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>
     </div>
 
@@ -191,10 +191,10 @@ get_header();
                 <span class="loc-pricing__from-amount"><?php echo $loc_eb_home ? '£55' : '£70'; ?></span>
                 <?php if ( $loc_eb_home ) : ?><s class="loc-price-was">from £70</s><?php endif; ?>
             </div>
-            <?php if ( $loc_eb_home ) : ?><p class="loc-earlybird-note">Early rates — extended while we build our client base</p><?php endif; ?>
+            <?php if ( $loc_eb_home ) : ?><p class="loc-earlybird-note">Early rates — extended while I build my client base</p><?php endif; ?>
             <p class="loc-pricing__types">Single oven &nbsp;·&nbsp; Double oven &nbsp;·&nbsp; Range cooker &nbsp;·&nbsp; Hobs &nbsp;·&nbsp; Hoods &nbsp;·&nbsp; Extras</p>
             <a href="/reserve-step-1" class="btn-primary loc-pricing__cta">See All Prices &amp; Reserve Your Slot →</a>
-            <p class="loc-pricing__subtext">No card needed &nbsp;·&nbsp; Your price confirmed before we start &nbsp;·&nbsp; We call you to confirm</p>
+            <p class="loc-pricing__subtext">No card needed &nbsp;·&nbsp; Your price confirmed before I start &nbsp;·&nbsp; I call you to confirm</p>
         </div>
 
         <!-- RIGHT — ICON CLUSTER -->
@@ -279,7 +279,7 @@ get_header();
 
     <!-- BRAND LOGOS TICKER -->
     <div class="loc-brands-bar">
-        <p class="loc-brands-bar__label">We work with all major brands</p>
+        <p class="loc-brands-bar__label">I work with all major brands</p>
         <div class="loc-brands-bar__track-wrap">
             <div class="loc-brands-bar__track">
                 <span class="loc-brand">AGA</span>
@@ -314,8 +314,8 @@ get_header();
      ============================================================ -->
 <section class="loc-reviews">
     <div class="loc-reviews__inner">
-        <p class="section-eyebrow">Our Standard</p>
-        <h2 class="loc-reviews__title">What Our Customers Say</h2>
+        <p class="section-eyebrow">My Standard</p>
+        <h2 class="loc-reviews__title">What My Customers Say</h2>
 
         <div class="loc-reviews__rating">
             <span class="loc-reviews__rating-score">5.0</span>
@@ -376,8 +376,8 @@ get_header();
         </div>
 
         <div class="loc-reviews__footer">
-            <a href="https://www.google.com/maps?cid=1756949504363706380" class="loc-reviews__google-link" target="_blank" rel="noopener">Read all our reviews on Google &rarr;</a>
-            <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &mdash; we&rsquo;ll call to confirm</a>
+            <a href="https://www.google.com/maps?cid=1756949504363706380" class="loc-reviews__google-link" target="_blank" rel="noopener">Read all my reviews on Google &rarr;</a>
+            <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &mdash; I&rsquo;ll call to confirm</a>
         </div>
     </div>
 </section>
@@ -385,9 +385,9 @@ get_header();
      AREAS COVERED
      ============================================================ -->
 <section class="loc-areas">
-    <p class="section-eyebrow">Where We Operate</p>
-    <h2 class="loc-areas__title">Areas We Cover</h2>
-    <p class="loc-areas__subtitle">Based in Leicester, we serve the city and surrounding suburbs. Not sure if we cover your area? Just ask.</p>
+    <p class="section-eyebrow">Where I Operate</p>
+    <h2 class="loc-areas__title">Areas I Cover</h2>
+    <p class="loc-areas__subtitle">Based in Leicester, I serve the city and surrounding suburbs. Not sure if I cover your area? Just ask.</p>
 
     <div class="loc-step2-areas-grid">
 
@@ -459,7 +459,7 @@ get_header();
 
     </div>
 
-    <p class="loc-areas__note">Not in your area? <a href="/contact"><strong>Get in touch</strong></a> — we may still be able to help.</p>
+    <p class="loc-areas__note">Not in your area? <a href="/contact"><strong>Get in touch</strong></a> — I may still be able to help.</p>
 
 </section>
 <!-- ============================================================
@@ -474,22 +474,22 @@ get_header();
 
         <div class="loc-faq__item">
             <h4 class="loc-faq__q">Will my price change once you see the oven?</h4>
-            <p class="loc-faq__a">The price shown is a starting point. If your oven's condition is roughly typical, that's what you'll pay. If it's much dirtier than usual — say, it hasn't been cleaned in years — we'll always confirm the adjusted price with you before we start. No surprises on the day.</p>
+            <p class="loc-faq__a">The price shown is a starting point. If your oven's condition is roughly typical, that's what you'll pay. If it's much dirtier than usual — say, it hasn't been cleaned in years — I'll always confirm the adjusted price with you before I start. No surprises on the day.</p>
         </div>
 
         <div class="loc-faq__item">
             <h4 class="loc-faq__q">Can I use my oven the same day?</h4>
-            <p class="loc-faq__a">Yes — your oven will be fully reassembled, tested, and ready to use before we leave. Same day, every time.</p>
+            <p class="loc-faq__a">Yes — your oven will be fully reassembled, tested, and ready to use before I leave. Same day, every time.</p>
         </div>
 
         <div class="loc-faq__item">
             <h4 class="loc-faq__q">Do I need to be home during the clean?</h4>
-            <p class="loc-faq__a">We'll need access to the property to get started, and we ask that someone is available to sign the job off when we're done — but you don't need to be present throughout. Most cleans take between 1.5 and 3 hours depending on what's being done. We'll confirm the expected duration when we call to book you in.</p>
+            <p class="loc-faq__a">I'll need access to the property to get started, and I ask that someone is available to sign the job off when I'm done — but you don't need to be present throughout. Most cleans take between 1.5 and 3 hours depending on what's being done. I'll confirm the expected duration when I call to book you in.</p>
         </div>
 
         <div class="loc-faq__item">
             <h4 class="loc-faq__q">What if I'm not happy with the result?</h4>
-            <p class="loc-faq__a">We won't leave until you're happy with the result — if something's not right, tell us before we go and we'll put it right there and then.</p>
+            <p class="loc-faq__a">I won't leave until you're happy with the result — if something's not right, tell me before I go and I'll put it right there and then.</p>
         </div>
 
     </div>
@@ -507,7 +507,7 @@ get_header();
         <div class="loc-business-banner__left">
             <p class="section-eyebrow">Commercial &amp; Business Clients</p>
             <h2 class="loc-business-banner__title">Got a business property or <span>contract requirement?</span></h2>
-            <p class="loc-business-banner__sub">We offer out-of-hours availability and can work across multiple units or sites. Whether it's a one-off clean or an ongoing arrangement, <a href="/contact">get in touch</a> and we'll talk through what works.</p>
+            <p class="loc-business-banner__sub">I offer out-of-hours availability and can work across multiple units or sites. Whether it's a one-off clean or an ongoing arrangement, <a href="/contact">get in touch</a> and I'll talk through what works.</p>
         </div>
         <div class="loc-business-banner__right">
             <a href="/business-commercial" class="btn-primary">Discuss a Business Booking</a>
