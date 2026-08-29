@@ -38,9 +38,9 @@
     <!-- NAVIGATION -->
     <nav class="loc-nav" id="loc-nav">
         <ul class="loc-nav__list">
-            <li><a href="/about">About</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/business-commercial">Business &amp; Commercial</a></li>
+            <li><a href="/services">What I Clean</a></li>
+            <li><a href="/areas">Areas</a></li>
+            <li><a href="/about">About Chris</a></li>
         </ul>
     </nav>
 
@@ -68,9 +68,9 @@
     <!-- MOBILE DROPDOWN MENU -->
     <div class="loc-mobile-menu" id="loc-mobile-menu">
         <ul class="loc-mobile-menu__list">
-            <li><a href="/about">About</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/business-commercial">Business &amp; Commercial</a></li>
+            <li><a href="/services">What I Clean</a></li>
+            <li><a href="/areas">Areas</a></li>
+            <li><a href="/about">About Chris</a></li>
         </ul>
     </div>
 

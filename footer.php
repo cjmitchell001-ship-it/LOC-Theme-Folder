@@ -25,7 +25,7 @@
 
         <!-- COLUMN 2 — SERVICES -->
         <div class="loc-footer__col">
-            <h4 class="loc-footer__heading">Services</h4>
+            <h4 class="loc-footer__heading">What I Clean</h4>
             <ul class="loc-footer__list">
                 <li><a href="/services">Oven Cleaning</a></li>
                 <li><a href="/services">Hob Cleaning</a></li>
@@ -38,9 +38,9 @@
 
         <!-- COLUMN 3 — COMPANY -->
         <div class="loc-footer__col">
-            <h4 class="loc-footer__heading">Company</h4>
+            <h4 class="loc-footer__heading">About</h4>
             <ul class="loc-footer__list">
-                <li><a href="/about">About Us</a></li>
+                <li><a href="/about">About Chris</a></li>
                 <li><a href="/how-we-work">How We Work</a></li>
                 <li><a href="/areas">Areas Covered</a></li>
                 <li><a href="/blog">Blog</a></li>

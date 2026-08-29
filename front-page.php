@@ -12,38 +12,33 @@ get_header();
      HERO SECTION
      ============================================================ -->
 <section class="loc-hero" id="loc-hero">
+    <div class="loc-hero__inner">
 
-    <!-- CAROUSEL BACKGROUND SLIDES -->
-    <div class="loc-hero__carousel">
-        <div class="loc-hero__slide is-active" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/Gemini_Generated_Image_ybbxmmybbxmmybbx.webp')"></div>
-        <div class="loc-hero__slide" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/stocksnap-oven-2618460_1920.webp')"></div>
-        <div class="loc-hero__slide" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/pexels-connorscottmcmanus-15119073.webp')"></div>
-        <div class="loc-hero__slide" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/Gemini_Generated_Image_x7svqfx7svqfx7sv.webp')"></div>
-        <div class="loc-hero__slide" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/Gemini_Generated_Image_voa8wkvoa8wkvoa8.webp')"></div>
-        <div class="loc-hero__slide" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/Gemini_Generated_Image_eatglheatglheatg.webp')"></div>
-        <div class="loc-hero__slide" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/Gemini_Generated_Image_6kq5q76kq5q76kq5.webp')"></div>
-    </div>
-
-    <!-- BLUE OVERLAY -->
-    <div class="loc-hero__overlay"></div>
-
-    <!-- HERO CONTENT -->
-    <div class="loc-hero__content">
-        <p class="section-eyebrow">Leicester Oven Cleaning</p>
-        <h1 class="loc-hero__title">Your oven, cleaned properly.</h1>
-        <p class="loc-hero__tagline" id="loc-hero-tagline">Serving Leicester &amp; Leicestershire — we call to confirm everything before we start.</p>
-        <div class="loc-hero__ctas">
-            <div class="loc-hero__cta-group">
-                <span class="loc-hero__cta-label">Home Enquiries</span>
-                <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>
-            </div>
-            <div class="loc-hero__cta-group">
-                <span class="loc-hero__cta-label">Business Enquiries</span>
-                <a href="/business-commercial" class="btn-blue">Contact Us &rarr;</a>
-            </div>
+        <div class="loc-hero__copy">
+            <p class="section-eyebrow">Leicester Oven Cleaning</p>
+            <h1 class="loc-hero__title">Your oven, cleaned properly.</h1>
+            <p class="loc-hero__intro">I&rsquo;m Chris. I clean ovens across Leicester and Leicestershire &mdash; just me, no franchise, no call centre. I started out this summer and I&rsquo;ve had nine five-star reviews so far.</p>
+            <p class="loc-hero__price">Ovens from <?php echo loc_from_price(); ?> &middot; hobs and extractors from &pound;25</p>
+            <a href="/reserve-step-1" class="btn-primary loc-hero__cta">Reserve Your Slot &rarr;</a>
+            <p class="loc-hero__note">No card needed to reserve. I&rsquo;ll call you to confirm everything before anything is booked in.</p>
+            <p class="loc-hero__business"><a href="/business-commercial">Landlord, letting agent or business? &rarr;</a></p>
         </div>
-    </div>
 
+        <div class="loc-hero__proof">
+            <div class="loc-hero__shots">
+                <figure class="loc-hero__shot">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/results/birstall-oven-before.webp" alt="A heavily soiled oven interior before cleaning" width="700" height="933" fetchpriority="high" decoding="async">
+                    <figcaption>Before</figcaption>
+                </figure>
+                <figure class="loc-hero__shot">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/results/birstall-oven-after.webp" alt="The same oven interior after cleaning, racks and enamel clean" width="700" height="933" decoding="async">
+                    <figcaption>After</figcaption>
+                </figure>
+            </div>
+            <p class="loc-hero__proof-caption">A real oven I cleaned in Birstall. Same oven, same day.</p>
+        </div>
+
+    </div>
 </section>
 <!-- ============================================================
      TRUST BAR
@@ -54,32 +49,32 @@ get_header();
         <div class="loc-trust__item">
             <div class="loc-trust__icon">✓</div>
             <div class="loc-trust__text">
-                <strong>Upfront Pricing</strong>
-                <span>The price we agree is the price you pay</span>
+                <strong>The price comes first</strong>
+                <span>I confirm what it will cost before I start, not after I finish</span>
             </div>
         </div>
 
         <div class="loc-trust__item">
             <div class="loc-trust__icon">✓</div>
             <div class="loc-trust__text">
-                <strong>Fully Insured</strong>
-                <span>Your home and your appliances are covered</span>
+                <strong>Properly insured</strong>
+                <span>Your kitchen and your appliance are both covered</span>
             </div>
         </div>
 
         <div class="loc-trust__item">
             <div class="loc-trust__icon">✓</div>
             <div class="loc-trust__text">
-                <strong>Local &amp; Independent</strong>
-                <span>Leicester-based, owner-operated — your home is in safe hands</span>
+                <strong>You get me, every time</strong>
+                <span>Same person quotes it, cleans it, and picks up the phone</span>
             </div>
         </div>
 
         <div class="loc-trust__item">
             <div class="loc-trust__icon">✓</div>
             <div class="loc-trust__text">
-                <strong>Oven Ready Same Day</strong>
-                <span>Back to cooking within hours of your clean</span>
+                <strong>Cooking again the same day</strong>
+                <span>You will be using the oven a few hours after I leave</span>
             </div>
         </div>
 

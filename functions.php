@@ -255,7 +255,7 @@ function loc_preload_hero_image() {
     if ( ! is_front_page() ) {
         return;
     }
-    echo '<link rel="preload" as="image" fetchpriority="high" href="' . esc_url( get_stylesheet_directory_uri() . '/images/Gemini_Generated_Image_ybbxmmybbxmmybbx.webp' ) . '">' . "\n";
+    echo '<link rel="preload" as="image" fetchpriority="high" href="' . esc_url( get_stylesheet_directory_uri() . '/images/results/birstall-oven-before.webp' ) . '">' . "\n";
 }
 add_action( 'wp_head', 'loc_preload_hero_image', 1 );
 // ============================================================
@@ -356,70 +356,6 @@ function loc_hamburger_script() {
     <?php
 }
 add_action('wp_footer', 'loc_hamburger_script');
-// Hero carousel and rotating taglines
-function loc_hero_script() {
-    if ( ! is_front_page() ) return;
-    ?>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-        // TAGLINES — edit these freely without touching anything else
-        var taglines = [
-            'Professional oven cleaning in Leicester & Leicestershire',
-            'Extractor hoods cleaned and degreased — filters included',
-            'Gas hobs stripped down and cleaned — burners, caps and pan supports',
-            'Ceramic and induction hobs — cleaned with a scratch-safe technique',
-            'Small business? We work around you — including weekends and out of hours',
-            'Staff kitchens and office facilities — ask about our commercial pricing',
-            'Multiple appliances, single visit — enquire about our commercial service'
-        ];
-
-        var slides = document.querySelectorAll('.loc-hero__slide');
-        var tagline = document.getElementById('loc-hero-tagline');
-        var current = 0;
-
-        function goToSlide(index) {
-            // Remove active from current slide
-            slides[current].classList.remove('is-active');
-
-            // Fade out tagline
-            tagline.classList.add('is-fading');
-
-            // After tagline fades out, swap text and fade back in
-            setTimeout(function() {
-                current = index;
-                tagline.textContent = taglines[current];
-                tagline.classList.remove('is-fading');
-
-                // Fade in new slide
-                slides[current].classList.add('is-active');
-            }, 600);
-        }
-
-        function nextSlide() {
-            var next = (current + 1) % slides.length;
-            goToSlide(next);
-        }
-
-        // Auto advance every 5 seconds
-        var timer = setInterval(nextSlide, 5000);
-
-        // Pause on hover
-        var hero = document.getElementById('loc-hero');
-        if (hero) {
-            hero.addEventListener('mouseenter', function() {
-                clearInterval(timer);
-            });
-            hero.addEventListener('mouseleave', function() {
-                timer = setInterval(nextSlide, 5000);
-            });
-        }
-
-    });
-    </script>
-    <?php
-}
-add_action('wp_footer', 'loc_hero_script');
 // Contact page enquiry type selector
 function loc_contact_script() {
     if (is_page('contact')) {

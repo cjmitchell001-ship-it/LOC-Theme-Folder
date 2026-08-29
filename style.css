@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.4.5
+Version:           2.5.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -517,142 +517,132 @@ a:hover {
    ============================================================ */
 
 .loc-hero {
-    position: relative;
-    width: 100vw;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-}
-
-/* CAROUSEL SLIDES */
-.loc-hero__carousel {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-}
-
-.loc-hero__slide {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 1.5s ease;
-}
-
-.loc-hero__slide.is-active {
-    opacity: 1;
-}
-
-/* BLUE OVERLAY */
-.loc-hero__overlay {
-    position: absolute;
-    inset: 0;
     background: var(--blue);
-    opacity: 0.60;
-    z-index: var(--z-base);
+    padding: var(--space-16) var(--space-10);
 }
 
-/* CONTENT */
-.loc-hero__content {
-    position: relative;
-    z-index: var(--z-raised);
-    max-width: 800px;
-    padding: var(--space-30) var(--space-6);
+.loc-hero__inner {
+    max-width: 1100px;
     margin: 0 auto;
-    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: center;
+}
+
+.loc-hero__copy .section-eyebrow {
+    color: var(--gold);
 }
 
 .loc-hero__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    font-size: var(--text-display);
+    font-size: var(--text-h1);
     color: var(--white);
-    line-height: 1.1;
-    margin-bottom: var(--space-6);
-    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: var(--space-5);
 }
 
-.loc-hero__tagline {
-    font-family: 'Open Sans', sans-serif;
-    font-size: var(--text-lead);
-    color: rgba(255,255,255,0.85);
-    margin-bottom: var(--space-10);
-    line-height: 1.5;
-    min-height: 32px;
-    transition: opacity 0.6s ease;
+.loc-hero__intro {
+    font-size: var(--text-body-lg);
+    color: var(--white-a85);
+    line-height: 1.7;
+    margin-bottom: var(--space-5);
 }
 
-.loc-hero__tagline.is-fading {
-    opacity: 0;
-}
-
-/* CTAs */
-.loc-hero__ctas {
-    display: flex;
-    gap: var(--space-4);
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.loc-hero__cta-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-3);
-    border: 2px solid rgba(255,255,255,0.5);
-    border-radius: var(--radius-md);
-    padding: var(--space-4) var(--space-4) var(--space-4);
-}
-
-.loc-hero__cta-label {
+.loc-hero__price {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: var(--text-sm);
-    letter-spacing: 0.06em;
-    color: var(--white);
-    text-transform: uppercase;
+    font-size: var(--text-lead);
+    color: var(--gold);
+    margin-bottom: var(--space-6);
 }
 
+.loc-hero__cta {
+    display: inline-block;
+}
+
+.loc-hero__note {
+    font-size: var(--text-ui);
+    color: var(--white-a60);
+    line-height: 1.6;
+    margin-top: var(--space-4);
+}
+
+.loc-hero__business {
+    margin-top: var(--space-6);
+    font-size: var(--text-ui);
+}
+
+.loc-hero__business a {
+    color: var(--white-a85);
+    text-decoration: underline;
+    text-decoration-color: var(--white-a35);
+    text-underline-offset: 3px;
+}
+
+.loc-hero__business a:hover {
+    color: var(--gold-light);
+}
+
+.loc-hero__shots {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+}
+
+.loc-hero__shot {
+    margin: 0;
+    position: relative;
+}
+
+.loc-hero__shot img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+}
+
+.loc-hero__shot figcaption {
+    position: absolute;
+    top: var(--space-3);
+    left: var(--space-3);
+    background: var(--blue-dark);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-sm);
+}
+
+.loc-hero__proof-caption {
+    font-size: var(--text-ui);
+    color: var(--white-a60);
+    text-align: center;
+    margin-top: var(--space-4);
+}
 
 /* HERO RESPONSIVE */
 @media (max-width: 768px) {
-    .loc-hero__title {
-        font-size: var(--text-h3);
-    }
-
-    .loc-hero__tagline {
-        font-size: var(--text-ui);
-        margin-bottom: var(--space-6);
-    }
-
     .loc-hero {
-        min-height: 420px;
+        padding: var(--space-12) var(--space-5);
     }
 
-    .loc-hero__content {
-        padding: var(--space-16) var(--space-5);
+    .loc-hero__inner {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
     }
 
-    .loc-hero__ctas {
-        flex-direction: column;
-        align-items: center;
-        gap: var(--space-3);
+    .loc-hero__title {
+        font-size: var(--text-h2);
     }
 
-    .loc-hero__ctas .btn-primary,
-    .loc-hero__ctas .btn-ghost {
-        font-size: var(--text-xs);
-        padding: var(--space-3) var(--space-5);
-        width: 200px;
-        text-align: center;
+    .loc-hero__intro {
+        font-size: var(--text-body);
     }
 }
 /* ============================================================
