@@ -13,7 +13,7 @@ get_header();
     <section class="loc-page-header">
         <div class="loc-page-header__inner">
             <h1>Cancellation Policy</h1>
-            <p class="loc-page-header__intro">Our cancellation policy is currently being finalised and will be published here shortly. If you have any questions about cancelling or rescheduling your appointment, please <a href="/contact">contact us directly</a>.</p>
+            <p class="loc-page-header__intro">My cancellation policy is currently being finalised and will be published here shortly. If you have any questions about cancelling or rescheduling your appointment, please <a href="/contact">contact me directly</a>.</p>
         </div>
     </section>
 

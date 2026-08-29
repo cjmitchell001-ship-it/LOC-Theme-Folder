@@ -12,8 +12,8 @@ get_header();
     <!-- PAGE HEADER -->
     <section class="loc-page-header">
         <div class="loc-page-header__inner">
-            <p class="loc-page-header__eyebrow section-eyebrow">Our Services</p>
-            <h1>Everything <span>We Clean</span></h1>
+            <p class="loc-page-header__eyebrow section-eyebrow">My Services</p>
+            <h1>Everything <span>I Clean</span></h1>
             <p class="loc-page-header__intro">Honest pricing, professional results, and your appliances ready to use the same day. Select what you need when you reserve — or <a href="/contact">get in touch</a> if you're not sure.</p>
             <p class="loc-page-header__intro">Fully insured, confirmed pricing, no surprises on the day.</p>
         </div>
@@ -26,10 +26,10 @@ get_header();
         <div class="loc-services-section__inner">
             <p class="loc-services-section__eyebrow section-eyebrow">Domestic</p>
             <h2 class="loc-services-section__heading">For Your Home</h2>
-            <p class="loc-services-section__intro">We come to your home, treat it with care, and give your oven, hob, or extractor a full professional clean — stripped down, professionally cleaned component by component, and reassembled — all in a single visit.</p>
+            <p class="loc-services-section__intro">I come to your home, treat it with care, and give your oven, hob, or extractor a full professional clean — stripped down, professionally cleaned component by component, and reassembled — all in a single visit.</p>
 
             <?php $loc_eb = loc_earlybird_active(); ?>
-            <?php if ( $loc_eb ) : ?><p class="loc-earlybird-note">Early rates on ovens — extended while we build our client base</p><?php endif; ?>
+            <?php if ( $loc_eb ) : ?><p class="loc-earlybird-note">Early rates on ovens — extended while I build my client base</p><?php endif; ?>
             <div class="loc-services-grid">
 
                 <div class="loc-services-card">
@@ -118,7 +118,7 @@ get_header();
 
             <div class="loc-services-cta">
                 <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>
-                <p class="loc-services-cta__sub">Prices from <?php echo loc_from_price(); ?>. Reserve online in 2 minutes — we call you to arrange the rest.</p>
+                <p class="loc-services-cta__sub">Prices from <?php echo loc_from_price(); ?>. Reserve online in 2 minutes — I call you to arrange the rest.</p>
             </div>
         </div>
     </section>
@@ -130,30 +130,30 @@ get_header();
         <div class="loc-services-section__inner">
             <p class="loc-services-section__eyebrow section-eyebrow">Commercial</p>
             <h2 class="loc-services-section__heading">For Your Business</h2>
-            <p class="loc-services-section__intro">We work with landlords, letting agents, HMOs, offices, care homes, and small commercial kitchens. Business bookings are handled directly — <a href="/contact">get in touch</a> and we'll arrange everything around your schedule.</p>
+            <p class="loc-services-section__intro">I work with landlords, letting agents, HMOs, offices, care homes, and small commercial kitchens. Business bookings are handled directly — <a href="/contact">get in touch</a> and I'll arrange everything around your schedule.</p>
 
             <div class="loc-services-commercial-grid">
 
                 <div class="loc-services-commercial-card">
                     <h3 class="loc-services-commercial-card__name">Rental Properties &amp; HMOs</h3>
-                    <p class="loc-services-commercial-card__desc">Between-tenancy cleans for landlords and letting agents. Single properties or portfolios — we work around your void period. Multiple appliances cleaned in a single visit.</p>
+                    <p class="loc-services-commercial-card__desc">Between-tenancy cleans for landlords and letting agents. Single properties or portfolios — I work around your void period. Multiple appliances cleaned in a single visit.</p>
                 </div>
 
                 <div class="loc-services-commercial-card">
                     <h3 class="loc-services-commercial-card__name">Offices &amp; Commercial Premises</h3>
-                    <p class="loc-services-commercial-card__desc">Staff kitchen facilities, small commercial ovens, and catering equipment at office scale. Minimal disruption — we work around your team.</p>
+                    <p class="loc-services-commercial-card__desc">Staff kitchen facilities, small commercial ovens, and catering equipment at office scale. Minimal disruption — I work around your team.</p>
                 </div>
 
                 <div class="loc-services-commercial-card">
                     <h3 class="loc-services-commercial-card__name">Care Homes &amp; Sheltered Housing</h3>
-                    <p class="loc-services-commercial-card__desc">Domestic-scale appliances in care settings. We understand the sensitivity of working in these environments and treat every visit with care and discretion.</p>
+                    <p class="loc-services-commercial-card__desc">Domestic-scale appliances in care settings. I understand the sensitivity of working in these environments and treat every visit with care and discretion.</p>
                 </div>
 
             </div>
 
             <div class="loc-services-cta">
                 <a href="/business-commercial" class="btn-primary">Get in Touch &rarr;</a>
-                <p class="loc-services-cta__sub">We'll call you back to discuss your requirements — no obligation</p>
+                <p class="loc-services-cta__sub">I'll call you back to discuss your requirements — no obligation</p>
             </div>
         </div>
     </section>

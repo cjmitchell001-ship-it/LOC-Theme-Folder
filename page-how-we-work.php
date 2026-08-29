@@ -12,9 +12,9 @@ get_header();
     <!-- PAGE HEADER -->
     <section class="loc-page-header">
         <div class="loc-page-header__inner">
-            <p class="loc-page-header__eyebrow section-eyebrow">Our Process</p>
-            <h1>How <span>We Work</span></h1>
-            <p class="loc-page-header__intro">From the moment we arrive to the moment we leave — here's exactly what happens during a Leicester Oven Cleaning visit.</p>
+            <p class="loc-page-header__eyebrow section-eyebrow">My Process</p>
+            <h1>How <span>I Work</span></h1>
+            <p class="loc-page-header__intro">From the moment I arrive to the moment I leave — here's exactly what happens during a Leicester Oven Cleaning visit.</p>
         </div>
     </section>
 
@@ -23,8 +23,8 @@ get_header();
          ============================================================ -->
     <section class="loc-hww-page-section">
         <div class="loc-hww-page-section__inner">
-            <h2 class="loc-hww-page-section__heading">Before We Arrive</h2>
-            <p class="loc-hww-page-section__body">Once your slot is confirmed, we'll have agreed a time window that works for you. On the day, we'll call ahead to confirm our ETA. All we ask is clear access to the appliance and a small amount of space to work — we bring everything else.</p>
+            <h2 class="loc-hww-page-section__heading">Before I Arrive</h2>
+            <p class="loc-hww-page-section__body">Once your slot is confirmed, I'll have agreed a time window that works for you. On the day, I'll call ahead to confirm my ETA. All I ask is clear access to the appliance and a small amount of space to work — I bring everything else.</p>
         </div>
     </section>
 
@@ -170,8 +170,8 @@ get_header();
          ============================================================ -->
     <section class="loc-hww-page-section">
         <div class="loc-hww-page-section__inner">
-            <h2 class="loc-hww-page-section__heading">Before We Go</h2>
-            <p class="loc-hww-page-section__body">We won't leave until you're happy. You're invited to inspect every appliance before we pack up. All equipment, protective coverings, and materials are removed — we leave the floor area clean.</p>
+            <h2 class="loc-hww-page-section__heading">Before I Go</h2>
+            <p class="loc-hww-page-section__body">I won't leave until you're happy. You're invited to inspect every appliance before I pack up. All equipment, protective coverings, and materials are removed — I leave the floor area clean.</p>
         </div>
     </section>
 
@@ -182,11 +182,11 @@ get_header();
         <div class="loc-hww-checklist-section__inner">
             <h2 class="loc-hww-checklist-section__heading">What To Expect From Every Visit</h2>
             <ul class="loc-hww-checklist">
-                <li>We arrive within the agreed time window and call ahead with our ETA</li>
-                <li>We protect your floors and surroundings before we start</li>
-                <li>We inspect your appliance for any existing faults before touching it — and tell you what we find</li>
+                <li>I arrive within the agreed time window and call ahead with my ETA</li>
+                <li>I protect your floors and surroundings before I start</li>
+                <li>I inspect your appliance for any existing faults before touching it — and tell you what I find</li>
                 <li>All parts are removed, soaked, and cleaned individually using professional cleaning solutions — not simply sprayed and wiped in place</li>
-                <li>You're invited to check the result before we leave</li>
+                <li>You're invited to check the result before I leave</li>
                 <li>Your appliance is ready to use the same day</li>
             </ul>
         </div>
@@ -199,7 +199,7 @@ get_header();
         <div class="loc-inner-cta__inner">
             <p class="loc-inner-cta__eyebrow section-eyebrow">Ready to book?</p>
             <h2>Reserve your slot.</h2>
-            <p>Prices from <?php echo loc_from_price(); ?>. Reserve online in 2 minutes — we call you to arrange the rest.</p>
+            <p>Prices from <?php echo loc_from_price(); ?>. Reserve online in 2 minutes — I call you to arrange the rest.</p>
             <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>
         </div>
     </section>

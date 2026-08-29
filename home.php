@@ -87,7 +87,7 @@ get_header();
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="#1A3A6E" stroke-width="2"/><polyline points="14 2 14 8 20 8" stroke="#1A3A6E" stroke-width="2"/><line x1="16" y1="13" x2="8" y2="13" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="17" x2="8" y2="17" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round"/></svg>
                         </div>
                         <h3>Articles coming soon</h3>
-                        <p>We're out cleaning ovens right now. Articles will appear here once the business is up and running — practical advice written from real experience.</p>
+                        <p>I'm out cleaning ovens right now. Articles will appear here once the business is up and running — practical advice written from real experience.</p>
                     </div>
 
                 <?php endif; ?>

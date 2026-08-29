@@ -52,8 +52,8 @@
 <!-- PAGE HEADER -->
 <div class="loc-funnel-page-header">
     <p class="loc-funnel-page-header__eyebrow section-eyebrow">Step 2 of 3</p>
-    <h1>Help us find your best available dates</h1>
-    <p class="loc-funnel-page-header__intro">We organise our schedule by area — enter your postcode or pick your area below and we'll show you the dates that work best for your location.</p>
+    <h1>Help me find your best available dates</h1>
+    <p class="loc-funnel-page-header__intro">I organise my schedule by area — enter your postcode or pick your area below and I'll show you the dates that work best for your location.</p>
 </div>
 
 <!-- STICKY POSTCODE BAR — locks below header on scroll -->
@@ -83,7 +83,7 @@
     <!-- AREAS GRID — clickable -->
     <div class="loc-step2-areas-section">
 
-        <p class="loc-step2-areas-intro">Pick your area from the list below — or type your postcode directly into the bar above. Can't see your area? Just type your postcode and we'll work it out.</p>
+        <p class="loc-step2-areas-intro">Pick your area from the list below — or type your postcode directly into the bar above. Can't see your area? Just type your postcode and I'll work it out.</p>
 
         <div class="loc-step2-areas-grid">
 
@@ -155,7 +155,7 @@
 
         </div>
 
-        <p class="loc-step2-areas-note">Not on the list? Just type your postcode above — we may still be able to help depending on location and current schedule.</p>
+        <p class="loc-step2-areas-note">Not on the list? Just type your postcode above — I may still be able to help depending on location and current schedule.</p>
 
     </div><!-- /areas-section -->
 
@@ -166,12 +166,12 @@
 
         <p class="loc-funnel-page-header__eyebrow section-eyebrow">One more step</p>
         <h2 class="loc-step2-section-heading">What would you like cleaned?</h2>
-        <p class="loc-step2-inline-intro">You came straight to this page — no problem. Select your appliances below and we'll get you to the calendar.</p>
+        <p class="loc-step2-inline-intro">You came straight to this page — no problem. Select your appliances below and I'll get you to the calendar.</p>
 
         <!-- OVENS -->
         <div class="loc-appliance-group">
             <p class="loc-appliance-group__label">Ovens</p>
-            <?php if ( $loc_eb ) : ?><p class="loc-earlybird-note">Early rates — extended while we build our client base</p><?php endif; ?>
+            <?php if ( $loc_eb ) : ?><p class="loc-earlybird-note">Early rates — extended while I build my client base</p><?php endif; ?>
             <div class="loc-appliance-cards loc-appliance-cards--inline">
 
                 <div class="loc-appliance-card loc-appliance-card--inline" data-name="Single Oven" data-price="<?php echo $loc_eb ? '55' : '70'; ?>">
@@ -420,7 +420,7 @@
             <div class="loc-step1-skip-panel__inner">
                 <div class="loc-step1-skip-panel__text">
                     <p class="loc-step1-skip-panel__heading">Prefer to talk it through instead?</p>
-                    <p class="loc-step1-skip-panel__body">If you'd prefer to discuss your appliances over the phone, just click below. We'll go through everything together when we call to confirm your booking.</p>
+                    <p class="loc-step1-skip-panel__body">If you'd prefer to discuss your appliances over the phone, just click below. I'll go through everything together when I call to confirm your booking.</p>
                 </div>
                 <button class="loc-step1-skip-btn" id="loc-step2-skip-btn">
                     Discuss on the Call

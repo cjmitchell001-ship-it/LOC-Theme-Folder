@@ -777,7 +777,7 @@ function loc_step2_script() {
                 if (continueWrap.style.display !== 'none' && continueWrap.style.display !== '' ||
                     inlineSection.style.display !== 'none' && inlineSection.style.display !== '') {
                     sessionStorage.setItem('loc_postcode', newPostcode);
-                    confirmedText.textContent = newPostcode + ' saved — we\'ll show you the best available dates for your area.';
+                    confirmedText.textContent = newPostcode + ' saved — I\'ll show you the best available dates for your area.';
                     confirmedBanner.style.display = 'flex';
                     var postcodeEl = document.getElementById('loc-continue-postcode');
                     if (postcodeEl) postcodeEl.textContent = newPostcode;
@@ -839,7 +839,7 @@ function loc_step2_script() {
             sessionStorage.setItem('loc_zone', zone);
 
             // Show confirmed banner
-            confirmedText.textContent = postcode + ' saved — we\'ll show you the best available dates for your area.';
+            confirmedText.textContent = postcode + ' saved — I\'ll show you the best available dates for your area.';
             confirmedBanner.style.display = 'flex';
 
             // Update location in all bars
@@ -1473,22 +1473,22 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             var isWeekend = day === 0 || day === 6;
             var isFriday  = day === 5;
 
-            if (isWeekend) return "We'll call you first thing Monday morning to confirm your reservation.";
+            if (isWeekend) return "I'll call you first thing Monday morning to confirm your reservation.";
 
             if (label === 'Morning') {
-                if (hour >= 8 && hour < 12) return "We'll aim to call you this morning.";
-                if (isFriday && hour >= 17) return "We'll call you Monday morning \u2014 our first available morning slot.";
-                return "We'll aim to call you tomorrow morning.";
+                if (hour >= 8 && hour < 12) return "I'll aim to call you this morning.";
+                if (isFriday && hour >= 17) return "I'll call you Monday morning \u2014 my first available morning slot.";
+                return "I'll aim to call you tomorrow morning.";
             }
             if (label === 'Afternoon') {
-                if (hour >= 8 && hour < 17) return "We'll aim to call you this afternoon.";
-                return "We'll aim to call you tomorrow afternoon.";
+                if (hour >= 8 && hour < 17) return "I'll aim to call you this afternoon.";
+                return "I'll aim to call you tomorrow afternoon.";
             }
             if (label === 'Evening') {
-                if (hour >= 8 && hour < 20) return "We'll aim to call you this evening.";
-                return "We'll aim to call you tomorrow evening.";
+                if (hour >= 8 && hour < 20) return "I'll aim to call you this evening.";
+                return "I'll aim to call you tomorrow evening.";
             }
-            return "We'll call you during your preferred callback window.";
+            return "I'll call you during your preferred callback window.";
         }
 
         // ── SUBMIT ──
@@ -1615,7 +1615,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                     submitBtn.disabled    = false;
                     submitBtn.textContent = 'Confirm My Reservation →';
                     if (submitErrEl) {
-                        submitErrEl.textContent  = 'Sorry, there was a problem reserving your slot. Please call us directly.';
+                        submitErrEl.textContent  = 'Sorry, there was a problem reserving your slot. Please call me directly.';
                         submitErrEl.style.display = 'block';
                     }
                 }
@@ -1625,7 +1625,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 submitBtn.disabled    = false;
                 submitBtn.textContent = 'Confirm My Reservation →';
                 if (submitErrEl) {
-                    submitErrEl.textContent  = 'Sorry, there was a problem reserving your slot. Please call us directly.';
+                    submitErrEl.textContent  = 'Sorry, there was a problem reserving your slot. Please call me directly.';
                     submitErrEl.style.display = 'block';
                 }
             });
@@ -1668,8 +1668,8 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 if (calMonth) calMonth.textContent = ' ';
                 if (calBody)  calBody.innerHTML =
                     '<tr><td colspan="7" style="text-align:center;padding:var(--space-8) var(--space-4);color:var(--grey-500);font-size:var(--text-body-sm);line-height:1.6;">'
-                  + '<strong style="display:block;color:var(--blue);font-size:var(--text-body);margin-bottom:var(--space-2);">Our booking calendar is temporarily down for maintenance</strong>'
-                  + 'Please <a href="tel:+447710649360" style="color:var(--gold);font-weight:600;">call us on 07710 649 360</a> to arrange your slot.'
+                  + '<strong style="display:block;color:var(--blue);font-size:var(--text-body);margin-bottom:var(--space-2);">My booking calendar is temporarily down for maintenance</strong>'
+                  + 'Please <a href="tel:+447710649360" style="color:var(--gold);font-weight:600;">call me on 07710 649 360</a> to arrange your slot.'
                   + '</td></tr>';
             }
 
@@ -1682,7 +1682,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                     }
                     if (data.length === 0) {
                         if (calMonth) calMonth.textContent = monthNames[curMonth] + ' ' + curYear;
-                        if (calBody)  calBody.innerHTML    = '<tr><td colspan="7" style="text-align:center;padding:var(--space-8) 0;color:var(--grey-500);font-size:var(--text-body-sm);">No available slots found in the next 180 days.<br>Please <a href="/contact" style="color:var(--gold);">call us</a> to arrange a date.</td></tr>';
+                        if (calBody)  calBody.innerHTML    = '<tr><td colspan="7" style="text-align:center;padding:var(--space-8) 0;color:var(--grey-500);font-size:var(--text-body-sm);">No available slots found in the next 180 days.<br>Please <a href="/contact" style="color:var(--gold);">call me</a> to arrange a date.</td></tr>';
                         return;
                     }
                     data.forEach(function(item) {

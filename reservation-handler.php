@@ -94,7 +94,7 @@ function loc_handle_reservation() {
     );
 
     if ( ! $booked ) {
-        echo json_encode( [ 'success' => false, 'error' => 'Could not write to Google Calendar. Please try again or call us directly.' ] );
+        echo json_encode( [ 'success' => false, 'error' => 'Could not write to Google Calendar. Please try again or call me directly.' ] );
         wp_die();
     }
 
@@ -105,7 +105,7 @@ function loc_handle_reservation() {
 
     $slot_display  = ( $slot === 'Morning' ) ? 'Morning (7am – 1pm)' : 'Afternoon (1pm – 6pm)';
 
-    $total_display = $total > 0 ? 'From £' . $total . ' — we\'ll confirm your exact price on the call' : 'To be discussed on the call';
+    $total_display = $total > 0 ? 'From £' . $total . ' — I\'ll confirm your exact price on the call' : 'To be discussed on the call';
 
     if ( ! empty( $appliances ) ) {
         $appliance_lines = '';
@@ -184,15 +184,15 @@ EOT;
         $call_when = $call_day->format( 'l' ) . ' ' . $callback_lower;
     }
 
-    $confirm_subject = 'Your slot is reserved, ' . $first_name . ' — we\'ll call ' . $call_when;
+    $confirm_subject = 'Your slot is reserved, ' . $first_name . ' — I\'ll call ' . $call_when;
     $confirm_body    = <<<EOT
 Hi {$first_name},
 
-Thank you for reserving with us — your slot on {$date_formatted} ({$slot_display}) is held.
+Thank you for reserving with me — your slot on {$date_formatted} ({$slot_display}) is held.
 
-We'll give you a call {$call_when} to confirm your booking, run through your appliances, and answer anything you're not sure about. Once we've spoken, we'll arrange a £25 deposit by bank transfer to officially lock it in.
+I'll give you a call {$call_when} to confirm your booking, run through your appliances, and answer anything you're not sure about. Once I've spoken, I'll arrange a £25 deposit by bank transfer to officially lock it in.
 
-Nothing to do on your end right now — we'll come to you.
+Nothing to do on your end right now — I'll come to you.
 
 YOUR RESERVATION
 {$date_formatted} — {$slot_display}
@@ -203,10 +203,10 @@ APPLIANCES
 Total: {$total_display}
 
 WHAT TO HAVE READY ON THE DAY
-- Clear access to the oven(s) — please remove any trays, shelves, or items stored inside before we arrive
+- Clear access to the oven(s) — please remove any trays, shelves, or items stored inside before I arrive
 - Access to a cold water tap — and hot water where available
 
-If you need to reach us before we call, you can contact us on 07710 649 360 or hello@leicesterovencleaning.co.uk.
+If you need to reach me before I call, you can contact me on 07710 649 360 or hello@leicesterovencleaning.co.uk.
 
 Leicester Oven Cleaning
 hello@leicesterovencleaning.co.uk

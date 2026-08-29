@@ -59,7 +59,7 @@
 <div class="loc-funnel-page-header">
     <p class="loc-funnel-page-header__eyebrow section-eyebrow">Step 1 of 3</p>
     <h1>What would you like cleaned?</h1>
-    <p class="loc-funnel-page-header__intro">Choose what needs cleaning below. The prices shown are a starting point — every oven is different, and a few things affect the final cost: whether you've got a double oven and only want one side done, how long it's been since it was last cleaned (we've turned up to ovens that hadn't been touched in years — no judgement, it happens), and how much buildup there actually is. We'll always confirm your exact price with you before the day, so there are no surprises.</p>
+    <p class="loc-funnel-page-header__intro">Choose what needs cleaning below. The prices shown are a starting point — every oven is different, and a few things affect the final cost: whether you've got a double oven and only want one side done, how long it's been since it was last cleaned (I've turned up to ovens that hadn't been touched in years — no judgement, it happens), and how much buildup there actually is. I'll always confirm your exact price with you before the day, so there are no surprises.</p>
 </div>
 
 <!-- ============================================================
@@ -75,7 +75,7 @@
         <!-- OVENS GROUP -->
         <div class="loc-appliance-group">
             <p class="loc-appliance-group__label">Ovens</p>
-            <?php if ( $loc_eb ) : ?><p class="loc-earlybird-note">Early rates — extended while we build our client base</p><?php endif; ?>
+            <?php if ( $loc_eb ) : ?><p class="loc-earlybird-note">Early rates — extended while I build my client base</p><?php endif; ?>
             <div class="loc-appliance-cards">
 
                 <!-- Single Oven -->
@@ -372,7 +372,7 @@
                 <div class="loc-step1-skip-panel__inner">
                     <div class="loc-step1-skip-panel__text">
                         <p class="loc-step1-skip-panel__heading">Prefer to talk it through instead?</p>
-                        <p class="loc-step1-skip-panel__body">If you'd prefer to discuss your appliances over the phone, just click below. We'll go through everything together when we call to confirm your booking.</p>
+                        <p class="loc-step1-skip-panel__body">If you'd prefer to discuss your appliances over the phone, just click below. I'll go through everything together when I call to confirm your booking.</p>
                     </div>
                     <button class="loc-step1-skip-btn" id="loc-skip-btn">
                         Discuss on the Call
@@ -399,7 +399,7 @@
 
         <!-- PRICE GUARANTEE -->
         <div class="loc-step1-price-guarantee">
-            <p><strong>Your total, from.</strong> The figure shown is a starting total — we'll confirm your exact price with you before the day.</p>
+            <p><strong>Your total, from.</strong> The figure shown is a starting total — I'll confirm your exact price with you before the day.</p>
         </div>
 
     </div><!-- /sidebar -->

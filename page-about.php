@@ -12,8 +12,8 @@ get_header();
     <!-- PAGE HEADER -->
     <section class="loc-page-header">
         <div class="loc-page-header__inner">
-            <p class="loc-page-header__eyebrow section-eyebrow">Who We Are</p>
-            <h1>A Leicester business, <span>built for Leicester.</span></h1>
+            <p class="loc-page-header__eyebrow section-eyebrow">Who I Am</p>
+            <h1>I&rsquo;m Chris, <span>and I clean ovens in Leicester.</span></h1>
             <p class="loc-page-header__intro">No franchise. No call centre. Just one person, doing the job properly, building a business one oven at a time.</p>
         </div>
     </section>
@@ -85,7 +85,7 @@ get_header();
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><polyline points="9 11 12 14 22 4" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="#1A3A6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
                     <p class="loc-about-values__card-title">You're Invited to Check the Result</p>
-                    <p class="loc-about-values__card-text">Before we pack up and leave, you're invited to inspect every appliance we've cleaned. We won't consider the job done until you're satisfied with the result.</p>
+                    <p class="loc-about-values__card-text">Before I pack up and leave, you're invited to inspect every appliance I've cleaned. I won't consider the job done until you're satisfied with the result.</p>
                 </div>
 
                 <div class="loc-about-values__card">
@@ -163,7 +163,7 @@ get_header();
         <div class="loc-about-cta__inner">
             <p class="section-eyebrow">Ready to book?</p>
             <h2>Let's get your oven sorted.</h2>
-            <p>Prices from <?php echo loc_from_price(); ?>. Reserve online in 2 minutes — we call you to arrange the rest.</p>
+            <p>Prices from <?php echo loc_from_price(); ?>. Reserve online in 2 minutes — I call you to arrange the rest.</p>
             <div class="loc-about-cta__buttons">
                 <a href="/reserve-step-1" class="btn-primary">Reserve Your Slot &rarr;</a>
                 <a href="/contact" class="btn-ghost-blue">Get in Touch</a>

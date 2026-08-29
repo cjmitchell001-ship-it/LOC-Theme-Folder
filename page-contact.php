@@ -13,8 +13,8 @@ get_header();
     <section class="loc-page-header">
         <div class="loc-page-header__inner">
             <p class="loc-page-header__eyebrow section-eyebrow">Get In Touch</p>
-            <h1>Got a question? <span>We're happy to help.</span></h1>
-            <p class="loc-page-header__intro">Not ready to reserve yet? Ask us anything — we'll get back to you within one working day.</p>
+            <h1>Got a question? <span>I'm happy to help.</span></h1>
+            <p class="loc-page-header__intro">Not ready to reserve yet? Ask me anything — I'll get back to you within one working day.</p>
         </div>
     </section>
 
@@ -26,8 +26,8 @@ get_header();
             <div class="loc-contact-details">
 
                 <p class="section-eyebrow">Contact details</p>
-                <h2 class="loc-contact-details__title">How to reach us</h2>
-                <p class="loc-contact-details__intro">We're a local Leicester business — you're always speaking directly with Chris, not a call centre or an automated system.</p>
+                <h2 class="loc-contact-details__title">How to reach me</h2>
+                <p class="loc-contact-details__intro">I'm a local Leicester business — you're always speaking directly with Chris, not a call centre or an automated system.</p>
 
                 <!-- CONTACT METHOD CARDS -->
                 <div class="loc-contact-methods">
@@ -55,7 +55,7 @@ get_header();
                         <div class="loc-contact-method__text">
                             <p class="loc-contact-method__label">Email</p>
                             <p class="loc-contact-method__value"><a href="mailto:hello@leicesterovencleaning.co.uk">hello@leicesterovencleaning.co.uk</a></p>
-                            <p class="loc-contact-method__note">We aim to reply within one working day</p>
+                            <p class="loc-contact-method__note">I aim to reply within one working day</p>
                         </div>
                     </div>
 
@@ -77,7 +77,7 @@ get_header();
 
                 <!-- RESPONSE PROMISE -->
                 <div class="loc-contact-promise">
-                    <p class="loc-contact-promise__title">Our response promise</p>
+                    <p class="loc-contact-promise__title">My response promise</p>
                     <ul class="loc-contact-promise__list">
                         <li>Phone and email enquiries answered within one working day</li>
                         <li>Reservation callbacks made the same day where possible</li>
@@ -96,7 +96,7 @@ get_header();
                     </div>
                     <div class="loc-contact-reserve-nudge__text">
                         <p class="loc-contact-reserve-nudge__title">Ready to book instead?</p>
-                        <p class="loc-contact-reserve-nudge__sub">Skip the form — reserve your slot in 2 minutes online. No card needed, we call to confirm.</p>
+                        <p class="loc-contact-reserve-nudge__sub">Skip the form — reserve your slot in 2 minutes online. No card needed, I call to confirm.</p>
                         <a href="/reserve-step-1" class="btn-primary loc-contact-reserve-nudge__btn">Reserve Your Slot →</a>
                     </div>
                 </div>
@@ -107,8 +107,8 @@ get_header();
             <div class="loc-contact-form-col">
 
                 <div class="loc-contact-form-box" id="loc-contact-form-box">
-                    <p class="loc-contact-form-box__title">Send us a message</p>
-                    <p class="loc-contact-form-box__sub">Not ready to reserve yet? Ask us anything — we'll get back to you within one working day.</p>
+                    <p class="loc-contact-form-box__title">Send me a message</p>
+                    <p class="loc-contact-form-box__sub">Not ready to reserve yet? Ask me anything — I'll get back to you within one working day.</p>
 
                     <!-- ENQUIRY TYPE SELECTOR -->
                     <p class="loc-contact-form-box__type-label">What's your enquiry about?</p>
@@ -124,7 +124,7 @@ get_header();
                         <?php echo do_shortcode('[contact-form-7 id="1bfbd11" title="Contact Form"]'); ?>
                     </div>
 
-                    <p class="loc-contact-form-box__privacy">Your details are used only to respond to your enquiry. View our <a href="/privacy-policy">Privacy Policy</a>.</p>
+                    <p class="loc-contact-form-box__privacy">Your details are used only to respond to your enquiry. View my <a href="/privacy-policy">Privacy Policy</a>.</p>
 
                 </div>
 

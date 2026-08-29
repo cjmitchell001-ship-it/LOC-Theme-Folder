@@ -12,9 +12,9 @@ get_header();
     <!-- PAGE HEADER -->
     <section class="loc-page-header">
         <div class="loc-page-header__inner">
-            <p class="loc-page-header__eyebrow section-eyebrow">Where We Cover</p>
-            <h1>Areas <span>We Serve</span></h1>
-            <p class="loc-page-header__intro">We cover Leicester city and the surrounding Leicestershire area. Enter your postcode on the reservation page for instant confirmation — or check the list below.</p>
+            <p class="loc-page-header__eyebrow section-eyebrow">Where I Cover</p>
+            <h1>Areas <span>I Cover</span></h1>
+            <p class="loc-page-header__intro">I cover Leicester city and the surrounding Leicestershire area. Enter your postcode on the reservation page for instant confirmation — or check the list below.</p>
         </div>
     </section>
 
@@ -24,7 +24,7 @@ get_header();
     <section class="loc-areas-page-list-section">
         <div class="loc-areas-page-list-section__inner">
             <p class="loc-areas-page-list-section__eyebrow section-eyebrow">Coverage</p>
-            <h2 class="loc-areas-page-list-section__heading">Where We Work</h2>
+            <h2 class="loc-areas-page-list-section__heading">Where I Work</h2>
 
             <div class="loc-step2-areas-grid">
 
@@ -104,7 +104,7 @@ get_header();
     <section class="loc-areas-page-contact-section">
         <div class="loc-areas-page-contact-section__inner">
             <h2 class="loc-areas-page-contact-section__heading">Not on the list?</h2>
-            <p>We're expanding our coverage as the business grows. If your area isn't listed, it's worth getting in touch — we may still be able to help depending on location and current schedule. We'll always be honest if it's not practical.</p>
+            <p>I'm expanding my coverage as the business grows. If your area isn't listed, it's worth getting in touch — I may still be able to help depending on location and current schedule. I'll always be honest if it's not practical.</p>
             <a href="/contact" class="btn-primary">Get In Touch &rarr;</a>
         </div>
     </section>
@@ -114,9 +114,9 @@ get_header();
          ============================================================ -->
     <section class="loc-areas-page-how-section">
         <div class="loc-areas-page-how-section__inner">
-            <h2 class="loc-areas-page-how-section__heading">How our area check works</h2>
-            <p>When you reach Step 2 of the reservation, you'll enter your postcode or select your area. We'll confirm instantly whether we cover you. If you're in a listed area, you're good to go. If you're just outside, <a href="/contact">get in touch</a> — we'll do our best.</p>
-            <p>Prices from <?php echo loc_from_price(); ?>. Reserve online in 2 minutes — we call you to arrange the rest.</p>
+            <h2 class="loc-areas-page-how-section__heading">How my area check works</h2>
+            <p>When you reach Step 2 of the reservation, you'll enter your postcode or select your area. I'll confirm instantly whether I cover you. If you're in a listed area, you're good to go. If you're just outside, <a href="/contact">get in touch</a> — I'll do my best.</p>
+            <p>Prices from <?php echo loc_from_price(); ?>. Reserve online in 2 minutes — I call you to arrange the rest.</p>
             <a href="/reserve-step-1" class="btn-primary">Start Your Reservation &rarr;</a>
         </div>
     </section>

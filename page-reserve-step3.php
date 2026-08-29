@@ -60,7 +60,7 @@
 
         <p class="loc-step3-eyebrow section-eyebrow">Available Slots</p>
         <h2 class="loc-step3-section-heading">Select a date</h2>
-        <p class="loc-step3-weekend-note">We work weekends too — Saturdays and Sundays are often the easiest slots to get.</p>
+        <p class="loc-step3-weekend-note">I work weekends too — Saturdays and Sundays are often the easiest slots to get.</p>
         <!-- LEGEND -->
         <div class="loc-step3-legend">
             <div class="loc-step3-legend-item">
@@ -109,9 +109,9 @@
         <!-- ESCAPE HATCH — for users who can't find a suitable date -->
         <div class="loc-step3-date-escape" id="loc-date-escape">
             <p class="loc-step3-date-escape__heading">Need a specific date?</p>
-            <p class="loc-step3-date-escape__body">If you need your oven cleaned by a particular date — or you can't see a slot that works for you — just let us know. We'll sort it over the phone.</p>
+            <p class="loc-step3-date-escape__body">If you need your oven cleaned by a particular date — or you can't see a slot that works for you — just let me know. I'll sort it over the phone.</p>
             <div class="loc-step3-date-escape__btns">
-                <a href="tel:+447710649360" class="loc-step3-date-escape__btn loc-step3-date-escape__btn--call">Call Us</a>
+                <a href="tel:+447710649360" class="loc-step3-date-escape__btn loc-step3-date-escape__btn--call">Call Me</a>
                 <button class="loc-step3-date-escape__btn loc-step3-date-escape__btn--discuss" id="loc-date-escape-btn">Confirm On Call</button>
             </div>
         </div>
@@ -158,12 +158,12 @@
             </div>
         </div>
         <div class="loc-step3-price-guarantee">
-            <p>No payment online. We'll call to confirm your slot and arrange a £25 deposit by bank transfer.</p>
+            <p>No payment online. I'll call to confirm your slot and arrange a £25 deposit by bank transfer.</p>
         </div>
 
         <div class="loc-step3-weekend-card">
             <p class="loc-step3-weekend-card__eyebrow">Weekends included</p>
-            <h3 class="loc-step3-weekend-card__title">We work Saturdays &amp; Sundays</h3>
+            <h3 class="loc-step3-weekend-card__title">I work Saturdays &amp; Sundays</h3>
             <p class="loc-step3-weekend-card__body">Most oven cleaners don't. If a weekday is awkward around work or the school run, pick a weekend date above — they're often the easiest slots to get, and there's no weekend surcharge.</p>
         </div>
     </aside>
@@ -181,7 +181,7 @@
         </div>
 
         <h2 class="loc-step3-confirm-heading">Your slot is reserved.</h2>
-        <p class="loc-step3-confirm-sub">There&rsquo;s nothing more to do right now. We&rsquo;ll be in touch to confirm everything &mdash; no payment has been taken.</p>
+        <p class="loc-step3-confirm-sub">There&rsquo;s nothing more to do right now. I&rsquo;ll be in touch to confirm everything &mdash; no payment has been taken.</p>
 
         <div class="loc-step3-confirm-grid">
             <div class="loc-step3-confirm-box">
@@ -208,8 +208,8 @@
                 <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.86 9.1 19.79 19.79 0 01.79.5 2 2 0 012.77 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.06 6.06l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z" stroke="#C9960C" stroke-width="2"/>
             </svg>
             <div>
-                <strong>When we&rsquo;ll call</strong>
-                <p id="loc-callback-smart-message">We&rsquo;ll be in touch during your preferred callback window.</p>
+                <strong>When I&rsquo;ll call</strong>
+                <p id="loc-callback-smart-message">I&rsquo;ll be in touch during your preferred callback window.</p>
             </div>
         </div>
 
@@ -238,7 +238,7 @@
 
         <div class="loc-step3-modal__header">
             <h2>Almost done &mdash; just a few details</h2>
-            <p>We&rsquo;ll use these to call and confirm your reservation. Nothing else.</p>
+            <p>I&rsquo;ll use these to call and confirm your reservation. Nothing else.</p>
         </div>
 
         <div class="loc-step3-modal__slot-strip">
@@ -289,7 +289,7 @@
                 </button>
             </div>
 
-            <p class="loc-step3-form-privacy">Your details are used only to confirm this reservation. We&rsquo;ll never share them. <a href="<?php echo home_url('/privacy-policy'); ?>">Privacy Policy</a>.</p>
+            <p class="loc-step3-form-privacy">Your details are used only to confirm this reservation. I&rsquo;ll never share them. <a href="<?php echo home_url('/privacy-policy'); ?>">Privacy Policy</a>.</p>
 
             <label class="loc-step3-terms" for="loc-terms-agree">
                 <input type="checkbox" class="loc-step3-terms__box" id="loc-terms-agree">
