@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.6.0
+Version:           2.7.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -8401,4 +8401,110 @@ a.loc-funnel-step--complete:hover {
 .loc-location-cta .section-eyebrow,
 .loc-biz-hmo-note .section-eyebrow {
     color: var(--gold-light);
+}
+
+/* ==========================================================================
+   BEFORE & AFTER GALLERY  (page-gallery.php)
+   Pairs stay side by side at every width -- the comparison IS the content,
+   so they are never stacked on mobile even though each shot gets narrow.
+   ========================================================================== */
+
+.loc-gallery-section {
+    padding: var(--space-16) var(--space-10);
+}
+
+.loc-gallery-section__inner {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.loc-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: var(--space-12) var(--space-8);
+    align-items: start;
+}
+
+.loc-gallery__item {
+    margin: 0;
+}
+
+.loc-gallery__pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+}
+
+.loc-gallery__shot {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--lightgrey);
+    box-shadow: var(--shadow-sm);
+}
+
+.loc-gallery__shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.loc-gallery__tag {
+    position: absolute;
+    top: var(--space-2);
+    left: var(--space-2);
+    font-family: 'Montserrat', sans-serif;
+    font-size: var(--text-fine);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+}
+
+.loc-gallery__tag--before {
+    background: var(--blue-dark);
+    color: var(--white);
+}
+
+.loc-gallery__tag--after {
+    background: var(--gold);
+    color: var(--blue-dark);
+}
+
+.loc-gallery__caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+}
+
+.loc-gallery__what {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: var(--text-ui-lg);
+    color: var(--blue);
+}
+
+.loc-gallery__when {
+    font-size: var(--text-sm);
+    color: var(--grey-500);
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .loc-gallery-section {
+        padding: var(--space-12) var(--space-5);
+    }
+
+    .loc-gallery {
+        grid-template-columns: 1fr;
+        gap: var(--space-10);
+    }
+
+    .loc-gallery__caption {
+        flex-direction: column;
+        gap: var(--space-1);
+    }
 }

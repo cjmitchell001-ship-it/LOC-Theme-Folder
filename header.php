@@ -40,6 +40,7 @@
         <ul class="loc-nav__list">
             <li><a href="/services">What I Clean + Prices</a></li>
             <li><a href="/areas">Areas</a></li>
+            <li><a href="/before-and-after">Before &amp; After</a></li>
             <li><a href="/about">About Chris</a></li>
         </ul>
     </nav>
@@ -70,6 +71,7 @@
         <ul class="loc-mobile-menu__list">
             <li><a href="/services">What I Clean + Prices</a></li>
             <li><a href="/areas">Areas</a></li>
+            <li><a href="/before-and-after">Before &amp; After</a></li>
             <li><a href="/about">About Chris</a></li>
         </ul>
     </div>
