@@ -349,6 +349,18 @@ Chris (the founder) wants his name, face, and personal/employment history kept O
 **Still unused: eight after-only shots** (Lindsey, Raakhi ×2, Teresa, Jenny, Saleha, plus extra afters from Tracy and Disha). They have no before, so they cannot be pairs. Whether they get a separate "finished work" strip is undecided.
 
 **Local WordPress CLI gotcha, cost a cycle to find:** `wp-config.php` sets `DB_HOST` to `localhost`, which from a CLI PHP process resolves to port 3306 and fails — Local by Flywheel's MySQL is on **10005**. Define `DB_HOST` as `127.0.0.1:10005` *before* requiring `wp-load.php`; wp-config's own `define()` then becomes a no-op. The `phar` extension is also missing from Local's PHP, so wp-cli cannot run locally at all — use a script that requires `wp-load.php` instead.
+
+**Birstall location page live, and location pages can now show before/after (2026-08-30).** `/areas/birstall/` is the second town page, commit `0c13f49`. Two jobs, four pairs, one review.
+
+**The template change matters more than the page.** Section 6 previously rendered finished-result photos only, because the "no dirty-oven imagery" brand rule was written into its comment. Chris revoked that rule on 29 Aug; the section now renders before/after pairs where a town has them (`'pairs'` key) and falls back to `'photos'` where it does not. **Pairs reuse the `.loc-gallery` components and the WebP already generated for `/before-and-after/`** — no new images, no second set of CSS, nothing extra to download for a visitor who has seen the gallery. Every future town page gets this for free.
+
+**Duplication measured, not assumed: Birstall is 60% unique against the live Syston page.** The 40% that matches is the price table, the pre-clean check, honest expectations and the deposit terms — content that *should* be identical across towns. Worth re-running that check for each new town rather than trusting the template to keep pages distinct.
+
+**What made Birstall genuinely different**, deliberately: both jobs there were single ovens where Syston runs to integrated doubles, and both local FAQs came from the actual work (oven-plus-hood pricing, stained inner door glass). Chris had previously rejected the "do you cover all of X" FAQ shape as nonsense — avoid it on the remaining towns.
+
+**Still weak on that page:** the kitchens section is built on geography plus the observed single-oven pattern, because Chris has not yet given his own read of Birstall kitchens the way he did for Syston. First-hand detail should replace it when he has a minute.
+
+**Deploy gotcha worth remembering: the drift check must account for line endings per file.** `page-location.php` is CRLF in the working copy but LF in git, so its live MD5 will never match `git show HEAD~1:file` directly — it matches that content converted to CRLF. `page-areas.php`, `header.php` and `style.css` are LF and do match directly. A naive comparison reports false drift on exactly the CRLF files.
 *Update this log and the sections above whenever significant progress is made or a decision is confirmed.*
 
 ---
