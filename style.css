@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.9.0
+Version:           2.9.1
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -6356,7 +6356,7 @@ a:hover {
     font-size: var(--text-fine);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.7);
     margin-bottom: var(--space-1);
 }
 
@@ -6379,7 +6379,7 @@ a:hover {
 .loc-step1-sticky-bottom__btn,
 .loc-step2-sticky-bottom__btn {
     background: var(--gold);
-    color: var(--white);
+    color: var(--blue-dark);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: var(--text-xs);
@@ -7981,7 +7981,7 @@ a.loc-funnel-step--complete:hover {
 .loc-location__subline {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-body);
-    color: var(--grey-600);
+    color: rgba(255,255,255,0.85);
     margin-top: var(--space-3);
 }
 
@@ -8143,7 +8143,7 @@ a.loc-funnel-step--complete:hover {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: var(--text-lead);
-    color: var(--gold);
+    color: var(--gold-light);
     margin-top: var(--space-4);
 }
 
@@ -8383,6 +8383,24 @@ a.loc-funnel-step--complete:hover {
 .loc-page-header .section-eyebrow,
 .loc-inner-cta .section-eyebrow,
 .loc-location-cta .section-eyebrow,
+.loc-trust .section-eyebrow,
+.loc-pricing__panel .section-eyebrow,
+.loc-about-credentials .section-eyebrow,
+.loc-about-intro__card .section-eyebrow,
+.loc-hww-checklist-section .section-eyebrow,
+.loc-biz-different .section-eyebrow,
+.loc-biz-form-box .section-eyebrow,
+.loc-biz-callback-placeholder .section-eyebrow,
+.loc-areas-page-contact-section .section-eyebrow,
+.loc-blog-sidebar__cta .section-eyebrow,
+.loc-legal-sidebar__ico .section-eyebrow,
+.loc-contact-form-box .section-eyebrow,
+.loc-step2-inline-summary .section-eyebrow,
+.loc-step3-summary-box .section-eyebrow,
+.loc-funnel-progress .section-eyebrow,
+.loc-footer .section-eyebrow,
+.loc-step2-confirmed-banner .section-eyebrow,
+.section-blue .section-eyebrow,
 .loc-biz-hmo-note .section-eyebrow {
     color: var(--gold-light);
 }
