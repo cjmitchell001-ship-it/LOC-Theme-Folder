@@ -23,33 +23,29 @@ add_action( 'after_setup_theme', function () {
 } );
 
 // ============================================================
-// EARLY BIRD OFFER — Single Oven £55 / Double Oven £70 /
-// Free-Standing Oven £55. Auto-reverts to standard pricing on
-// LOC_EARLYBIRD_END with zero edits (bar, notes, strike-through
-// prices and data-price values all key off loc_earlybird_active()).
+// PRICING — the standing prices: Single Oven £55, Double Oven
+// £70, Free-Standing Oven £55.
 //
-// EXTENDED (3 Aug 2026): originally a 10 Aug 2026 cutoff. Chris
-// decided to keep early rates running while still building the
-// initial client base, rather than reverting to £70/£90 — see
-// LOC-Pricing.md "Early-Bird pricing made permanent" entry, now
-// superseded by "Early-Bird extended, not made permanent" (3 Aug
-// 2026). This is a soft review date, not a hard deadline — revisit
-// before it lapses and push forward again if still building the
-// client base, or make a final pricing call at that point.
+// These began as the launch "early bird" rates. Chris made them
+// permanent on 30 Aug 2026 — "the price is the price now until I
+// decide to raise them." LOC_EARLYBIRD_END, loc_earlybird_active()
+// and all 21 $loc_eb ternaries that keyed off them are gone:
+// there is no longer a conditional price anywhere in the theme,
+// and no date on which prices silently change themselves.
+//
+// TO CHANGE A PRICE: the appliance figures are plain values in
+// page-reserve-step1.php, page-reserve-step2.php, page-services.php
+// and page-location.php — both the data-price attribute and the
+// displayed text, which must be changed together. The "Prices from
+// £X" figure used in page and blog CTAs lives below, because six
+// templates once carried it hardcoded and went stale without
+// anyone noticing.
 // ============================================================
 
-define( 'LOC_EARLYBIRD_END', '2026-12-31' ); // offer shows while today < this date — review before this date
-
-function loc_earlybird_active() {
-    return current_time( 'Y-m-d' ) < LOC_EARLYBIRD_END;
-}
-
 // Single source of truth for the "Prices from £X" figure used in page and
-// blog CTAs. Six templates carried this as a hardcoded £70 and went stale
-// when the early rates came in — the homepage was the last one found, and
-// only by accident. Change the figure here, not in the templates.
+// blog CTAs. Change the figure here, not in the templates.
 function loc_from_price() {
-    return loc_earlybird_active() ? '£55' : '£70';
+    return '£55';
 }
 
 add_action( 'wp_ajax_nopriv_loc_reservation', 'loc_handle_reservation' ); // unauthenticated visitors
@@ -1109,7 +1105,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             if (isSkip) {
                 summaryItems.innerHTML = '<p class="loc-step3-summary__empty">Appliances to be discussed on the call</p>';
             } else {
-                summaryItems.innerHTML = '<p class="loc-step3-summary__empty">No selection found — <a href="/reserve-step-1" style="color:var(--gold);">go back to Step 1</a></p>';
+                summaryItems.innerHTML = '<p class="loc-step3-summary__empty">No selection found — <a href="/reserve-step-1" style="color:var(--gold-light);">go back to Step 1</a></p>';
             }
         } else {
             keys.forEach(function(name) {
@@ -1681,7 +1677,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
 
             // Show loading state
             if (calMonth) calMonth.textContent = ' ';
-            if (calBody)  calBody.innerHTML    = '<tr><td colspan="7" style="text-align:center;padding:var(--space-8) 0;color:var(--grey-400);font-size:var(--text-ui);">Loading available dates…</td></tr>';
+            if (calBody)  calBody.innerHTML    = '<tr><td colspan="7" style="text-align:center;padding:var(--space-8) 0;color:var(--grey-500);font-size:var(--text-ui);">Loading available dates…</td></tr>';
 
             // FAIL CLOSED. If availability cannot be read we show no dates at
             // all, rather than showing every date and hoping. Offering a day
@@ -1713,7 +1709,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                     }
                     if (data.length === 0) {
                         if (calMonth) calMonth.textContent = monthNames[curMonth] + ' ' + curYear;
-                        if (calBody)  calBody.innerHTML    = '<tr><td colspan="7" style="text-align:center;padding:var(--space-8) 0;color:var(--grey-500);font-size:var(--text-body-sm);">No available slots found in the next 180 days.<br>Please <a href="/contact" style="color:var(--gold);">call me</a> to arrange a date.</td></tr>';
+                        if (calBody)  calBody.innerHTML    = '<tr><td colspan="7" style="text-align:center;padding:var(--space-8) 0;color:var(--grey-500);font-size:var(--text-body-sm);">No available slots found in the next 180 days.<br>Please <a href="/contact" style="color:var(--gold-dark);">call me</a> to arrange a date.</td></tr>';
                         return;
                     }
                     data.forEach(function(item) {

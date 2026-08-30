@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.8.0
+Version:           2.9.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -948,7 +948,7 @@ a:hover {
 .loc-footer__legal-note {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-xs);
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.7);
     margin: 0;
 }
 
@@ -1430,7 +1430,7 @@ a:hover {
 .loc-pricing__subtext {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-xs);
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.7);
     line-height: 1.5;
 }
 
@@ -1471,7 +1471,7 @@ a:hover {
 .loc-pricing__more-hint span {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-xs);
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.7);
     font-style: italic;
 }
 
@@ -2184,7 +2184,7 @@ a:hover {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: var(--text-ui);
-    color: var(--gold);
+    color: var(--gold-dark);
     white-space: nowrap;
 }
 
@@ -2505,7 +2505,7 @@ a:hover {
     align-items: center;
     justify-content: center;
     gap: var(--space-3);
-    color: var(--grey-300);
+    color: var(--grey-500);
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-ui-lg);
     text-align: center;
@@ -2513,7 +2513,7 @@ a:hover {
 
 .loc-areas-page-map-placeholder__note {
     font-size: var(--text-sm);
-    color: var(--grey-300);
+    color: var(--grey-500);
     margin-top: 0;
 }
 
@@ -2772,14 +2772,14 @@ a:hover {
 .loc-about-intro__role {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-sm);
-    color: var(--gold);
+    color: var(--gold-light);
     margin-bottom: var(--space-1);
 }
 
 .loc-about-intro__location {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-xs);
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.7);
     margin-bottom: var(--space-5);
 }
 
@@ -2916,7 +2916,7 @@ a:hover {
     font-size: var(--text-fine);
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--gold-dark);
     margin-bottom: var(--space-2);
 }
 
@@ -3201,7 +3201,7 @@ a:hover {
 .loc-contact-method__note {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-xs);
-    color: var(--grey-400);
+    color: var(--grey-500);
 }
 
 /* RESPONSE PROMISE */
@@ -3367,7 +3367,7 @@ a:hover {
 .loc-enquiry-btn--selected {
     background: var(--gold);
     border-color: var(--gold);
-    color: var(--white);
+    color: var(--blue-dark);
 }
 
 /* CF7 FORM WRAPPER */
@@ -3428,7 +3428,7 @@ a:hover {
 .loc-contact-form-box__privacy {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-fine);
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.7);
     margin-top: var(--space-4);
     line-height: 1.5;
     position: relative;
@@ -3632,7 +3632,7 @@ a:hover {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     font-size: var(--text-ui-lg);
-    color: var(--white);
+    color: var(--blue-dark);
     margin-bottom: var(--space-4);
     box-shadow: var(--shadow-gold);
 }
@@ -3791,7 +3791,7 @@ a:hover {
 
 .loc-biz-scope__col-title--out {
     background: #e8e8e8;
-    color: var(--grey-400);
+    color: var(--grey-500);
 }
 
 .loc-biz-scope__list {
@@ -3832,7 +3832,7 @@ a:hover {
 
 .loc-biz-scope__item--out span:last-of-type {
     display: block;
-    color: var(--grey-400);
+    color: var(--grey-500);
     font-size: var(--text-xs);
 }
 
@@ -3848,7 +3848,7 @@ a:hover {
 .loc-biz-scope__honest {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-sm);
-    color: var(--grey-400);
+    color: var(--grey-500);
     font-style: italic;
     margin-top: var(--space-4);
     line-height: 1.5;
@@ -4029,7 +4029,7 @@ a:hover {
 .loc-biz-form-box__privacy {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-fine);
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.7);
     margin-top: var(--space-4);
     line-height: 1.5;
     position: relative;
@@ -4582,7 +4582,7 @@ a:hover {
 .loc-blog-card__image-placeholder span {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-xs);
-    color: var(--grey-300);
+    color: var(--grey-500);
 }
 
 .loc-blog-card__category {
@@ -4640,7 +4640,7 @@ a:hover {
 .loc-blog-card__date {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-xs);
-    color: var(--grey-300);
+    color: var(--grey-500);
 }
 
 .loc-blog-card__read {
@@ -4686,7 +4686,7 @@ a:hover {
 .loc-blog-empty p {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-ui);
-    color: var(--grey-400);
+    color: var(--grey-500);
     line-height: 1.7;
     max-width: 400px;
     margin: 0 auto;
@@ -4779,7 +4779,7 @@ a:hover {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: var(--text-fine);
-    color: var(--grey-300);
+    color: var(--grey-500);
 }
 
 /* SIDEBAR CTA */
@@ -5059,7 +5059,7 @@ a:hover {
     font-size: var(--text-fine);
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--grey-300);
+    color: var(--grey-500);
     margin-bottom: var(--space-4);
 }
 
@@ -5470,7 +5470,7 @@ a:hover {
     font-size: var(--text-fine);
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--grey-300);
+    color: var(--grey-500);
     margin-bottom: var(--space-3);
     text-align: center;
 }
@@ -5522,7 +5522,7 @@ a:hover {
     border: none;
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-fine);
-    color: var(--grey-300);
+    color: var(--grey-500);
     cursor: pointer;
     text-align: center;
     text-decoration: underline;
@@ -6088,7 +6088,7 @@ a:hover {
 .loc-step2-areas-note {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-ui);
-    color: var(--grey-400);
+    color: var(--grey-500);
     line-height: 1.55;
     padding: var(--space-4) var(--space-5);
     background: var(--lightgrey);
@@ -6402,7 +6402,7 @@ a:hover {
 
 .loc-step1-sticky-bottom__btn--disabled,
 .loc-step2-sticky-bottom__btn--disabled {
-    background: var(--grey-400);
+    background: var(--grey-500);
     pointer-events: none;
 }
 
@@ -6780,7 +6780,7 @@ a:hover {
 .loc-step3-slot-btn__time {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-xs);
-    color: var(--grey-400);
+    color: var(--grey-500);
     display: block;
 }
 
@@ -6837,7 +6837,7 @@ a:hover {
 .loc-step3-summary__empty {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-sm);
-    color: rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.7);
     font-style: italic;
     padding: var(--space-2) 0;
     margin: 0;
@@ -6867,7 +6867,7 @@ a:hover {
     font-size: var(--text-xs);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.7);
 }
 
 .loc-step3-summary__location-value {
@@ -6883,7 +6883,7 @@ a:hover {
     font-size: var(--text-xs);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.7);
 }
 
 .loc-step3-summary__total-amount {
@@ -6913,7 +6913,7 @@ a:hover {
 .loc-step3-reserve-subtext {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-xs);
-    color: var(--grey-300);
+    color: var(--grey-500);
     text-align: center;
     margin-bottom: var(--space-4);
     font-style: italic;
@@ -7044,7 +7044,7 @@ a:hover {
     background: none;
     border: none;
     cursor: pointer;
-    color: rgba(255,255,255,0.6);
+    color: var(--grey-600);
     font-size: var(--text-lead);
     line-height: 1;
     padding: var(--space-1);
@@ -7052,7 +7052,7 @@ a:hover {
     z-index: var(--z-modal-ui);
 }
 
-.loc-step3-modal__close:hover { color: var(--white); }
+.loc-step3-modal__close:hover { color: var(--blue); }
 
 .loc-step3-modal__header {
     background: var(--blue);
@@ -7095,7 +7095,7 @@ a:hover {
 .loc-step3-modal__slot-strip span {
     font-weight: 400;
     font-family: 'Open Sans', sans-serif;
-    color: var(--grey-400);
+    color: var(--grey-500);
 }
 
 .loc-step3-modal__body { padding: 28px; }
@@ -7199,7 +7199,7 @@ a:hover {
 .loc-step3-callback-btn__time {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-fine);
-    color: var(--grey-300);
+    color: var(--grey-500);
     display: block;
 }
 
@@ -7209,7 +7209,7 @@ a:hover {
 .loc-step3-form-privacy {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-xs);
-    color: var(--grey-300);
+    color: var(--grey-500);
     line-height: 1.5;
     margin-bottom: var(--space-5);
 }
@@ -7253,7 +7253,7 @@ a:hover {
 .loc-step3-btn-submit {
     width: 100%;
     background: var(--gold);
-    color: var(--white);
+    color: var(--blue-dark);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: var(--text-ui);
@@ -7338,7 +7338,7 @@ a:hover {
     font-size: var(--text-fine);
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--grey-300);
+    color: var(--grey-500);
     margin-bottom: var(--space-2);
 }
 
@@ -7805,7 +7805,7 @@ a:hover {
     }
 
     .loc-step3-sticky-bottom__btn--disabled {
-        background: var(--grey-400);
+        background: var(--grey-500);
         pointer-events: none;
     }
 
@@ -7971,22 +7971,6 @@ a.loc-funnel-step--complete:hover {
     }
 }
 
-.loc-earlybird-note {
-    color: var(--gold);
-    font-size: var(--text-ui);
-    font-weight: 600;
-    font-family: 'Open Sans', sans-serif;
-    margin: 0 0 var(--space-3);
-}
-
-.loc-price-was {
-    color: var(--grey-400);
-    font-weight: 400;
-    font-size: var(--text-sm);
-    text-decoration: line-through;
-    margin-left: var(--space-1);
-}
-
 /* ============================================================
    LOCATION PAGES (page-location.php)
    Per-town pages under /areas/. Reuses loc-page-header,
@@ -8102,7 +8086,7 @@ a.loc-funnel-step--complete:hover {
 }
 
 .loc-location-review__stars {
-    color: var(--gold);
+    color: var(--gold-dark);
     font-size: var(--text-ui);
     letter-spacing: 1px;
 }
@@ -8539,6 +8523,17 @@ a.loc-funnel-step--complete:hover {
     border-radius: var(--radius-md);
 }
 
+/* Links INSIDE the description (e.g. the range cooker breakdown) must sit
+   above the stretched ::after, or the card overlay swallows the tap and they
+   become unclickable. This regressed the moment the stretched link was added
+   -- any future link placed inside a card needs the same treatment. */
+.loc-services-card__desc a {
+    position: relative;
+    z-index: var(--z-raised);
+    color: var(--blue);
+    font-weight: 600;
+}
+
 .loc-services-card__link span {
     display: inline-block;
     margin-left: var(--space-1);
@@ -8561,4 +8556,14 @@ a.loc-funnel-step--complete:hover {
 .loc-services-card__link:focus-visible::after {
     outline: 3px solid var(--blue);
     outline-offset: 2px;
+}
+
+/* Contact Form 7 renders its own <label> elements, which inherited the global
+   body colour (--offblack) while sitting inside the blue form panels. That put
+   the field labels at 1.49:1 against the panel -- effectively unreadable. CF7
+   markup is not ours to restructure, so the panels claim their labels here. */
+
+.loc-contact-form-box label,
+.loc-biz-form-box label {
+    color: var(--white);
 }

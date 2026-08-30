@@ -37,14 +37,13 @@
 get_header();
 
 $slug   = get_post_field( 'post_name', get_the_ID() );
-$loc_eb = loc_earlybird_active();
 
 $loc_towns = [
 
 	'syston' => [
 		'town'       => 'Syston',
 		'postcode'   => 'LE7',
-		'price_from' => $loc_eb ? '55' : '70',
+		'price_from' => '55',
 		'subline'    => 'LE7 &middot; North Leicester &middot; One of my most regular areas',
 
 		'intro'   => 'Syston is one of the areas I cover most often &mdash; more jobs here than almost anywhere else I go. It sits just north of Leicester on the A46 corridor, which makes it a short, direct run for me, and that is a large part of why I am up here so regularly.',
@@ -120,7 +119,7 @@ $loc_towns = [
 	'birstall' => [
 		'town'       => 'Birstall',
 		'postcode'   => 'LE4',
-		'price_from' => $loc_eb ? '55' : '70',
+		'price_from' => '55',
 		'subline'    => 'LE4 &middot; North Leicester &middot; Between the city and Syston',
 
 		'intro'   => 'Birstall sits just north of Leicester on the A6, with Watermead Country Park along its eastern edge and Thurmaston across the water. It is a straightforward run for me and one of the areas I have worked in most since I started.',
@@ -250,9 +249,9 @@ function loc_location_cta() {
 			<p>The same prices in <?php echo $t['town']; ?> as everywhere else I cover &mdash; there is no travel surcharge.</p>
 
 			<div class="loc-location-prices">
-				<div class="loc-location-price"><span>Single oven</span><span><?php echo $loc_eb ? 'From &pound;55' : 'From &pound;70'; ?></span></div>
-				<div class="loc-location-price"><span>Double oven</span><span><?php echo $loc_eb ? 'From &pound;70' : 'From &pound;90'; ?></span></div>
-				<div class="loc-location-price"><span>Free-standing cooker</span><span><?php echo $loc_eb ? 'From &pound;55' : 'From &pound;70'; ?></span></div>
+				<div class="loc-location-price"><span>Single oven</span><span>From &pound;55</span></div>
+				<div class="loc-location-price"><span>Double oven</span><span>From &pound;70</span></div>
+				<div class="loc-location-price"><span>Free-standing cooker</span><span>From &pound;55</span></div>
 				<div class="loc-location-price"><span>Range cooker</span><span>from &pound;125</span></div>
 				<div class="loc-location-price"><span>Gas, ceramic or induction hob</span><span>from &pound;25</span></div>
 				<div class="loc-location-price"><span>Extractor hood</span><span>from &pound;25</span></div>

@@ -16,9 +16,9 @@
 
 <?php
 // Announcement bar. Weekend availability is permanent and always shown —
-// it is the genuinely unusual thing most oven cleaners don't offer. The
-// early-rate half is conditional, so when LOC_EARLYBIRD_END passes the
-// prices drop out but the bar itself stays.
+// it is the genuinely unusual thing most oven cleaners don't offer. The bar
+// once carried a conditional early-rate price alongside it; early-bird
+// pricing was made permanent on 30 Aug 2026 and that half is gone.
 ?>
 <a href="/reserve-step-1" class="loc-announce-bar">
     <span class="loc-announce-bar__lead">Weekends currently being offered</span>
