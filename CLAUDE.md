@@ -269,7 +269,7 @@ Chris (the founder) wants his name, face, and personal/employment history kept O
 - Deposit taken after the confirmation call by bank transfer — no card details, no online payment of any kind at reservation or otherwise. Remaining balance by bank transfer or cash on the day.
 - Do not reference appliance repair as a current service — future ambition only
 - No eco-friendly claims; no financial guarantees in copy
-- **Before/after imagery is ALLOWED and encouraged (23 Aug 2026).** The previous ban on dirty-oven before/after shots is revoked. The homepage hero now leads with a real before/after pair from a Birstall job. Use finished-result-only shots where a pairing would not add anything, and check every photo at full size for reflections in the door glass and for anything identifying at the edges before publishing.
+- **Before/after imagery is ALLOWED and encouraged (23 Aug 2026).** The previous ban on dirty-oven before/after shots is revoked. The homepage hero now leads with a real before/after pair from a Birstall job. Use finished-result-only shots where a pairing would not add anything, and check every photo at full size for anything identifying at the edges before publishing. **Reflections in the door glass are NOT a reason to reject a photo (Chris, 30 Aug 2026)** — glass reflects, it cannot be helped, and the earlier instruction to re-take for it is overridden.
 - **Founding Customer Rate:** fully removed (June 2026) — do not reintroduce
 
 ---
