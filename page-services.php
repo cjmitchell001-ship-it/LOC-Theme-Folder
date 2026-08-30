@@ -37,7 +37,7 @@ get_header();
                         <span class="loc-services-card__price"><?php echo $loc_eb ? 'From £55' : 'From £70'; ?></span>
                     </div>
                     <p class="loc-services-card__desc">A full strip-down clean, done carefully in your kitchen — interior cavity, door glass (both sides), racks, trays, fan housing, and exterior.</p>
-                    <a class="loc-services-card__link" href="/reserve-step-1?add=Single%20Oven">Reserve this <span aria-hidden="true">&rarr;</span></a>
+                    <a class="loc-services-card__link" href="/reserve-step-1/?add=Single%20Oven">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
                 <div class="loc-services-card">
@@ -46,7 +46,7 @@ get_header();
                         <span class="loc-services-card__price"><?php echo $loc_eb ? 'From £70' : 'From £90'; ?></span>
                     </div>
                     <p class="loc-services-card__desc">Both cavities cleaned independently, with the same care throughout — all racks, trays, glass panels, and fan housings.</p>
-                    <a class="loc-services-card__link" href="/reserve-step-1?add=Double%20Oven">Reserve this <span aria-hidden="true">&rarr;</span></a>
+                    <a class="loc-services-card__link" href="/reserve-step-1/?add=Double%20Oven">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
                 <div class="loc-services-card">
@@ -55,7 +55,7 @@ get_header();
                         <span class="loc-services-card__price">From £125</span>
                     </div>
                     <p class="loc-services-card__desc">The whole appliance &mdash; every cavity, the hob and the exterior. <a href="/services/range-cooker-prices">See the full breakdown &rarr;</a></p>
-                    <a class="loc-services-card__link" href="/reserve-step-1?add=Full%20Range%20Clean">Reserve this <span aria-hidden="true">&rarr;</span></a>
+                    <a class="loc-services-card__link" href="/reserve-step-1/?add=Full%20Range%20Clean">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
                 <div class="loc-services-card">
@@ -64,7 +64,7 @@ get_header();
                         <span class="loc-services-card__price">From £55</span>
                     </div>
                     <p class="loc-services-card__desc">Only the parts you want doing. A single cavity on its own starts at the same price as a single oven. <a href="/services/range-cooker-prices">See the full breakdown &rarr;</a></p>
-                    <a class="loc-services-card__link" href="/reserve-step-1?add=Partial%20Range%20Clean">Reserve this <span aria-hidden="true">&rarr;</span></a>
+                    <a class="loc-services-card__link" href="/reserve-step-1/?add=Partial%20Range%20Clean">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
                 <div class="loc-services-card">
@@ -73,7 +73,7 @@ get_header();
                         <span class="loc-services-card__price"><?php echo $loc_eb ? 'From £55' : 'From £70'; ?></span>
                     </div>
                     <p class="loc-services-card__desc">A full clean of the oven cavity, door, glass, racks, and trays — with the same care as a built-in.</p>
-                    <a class="loc-services-card__link" href="/reserve-step-1?add=Free-Standing%20Oven">Reserve this <span aria-hidden="true">&rarr;</span></a>
+                    <a class="loc-services-card__link" href="/reserve-step-1/?add=Free-Standing%20Oven">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
                 <div class="loc-services-card">
@@ -83,7 +83,7 @@ get_header();
                     </div>
                     <p class="loc-services-card__price--contact">Price on request</p>
                     <p class="loc-services-card__desc">A specialist clean for AGA, Rayburn, and equivalent appliances — quoted and arranged individually. <a href="/contact">Get in touch</a> to discuss your requirements.</p>
-                    <a class="loc-services-card__link" href="/reserve-step-1?add=AGA%20%2F%20Large%20Range">Reserve this <span aria-hidden="true">&rarr;</span></a>
+                    <a class="loc-services-card__link" href="/reserve-step-1/?add=AGA%20%2F%20Large%20Range">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
                 <div class="loc-services-card">
@@ -92,7 +92,7 @@ get_header();
                         <span class="loc-services-card__price">from £25</span>
                     </div>
                     <p class="loc-services-card__desc">Burner heads, caps, pan supports, and hob surface — all removed, soaked, and cleaned individually.</p>
-                    <a class="loc-services-card__link" href="/reserve-step-1?add=Gas%20Hob">Reserve this <span aria-hidden="true">&rarr;</span></a>
+                    <a class="loc-services-card__link" href="/reserve-step-1/?add=Gas%20Hob">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
                 <div class="loc-services-card">
@@ -101,7 +101,7 @@ get_header();
                         <span class="loc-services-card__price">from £25</span>
                     </div>
                     <p class="loc-services-card__desc">A careful surface clean and polish, using a scratch-safe technique throughout.</p>
-                    <a class="loc-services-card__link" href="/reserve-step-1?add=Ceramic%20%2F%20Induction%20Hob">Reserve this <span aria-hidden="true">&rarr;</span></a>
+                    <a class="loc-services-card__link" href="/reserve-step-1/?add=Ceramic%20%2F%20Induction%20Hob">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
                 <div class="loc-services-card">
@@ -110,7 +110,7 @@ get_header();
                         <span class="loc-services-card__price">from £25</span>
                     </div>
                     <p class="loc-services-card__desc">Grease filters removed, soaked, and degreased — included in the price — with fan housing and exterior surfaces cleaned and polished to finish.</p>
-                    <a class="loc-services-card__link" href="/reserve-step-1?add=Extractor%20Hood">Reserve this <span aria-hidden="true">&rarr;</span></a>
+                    <a class="loc-services-card__link" href="/reserve-step-1/?add=Extractor%20Hood">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
                 <div class="loc-services-card">
@@ -119,7 +119,7 @@ get_header();
                         <span class="loc-services-card__price">£15</span>
                     </div>
                     <p class="loc-services-card__desc">Interior cavity, turntable, and door, fully cleaned, dried, and left ready to use.</p>
-                    <a class="loc-services-card__link" href="/reserve-step-1?add=Microwave">Reserve this <span aria-hidden="true">&rarr;</span></a>
+                    <a class="loc-services-card__link" href="/reserve-step-1/?add=Microwave">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
                 <div class="loc-services-card">
@@ -129,7 +129,7 @@ get_header();
                     </div>
                     <p class="loc-services-card__price--contact">Price on request</p>
                     <p class="loc-services-card__desc">Grill grates, burner covers, and interior cleaned and degreased. Quoted and arranged individually — <a href="/contact">get in touch</a> to discuss.</p>
-                    <a class="loc-services-card__link" href="/reserve-step-1?add=BBQ">Reserve this <span aria-hidden="true">&rarr;</span></a>
+                    <a class="loc-services-card__link" href="/reserve-step-1/?add=BBQ">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
             </div>
