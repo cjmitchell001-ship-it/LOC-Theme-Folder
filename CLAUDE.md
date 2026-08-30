@@ -361,6 +361,8 @@ Chris (the founder) wants his name, face, and personal/employment history kept O
 **Still weak on that page:** the kitchens section is built on geography plus the observed single-oven pattern, because Chris has not yet given his own read of Birstall kitchens the way he did for Syston. First-hand detail should replace it when he has a minute.
 
 **Deploy gotcha worth remembering: the drift check must account for line endings per file.** `page-location.php` is CRLF in the working copy but LF in git, so its live MD5 will never match `git show HEAD~1:file` directly — it matches that content converted to CRLF. `page-areas.php`, `header.php` and `style.css` are LF and do match directly. A naive comparison reports false drift on exactly the CRLF files.
+
+**`front-page.php` is the trap in every site-wide pass.** It has now been missed four separate times, because it is the only page template whose name does not match a `page-*.php` glob. When Birstall went live it was linked from `/areas/` but left as plain text on the homepage, so the homepage advertised the area without offering the page. **Any sweep across templates must name `front-page.php` explicitly.** Related: the area list in `page-reserve-step2.php` is deliberately left unlinked — it sits inside the booking funnel, where a link out costs the booking.
 *Update this log and the sections above whenever significant progress is made or a decision is confirmed.*
 
 ---
