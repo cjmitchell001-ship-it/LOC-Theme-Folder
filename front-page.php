@@ -399,7 +399,7 @@ get_header();
         <div class="loc-step2-area-group">
             <h4 class="loc-step2-area-group-title">North</h4>
             <ul class="loc-step2-area-tags">
-                <li data-postcode="LE4">Birstall <span>LE4</span></li>
+                <li data-postcode="LE4"><a href="/areas/birstall/">Birstall</a> <span>LE4</span></li>
                 <li data-postcode="LE4">Thurmaston <span>LE4</span></li>
                 <li data-postcode="LE6">Groby <span>LE6</span></li>
                 <li data-postcode="LE7">Anstey <span>LE7</span></li>
