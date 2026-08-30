@@ -392,6 +392,20 @@ Chris (the founder) wants his name, face, and personal/employment history kept O
 **FOUND, NOT FIXED — Contact Form 7 is not installed on the live site.** `wp plugin list` shows no `contact-form-7`, so `/contact/` and `/business-commercial/` both render the raw `[contact-form-7 id="..."]` shortcode as literal text. **Both contact forms are dead for visitors.** It works locally, which is why no template change ever revealed it. Also noted in the same listing: `wp-mail-smtp` is **inactive** on live, contradicting the July log entry saying it was reconfigured and working — reservation email is falling back to PHP `mail()`.
 
 **Drift checking needs care with mixed line endings.** `page-reserve-step1.php` and `page-reserve-step2.php` are genuinely mixed (≈400 CRLF plus ≈50 bare LF), so comparing a live MD5 against the git blob converted wholly to CRLF reports false drift. The reliable check is a content diff with `diff --strip-trailing-cr`, not a checksum.
+
+**Contact forms were dead on live since launch; fixed 2026-08-30.** Contact Form 7 was never installed on the production site — the original deployment imported the database with plugins excluded, so the two form *posts* came across (IDs 17 and 50) but the plugin never did. Both `/contact/` and `/business-commercial/` were printing the raw `[contact-form-7 id="..."]` shortcode as literal text where the form should be.
+
+**It was invisible to every previous check.** The forms work locally, so no template change ever revealed it, and the pages return HTTP 200 with no PHP error. It surfaced only because a contrast audit flagged the shortcode string as unreadable text on a blue panel — a genuine bug found by a tool looking for something else entirely.
+
+**The fix needed no rebuilding.** The stored form hashes (`1bfbd115547…`, `c4c07d2f58…`) still matched the shortcodes in the templates (`1bfbd11`, `c4c07d2`), so installing and activating CF7 reconnected both forms exactly as they were. Chris did this from wp-admin.
+
+**Recipient changed to `hello@leicesterovencleaning.co.uk` on both forms** (was `[_site_admin_email]`, which resolves to Chris's Gmail).
+
+**Mail architecture, since it confused matters and will again.** `functions.php` sets a site-wide `wp_mail_from` filter to `hello@`. CF7 asks to send from `wordpress@leicesterovencleaning.co.uk`; the filter rewrites it. So a form message arrives *appearing to be from* `hello@`, which reads exactly like the mailbox forwarded it — **it did not**. The mailbox was never a recipient. For the same reason, **nothing appears in the `hello@` Sent folder**: mail is sent by the server's PHP `mail()`, not by that mailbox, so it has nothing to file. That is correct behaviour, not a fault. `Reply-To` is the customer's own address on both forms — leave it that way.
+
+**Related, still open:** `wp-mail-smtp` is installed but **inactive** on live, contradicting the July log entry saying it was reconfigured and working. Delivery is currently plain PHP `mail()`, which is demonstrably getting through (form tests and reservation emails both arrive), so this is not urgent — but the July entry is wrong and should not be trusted.
+
+**Deployment lesson worth generalising: the live plugin set was never verified against local.** One missing plugin silently disabled a whole contact route for roughly two months. Worth a `wp plugin list` comparison whenever the live site is touched.
 *Update this log and the sections above whenever significant progress is made or a decision is confirmed.*
 
 ---
