@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.5.0
+Version:           2.5.2
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -8291,4 +8291,51 @@ a.loc-funnel-step--complete:hover {
 
 .loc-step2-area-tags li a:hover {
     color: var(--gold);
+}
+
+/* --- range cooker pricing page: worked examples --- */
+
+.loc-rangecalc {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-5);
+    margin: var(--space-6) 0;
+}
+
+.loc-rangecalc__item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-xs);
+}
+
+.loc-rangecalc__title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: var(--text-ui-lg);
+    color: var(--blue);
+    margin-bottom: var(--space-3);
+}
+
+.loc-rangecalc__sum {
+    font-size: var(--text-ui);
+    color: var(--grey-600);
+    line-height: 1.6;
+    margin-bottom: var(--space-4);
+}
+
+.loc-rangecalc__total {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: var(--text-h3);
+    color: var(--gold);
+    margin: 0;
+}
+
+.loc-rangecalc__cta {
+    display: inline-block;
+    margin-top: var(--space-4);
+    font-size: var(--text-ui);
+    padding: var(--space-3) var(--space-5);
 }

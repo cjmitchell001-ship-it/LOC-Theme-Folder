@@ -1701,3 +1701,58 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
     <?php
 }
 add_action('wp_footer', 'loc_step3_script');
+/**
+ * Range cooker pricing page — "Reserve this" buttons.
+ *
+ * Lets a customer jump straight from a worked example into Step 2 with their
+ * exact figure carried over, skipping Step 1 entirely. Writes the same
+ * sessionStorage keys Step 1 writes, because that is the whole contract
+ * between the funnel steps.
+ *
+ * loc_from_step1 IS REQUIRED. Step 2's carried-over total bar begins with
+ * `if (sessionStorage.getItem('loc_from_step1') !== 'true') return;` — without
+ * it the customer lands on Step 2 with no price shown at all, and nothing
+ * errors. Do not drop it.
+ *
+ * Duration is fixed at 240 to match 'Full Range Clean' in baseDurations. Every
+ * worked example is a whole-appliance clean, so none of them needs a new
+ * timing. Booking too much time is recoverable after the call; booking too
+ * little is not.
+ */
+function loc_range_pricing_script() {
+    if ( ! is_page( 'range-cooker-prices' ) ) return;
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var btns = document.querySelectorAll('.loc-rangecalc__cta');
+        if (!btns.length) return;
+
+        Array.prototype.forEach.call(btns, function (btn) {
+            btn.addEventListener('click', function () {
+                var total = parseInt(btn.getAttribute('data-total'), 10) || 0;
+                var label = btn.getAttribute('data-label') || 'Range cooker';
+
+                try {
+                    // Clear any area picked on an earlier visit, exactly as Step 1 does,
+                    // so Step 2 starts clean rather than half-filled from a stale session.
+                    sessionStorage.removeItem('loc_area_name');
+                    sessionStorage.removeItem('loc_postcode');
+                    sessionStorage.removeItem('loc_zone');
+                    sessionStorage.removeItem('loc_skip');
+
+                    var sel = {};
+                    sel[label] = total;
+                    sessionStorage.setItem('loc_selections', JSON.stringify(sel));
+                    sessionStorage.setItem('loc_total', total);
+                    sessionStorage.setItem('loc_duration', 240);
+                    sessionStorage.setItem('loc_from_step1', 'true');
+                } catch (e) {}
+
+                window.location.href = '/reserve-step-2';
+            });
+        });
+    });
+    </script>
+    <?php
+}
+add_action('wp_footer', 'loc_range_pricing_script');

@@ -49,10 +49,18 @@ get_header();
 
                 <div class="loc-services-card">
                     <div class="loc-services-card__header">
-                        <h3 class="loc-services-card__name">Range Cooker</h3>
-                        <span class="loc-services-card__price">from £125</span>
+                        <h3 class="loc-services-card__name">Full Range Clean</h3>
+                        <span class="loc-services-card__price">From £125</span>
                     </div>
-                    <p class="loc-services-card__desc">A full range clean, taking the time it needs — all cavities, grill compartment, and exterior.</p>
+                    <p class="loc-services-card__desc">The whole appliance &mdash; every cavity, the hob and the exterior. <a href="/services/range-cooker-prices">See the full breakdown &rarr;</a></p>
+                </div>
+
+                <div class="loc-services-card">
+                    <div class="loc-services-card__header">
+                        <h3 class="loc-services-card__name">Partial Range Clean</h3>
+                        <span class="loc-services-card__price">From £55</span>
+                    </div>
+                    <p class="loc-services-card__desc">Only the parts you want doing. A single cavity on its own starts at the same price as a single oven. <a href="/services/range-cooker-prices">See the full breakdown &rarr;</a></p>
                 </div>
 
                 <div class="loc-services-card">
