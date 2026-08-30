@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.7.0
+Version:           2.8.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -8507,4 +8507,58 @@ a.loc-funnel-step--complete:hover {
         flex-direction: column;
         gap: var(--space-1);
     }
+}
+
+/* ==========================================================================
+   SERVICES CARD CLICK-THROUGH  (page-services.php -> /reserve-step-1?add=)
+   The visible link is a real anchor with real text, but its ::after covers
+   the whole card, so tapping anywhere on the panel works. One focusable
+   element per card, so keyboard and screen-reader users get a single clear
+   target rather than a card full of dead text.
+   ========================================================================== */
+
+.loc-services-card {
+    position: relative;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.loc-services-card__link {
+    display: inline-block;
+    margin-top: var(--space-4);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: var(--text-ui);
+    color: var(--blue);
+    text-decoration: none;
+}
+
+.loc-services-card__link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-md);
+}
+
+.loc-services-card__link span {
+    display: inline-block;
+    margin-left: var(--space-1);
+    transition: transform 0.15s ease;
+}
+
+.loc-services-card:hover {
+    border-color: var(--gold);
+    box-shadow: var(--shadow-md);
+}
+
+.loc-services-card:hover .loc-services-card__link {
+    color: var(--gold-dark);
+}
+
+.loc-services-card:hover .loc-services-card__link span {
+    transform: translateX(3px);
+}
+
+.loc-services-card__link:focus-visible::after {
+    outline: 3px solid var(--blue);
+    outline-offset: 2px;
 }

@@ -660,6 +660,36 @@ function loc_step1_script() {
         confirmBtn.addEventListener('click', handleConfirm);
         if (inflowBtnEl) inflowBtnEl.addEventListener('click', handleConfirm);
 
+        // ── PRE-SELECT FROM THE /services/ CLICK-THROUGH ──
+        // Each card on the Services page links here as ?add=<appliance>, where
+        // the value is that card's exact data-name. Rather than duplicating the
+        // selection logic we dispatch a real click on the matching card, so
+        // quantity, early-bird pricing, the stepper panel and the summary all
+        // behave exactly as if the customer had tapped it themselves. Anything
+        // that changes about selection keeps working here for free.
+        //
+        // Deliberately lands on Step 1 rather than skipping to Step 2: most
+        // people booking an oven also have a hob, and jumping the step loses
+        // the chance to add it.
+        var locAddParam = null;
+        try {
+            locAddParam = new URLSearchParams(window.location.search).get('add');
+        } catch (e) {}
+
+        if (locAddParam) {
+            var locMatched = null;
+            document.querySelectorAll('.loc-appliance-card').forEach(function(c) {
+                if (c.dataset.name === locAddParam) { locMatched = c; }
+            });
+            if (locMatched) {
+                // A stale skip flag from an earlier visit makes Step 3 show
+                // £TBC despite real selections -- clear it before selecting.
+                sessionStorage.removeItem('loc_skip');
+                locMatched.click();
+                locMatched.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
         // ── SCROLL HINT (601px+) ──
         var scrollHint  = document.getElementById('loc-step1-scroll-hint');
         var inflowPanel = document.getElementById('loc-step1-inflow-total');
