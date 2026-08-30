@@ -189,9 +189,7 @@ get_header();
             <div class="loc-pricing__from">
                 <span class="loc-pricing__from-label">Prices from</span>
                 <span class="loc-pricing__from-amount"><?php echo $loc_eb_home ? '£55' : '£70'; ?></span>
-                <?php if ( $loc_eb_home ) : ?><s class="loc-price-was">from £70</s><?php endif; ?>
             </div>
-            <?php if ( $loc_eb_home ) : ?><p class="loc-earlybird-note">Early rates — extended while I build my client base</p><?php endif; ?>
             <p class="loc-pricing__types">Single oven &nbsp;·&nbsp; Double oven &nbsp;·&nbsp; Range cooker &nbsp;·&nbsp; Hobs &nbsp;·&nbsp; Hoods &nbsp;·&nbsp; Extras</p>
             <a href="/reserve-step-1" class="btn-primary loc-pricing__cta">See All Prices &amp; Reserve Your Slot →</a>
             <p class="loc-pricing__subtext">No card needed &nbsp;·&nbsp; Your price confirmed before I start &nbsp;·&nbsp; I call you to confirm</p>
