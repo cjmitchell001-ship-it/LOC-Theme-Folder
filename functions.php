@@ -1731,6 +1731,11 @@ function loc_range_pricing_script() {
             btn.addEventListener('click', function () {
                 var total = parseInt(btn.getAttribute('data-total'), 10) || 0;
                 var label = btn.getAttribute('data-label') || 'Range cooker';
+                // Each button carries its own slot length: the worked examples are
+                // whole-appliance cleans (240), the "yours isn't listed" card is a
+                // partial (120, matching Partial Range Clean). Falls back to 240 --
+                // booking too much time is recoverable after the call, too little is not.
+                var mins  = parseInt(btn.getAttribute('data-duration'), 10) || 240;
 
                 try {
                     // Clear any area picked on an earlier visit, exactly as Step 1 does,
@@ -1744,7 +1749,7 @@ function loc_range_pricing_script() {
                     sel[label] = total;
                     sessionStorage.setItem('loc_selections', JSON.stringify(sel));
                     sessionStorage.setItem('loc_total', total);
-                    sessionStorage.setItem('loc_duration', 240);
+                    sessionStorage.setItem('loc_duration', mins);
                     sessionStorage.setItem('loc_from_step1', 'true');
                 } catch (e) {}
 

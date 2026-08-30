@@ -115,12 +115,20 @@ get_header();
 						<h3 class="loc-rangecalc__title"><?php echo $ex["title"]; ?></h3>
 						<p class="loc-rangecalc__sum"><?php echo $ex["sum"]; ?></p>
 						<p class="loc-rangecalc__total">&pound;<?php echo (int) $ex["total"]; ?></p>
-						<button type="button" class="btn-primary loc-rangecalc__cta" data-total="<?php echo esc_attr( $ex["total"] ); ?>" data-label="<?php echo esc_attr( $ex["label"] ); ?>">Reserve this &rarr;</button>
+						<button type="button" class="btn-primary loc-rangecalc__cta" data-duration="240" data-total="<?php echo esc_attr( $ex["total"] ); ?>" data-label="<?php echo esc_attr( $ex["label"] ); ?>">Reserve this &rarr;</button>
 					</div>
 				<?php endforeach; ?>
+				<!-- Fallback card: someone whose range matches none of the examples can
+				     still convert here rather than leaving the page. Books the Partial
+				     slot (120), not the Full 240, because the scope is unknown until
+				     the call. -->
+				<div class="loc-rangecalc__item">
+					<h3 class="loc-rangecalc__title">Yours isn&rsquo;t listed?</h3>
+					<p class="loc-rangecalc__sum">Nothing here is fixed in stone. Tell me what&rsquo;s in your range and I&rsquo;ll price it exactly the same way.</p>
+					<p class="loc-rangecalc__total">From &pound;55</p>
+					<button type="button" class="btn-primary loc-rangecalc__cta" data-duration="120" data-total="55" data-label="Range cooker: partial clean, details on the call">Reserve this &rarr;</button>
+				</div>
 			</div>
-
-			<p>Nothing here is fixed in stone. If your range doesn&rsquo;t match any of these, tell me what&rsquo;s in it and I&rsquo;ll price it the same way.</p>
 		</div>
 	</section>
 
