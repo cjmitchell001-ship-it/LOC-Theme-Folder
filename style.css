@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.5.5
+Version:           2.6.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -51,6 +51,7 @@ ul, ol {
   --blue:       #1A3A6E;   /* Leicester Blue â€” primary brand colour */
   --gold:       #C9960C;   /* Rich Gold â€” accent colour */
   --gold-light: #e8b020;   /* Gold hover state */
+  --gold-dark:  #8d6908;   /* Eyebrow text on light backgrounds — 5.05 on white, 4.63 on grey */
   --white:      #FFFFFF;   /* Clean White â€” main background */
   --lightgrey:  #F5F5F5;   /* Light Grey â€” alternate section background */
   --offblack:   #1C1C2E;   /* Off Black â€” body text (subtle blue undertone) */
@@ -300,7 +301,7 @@ a:hover {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
     font-size: var(--text-fine);
-    color: var(--gold);
+    color: var(--gold-dark);
     letter-spacing: 0.18em;
     text-transform: uppercase;
 }
@@ -860,7 +861,7 @@ a:hover {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
     font-size: var(--text-xs);
-    color: var(--gold);
+    color: var(--gold-light);
     letter-spacing: 0.18em;
     text-transform: uppercase;
 }
@@ -895,7 +896,7 @@ a:hover {
     font-size: var(--text-xs);
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--gold-light);
     margin-bottom: var(--space-4);
 }
 
@@ -952,7 +953,7 @@ a:hover {
 }
 
 .loc-footer__ico {
-    color: var(--gold);
+    color: var(--gold-light);
 }
 
 /* SOCIAL ICONS */
@@ -1133,7 +1134,7 @@ a:hover {
 .loc-reserve__cta p {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-sm);
-    color: var(--grey-400);
+    color: var(--grey-500);
     letter-spacing: 0.02em;
 }
 
@@ -1498,7 +1499,7 @@ a:hover {
     font-size: var(--text-fine);
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--grey-300);
+    color: var(--grey-500);
     margin-bottom: var(--space-5);
 }
 
@@ -1531,7 +1532,7 @@ a:hover {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     font-size: var(--text-body-lg);
-    color: var(--grey-200);
+    color: var(--grey-500);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     transition: color 0.2s;
@@ -5140,7 +5141,7 @@ a:hover {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-ui);
     font-weight: 600;
-    color: var(--grey-400);
+    color: var(--grey-500);
     text-decoration: none;
     transition: color 0.2s;
     letter-spacing: 0.01em;
@@ -5203,13 +5204,13 @@ a:hover {
 .loc-funnel-step--active .loc-funnel-step__num {
     background: var(--white);
     border-color: var(--white);
-    color: var(--gold);
+    color: var(--gold-dark);
 }
 
 .loc-funnel-step--complete .loc-funnel-step__num {
     background: var(--gold);
     border-color: var(--white);
-    color: var(--white);
+    color: var(--blue-dark);
 }
 
 .loc-funnel-step__label {
@@ -5334,7 +5335,7 @@ a:hover {
     font-size: var(--text-sm);
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--gold-dark);
     margin-bottom: var(--space-6);
 }
 
@@ -5348,7 +5349,7 @@ a:hover {
     font-size: var(--text-xs);
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--grey-300);
+    color: var(--grey-500);
     margin-bottom: var(--space-4);
     padding-bottom: var(--space-2);
     border-bottom: 1px solid var(--border);
@@ -5432,7 +5433,7 @@ a:hover {
 .loc-appliance-card__note {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-fine);
-    color: var(--grey-300);
+    color: var(--grey-500);
     margin-top: var(--space-1);
 }
 
@@ -6555,7 +6556,7 @@ a:hover {
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--gold-dark);
     margin-bottom: var(--space-2);
 }
 
@@ -6657,7 +6658,7 @@ a:hover {
     font-size: var(--text-fine);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--grey-300);
+    color: var(--grey-500);
     padding: var(--space-3) var(--space-1);
     text-align: center;
 }
@@ -6800,7 +6801,7 @@ a:hover {
     font-size: var(--text-xs);
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--gold-light);
     margin-bottom: var(--space-5);
     padding-bottom: var(--space-3);
     border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -6830,7 +6831,7 @@ a:hover {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: var(--text-ui);
-    color: var(--gold);
+    color: var(--gold-light);
 }
 
 .loc-step3-summary__empty {
@@ -7521,7 +7522,7 @@ a:hover {
 
 .loc-step3-date-escape__btn--discuss {
     background: var(--gold);
-    color: var(--white);
+    color: var(--blue-dark);
 }
 
 .loc-step3-date-escape__btn--discuss:hover {
@@ -8377,4 +8378,27 @@ a.loc-funnel-step--complete:hover {
    colour would turn the inactive labels dark-on-dark. */
 .loc-funnel-step--active .loc-funnel-step__label {
     color: var(--blue-dark);
+}
+
+/* --- eyebrow contrast ----------------------------------------------------
+   .section-eyebrow is gold and appears on both light and blue backgrounds.
+   On white it measured 2.67 and on #F5F5F5 2.45 -- both failing 4.5 at 11px.
+   Darkening it fixes those, but makes the blue-backed ones WORSE (4.19 down
+   to 2.22), because light and dark backgrounds need the text moved in
+   opposite directions. So the base goes dark and every blue container is
+   listed back to the original gold. Verified by sweeping all pages after.
+   ------------------------------------------------------------------------ */
+
+.section-eyebrow {
+    color: var(--gold-dark);
+}
+
+.loc-hero .section-eyebrow,
+.loc-reviews .section-eyebrow,
+.loc-business-banner .section-eyebrow,
+.loc-page-header .section-eyebrow,
+.loc-inner-cta .section-eyebrow,
+.loc-location-cta .section-eyebrow,
+.loc-biz-hmo-note .section-eyebrow {
+    color: var(--gold-light);
 }
