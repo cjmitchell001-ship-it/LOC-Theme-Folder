@@ -363,6 +363,16 @@ Chris (the founder) wants his name, face, and personal/employment history kept O
 **Deploy gotcha worth remembering: the drift check must account for line endings per file.** `page-location.php` is CRLF in the working copy but LF in git, so its live MD5 will never match `git show HEAD~1:file` directly — it matches that content converted to CRLF. `page-areas.php`, `header.php` and `style.css` are LF and do match directly. A naive comparison reports false drift on exactly the CRLF files.
 
 **`front-page.php` is the trap in every site-wide pass.** It has now been missed four separate times, because it is the only page template whose name does not match a `page-*.php` glob. When Birstall went live it was linked from `/areas/` but left as plain text on the homepage, so the homepage advertised the area without offering the page. **Any sweep across templates must name `front-page.php` explicitly.** Related: the area list in `page-reserve-step2.php` is deliberately left unlinked — it sits inside the booking funnel, where a link out costs the booking.
+
+**Services panels click through into the funnel (2026-08-30).** All 11 cards on `/services/` now link to `/reserve-step-1/?add=<name>` and Step 1 pre-selects the matching panel. Theme 2.7.0 → 2.8.0, commits `151ad50` and the trailing-slash follow-up.
+
+**Two decisions worth not re-opening.** It lands on **Step 1, not Step 2** — most people booking an oven also have a hob, and skipping the step removes the chance to add it. And the pre-selection **dispatches a real click on the matching card** rather than writing sessionStorage directly, so quantity, early-bird pricing, the stepper panel and the summary all behave exactly as if the customer had tapped it. Anything that changes about selection logic keeps working here for free. It clears any stale `loc_skip` first, since that flag left from an earlier visit makes Step 3 show £TBC despite real selections.
+
+**The link value is the card's exact `data-name`**, so there is no lookup table to drift. All 11 Services card names already matched a Step 1 panel exactly. If a panel is ever renamed, rename the Services card in the same commit — and remember `baseDurations` in this file is keyed the same way.
+
+**`/reserve-step-1` 301-redirects to the trailing-slash form.** The query string does survive it, but links on the conversion path now point at `/reserve-step-1/?add=` directly. Worth knowing generally: the rest of the site links to `/reserve-step-1` without the slash and eats that redirect.
+
+**Found while testing, and it matters beyond this task: `LOC_EARLYBIRD_END` is now `2026-12-31`.** The offer did not end on 10 August as this log's July entry implies — it has been extended, so every `$loc_eb` branch across the site is still on the early-bird side and single ovens show £55, not £70. **A meta description written for the Birstall page said "Ovens from £70" while the page itself said £55** — wrong price in the search result, caught and corrected on both local and live. Yoast descriptions are static post meta and cannot call `loc_from_price()`, so any price written into one is a hardcoded figure that will go stale when the offer really does end. Check `LOC_EARLYBIRD_END` before writing a price into page meta.
 *Update this log and the sections above whenever significant progress is made or a decision is confirmed.*
 
 ---
