@@ -98,9 +98,80 @@ $loc_towns = [
 
 		// Cross-links to sibling town pages. Empty until those pages exist —
 		// never link to a page that has not been built.
-		'nearby' => [],
+		'nearby' => [
+			[ 'name' => 'Oven cleaning in Birstall', 'url' => '/areas/birstall/' ],
+		],
 	],
 
+
+	/**
+	 * BIRSTALL. Two completed jobs, four before/after pairs, one review.
+	 *
+	 * What makes this page different from Syston's, deliberately: the appliance
+	 * mix is the OPPOSITE. Both Birstall jobs were single ovens; Syston runs to
+	 * integrated doubles. That is a real observed difference, not a rewording,
+	 * and it is what the kitchens section is built on.
+	 *
+	 * The housing description below is geography, not invented experience.
+	 * Chris has not yet given his own read of Birstall kitchens the way he did
+	 * for Syston -- when he does, this section should be rewritten around it,
+	 * because first-hand detail beats description every time.
+	 */
+	'birstall' => [
+		'town'       => 'Birstall',
+		'postcode'   => 'LE4',
+		'price_from' => $loc_eb ? '55' : '70',
+		'subline'    => 'LE4 &middot; North Leicester &middot; Between the city and Syston',
+
+		'intro'   => 'Birstall sits just north of Leicester on the A6, with Watermead Country Park along its eastern edge and Thurmaston across the water. It is a straightforward run for me and one of the areas I have worked in most since I started.',
+		'intro_2' => 'It is also one of the few areas where I can show you the work rather than describe it. Four of the before and after pairs on this site are Birstall kitchens, from two separate jobs &mdash; so you can judge the standard yourself before you call me.',
+
+		'coverage_lead'   => 'I cover the whole of Birstall and the rest of LE4, along with the LE7 villages immediately north.',
+		'coverage_groups' => [
+			'Birstall and LE4'  => [ 'Birstall', 'Hallam Fields', 'Watermead', 'Thurmaston' ],
+			'Just north (LE7)'  => [ 'Syston', 'Wanlip', 'Rothley' ],
+		],
+		'coverage_note'   => 'If you are out on the edge of Birstall and not sure which side of the line you fall, put your postcode into the booking page &mdash; it confirms in seconds. I reach a good deal further across the county than most people assume.',
+
+		'kitchens'   => 'Both of the Birstall jobs behind the photos on this site were single ovens rather than doubles &mdash; which is the reverse of what I usually find a few miles up the road in Syston. Birstall runs from the older housing around the village centre and Greengate Lane out to the newer estates at Hallam Fields, and what is behind the kitchen door changes with it.',
+		'kitchens_2' => 'One of those jobs was a single oven, an extractor hood and heavily stained door glass, all in the same visit. That combination is worth understanding before you book, because it is priced by the appliance rather than as a package: the oven price plus the hood price, added up, with no bundle discount and no second call-out charge for doing both at once. The door glass is part of the oven clean, not an extra &mdash; the door comes apart so both sides of the glass get done.',
+
+		// Before/after pairs, reusing the compressed WebP already generated for
+		// /before-and-after/. Rosemary's job is used here rather than Tracy's:
+		// Tracy's pair is the homepage hero, and repeating it across pages makes
+		// the site look thinner than it is.
+		'pairs' => [
+			[ 'slug' => 'rosemary-birstall-single-oven', 'label' => 'Single oven &mdash; Birstall',   'alt' => 'A single oven in a Birstall kitchen' ],
+			[ 'slug' => 'rosemary-birstall-extractor',   'label' => 'Extractor hood &mdash; Birstall', 'alt' => 'An extractor hood in a Birstall kitchen' ],
+		],
+		'photos_cap' => 'A single oven and the extractor hood above it, both cleaned in the same visit in Birstall.',
+
+		'reviews' => [
+			[
+				'quote'  => 'Excellent Job, everything was done throughly &amp; really pleased with my oven clean, highly recommend and will definitely use again in the future',
+				'author' => 'Amy G.',
+			],
+		],
+
+		'faqs' => [
+			[
+				'q' => 'I need the oven and the extractor hood doing. Is there a discount for both?',
+				'a' => 'No &mdash; I price by the appliance and add them up, so it is the oven price plus the hood price. What you do save is the second visit: both get done in one appointment, and there is no extra call-out for the hood. Hoods start at &pound;25 and vary with how much grease has built up in the filters.',
+			],
+			[
+				'q' => 'The glass in my oven door is stained on the inside. Can that be cleaned?',
+				'a' => 'Usually, yes. The door comes apart so both faces of the glass are cleaned properly rather than just the side you can reach &mdash; that is included in the oven price, not an extra. The exception is when the marking is etched into the glass rather than sitting on it, which happens on older doors. If that is what I find, I will tell you before I start rather than let you expect something I cannot deliver.',
+			],
+			[
+				'q' => 'How long does a single oven take?',
+				'a' => 'Most take under two hours. Adding an extractor hood or a hob adds time on top of that, and a heavily built-up oven takes longer than a well-kept one. I give you a realistic window when I call to confirm, rather than a number that suits my diary.',
+			],
+		],
+
+		'nearby' => [
+			[ 'name' => 'Oven cleaning in Syston', 'url' => '/areas/syston/' ],
+		],
+	],
 ];
 
 if ( ! isset( $loc_towns[ $slug ] ) ) {
@@ -208,22 +279,55 @@ function loc_location_cta() {
 		</div>
 	</section>
 
-	<!-- 6. RECENT WORK — finished results only. Brand rule: no dirty-oven
-	     before/after imagery. -->
+	<!-- 6. RECENT WORK — real before/after pairs where the town has them,
+	     finished-result shots otherwise. The old "no dirty-oven imagery" rule
+	     in this comment was REVOKED by Chris on 29 Aug 2026. Before/after is
+	     now the strongest asset the site has, and neither Ovenu nor
+	     Ovensupport can match it -- one has no local reviews, the other no
+	     real photos. Pairs reuse the .loc-gallery classes from
+	     page-gallery.php rather than inventing a second set of components. -->
 	<section class="loc-location-section">
 		<div class="loc-location-section__inner">
 			<p class="section-eyebrow">Recent Work</p>
-			<h2>A job I did in <?php echo $t['town']; ?></h2>
+			<h2><?php echo empty( $t['pairs'] ) ? 'A job I did in ' . $t['town'] : 'Work I have done in ' . $t['town']; ?></h2>
 			<p><?php echo $t['photos_cap']; ?></p>
-			<div class="loc-location-gallery">
-				<?php foreach ( $t['photos'] as $ph ) : ?>
-					<figure class="loc-location-gallery__item">
-						<img src="<?php echo get_stylesheet_directory_uri() . '/' . $ph['file']; ?>"
-						     alt="<?php echo esc_attr( $ph['alt'] ); ?>"
-						     width="900" height="1200" loading="lazy" decoding="async">
-					</figure>
-				<?php endforeach; ?>
-			</div>
+
+			<?php if ( ! empty( $t['pairs'] ) ) : ?>
+				<div class="loc-gallery">
+					<?php foreach ( $t['pairs'] as $pr ) : ?>
+						<figure class="loc-gallery__item">
+							<div class="loc-gallery__pair">
+								<div class="loc-gallery__shot">
+									<img src="<?php echo get_stylesheet_directory_uri() . '/images/gallery/' . $pr['slug'] . '-before.webp'; ?>"
+									     width="600" height="800" loading="lazy" decoding="async"
+									     alt="<?php echo esc_attr( $pr['alt'] . ' before cleaning' ); ?>">
+									<span class="loc-gallery__tag loc-gallery__tag--before">Before</span>
+								</div>
+								<div class="loc-gallery__shot">
+									<img src="<?php echo get_stylesheet_directory_uri() . '/images/gallery/' . $pr['slug'] . '-after.webp'; ?>"
+									     width="600" height="800" loading="lazy" decoding="async"
+									     alt="<?php echo esc_attr( $pr['alt'] . ' after cleaning' ); ?>">
+									<span class="loc-gallery__tag loc-gallery__tag--after">After</span>
+								</div>
+							</div>
+							<figcaption class="loc-gallery__caption">
+								<span class="loc-gallery__what"><?php echo $pr['label']; ?></span>
+							</figcaption>
+						</figure>
+					<?php endforeach; ?>
+				</div>
+				<p><a href="/before-and-after">See more before and afters &rarr;</a></p>
+			<?php else : ?>
+				<div class="loc-location-gallery">
+					<?php foreach ( $t['photos'] as $ph ) : ?>
+						<figure class="loc-location-gallery__item">
+							<img src="<?php echo get_stylesheet_directory_uri() . '/' . $ph['file']; ?>"
+							     alt="<?php echo esc_attr( $ph['alt'] ); ?>"
+							     width="900" height="1200" loading="lazy" decoding="async">
+						</figure>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
 		</div>
 	</section>
 
