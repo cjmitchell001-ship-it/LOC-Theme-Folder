@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.5.3
+Version:           2.5.5
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -146,7 +146,7 @@ a:hover {
 .btn-primary {
   display: inline-block;
   background: var(--gold);
-  color: var(--white);
+  color: var(--blue-dark);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: var(--text-ui-lg);
@@ -162,7 +162,7 @@ a:hover {
 
 .btn-primary:hover {
   background: var(--gold-light);
-  color: var(--white);
+  color: var(--blue-dark);
 }
 
 .btn-ghost {
@@ -1076,7 +1076,7 @@ a:hover {
     width: 36px;
     height: 36px;
     background: var(--gold);
-    color: var(--white);
+    color: var(--blue-dark);
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     font-size: var(--text-body-sm);
@@ -5642,7 +5642,7 @@ a:hover {
 
 .loc-step1-skip-btn {
     background: var(--gold);
-    color: var(--white);
+    color: var(--blue-dark);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: var(--text-xs);
@@ -8369,4 +8369,12 @@ a.loc-funnel-step--complete:hover {
 .loc-inner-cta a:not([class*="btn-"]):hover,
 .loc-biz-hmo-note a:not([class*="btn-"]):hover {
     color: var(--gold-light);
+}
+
+/* Funnel stepper: the active step has a gold background, so its white label
+   measured 2.67. The inactive steps sit on blue and are fine, so this is
+   scoped to the active state only -- changing the base .loc-funnel-step__label
+   colour would turn the inactive labels dark-on-dark. */
+.loc-funnel-step--active .loc-funnel-step__label {
+    color: var(--blue-dark);
 }
