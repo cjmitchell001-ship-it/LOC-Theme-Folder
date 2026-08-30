@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.5.2
+Version:           2.5.3
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -8338,4 +8338,35 @@ a.loc-funnel-step--complete:hover {
     margin-top: var(--space-4);
     font-size: var(--text-ui);
     padding: var(--space-3) var(--space-5);
+}
+
+/* --- links on blue panels ------------------------------------------------
+   The global `a { color: var(--blue) }` had no override inside blue sections,
+   leaving brand-blue text on a brand-blue background: contrast ratio 1.00,
+   genuinely invisible rather than merely hard to read. Four links affected --
+   "get in touch" on Services, "Get in touch" and "Drop me a message" on the
+   FAQ, and "Get in touch" in the HMO note on the commercial page. Found by a
+   site-wide contrast audit on 30 Aug 2026, after Chris spotted one by eye.
+
+   Same defect as the commercial banner link fixed on 11 Aug; that fix was
+   applied to one banner only and these were missed.
+
+   Buttons are excluded deliberately -- .loc-page-header and .loc-inner-cta
+   both contain btn-primary elements which carry their own colours, and a
+   blanket rule here would override them.
+   ------------------------------------------------------------------------ */
+
+.loc-page-header a:not([class*="btn-"]),
+.loc-inner-cta a:not([class*="btn-"]),
+.loc-biz-hmo-note a:not([class*="btn-"]) {
+    color: var(--white);
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-underline-offset: 3px;
+}
+
+.loc-page-header a:not([class*="btn-"]):hover,
+.loc-inner-cta a:not([class*="btn-"]):hover,
+.loc-biz-hmo-note a:not([class*="btn-"]):hover {
+    color: var(--gold-light);
 }
