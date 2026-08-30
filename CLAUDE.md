@@ -373,6 +373,25 @@ Chris (the founder) wants his name, face, and personal/employment history kept O
 **`/reserve-step-1` 301-redirects to the trailing-slash form.** The query string does survive it, but links on the conversion path now point at `/reserve-step-1/?add=` directly. Worth knowing generally: the rest of the site links to `/reserve-step-1` without the slash and eats that redirect.
 
 **Found while testing, and it matters beyond this task: `LOC_EARLYBIRD_END` is now `2026-12-31`.** The offer did not end on 10 August as this log's July entry implies — it has been extended, so every `$loc_eb` branch across the site is still on the early-bird side and single ovens show £55, not £70. **A meta description written for the Birstall page said "Ovens from £70" while the page itself said £55** — wrong price in the search result, caught and corrected on both local and live. Yoast descriptions are static post meta and cannot call `loc_from_price()`, so any price written into one is a hardcoded figure that will go stale when the offer really does end. Check `LOC_EARLYBIRD_END` before writing a price into page meta.
+
+**Early bird retired, contrast cleared, card links unblocked (2026-08-30).** Theme 2.7.0 → 2.9.2.
+
+**Early-bird pricing is gone as a mechanism, not just as a message.** £55 / £70 / £55 are simply the prices now. Removed `LOC_EARLYBIRD_END`, `loc_earlybird_active()` and all 21 `$loc_eb` ternaries across five templates, plus the dead `.loc-earlybird-note` and `.loc-price-was` CSS. **No displayed price changed.** The point is that there is no longer a date on which prices change themselves — the old design silently reverted to £70/£90 when the constant lapsed, it had already been pushed twice, and had it ever fired unnoticed every oven price would have gone up overnight. The announcement bar stays; it only lost its conditional price half.
+
+**Contrast: zero failures across 18 live pages**, down from 23 + 6. Root causes were systematic, not one-off: `--grey-400` and `--grey-300` were text colours in 17 rules and fail on any light background (neither is used for borders or backgrounds); gold needs `--gold-dark` on light and `--gold-light` on blue; and over-transparent whites on brand blue needed 0.7. The worst were **contact form labels at 1.49:1** (Contact Form 7 renders its own `<label>` markup, which inherited `--offblack` inside the blue panel), **"Confirm My Reservation" white on gold at 2.67**, and the **Step 3 modal close ✕ white-on-white**, invisible whenever the modal was open — it survived earlier passes because the overlay hides it with `opacity`, not `display`.
+
+**Three lessons worth keeping.**
+1. **Audit the deployed site, not just local.** The local sweep reported zero while live still had six, including the location-page subline at 1.5:1.
+2. **A runtime sweep only sees rendered states.** A static pass over the stylesheet found seven more white-on-gold combinations that only appear on submit, on a completed funnel step, or once a sticky bar enables.
+3. **Check for a more specific rule before believing a fix landed.** `.loc-step1-inflow-total .loc-step1-sticky-bottom__btn` was overriding the base rule that had just been corrected.
+
+**Deliberately left failing: `.loc-cal-day`** (unavailable and past dates, `--grey-200` on light grey). They are non-interactive, WCAG exempts inactive controls, and Chris ruled on this directly — they cannot be selected, and darkening them would make unavailable dates louder than available ones.
+
+**Regression fixed, introduced earlier the same day:** the stretched `::after` on the services click-through swallowed taps on links *inside* the cards — both "See the full breakdown" links and both "Get in touch" links. Inner links now sit above the overlay. **Any future link placed inside a `.loc-services-card` needs `position: relative` and a z-index, or it will be dead.**
+
+**FOUND, NOT FIXED — Contact Form 7 is not installed on the live site.** `wp plugin list` shows no `contact-form-7`, so `/contact/` and `/business-commercial/` both render the raw `[contact-form-7 id="..."]` shortcode as literal text. **Both contact forms are dead for visitors.** It works locally, which is why no template change ever revealed it. Also noted in the same listing: `wp-mail-smtp` is **inactive** on live, contradicting the July log entry saying it was reconfigured and working — reservation email is falling back to PHP `mail()`.
+
+**Drift checking needs care with mixed line endings.** `page-reserve-step1.php` and `page-reserve-step2.php` are genuinely mixed (≈400 CRLF plus ≈50 bare LF), so comparing a live MD5 against the git blob converted wholly to CRLF reports false drift. The reliable check is a content diff with `diff --strip-trailing-cr`, not a checksum.
 *Update this log and the sections above whenever significant progress is made or a decision is confirmed.*
 
 ---
