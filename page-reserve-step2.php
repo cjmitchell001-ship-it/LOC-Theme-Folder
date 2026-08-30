@@ -171,7 +171,6 @@
         <!-- OVENS -->
         <div class="loc-appliance-group">
             <p class="loc-appliance-group__label">Ovens</p>
-            <?php if ( $loc_eb ) : ?><p class="loc-earlybird-note">Early rates — extended while I build my client base</p><?php endif; ?>
             <div class="loc-appliance-cards loc-appliance-cards--inline">
 
                 <div class="loc-appliance-card loc-appliance-card--inline" data-name="Single Oven" data-price="<?php echo $loc_eb ? '55' : '70'; ?>">
@@ -187,7 +186,7 @@
                         <line x1="40" y1="94" x2="80" y2="94" stroke="#1A3A6E" stroke-width="3" stroke-linecap="round"/>
                     </svg>
                     <p class="loc-appliance-card__name">Single Oven</p>
-                    <p class="loc-appliance-card__price"><?php echo $loc_eb ? '£55 <s class="loc-price-was">from £70</s>' : 'From £70'; ?></p>
+                    <p class="loc-appliance-card__price"><?php echo $loc_eb ? 'From £55' : 'From £70'; ?></p>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
                         <div class="loc-qty-stepper__controls">
@@ -212,7 +211,7 @@
                         <line x1="34" y1="100" x2="86" y2="100" stroke="#1A3A6E" stroke-width="2.5" stroke-linecap="round"/>
                     </svg>
                     <p class="loc-appliance-card__name">Double Oven</p>
-                    <p class="loc-appliance-card__price"><?php echo $loc_eb ? '£70 <s class="loc-price-was">from £90</s>' : 'From £90'; ?></p>
+                    <p class="loc-appliance-card__price"><?php echo $loc_eb ? 'From £70' : 'From £90'; ?></p>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
                         <div class="loc-qty-stepper__controls">
@@ -222,7 +221,7 @@
                     </div>
                 </div>
 
-                <div class="loc-appliance-card loc-appliance-card--inline" data-name="Range Cooker" data-price="125">
+                <div class="loc-appliance-card loc-appliance-card--inline" data-name="Full Range Clean" data-price="125">
                     <svg width="48" height="48" viewBox="0 0 120 120" fill="none">
                         <rect x="8" y="24" width="104" height="82" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
                         <rect x="8" y="24" width="104" height="18" rx="4" stroke="#1A3A6E" stroke-width="3" fill="#F0F4FA"/>
@@ -231,8 +230,31 @@
                         <rect x="64" y="48" width="42" height="50" rx="2" stroke="#1A3A6E" stroke-width="2.5" fill="none"/>
                         <rect x="70" y="54" width="30" height="30" rx="1.5" stroke="#1A3A6E" stroke-width="1.5" fill="#EEF3FA"/>
                     </svg>
-                    <p class="loc-appliance-card__name">Range Cooker</p>
+                    <p class="loc-appliance-card__name">Full Range Clean</p>
                     <p class="loc-appliance-card__price">From £125</p>
+                    <p class="loc-appliance-card__note">Every cavity, the hob and the exterior</p>
+                    <div class="loc-aga-options">
+                        <p class="loc-aga-options__label">Add more</p>
+                        <div class="loc-qty-stepper__controls">
+                            <button class="loc-qty-btn loc-qty-btn--minus">−</button>
+                            <button class="loc-qty-btn loc-qty-btn--plus">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Partial Range Clean -->
+                <div class="loc-appliance-card loc-appliance-card--inline" data-name="Partial Range Clean" data-price="55">
+                    <svg width="48" height="48" viewBox="0 0 120 120" fill="none">
+                        <rect x="8" y="24" width="104" height="82" rx="4" stroke="#1A3A6E" stroke-width="3" fill="none"/>
+                        <rect x="8" y="24" width="104" height="18" rx="4" stroke="#1A3A6E" stroke-width="3" fill="#F0F4FA"/>
+                        <rect x="14" y="48" width="42" height="50" rx="2" stroke="#1A3A6E" stroke-width="2.5" fill="none"/>
+                        <rect x="20" y="54" width="30" height="30" rx="1.5" stroke="#1A3A6E" stroke-width="1.5" fill="#EEF3FA"/>
+                        <rect x="64" y="48" width="42" height="50" rx="2" stroke="#1A3A6E" stroke-width="2.5" fill="none"/>
+                        <rect x="70" y="54" width="30" height="30" rx="1.5" stroke="#1A3A6E" stroke-width="1.5" fill="#EEF3FA"/>
+                    </svg>
+                    <p class="loc-appliance-card__name">Partial Range Clean</p>
+                    <p class="loc-appliance-card__price">From £55</p>
+                    <p class="loc-appliance-card__note">Only the cavities you choose</p>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
                         <div class="loc-qty-stepper__controls">
@@ -258,7 +280,7 @@
                         <line x1="92" y1="102" x2="92" y2="114" stroke="#1A3A6E" stroke-width="2.5" stroke-linecap="round"/>
                     </svg>
                     <p class="loc-appliance-card__name">Free-Standing Oven</p>
-                    <p class="loc-appliance-card__price"><?php echo $loc_eb ? '£55 <s class="loc-price-was">from £70</s>' : 'From £70'; ?></p>
+                    <p class="loc-appliance-card__price"><?php echo $loc_eb ? 'From £55' : 'From £70'; ?></p>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
                         <div class="loc-qty-stepper__controls">

@@ -179,9 +179,9 @@ function loc_location_cta() {
 			<p>The same prices in <?php echo $t['town']; ?> as everywhere else I cover &mdash; there is no travel surcharge.</p>
 
 			<div class="loc-location-prices">
-				<div class="loc-location-price"><span>Single oven</span><span><?php echo $loc_eb ? 'from &pound;55 <s class="loc-price-was">from &pound;70</s>' : 'from &pound;70'; ?></span></div>
-				<div class="loc-location-price"><span>Double oven</span><span><?php echo $loc_eb ? 'from &pound;70 <s class="loc-price-was">from &pound;90</s>' : 'from &pound;90'; ?></span></div>
-				<div class="loc-location-price"><span>Free-standing cooker</span><span><?php echo $loc_eb ? 'from &pound;55 <s class="loc-price-was">from &pound;70</s>' : 'from &pound;70'; ?></span></div>
+				<div class="loc-location-price"><span>Single oven</span><span><?php echo $loc_eb ? 'From &pound;55' : 'From &pound;70'; ?></span></div>
+				<div class="loc-location-price"><span>Double oven</span><span><?php echo $loc_eb ? 'From &pound;70' : 'From &pound;90'; ?></span></div>
+				<div class="loc-location-price"><span>Free-standing cooker</span><span><?php echo $loc_eb ? 'From &pound;55' : 'From &pound;70'; ?></span></div>
 				<div class="loc-location-price"><span>Range cooker</span><span>from &pound;125</span></div>
 				<div class="loc-location-price"><span>Gas, ceramic or induction hob</span><span>from &pound;25</span></div>
 				<div class="loc-location-price"><span>Extractor hood</span><span>from &pound;25</span></div>

@@ -621,7 +621,8 @@ function loc_step1_script() {
                 var baseDurations = {
                     'Single Oven':        105,
                     'Double Oven':        135,
-                    'Range Cooker':        150,
+                    'Full Range Clean':    240,
+                    'Partial Range Clean': 120,
                     'Free-Standing Oven':  105
                 };
                 var extraDurations = {
