@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.9.2
+Version:           2.9.3
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -8584,4 +8584,28 @@ a.loc-funnel-step--complete:hover {
 .loc-contact-form-box label,
 .loc-biz-form-box label {
     color: var(--white);
+}
+
+/* Links inside a services card sit on a card whose ENTIRE surface is a
+   competing link, and as inline text they are only ~19px tall -- below the
+   24px minimum in WCAG 2.2 Target Size. A thumb landing outside that narrow
+   band hits the card overlay instead and sends the customer into the funnel,
+   so the link reads as broken.
+
+   An absolutely-positioned ::after was tried first and REJECTED: it cannot
+   enlarge a link that wraps across two lines, which is exactly what "See the
+   full breakdown" does on the Full Range Clean card at phone width. It lifted
+   the single-line links from 19px to 40px and left the wrapped one at 18px.
+
+   Making the link its own block fixes every case, wrapped or not, and reads
+   more clearly as a distinct action than inline text buried in a card that is
+   itself entirely tappable. Applied to touch pointers as well as narrow
+   screens, since a touch laptop has the same problem at desktop width. */
+
+@media (max-width: 768px), (hover: none) {
+    .loc-services-card__desc a {
+        display: block;
+        margin-top: var(--space-3);
+        padding: var(--space-3) 0;
+    }
 }
