@@ -406,6 +406,14 @@ Chris (the founder) wants his name, face, and personal/employment history kept O
 **Related, still open:** `wp-mail-smtp` is installed but **inactive** on live, contradicting the July log entry saying it was reconfigured and working. Delivery is currently plain PHP `mail()`, which is demonstrably getting through (form tests and reservation emails both arrive), so this is not urgent — but the July entry is wrong and should not be trusted.
 
 **Deployment lesson worth generalising: the live plugin set was never verified against local.** One missing plugin silently disabled a whole contact route for roughly two months. Worth a `wp plugin list` comparison whenever the live site is touched.
+
+**In-card links made a real tap target on touch (2026-08-31).** Theme 2.9.3, commit `b2afdfd`. Links inside a `.loc-services-card` are inline text ~19px tall, sitting on a card whose entire surface is a competing link — a thumb landing outside a ±8px band hit the card overlay and went to the funnel instead, so "See the full breakdown" read as dead on a phone. They are now block-level on touch pointers and narrow screens: a 48px tap band, past both the 24px WCAG 2.2 minimum and the 44px platform guidance. Desktop is untouched, since the query is scoped to `(hover: none)` as well as width — which also covers touch laptops at desktop width.
+
+**Two things worth keeping from how this went.**
+
+**The ::after tap-target trick does not work on a link that wraps.** It was tried first and rejected: it lifted the single-line links from 19px to 40px and left the two-line one at 18px. An absolutely-positioned pseudo-element is laid out against the inline's whole bounding box, so on a wrapped link the useful area lands in the gap between lines. Only reach for it on links guaranteed to occupy one line box.
+
+**Chris was right and the report was wrong.** He reported the link unclickable, then found it working before anything shipped. Live had been carrying the earlier `z-index` fix since the previous day; **his phone was almost certainly serving a cached stylesheet**. Two lessons: check what is actually deployed before believing a bug report *or* a diagnosis, and treat synthetic `elementFromPoint` probing as a lower bound — real mobile browsers apply tap disambiguation that a single-pixel hit test does not model. The 19px target was still worth fixing on its own merits, but it was not the cause of what he saw.
 *Update this log and the sections above whenever significant progress is made or a decision is confirmed.*
 
 ---
