@@ -30,6 +30,8 @@ get_header();
 // SINGLE SOURCE OF TRUTH for this page. Mirrors the tracker; regenerate rather
 // than editing by hand. 'square' switches the card to the 700x700 crop.
 $loc_gallery = [
+	[ "slug" => "mandy-mountsorrel-oven-exterior",  "appliance" => "Oven exterior",        "area" => "Mountsorrel",     "when" => "September 2026" ],
+	[ "slug" => "nathan-coalville-grill",           "appliance" => "Grill",                "area" => "Coalville",       "when" => "August 2026", "square" => true ],
 	[ "slug" => "janine-lutterworth-single-oven",     "appliance" => "Single oven",          "area" => "Lutterworth",     "when" => "August 2026" ],
 	[ "slug" => "graham-thorpe-astley-single-oven",   "appliance" => "Single oven",          "area" => "Thorpe Astley",   "when" => "August 2026" ],
 	[ "slug" => "aidan-clarendon-park-single-oven",   "appliance" => "Single oven",          "area" => "Clarendon Park",  "when" => "August 2026" ],
@@ -46,6 +48,34 @@ $loc_gallery = [
 	[ "slug" => "home-syston-delonghi-range-cooker-2","appliance" => "DeLonghi range cooker", "area" => "Syston",         "when" => "July 2026", "own" => true ],
 ];
 
+
+/**
+ * FINISHED RESULTS -- photos Chris selected where no usable "before" exists.
+ *
+ * These are NOT rejects. Standing rule from Chris (5 Sep 2026): every photo he
+ * links in the tracker is a deliberate choice for that job, and a pair is not
+ * always possible -- sometimes the before shot simply cannot be taken. Excluding
+ * them, as this page did until now, threw away twelve chosen photos.
+ *
+ * Unlike the pairs, these are NOT cropped. A pair has to match itself, so it
+ * gets a square crop; a single stands alone, so it keeps its own shape. That is
+ * why the width/height differ per entry -- Saleha's range and Lin's extractor
+ * are landscape and would be destroyed by a portrait crop.
+ */
+$loc_gallery_singles = [
+	[ "slug" => "mandy-mountsorrel-oven-interior",   "appliance" => "Oven interior",  "area" => "Mountsorrel",     "when" => "September 2026", "w" => 600, "h" => 800 ],
+	[ "slug" => "mandy-mountsorrel-oven-interior-2", "appliance" => "Oven interior",  "area" => "Mountsorrel",     "when" => "September 2026", "w" => 600, "h" => 800 ],
+	[ "slug" => "lin-hamilton-extractor",            "appliance" => "Extractor hood", "area" => "Hamilton",        "when" => "September 2026", "w" => 600, "h" => 445 ],
+	[ "slug" => "nathan-coalville-double-oven",      "appliance" => "Double oven",    "area" => "Coalville",       "when" => "August 2026",    "w" => 600, "h" => 800 ],
+	[ "slug" => "saleha-oadby-range",                "appliance" => "Range cooker",   "area" => "Oadby",           "when" => "August 2026",    "w" => 600, "h" => 338 ],
+	[ "slug" => "jenny-wigston-single-oven",         "appliance" => "Single oven",    "area" => "Wigston",         "when" => "August 2026",    "w" => 600, "h" => 800 ],
+	[ "slug" => "teresa-aylestone-park-double-oven", "appliance" => "Double oven",    "area" => "Aylestone Park",  "when" => "August 2026",    "w" => 600, "h" => 800 ],
+	[ "slug" => "disha-syston-double-oven-extra",    "appliance" => "Double oven",    "area" => "Syston",          "when" => "August 2026",    "w" => 600, "h" => 800 ],
+	[ "slug" => "raakhi-syston-double-oven",         "appliance" => "Double oven",    "area" => "Syston",          "when" => "August 2026",    "w" => 600, "h" => 800 ],
+	[ "slug" => "raakhi-syston-double-oven-2",       "appliance" => "Double oven",    "area" => "Syston",          "when" => "August 2026",    "w" => 600, "h" => 800 ],
+	[ "slug" => "tracy-birstall-single-oven-extra",  "appliance" => "Single oven",    "area" => "Birstall",        "when" => "July 2026",      "w" => 600, "h" => 800 ],
+	[ "slug" => "lindsey-coalville-single-oven",     "appliance" => "Single oven",    "area" => "Coalville",       "when" => "July 2026",      "w" => 600, "h" => 800 ],
+];
 $loc_gallery_dir = get_stylesheet_directory_uri() . "/images/gallery/";
 ?>
 
@@ -103,6 +133,36 @@ $loc_gallery_dir = get_stylesheet_directory_uri() . "/images/gallery/";
 						<span class="loc-gallery__when"><?php echo esc_html( $g["when"] ); ?></span>
 					</figcaption>
 				</figure>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	</section>
+
+	<!-- FINISHED RESULTS -- the singles. Every one of these is a photo Chris
+	     deliberately chose for that job; a pair simply was not possible. They
+	     keep their own aspect ratio rather than being cropped to match, so the
+	     grid has a ragged bottom edge by design. -->
+	<section class="loc-gallery-section loc-gallery-section--alt">
+		<div class="loc-gallery-section__inner">
+			<p class="section-eyebrow">Finished Results</p>
+			<h2>Where I couldn&rsquo;t get a before shot</h2>
+			<p class="loc-gallery-singles__intro">A before photo isn&rsquo;t always possible &mdash; sometimes the oven&rsquo;s already half apart before I think to reach for my phone. These are finished results from jobs where I only have the after.</p>
+
+			<div class="loc-gallery-singles">
+				<?php foreach ( $loc_gallery_singles as $s ) : ?>
+					<figure class="loc-gallery-singles__item">
+						<div class="loc-gallery-singles__shot">
+							<img src="<?php echo esc_url( $loc_gallery_dir . $s["slug"] . ".webp" ); ?>"
+							     width="<?php echo (int) $s["w"]; ?>" height="<?php echo (int) $s["h"]; ?>"
+							     loading="lazy" decoding="async"
+							     alt="<?php echo esc_attr( $s["appliance"] . " in " . $s["area"] . " after cleaning" ); ?>">
+							<span class="loc-gallery__tag loc-gallery__tag--after">After</span>
+						</div>
+						<figcaption class="loc-gallery__caption">
+							<span class="loc-gallery__what"><?php echo esc_html( $s["appliance"] ); ?> &mdash; <?php echo esc_html( $s["area"] ); ?></span>
+							<span class="loc-gallery__when"><?php echo esc_html( $s["when"] ); ?></span>
+						</figcaption>
+					</figure>
 				<?php endforeach; ?>
 			</div>
 		</div>

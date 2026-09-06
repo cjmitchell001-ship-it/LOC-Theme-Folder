@@ -17,7 +17,7 @@ get_header();
         <div class="loc-hero__copy">
             <p class="section-eyebrow">Leicester Oven Cleaning</p>
             <h1 class="loc-hero__title">Your oven, cleaned properly.</h1>
-            <p class="loc-hero__intro">I&rsquo;m Chris. I clean ovens across Leicester and Leicestershire &mdash; just me, no franchise, no call centre. I started out this summer and I&rsquo;ve had nine five-star reviews so far.</p>
+            <p class="loc-hero__intro">I&rsquo;m Chris. I clean ovens across Leicester and Leicestershire &mdash; just me, no franchise, no call centre. The person you speak to on the phone is the person who turns up and does the work.</p>
             <p class="loc-hero__price">Ovens from <?php echo loc_from_price(); ?> &middot; hobs and extractors from &pound;25</p>
             <a href="/reserve-step-1" class="btn-primary loc-hero__cta">Reserve Your Slot &rarr;</a>
             <p class="loc-hero__note">No card needed to reserve. I&rsquo;ll call you to confirm everything before anything is booked in.</p>
@@ -317,7 +317,7 @@ get_header();
         <div class="loc-reviews__rating">
             <span class="loc-reviews__rating-score">5.0</span>
             <span class="loc-reviews__rating-stars" aria-hidden="true">★★★★★</span>
-            <span class="loc-reviews__rating-count">9 reviews on Google</span>
+            <span class="loc-reviews__rating-count">from reviews on Google</span>
         </div>
 
         <div class="loc-reviews__grid">

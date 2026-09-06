@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.9.3
+Version:           2.10.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -8607,5 +8607,69 @@ a.loc-funnel-step--complete:hover {
         display: block;
         margin-top: var(--space-3);
         padding: var(--space-3) 0;
+    }
+}
+
+/* ==========================================================================
+   FINISHED RESULTS — the single (after-only) shots on /before-and-after/
+   Deliberately NOT cropped to a uniform ratio: a pair must match itself, but
+   a single stands alone, so each keeps its own shape. The grid therefore has
+   an uneven bottom edge, which is intended — cropping Saleha's range or Lin's
+   extractor to portrait would have thrown most of the photo away.
+   ========================================================================== */
+
+.loc-gallery-section--alt {
+    background: var(--lightgrey);
+}
+
+.loc-gallery-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: var(--text-h3);
+    color: var(--blue);
+    margin-bottom: var(--space-4);
+}
+
+.loc-gallery-singles__intro {
+    font-size: var(--text-body);
+    color: var(--grey-600);
+    line-height: 1.7;
+    max-width: 640px;
+    margin-bottom: var(--space-10);
+}
+
+.loc-gallery-singles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--space-10) var(--space-6);
+    align-items: start;
+}
+
+.loc-gallery-singles__item {
+    margin: 0;
+}
+
+.loc-gallery-singles__shot {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.loc-gallery-singles__shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .loc-gallery-singles {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-8) var(--space-4);
+    }
+
+    .loc-gallery-singles__intro {
+        margin-bottom: var(--space-8);
     }
 }
