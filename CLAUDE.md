@@ -414,6 +414,22 @@ Chris (the founder) wants his name, face, and personal/employment history kept O
 **The ::after tap-target trick does not work on a link that wraps.** It was tried first and rejected: it lifted the single-line links from 19px to 40px and left the two-line one at 18px. An absolutely-positioned pseudo-element is laid out against the inline's whole bounding box, so on a wrapped link the useful area lands in the gap between lines. Only reach for it on links guaranteed to occupy one line box.
 
 **Chris was right and the report was wrong.** He reported the link unclickable, then found it working before anything shipped. Live had been carrying the earlier `z-index` fix since the previous day; **his phone was almost certainly serving a cached stylesheet**. Two lessons: check what is actually deployed before believing a bug report *or* a diagnosis, and treat synthetic `elementFromPoint` probing as a lower bound — real mobile browsers apply tap disambiguation that a single-pixel hit test does not model. The 19px target was still worth fixing on its own merits, but it was not the cause of what he saw.
+
+**Gallery carries every selected photo, and the homepage stops dating itself (2026-09-05).** Theme 2.9.3 → 2.10.0, commit `6733101`. `/before-and-after/` now has 16 pairs and a new **Finished Results** section holding the 12 after-only shots the page had been excluding.
+
+**That exclusion was the actual bug, not a missing feature.** Chris's standing rule: **every photo he links in the tracker is a deliberate choice for that job, and a pair is not always possible** — sometimes the before shot simply cannot be taken. Treating those twelve as leftovers threw away photos he had chosen. Pairs still lead the page; singles sit below.
+
+**Singles are deliberately NOT cropped to a uniform ratio.** A pair must match itself, so it gets a square crop where the two shots disagree; a single stands alone, so it keeps its own shape. Saleha's range and Lin's extractor are landscape and a portrait crop would have destroyed them. The ragged bottom edge on that grid is intended — do not "fix" it.
+
+**ORIENTATION BUG — fixed at source, and the fix is not sufficient on its own.** Phones record "shot sideways" as an EXIF orientation flag rather than rotating the pixels, and GD ignores it, so three photos published sideways or upside down. The generator now reads EXIF and rotates (23 of 294 job photos carry a non-default flag; 2 are in use here). **But Rosemary's door pair carries no flag at all** and was sideways in the pixels — probably EXIF stripped by a re-save or messaging app. No amount of EXIF handling catches that; only looking does.
+
+**Then a second, worse mistake: the first correction rotated BOTH halves of that pair when only the before needed it.** A contact sheet had already been generated and passed — the check was run and misread, on a near-square image where wrong rotation is less obvious. Chris caught it. **Every one of the 44 gallery images has now been eyeballed on a single contact sheet, and that is the check to run on every future batch** — it takes seconds and is the only thing that catches baked-in rotation.
+
+**Told Chris explicitly not to change how he shoots.** He offered to stick to portrait to make this easier; that would be the wrong trade — landscape is genuinely correct for a range cooker or an extractor hood, and it would not have prevented the door pair anyway.
+
+**HOMEPAGE de-staled.** The hero read *"I started out this summer and I've had nine five-star reviews so far"* — a season and a hand-maintained count, already wrong at ten reviews. Replaced with a line that cannot age and keeps the real differentiator against Ovenu and Ovensupport, both franchises with call centres. The reviews block drops its hardcoded "9 reviews on Google" for "from reviews on Google", with the live count one click away on the Google link already in that section and the footer.
+
+**One hand-maintained number deliberately left: the 5.0.** Correct while every review is five stars, wrong the day a four-star lands. Removing it would gut the section's social proof. The July Places API infrastructure could pull the live rating if that ever matters enough to build.
 *Update this log and the sections above whenever significant progress is made or a decision is confirmed.*
 
 ---
