@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.10.0
+Version:           2.11.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -6051,6 +6051,7 @@ a:hover {
 }
 
 .loc-step2-area-tags li {
+    position: relative;
     font-family: 'Open Sans', sans-serif;
     font-size: var(--text-sm);
     color: var(--offblack);
@@ -6082,7 +6083,11 @@ a:hover {
     font-size: var(--text-fine);
     color: var(--blue);
     letter-spacing: 0.06em;
-    opacity: 0.55;
+    /* Was 0.55, which put this 11px label at 3.04:1 on the tile background --
+       a real failure that earlier contrast passes missed because they did not
+       composite opacity into the text colour. 0.8 measures 5.8:1 and still
+       reads as secondary. */
+    opacity: 0.8;
 }
 
 .loc-step2-areas-note {
@@ -8275,7 +8280,7 @@ a.loc-funnel-step--complete:hover {
 }
 
 .loc-step2-area-tags li a:hover {
-    color: var(--gold);
+    color: var(--gold-dark);
 }
 
 /* --- range cooker pricing page: worked examples --- */
@@ -8672,4 +8677,68 @@ a.loc-funnel-step--complete:hover {
     .loc-gallery-singles__intro {
         margin-bottom: var(--space-8);
     }
+}
+
+/* The area tiles already carried cursor:pointer and a hover state, so they
+   signalled "clickable" while 34 of the 36 did nothing. They all link now --
+   towns with their own page go there, the rest go into the funnel.
+
+   The link text is only part of the row, so its ::after is stretched over the
+   whole tile: a full-width, ~40px tap target rather than a few words. Same
+   fix as the services cards. The postcode <span> sits under it and is not
+   interactive, so covering it costs nothing.
+
+   Step 2's copy of this list is deliberately NOT linked -- it is inside the
+   booking funnel, where a link out costs the booking -- so it has no anchors
+   and this rule simply never applies there. */
+
+.loc-step2-area-tags li a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* The postcode <span> carries opacity: 0.55, and any opacity below 1
+       creates a stacking context -- so that span painted ABOVE this overlay
+       and swallowed taps on the right-hand third of every tile. A z-index
+       puts the hit area back on top. Nothing is drawn, so this is purely
+       hit-testing. */
+    z-index: var(--z-raised);
+}
+
+/* ==========================================================================
+   LOCATION PAGE PRICE ROWS — each appliance links to its card on /services/
+   Someone landing on a town page from Google wants to understand the job
+   before booking, so these go to the explanation rather than into the funnel.
+   The Reserve button at the foot of the page is still the booking route.
+   ========================================================================== */
+
+.loc-location-price {
+    position: relative;
+}
+
+.loc-location-price a {
+    color: var(--blue);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-underline-offset: 3px;
+}
+
+.loc-location-price a:hover {
+    color: var(--gold-dark);
+}
+
+/* Stretch the hit area across the whole row, and sit above the price span so
+   the right-hand end of the row is tappable too — same stacking trap as the
+   area tiles. */
+.loc-location-price a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: var(--z-raised);
+}
+
+/* The sticky header is ~88px tall, so an anchor jump would otherwise drop the
+   target card underneath it. */
+.loc-services-card {
+    scroll-margin-top: var(--space-25);
 }

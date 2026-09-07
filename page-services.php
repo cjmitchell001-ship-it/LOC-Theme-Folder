@@ -30,7 +30,7 @@ get_header();
 
             <div class="loc-services-grid">
 
-                <div class="loc-services-card">
+                <div class="loc-services-card" id="single-oven">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Single Oven</h3>
                         <span class="loc-services-card__price">From £55</span>
@@ -39,7 +39,7 @@ get_header();
                     <a class="loc-services-card__link" href="/reserve-step-1/?add=Single%20Oven">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
-                <div class="loc-services-card">
+                <div class="loc-services-card" id="double-oven">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Double Oven</h3>
                         <span class="loc-services-card__price">From £70</span>
@@ -48,7 +48,7 @@ get_header();
                     <a class="loc-services-card__link" href="/reserve-step-1/?add=Double%20Oven">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
-                <div class="loc-services-card">
+                <div class="loc-services-card" id="full-range-clean">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Full Range Clean</h3>
                         <span class="loc-services-card__price">From £125</span>
@@ -57,7 +57,7 @@ get_header();
                     <a class="loc-services-card__link" href="/reserve-step-1/?add=Full%20Range%20Clean">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
-                <div class="loc-services-card">
+                <div class="loc-services-card" id="partial-range-clean">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Partial Range Clean</h3>
                         <span class="loc-services-card__price">From £55</span>
@@ -66,7 +66,7 @@ get_header();
                     <a class="loc-services-card__link" href="/reserve-step-1/?add=Partial%20Range%20Clean">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
-                <div class="loc-services-card">
+                <div class="loc-services-card" id="free-standing-oven">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Free-Standing Oven</h3>
                         <span class="loc-services-card__price">From £55</span>
@@ -75,7 +75,7 @@ get_header();
                     <a class="loc-services-card__link" href="/reserve-step-1/?add=Free-Standing%20Oven">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
-                <div class="loc-services-card">
+                <div class="loc-services-card" id="aga-large-range">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">AGA / Large Range</h3>
                         <span class="loc-services-card__price loc-services-card__price--contact">£TBC</span>
@@ -85,7 +85,7 @@ get_header();
                     <a class="loc-services-card__link" href="/reserve-step-1/?add=AGA%20%2F%20Large%20Range">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
-                <div class="loc-services-card">
+                <div class="loc-services-card" id="gas-hob">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Gas Hob</h3>
                         <span class="loc-services-card__price">from £25</span>
@@ -94,7 +94,7 @@ get_header();
                     <a class="loc-services-card__link" href="/reserve-step-1/?add=Gas%20Hob">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
-                <div class="loc-services-card">
+                <div class="loc-services-card" id="ceramic-induction-hob">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Ceramic / Induction Hob</h3>
                         <span class="loc-services-card__price">from £25</span>
@@ -103,7 +103,7 @@ get_header();
                     <a class="loc-services-card__link" href="/reserve-step-1/?add=Ceramic%20%2F%20Induction%20Hob">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
-                <div class="loc-services-card">
+                <div class="loc-services-card" id="extractor-hood">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Extractor Hood</h3>
                         <span class="loc-services-card__price">from £25</span>
@@ -112,7 +112,7 @@ get_header();
                     <a class="loc-services-card__link" href="/reserve-step-1/?add=Extractor%20Hood">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
-                <div class="loc-services-card">
+                <div class="loc-services-card" id="microwave">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">Microwave</h3>
                         <span class="loc-services-card__price">£15</span>
@@ -121,7 +121,7 @@ get_header();
                     <a class="loc-services-card__link" href="/reserve-step-1/?add=Microwave">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
-                <div class="loc-services-card">
+                <div class="loc-services-card" id="bbq">
                     <div class="loc-services-card__header">
                         <h3 class="loc-services-card__name">BBQ</h3>
                         <span class="loc-services-card__price loc-services-card__price--contact">£TBC</span>

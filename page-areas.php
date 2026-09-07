@@ -31,7 +31,7 @@ get_header();
                 <div class="loc-step2-area-group loc-step2-area-group--central">
                     <h3 class="loc-step2-area-group-title">Central</h3>
                     <ul class="loc-step2-area-tags">
-                        <li data-postcode="LE1">Leicester City <span>LE1</span></li>
+                        <li data-postcode="LE1"><a href="/reserve-step-1/">Leicester City</a> <span>LE1</span></li>
                     </ul>
                 </div>
 
@@ -39,58 +39,58 @@ get_header();
                     <h3 class="loc-step2-area-group-title">North</h3>
                     <ul class="loc-step2-area-tags">
                         <li data-postcode="LE4"><a href="/areas/birstall/">Birstall</a> <span>LE4</span></li>
-                        <li data-postcode="LE4">Thurmaston <span>LE4</span></li>
-                        <li data-postcode="LE6">Groby <span>LE6</span></li>
-                        <li data-postcode="LE7">Anstey <span>LE7</span></li>
+                        <li data-postcode="LE4"><a href="/reserve-step-1/">Thurmaston</a> <span>LE4</span></li>
+                        <li data-postcode="LE6"><a href="/reserve-step-1/">Groby</a> <span>LE6</span></li>
+                        <li data-postcode="LE7"><a href="/reserve-step-1/">Anstey</a> <span>LE7</span></li>
                         <li data-postcode="LE7"><a href="/areas/syston/">Syston</a> <span>LE7</span></li>
-                        <li data-postcode="LE7">Scraptoft <span>LE7</span></li>
-                        <li data-postcode="LE7">Queniborough <span>LE7</span></li>
-                        <li data-postcode="LE11">Loughborough <span>LE11</span></li>
-                        <li data-postcode="LE12">Shepshed <span>LE12</span></li>
-                        <li data-postcode="LE12">Mountsorrel <span>LE12</span></li>
-                        <li data-postcode="LE12">Sileby <span>LE12</span></li>
-                        <li data-postcode="LE65">Ashby-de-la-Zouch <span>LE65</span></li>
-                        <li data-postcode="LE67">Coalville <span>LE67</span></li>
+                        <li data-postcode="LE7"><a href="/reserve-step-1/">Scraptoft</a> <span>LE7</span></li>
+                        <li data-postcode="LE7"><a href="/reserve-step-1/">Queniborough</a> <span>LE7</span></li>
+                        <li data-postcode="LE11"><a href="/reserve-step-1/">Loughborough</a> <span>LE11</span></li>
+                        <li data-postcode="LE12"><a href="/reserve-step-1/">Shepshed</a> <span>LE12</span></li>
+                        <li data-postcode="LE12"><a href="/reserve-step-1/">Mountsorrel</a> <span>LE12</span></li>
+                        <li data-postcode="LE12"><a href="/reserve-step-1/">Sileby</a> <span>LE12</span></li>
+                        <li data-postcode="LE65"><a href="/reserve-step-1/">Ashby-de-la-Zouch</a> <span>LE65</span></li>
+                        <li data-postcode="LE67"><a href="/reserve-step-1/">Coalville</a> <span>LE67</span></li>
                     </ul>
                 </div>
 
                 <div class="loc-step2-area-group">
                     <h3 class="loc-step2-area-group-title">East</h3>
                     <ul class="loc-step2-area-tags">
-                        <li data-postcode="LE5">Hamilton <span>LE5</span></li>
-                        <li data-postcode="LE5">Humberstone <span>LE5</span></li>
-                        <li data-postcode="LE13">Melton Mowbray <span>LE13</span></li>
-                        <li data-postcode="LE14">Melton Rural <span>LE14</span></li>
-                        <li data-postcode="LE15">Oakham <span>LE15</span></li>
-                        <li data-postcode="LE15">Rutland <span>LE15</span></li>
+                        <li data-postcode="LE5"><a href="/reserve-step-1/">Hamilton</a> <span>LE5</span></li>
+                        <li data-postcode="LE5"><a href="/reserve-step-1/">Humberstone</a> <span>LE5</span></li>
+                        <li data-postcode="LE13"><a href="/reserve-step-1/">Melton Mowbray</a> <span>LE13</span></li>
+                        <li data-postcode="LE14"><a href="/reserve-step-1/">Melton Rural</a> <span>LE14</span></li>
+                        <li data-postcode="LE15"><a href="/reserve-step-1/">Oakham</a> <span>LE15</span></li>
+                        <li data-postcode="LE15"><a href="/reserve-step-1/">Rutland</a> <span>LE15</span></li>
                     </ul>
                 </div>
 
                 <div class="loc-step2-area-group">
                     <h3 class="loc-step2-area-group-title">South</h3>
                     <ul class="loc-step2-area-tags">
-                        <li data-postcode="LE2">Stoneygate <span>LE2</span></li>
-                        <li data-postcode="LE2">Clarendon Park <span>LE2</span></li>
-                        <li data-postcode="LE2">Oadby <span>LE2</span></li>
-                        <li data-postcode="LE2">Knighton <span>LE2</span></li>
-                        <li data-postcode="LE8">Blaby <span>LE8</span></li>
-                        <li data-postcode="LE8">Countesthorpe <span>LE8</span></li>
-                        <li data-postcode="LE8">Fleckney <span>LE8</span></li>
-                        <li data-postcode="LE18">Wigston <span>LE18</span></li>
-                        <li data-postcode="LE16">Market Harborough <span>LE16</span></li>
-                        <li data-postcode="LE17">Lutterworth <span>LE17</span></li>
+                        <li data-postcode="LE2"><a href="/reserve-step-1/">Stoneygate</a> <span>LE2</span></li>
+                        <li data-postcode="LE2"><a href="/reserve-step-1/">Clarendon Park</a> <span>LE2</span></li>
+                        <li data-postcode="LE2"><a href="/reserve-step-1/">Oadby</a> <span>LE2</span></li>
+                        <li data-postcode="LE2"><a href="/reserve-step-1/">Knighton</a> <span>LE2</span></li>
+                        <li data-postcode="LE8"><a href="/reserve-step-1/">Blaby</a> <span>LE8</span></li>
+                        <li data-postcode="LE8"><a href="/reserve-step-1/">Countesthorpe</a> <span>LE8</span></li>
+                        <li data-postcode="LE8"><a href="/reserve-step-1/">Fleckney</a> <span>LE8</span></li>
+                        <li data-postcode="LE18"><a href="/reserve-step-1/">Wigston</a> <span>LE18</span></li>
+                        <li data-postcode="LE16"><a href="/reserve-step-1/">Market Harborough</a> <span>LE16</span></li>
+                        <li data-postcode="LE17"><a href="/reserve-step-1/">Lutterworth</a> <span>LE17</span></li>
                     </ul>
                 </div>
 
                 <div class="loc-step2-area-group">
                     <h3 class="loc-step2-area-group-title">West</h3>
                     <ul class="loc-step2-area-tags">
-                        <li data-postcode="LE3">Glenfield <span>LE3</span></li>
-                        <li data-postcode="LE3">Braunstone <span>LE3</span></li>
-                        <li data-postcode="LE9">Kirby Muxloe <span>LE9</span></li>
-                        <li data-postcode="LE9">Earl Shilton <span>LE9</span></li>
-                        <li data-postcode="LE10">Hinckley <span>LE10</span></li>
-                        <li data-postcode="LE19">Narborough <span>LE19</span></li>
+                        <li data-postcode="LE3"><a href="/reserve-step-1/">Glenfield</a> <span>LE3</span></li>
+                        <li data-postcode="LE3"><a href="/reserve-step-1/">Braunstone</a> <span>LE3</span></li>
+                        <li data-postcode="LE9"><a href="/reserve-step-1/">Kirby Muxloe</a> <span>LE9</span></li>
+                        <li data-postcode="LE9"><a href="/reserve-step-1/">Earl Shilton</a> <span>LE9</span></li>
+                        <li data-postcode="LE10"><a href="/reserve-step-1/">Hinckley</a> <span>LE10</span></li>
+                        <li data-postcode="LE19"><a href="/reserve-step-1/">Narborough</a> <span>LE19</span></li>
                     </ul>
                 </div>
 

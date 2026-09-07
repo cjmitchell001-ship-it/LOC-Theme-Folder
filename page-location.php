@@ -249,14 +249,14 @@ function loc_location_cta() {
 			<p>The same prices in <?php echo $t['town']; ?> as everywhere else I cover &mdash; there is no travel surcharge.</p>
 
 			<div class="loc-location-prices">
-				<div class="loc-location-price"><span>Single oven</span><span>From &pound;55</span></div>
-				<div class="loc-location-price"><span>Double oven</span><span>From &pound;70</span></div>
-				<div class="loc-location-price"><span>Free-standing cooker</span><span>From &pound;55</span></div>
-				<div class="loc-location-price"><span>Range cooker</span><span>from &pound;125</span></div>
-				<div class="loc-location-price"><span>Gas, ceramic or induction hob</span><span>from &pound;25</span></div>
-				<div class="loc-location-price"><span>Extractor hood</span><span>from &pound;25</span></div>
-				<div class="loc-location-price"><span>Microwave</span><span>&pound;15</span></div>
-				<div class="loc-location-price"><span>Combi microwave</span><span>&pound;20</span></div>
+				<div class="loc-location-price"><span><a href="/services/#single-oven">Single oven</a></span><span>From &pound;55</span></div>
+				<div class="loc-location-price"><span><a href="/services/#double-oven">Double oven</a></span><span>From &pound;70</span></div>
+				<div class="loc-location-price"><span><a href="/services/#free-standing-oven">Free-standing cooker</a></span><span>From &pound;55</span></div>
+				<div class="loc-location-price"><span><a href="/services/range-cooker-prices/">Range cooker</a></span><span>from &pound;125</span></div>
+				<div class="loc-location-price"><span><a href="/services/#gas-hob">Gas, ceramic or induction hob</a></span><span>from &pound;25</span></div>
+				<div class="loc-location-price"><span><a href="/services/#extractor-hood">Extractor hood</a></span><span>from &pound;25</span></div>
+				<div class="loc-location-price"><span><a href="/services/#microwave">Microwave</a></span><span>&pound;15</span></div>
+				<div class="loc-location-price"><span><a href="/services/#microwave">Combi microwave</a></span><span>&pound;20</span></div>
 			</div>
 
 			<p>Range cookers vary more than anything else I clean, so the price does too. The from-price covers all the cavities, the grill compartment and the exterior; a hob is priced separately. If you only want part of it cleaned, say so when you reserve and I will price what you actually want doing.</p>
