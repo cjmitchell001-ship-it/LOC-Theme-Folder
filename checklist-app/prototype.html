@@ -1,0 +1,980 @@
+<title>LOC Job Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600;700&display=swap">
+<style>
+:root{
+  --blue:#1A3A6E; --blue-dark:#122d58; --blue-pale:#eef3fa;
+  --gold:#C9960C; --gold-dark:#8a6708;
+  --pass:#1A6B2E; --pass-pale:#E7F5EA;
+  --defect:#B3261E; --defect-pale:#FBEAEA;
+  --ground:#F6F7F9; --surface:#FFFFFF; --surface-2:#F0F2F5;
+  --ink:#151A22; --ink-2:#4A5260; --ink-3:#6B7382;
+  --line:#DDE1E8; --line-strong:#C3C9D4;
+  --shadow-sm:0 1px 2px rgba(26,58,110,.08);
+  --shadow-md:0 4px 14px rgba(26,58,110,.10);
+  --shadow-up:0 -4px 16px rgba(26,58,110,.10);
+  --r-sm:6px; --r-md:10px; --r-lg:16px; --r-pill:999px;
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s8:32px; --s10:40px;
+  --display:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Open Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --blue:#5B8AD1; --blue-dark:#3C6BB0; --blue-pale:#16233A;
+    --gold:#E0AE3A; --gold-dark:#E0AE3A;
+    --pass:#6ED08A; --pass-pale:#12241A;
+    --defect:#F08079; --defect-pale:#2A1615;
+    --ground:#0D1117; --surface:#161C25; --surface-2:#1E2530;
+    --ink:#EDF0F4; --ink-2:#AEB6C2; --ink-3:#8B93A1;
+    --line:#2A323E; --line-strong:#3A4453;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+    --shadow-md:0 4px 14px rgba(0,0,0,.45);
+    --shadow-up:0 -4px 16px rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  --blue:#5B8AD1; --blue-dark:#3C6BB0; --blue-pale:#16233A;
+  --gold:#E0AE3A; --gold-dark:#E0AE3A;
+  --pass:#6ED08A; --pass-pale:#12241A;
+  --defect:#F08079; --defect-pale:#2A1615;
+  --ground:#0D1117; --surface:#161C25; --surface-2:#1E2530;
+  --ink:#EDF0F4; --ink-2:#AEB6C2; --ink-3:#8B93A1;
+  --line:#2A323E; --line-strong:#3A4453;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+  --shadow-md:0 4px 14px rgba(0,0,0,.45);
+  --shadow-up:0 -4px 16px rgba(0,0,0,.45);
+}
+
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5;margin:0}
+button{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+
+/* ---------- shell ---------- */
+.shell{max-width:430px;margin:0 auto;min-height:100vh;background:var(--surface);position:relative;
+  display:flex;flex-direction:column;box-shadow:var(--shadow-md)}
+@media(min-width:520px){ body{padding:24px 0} .shell{min-height:calc(100vh - 48px);border-radius:20px;overflow:hidden} }
+
+.demo-note{background:var(--blue);color:#fff;font-size:12px;padding:7px 14px;text-align:center;letter-spacing:.02em}
+.demo-note b{font-weight:700}
+
+.topbar{display:flex;align-items:center;gap:var(--s3);padding:var(--s3) var(--s4);
+  border-bottom:1px solid var(--line);background:var(--surface);position:sticky;top:0;z-index:20}
+.brand{font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--blue)}
+.topbar .sp{margin-left:auto}
+.iconbtn{background:none;border:1px solid var(--line);border-radius:var(--r-pill);padding:6px 12px;
+  font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:36px}
+.badge{background:var(--gold);color:#241a00;border-radius:var(--r-pill);font-size:11px;font-weight:700;
+  padding:1px 7px;font-family:var(--body)}
+.backbtn{background:none;border:0;padding:4px 8px 4px 0;font-size:15px;color:var(--ink-2);cursor:pointer;font-weight:600}
+
+.view{flex:1;padding:var(--s5) var(--s4) 120px;display:flex;flex-direction:column;gap:var(--s4)}
+.actionbar{position:sticky;bottom:0;background:var(--surface);border-top:1px solid var(--line);
+  box-shadow:var(--shadow-up);padding:var(--s3) var(--s4) calc(var(--s3) + env(safe-area-inset-bottom));
+  display:flex;flex-direction:column;gap:var(--s2);z-index:20}
+
+/* ---------- type ---------- */
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);
+  font-variant-numeric:tabular-nums}
+h1.screen{font-size:28px;font-weight:800;line-height:1.2;color:var(--ink)}
+h2.sec{font-size:14px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);
+  margin-top:var(--s2)}
+.q{font-family:var(--display);font-size:26px;font-weight:700;line-height:1.28;letter-spacing:-.01em}
+.help{color:var(--ink-2);font-size:16px}
+.muted{color:var(--ink-3);font-size:14px}
+.lead{font-size:19px;line-height:1.55}
+
+/* ---------- buttons ---------- */
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:58px;
+  border-radius:var(--r-md);border:1px solid transparent;font-family:var(--display);font-weight:700;
+  font-size:19px;cursor:pointer;padding:12px 16px;text-align:center;transition:transform .06s ease}
+.btn:active{transform:scale(.985)}
+.btn--primary{background:var(--blue);color:#fff}
+.btn--gold{background:var(--gold);color:#241a00}
+.btn--ghost{background:var(--surface);color:var(--ink);border-color:var(--line-strong)}
+.btn--yes{background:var(--pass-pale);color:var(--pass);border:2px solid var(--pass);min-height:72px;font-size:22px}
+.btn--no{background:var(--defect-pale);color:var(--defect);border:2px solid var(--defect);min-height:72px;font-size:22px}
+.btn--quiet{background:none;border:0;color:var(--ink-3);font-family:var(--body);font-weight:600;
+  font-size:15px;text-decoration:underline;min-height:48px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+.answers{display:flex;flex-direction:column;gap:var(--s3)}
+
+/* ---------- cards / rows ---------- */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:var(--s4)}
+.joblist{display:flex;flex-direction:column;gap:var(--s2)}
+.jobrow{display:flex;align-items:center;gap:var(--s3);width:100%;text-align:left;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r-md);padding:var(--s3) var(--s4);cursor:pointer;min-height:64px}
+.jobrow .id{font-family:var(--display);font-weight:800;font-size:15px;color:var(--blue);
+  font-variant-numeric:tabular-nums}
+.jobrow .nm{font-weight:600}
+.jobrow .st{margin-left:auto;font-size:13px;color:var(--ink-3);text-align:right}
+.empty{color:var(--ink-3);font-size:15px;padding:var(--s4) 0}
+
+.stripe{border-left:4px solid var(--line);padding-left:var(--s4);display:flex;flex-direction:column;gap:6px}
+.stripe--defect{border-color:var(--defect)}
+.stripe--add{border-color:var(--blue)}
+.stripe--pass{border-color:var(--pass)}
+.stripe .lbl{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.stripe--defect .lbl{color:var(--defect)}
+.stripe--add .lbl{color:var(--blue)}
+
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:var(--r-pill);padding:4px 11px;
+  font-size:12.5px;font-weight:700;letter-spacing:.02em}
+.pill--pass{background:var(--pass-pale);color:var(--pass)}
+.pill--defect{background:var(--defect-pale);color:var(--defect)}
+.pill--add{background:var(--blue-pale);color:var(--blue)}
+.pill--wait{background:var(--surface-2);color:var(--ink-2)}
+
+/* ---------- forms ---------- */
+label.f{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
+input[type=text],input[type=email],input[type=tel],textarea{
+  font:inherit;font-size:17px;color:var(--ink);background:var(--surface);border:1.5px solid var(--line-strong);
+  border-radius:var(--r-sm);padding:13px 12px;width:100%;text-transform:none;letter-spacing:0}
+textarea{min-height:96px;resize:vertical}
+.err{color:var(--defect);font-size:14px;font-weight:600}
+
+.chips{display:flex;flex-wrap:wrap;gap:var(--s2)}
+.chip{border:1.5px solid var(--line-strong);background:var(--surface);border-radius:var(--r-pill);
+  padding:11px 16px;font-size:16px;font-weight:600;cursor:pointer;min-height:48px}
+.chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+
+.thumbs{display:flex;flex-wrap:wrap;gap:var(--s2)}
+.thumb{width:76px;height:76px;border-radius:var(--r-sm);object-fit:cover;border:1px solid var(--line)}
+.filebtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:56px;
+  border:1.5px dashed var(--line-strong);border-radius:var(--r-md);background:var(--surface-2);
+  font-weight:700;font-family:var(--display);cursor:pointer}
+input[type=file]{display:none}
+
+canvas.sig{width:100%;height:200px;background:var(--surface-2);border:1.5px solid var(--line-strong);
+  border-radius:var(--r-md);touch-action:none;display:block}
+
+.tbl{width:100%;border-collapse:collapse;font-size:14.5px}
+.tbl td{padding:9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl td:last-child{text-align:right;white-space:nowrap;padding-left:10px;font-weight:700}
+.ok{color:var(--pass)} .bad{color:var(--defect)} .na{color:var(--ink-3)}
+
+.progress{height:4px;background:var(--surface-2);border-radius:2px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--blue);border-radius:2px;transition:width .2s ease}
+
+.divide{height:1px;background:var(--line);margin:var(--s2) 0}
+.note{background:var(--surface-2);border-radius:var(--r-md);padding:var(--s3) var(--s4);font-size:14.5px;color:var(--ink-2)}
+.customerview{background:var(--blue-pale);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s5)}
+.customerview .brandline{font-family:var(--display);font-weight:800;color:var(--blue);font-size:13px;
+  letter-spacing:.07em;text-transform:uppercase;margin-bottom:var(--s3)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="shell">
+  <div class="demo-note"><b>TRIAL VERSION</b> — click through it. Nothing leaves this phone.</div>
+  <div class="topbar">
+    <button class="backbtn" id="back" hidden>‹ Back</button>
+    <span class="brand" id="crumb">Leicester Oven Cleaning</span>
+    <span class="sp"></span>
+    <button class="iconbtn" id="outboxBtn">Outbox <span class="badge" id="obCount">0</span></button>
+  </div>
+  <div class="view" id="view"></div>
+  <div class="actionbar" id="bar" hidden></div>
+</div>
+
+<script>
+/* ============================ CHECKLIST DATA ============================ */
+/* issue text uses [a/b/c] for pick-one-or-more chips, and [detail] for the typed note */
+
+const FAMILIES = [
+  { key:'uni_pre', name:'Before I start', gate:null, phase:'pre', q:[
+    {id:'access', q:'Safe access, working power and hot water where needed?', type:'yes_no_na', defect:'No',
+     issue:'I didn’t have the [access/power/hot water] I needed to do the job as arranged.', note:true},
+    {id:'isolate', q:'Can the appliance be safely isolated for cleaning?', type:'yes_no', defect:'No',
+     issue:'I didn’t have a safe way to isolate the appliance before starting.', note:true},
+    {id:'exterior', q:'Are the door fronts, handles, knobs and pan supports free of existing damage?', type:'yes_no', defect:'No',
+     issue:'The [door front/handle/knob/pan support] had existing damage before I started.', photo:true, note:true},
+  ]},
+
+  { key:'cavities', name:'Cavities', phase:'pre',
+    gate:{id:'cavity_present', q:'Is there an oven or grill cavity to check?'}, q:[
+    {id:'cavity_door_seal', q:'Do the cavity doors close and seal properly?', type:'yes_no', defect:'No',
+     issue:'The [oven/grill] door wasn’t closing and sealing properly before I started.', photo:true},
+    {id:'cavity_glass', q:'Is the door glass intact, with no cracks or heavy staining between the panes?', type:'yes_no', defect:'No',
+     issue:'The door glass had [a crack/staining between the panes] before I started.', photo:true, note:true},
+    {id:'cavity_interior', q:'Is the interior lining free of chips, cracks or wear-through?', type:'yes_no', defect:'No',
+     issue:'The interior had existing [chips/cracks/wear-through] before I started.', photo:true, note:true},
+    {id:'cavity_parts', q:'Are shelves, runners, shelf supports and trays present and undamaged?', type:'yes_no', defect:'No',
+     issue:'[Shelves/Runners/Shelf supports/Trays] were missing or damaged before I started.', photo:true, note:true},
+    {id:'cavity_light', q:'Is the interior light working?', type:'yes_no_na', defect:'No',
+     issue:'The interior light wasn’t working before I started.'},
+    {id:'cavity_roof_present', q:'Does the cavity have a roof or grill element?', type:'yes_no', gateFor:'roof'},
+    {id:'cavity_roof_condition', q:'Is the roof element free of splits, damage, twisting or warping?', type:'yes_no', defect:'No',
+     needs:'roof', issue:'The roof element shows [splits/damage/twisting/warping] — noted before I started.', photo:true, note:true},
+    {id:'cavity_roof_heat', q:'Turned on, does it heat evenly with no cold or hot spots?', type:'yes_no', defect:'No',
+     needs:'roof', issue:'The roof element wasn’t heating evenly when I tested it before starting.', photo:true, note:true},
+    {id:'cavity_fan_present', q:'Does the cavity have a fan element?', type:'yes_no', gateFor:'fan'},
+    {id:'cavity_fan_condition', q:'Is the fan element free of splits, damage, twisting or warping?', type:'yes_no', defect:'No',
+     needs:'fan', issue:'The fan element shows [splits/damage/twisting/warping] — noted before I started.', photo:true, note:true},
+    {id:'cavity_fan_spin', q:'Is the fan spinning freely?', type:'yes_no', defect:'No',
+     needs:'fan', issue:'The fan wasn’t spinning freely when I checked it before starting.', photo:true, note:true},
+    {id:'cavity_fan_heat', q:'Turned on, does it heat evenly with no cold or hot spots?', type:'yes_no', defect:'No',
+     needs:'fan', issue:'The fan element wasn’t heating evenly when I tested it before starting.', photo:true, note:true},
+    {id:'cavity_other_functions', q:'Do the other cooking functions and modes work as expected?', type:'yes_no_na', defect:'No',
+     issue:'The [detail] wasn’t working as expected before I started.', photo:true, note:true},
+    {id:'cavity_existing_faults', q:'Anything else you’re already aware of, not covered above?', type:'yes_no', defect:'Yes',
+     issue:'I noted an existing fault before starting: [detail].', photo:true, note:'forced'},
+    {id:'cavity_additional_work', q:'Anything here I could additionally clean for an extra charge — heavy build-up, staining, similar?',
+     type:'yes_no', add:'Yes', issue:'I noticed [detail] — happy to include this for an extra charge while I’m here, if you’d like it done.',
+     photo:true, note:'forced'},
+  ]},
+
+  { key:'hob', name:'Hob', phase:'pre', gate:{id:'hob_present', q:'Is there a hob to check?'}, q:[
+    {id:'hob_operational', q:'Do all rings and burners currently ignite and heat?', type:'yes_no_na', defect:'No',
+     issue:'A [ring/burner] wasn’t [heating/igniting] when I checked it.', photo:true, note:true},
+    {id:'hob_surface', q:'Is the hob surface free of cracks or damage?', type:'yes_no', defect:'No',
+     issue:'The hob [surface/top] had existing damage before I started.', photo:true, note:true},
+    {id:'hob_existing_faults', q:'Any existing fault you’re aware of — missing burner cap or crown, damaged pan support, faulty control?',
+     type:'yes_no', defect:'Yes', issue:'I noted an existing fault before starting: [detail].', photo:true, note:'forced'},
+    {id:'hob_additional_work', q:'Anything here I could additionally clean for an extra charge?', type:'yes_no', add:'Yes',
+     issue:'I noticed [detail] — happy to include this for an extra charge while I’m here, if you’d like it done.',
+     photo:true, note:'forced'},
+  ]},
+
+  { key:'hood', name:'Extractor hood', phase:'pre', gate:{id:'hood_present', q:'Is there an extractor hood to check?'}, q:[
+    {id:'hood_operational', q:'Do the fan and light currently work?', type:'yes_no', defect:'No',
+     issue:'The extractor [fan/light] wasn’t working when I checked it.', photo:true, note:true},
+    {id:'hood_filters', q:'Are the grease filters present and undamaged?', type:'yes_no', defect:'No',
+     issue:'The grease filters were [missing/damaged] before I started.', photo:true, note:true},
+    {id:'hood_existing_faults', q:'Any existing fault you’re aware of — fan noise, damaged housing?', type:'yes_no', defect:'Yes',
+     issue:'I noted an existing fault before starting: [detail].', photo:true, note:'forced'},
+    {id:'hood_additional_work', q:'Anything here I could additionally clean for an extra charge — heavily built-up filters, similar?',
+     type:'yes_no', add:'Yes', issue:'I noticed [detail] — happy to include this for an extra charge while I’m here, if you’d like it done.',
+     photo:true, note:'forced'},
+  ]},
+
+  { key:'micro', name:'Microwave', phase:'pre', gate:{id:'micro_present', q:'Is there a microwave or combi to check?'}, q:[
+    {id:'micro_operational', q:'Does it power on and run currently?', type:'yes_no', defect:'No',
+     issue:'The microwave didn’t power on when I checked it.', photo:true, note:true},
+    {id:'micro_door', q:'Does the door close and seal properly, with the glass and screen intact?', type:'yes_no', defect:'No',
+     issue:'The door [wasn’t sealing/had damaged glass] before I started.', photo:true, note:true},
+    {id:'micro_existing_faults', q:'Any existing fault you’re aware of — turntable, seal, display?', type:'yes_no', defect:'Yes',
+     issue:'I noted an existing fault before starting: [detail].', photo:true, note:'forced'},
+    {id:'micro_additional_work', q:'Anything here I could additionally clean for an extra charge?', type:'yes_no', add:'Yes',
+     issue:'I noticed [detail] — happy to include this for an extra charge while I’m here, if you’d like it done.',
+     photo:true, note:'forced'},
+  ]},
+
+  /* ---------------- POST ---------------- */
+  { key:'cavities_post', name:'Cavities', phase:'post', needsFamily:'cavities', q:[
+    {id:'cavity_post_door_seal', q:'Door closes and seals properly?', type:'yes_no', defect:'No',
+     issue:'The door wasn’t closing and sealing properly after I put it back together.', photo:true, note:true},
+    {id:'cavity_post_light', q:'Interior light working?', type:'yes_no_na', defect:'No',
+     issue:'The interior light wasn’t working when I tested it.'},
+    {id:'cavity_post_roof_condition', q:'Roof element free of splits, damage, twisting or warping?', type:'yes_no_na', defect:'No',
+     needs:'roof', issue:'The roof element shows [splits/damage/twisting/warping] after cleaning.', photo:true, note:true},
+    {id:'cavity_post_roof_heat', q:'Roof element heats evenly, no cold or hot spots?', type:'yes_no_na', defect:'No',
+     needs:'roof', issue:'The roof element wasn’t heating evenly when I tested it after cleaning.', photo:true, note:true},
+    {id:'cavity_post_fan_condition', q:'Fan element free of splits, damage, twisting or warping?', type:'yes_no_na', defect:'No',
+     needs:'fan', issue:'The fan element shows [splits/damage/twisting/warping] after cleaning.', photo:true, note:true},
+    {id:'cavity_post_fan_spin', q:'Fan spinning freely?', type:'yes_no_na', defect:'No',
+     needs:'fan', issue:'The fan wasn’t spinning freely when I tested it after cleaning.', photo:true, note:true},
+    {id:'cavity_post_fan_heat', q:'Fan element heats evenly, no cold or hot spots?', type:'yes_no_na', defect:'No',
+     needs:'fan', issue:'The fan element wasn’t heating evenly when I tested it after cleaning.', photo:true, note:true},
+    {id:'cavity_post_flame_response', q:'For gas, does the flame respond properly across the full range of the dial?',
+     help:'N/A if it isn’t gas.', type:'yes_no_na', defect:'No',
+     issue:'The flame wasn’t responding to the dial across its full range when I checked it.', photo:true, note:true},
+    {id:'cavity_post_other_functions', q:'Other cooking functions and modes working?', type:'yes_no_na', defect:'No',
+     issue:'The [detail] wasn’t working as expected after cleaning.', photo:true, note:true},
+    {id:'cavity_post_parts', q:'Shelves, runners and trays correctly refitted?', type:'yes_no', minor:'No',
+     issue:'I found a [shelf/runner/tray] wasn’t sitting right — corrected before leaving.', note:true},
+    {id:'cavity_post_new_fault', q:'Anything noticed now that wasn’t there before?', type:'yes_no', defect:'Yes',
+     issue:'I noticed something after cleaning that wasn’t there before: [detail].', photo:'forced', note:'forced'},
+  ]},
+
+  { key:'hob_post', name:'Hob', phase:'post', needsFamily:'hob', q:[
+    {id:'hob_post_operational', q:'All rings and burners heating and igniting correctly?', type:'yes_no_na', defect:'No',
+     issue:'A [ring/burner] wasn’t [heating/igniting] correctly after cleaning.', photo:true, note:true},
+    {id:'hob_post_flame_response', q:'Does each gas ring’s flame respond properly across the full dial range?',
+     help:'N/A if it isn’t gas.', type:'yes_no_na', defect:'No',
+     issue:'A ring’s flame wasn’t responding to the dial across its full range when I checked it.', photo:true, note:true},
+    {id:'hob_post_parts_refitted', q:'Pan supports, burner caps and crowns correctly refitted?', type:'yes_no', minor:'No',
+     issue:'I found a [pan support/burner cap/crown] wasn’t sitting right — corrected before leaving.', note:true},
+    {id:'hob_post_new_fault', q:'Anything noticed now that wasn’t there before?', type:'yes_no', defect:'Yes',
+     issue:'I noticed something after cleaning that wasn’t there before: [detail].', photo:'forced', note:'forced'},
+  ]},
+
+  { key:'hood_post', name:'Extractor hood', phase:'post', needsFamily:'hood', q:[
+    {id:'hood_post_operational', q:'Fan and light working?', type:'yes_no', defect:'No',
+     issue:'The extractor [fan/light] wasn’t working after cleaning.', photo:true, note:true},
+    {id:'hood_post_filters_refitted', q:'Grease filters correctly refitted?', type:'yes_no', minor:'No',
+     issue:'I found a filter wasn’t sitting right — corrected before leaving.', note:true},
+    {id:'hood_post_new_fault', q:'Anything noticed now that wasn’t there before?', type:'yes_no', defect:'Yes',
+     issue:'I noticed something after cleaning that wasn’t there before: [detail].', photo:'forced', note:'forced'},
+  ]},
+
+  { key:'micro_post', name:'Microwave', phase:'post', needsFamily:'micro', q:[
+    {id:'micro_post_operational', q:'Powers on, heats, turntable turns?', type:'yes_no', defect:'No',
+     issue:'The microwave wasn’t working correctly after cleaning.', photo:true, note:true},
+    {id:'micro_post_door', q:'Door closes and seals properly?', type:'yes_no', defect:'No',
+     issue:'The door wasn’t closing and sealing properly after cleaning.', photo:true, note:true},
+    {id:'micro_post_new_fault', q:'Anything noticed now that wasn’t there before?', type:'yes_no', defect:'Yes',
+     issue:'I noticed something after cleaning that wasn’t there before: [detail].', photo:'forced', note:'forced'},
+  ]},
+
+  { key:'uni_post', name:'Before I leave', phase:'post', gate:null, q:[
+    {id:'work_area', q:'Work area left clean, everything removed?', type:'yes_no', minor:'No',
+     issue:'The work area wasn’t left as expected — noted and put right before leaving.', note:true},
+  ]},
+];
+
+const APPLIANCE_OPTIONS = ['Single Oven','Double Oven','Free-Standing Oven','Range — Full','Range — Partial',
+  'Gas Hob','Induction Hob','Extractor Hood','Microwave','Combi Microwave','AGA / Large Range','BBQ'];
+
+/* ============================ STATE ============================ */
+const KEY='loc_jobcheck_trial_v1';
+let S = load();
+
+function load(){
+  try{ const r=localStorage.getItem(KEY); if(r) return JSON.parse(r); }catch(e){}
+  return { nextNum:22, jobs:[], current:null, screen:'home', qi:0, fam:0, phase:'pre', history:[] };
+}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+function job(){ return S.jobs.find(j=>j.id===S.current) || null; }
+
+function newJob(d){
+  const n = S.nextNum++;
+  const first = (d.name||'Customer').trim().split(/\s+/)[0];
+  const j = { id:`${n}-${first}`, num:n, ...d, appliances:[], type:'Domestic',
+    answers:{}, issues:[], adds:[], minors:[], incidents:[], sigs:[],
+    stage:'Pre-clean check', created:Date.now(), video:null, shareVideo:false, done:false, outbox:[] };
+  S.jobs.unshift(j); S.current=j.id; return j;
+}
+
+/* ---- which families/questions actually apply ---- */
+function activeFamilies(phase){
+  const j=job(); if(!j) return [];
+  return FAMILIES.filter(f=>{
+    if(f.phase!==phase) return false;
+    if(f.needsFamily){ const g=FAMILIES.find(x=>x.key===f.needsFamily).gate;
+      return j.answers[g.id]==='Yes'; }
+    if(f.gate) return j.answers[f.gate.id]!=='No';
+    return true;
+  });
+}
+function famQuestions(f){
+  const j=job(); const out=[];
+  if(f.gate && j.answers[f.gate.id]===undefined) out.push({...f.gate, type:'yes_no', isGate:true});
+  if(f.gate && j.answers[f.gate.id]==='No') return out;
+  f.q.forEach(q=>{
+    if(q.needs){
+      const gateQ = f.q.find(x=>x.gateFor===q.needs) || FAMILIES.find(x=>x.key==='cavities').q.find(x=>x.gateFor===q.needs);
+      if(j.answers[gateQ.id]!=='Yes') return;
+    }
+    out.push(q);
+  });
+  return out;
+}
+
+/* ---- issue sentence assembly ---- */
+function tokens(t){
+  const out=[]; const re=/\[([^\]]+)\]/g; let m;
+  while((m=re.exec(t))){ out.push(m[1]); }
+  return out;
+}
+function buildIssue(q, picks, note){
+  return q.issue.replace(/\[([^\]]+)\]/g, (_,inner)=>{
+    if(inner==='detail') return (note||'').trim().replace(/\.$/,'') || 'something I’ve described to you';
+    const chosen = picks[inner] || [];
+    if(!chosen.length) return inner.split('/')[0].toLowerCase();
+    const l = chosen.map((c,i)=> i===0 ? c : c.toLowerCase());
+    return l.length===1 ? l[0] : l.slice(0,-1).join(', ')+' and '+l[l.length-1];
+  });
+}
+
+/* ============================ ROUTING ============================ */
+const view=document.getElementById('view'), bar=document.getElementById('bar'),
+      backBtn=document.getElementById('back'), crumb=document.getElementById('crumb'),
+      obCount=document.getElementById('obCount');
+
+function go(screen, push=true){ if(push) S.history.push(S.screen); S.screen=screen; save(); render(); }
+function back(){ const p=S.history.pop(); S.screen=p||'home'; save(); render(); }
+backBtn.addEventListener('click', back);
+document.getElementById('outboxBtn').addEventListener('click', ()=>go('outbox'));
+
+function el(tag, cls, html){ const e=document.createElement(tag); if(cls) e.className=cls;
+  if(html!==undefined) e.innerHTML=html; return e; }
+function esc(s){ return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function actions(list){ bar.hidden=!list.length; bar.innerHTML='';
+  list.forEach(b=>{ const x=el('button','btn '+(b.cls||'btn--primary'), b.label);
+    if(b.disabled) x.disabled=true; x.addEventListener('click', b.on); bar.appendChild(x); }); }
+
+function render(){
+  view.innerHTML=''; bar.innerHTML=''; bar.hidden=true;
+  backBtn.hidden = (S.screen==='home');
+  const j=job();
+  crumb.textContent = j && S.screen!=='home' ? j.id : 'Leicester Oven Cleaning';
+  const total = S.jobs.reduce((n,x)=>n+x.outbox.length,0);
+  obCount.textContent=total; obCount.style.display = total? '' : 'none';
+  (SCREENS[S.screen]||SCREENS.home)();
+  window.scrollTo(0,0);
+  save();
+}
+
+/* ============================ SCREENS ============================ */
+const SCREENS={};
+
+SCREENS.home=()=>{
+  const inprog=S.jobs.filter(j=>!j.done), done=S.jobs.filter(j=>j.done);
+  view.append(el('h1','screen','Today'));
+  if(!inprog.length) view.append(el('p','empty','Nothing on the go. Start a job when you arrive.'));
+  else{
+    const list=el('div','joblist');
+    inprog.forEach(j=>{
+      const r=el('button','jobrow');
+      r.innerHTML=`<span class="id">${esc(j.id)}</span><span><span class="nm">${esc(j.name)}</span><br>
+        <span class="muted">${esc(j.postcode||j.address||'')}</span></span>
+        <span class="st">${esc(j.stage)}</span>`;
+      r.addEventListener('click',()=>{ S.current=j.id; go(resumeScreen(j)); });
+      list.append(r);
+    });
+    view.append(list);
+  }
+  if(done.length){
+    view.append(el('h2','sec','Completed'));
+    const list=el('div','joblist');
+    done.slice(0,6).forEach(j=>{
+      const r=el('button','jobrow');
+      const flag = j.issues.length? `<span class="pill pill--defect">${j.issues.length} noted</span>`
+                                  : `<span class="pill pill--pass">All clear</span>`;
+      r.innerHTML=`<span class="id">${esc(j.id)}</span><span class="nm">${esc(j.name)}</span><span class="st">${flag}</span>`;
+      r.addEventListener('click',()=>{ S.current=j.id; go('record'); });
+      list.append(r);
+    });
+    view.append(list);
+  }
+  actions([{label:'+ New Job', on:()=>go('newjob')}]);
+};
+
+function resumeScreen(j){
+  if(j.done) return 'record';
+  if(j.stage==='Cleaning') return 'cleaning';
+  if(j.stage.startsWith('Post')) { S.phase='post'; S.fam=0; S.qi=0; return 'question'; }
+  S.phase='pre'; return 'question';
+}
+
+SCREENS.newjob=()=>{
+  view.append(el('h1','screen','New job'));
+  view.append(el('p','muted','Job number '+S.nextNum+' — carries on from your photo folders.'));
+  const f=el('div','card'); f.style.display='flex'; f.style.flexDirection='column'; f.style.gap='16px';
+  const fields=[['name','Name','text'],['address','Address','text'],['postcode','Postcode','text'],
+                ['phone','Phone','tel'],['email','Email','email']];
+  const inputs={};
+  fields.forEach(([k,l,t])=>{
+    const lab=el('label','f',l); const i=el('input'); i.type=t; i.id='f_'+k;
+    if(k==='postcode') i.style.textTransform='uppercase';
+    lab.append(i); inputs[k]=i; f.append(lab);
+  });
+  const e=el('p','err'); e.hidden=true; f.append(e);
+  view.append(f);
+  view.append(el('p','muted','Name and email are needed — the report has to go somewhere. The rest is useful but won’t stop you.'));
+  actions([{label:'Continue', on:()=>{
+    const d={}; Object.keys(inputs).forEach(k=>d[k]=inputs[k].value.trim());
+    if(!d.name || !d.email){ e.hidden=false;
+      e.textContent = !d.name ? 'A name is needed to open the job.' : 'An email address is needed to send the report.'; return; }
+    newJob(d); go('jobtype');
+  }}]);
+};
+
+SCREENS.jobtype=()=>{
+  const j=job();
+  view.append(el('h1','screen','Who’s paying?'));
+  view.append(el('p','help','This sets whether the video gets shared. Whoever’s paying is the only person who ever sees the report or the video.'));
+  const wrap=el('div','answers');
+  [['Domestic','The householder — video stays with me'],
+   ['Tenancy / Letting Agent','The agent or landlord — video sent to them as proof of work']].forEach(([t,sub])=>{
+    const b=el('button','btn '+(j.type===t?'btn--primary':'btn--ghost'));
+    b.innerHTML=`<span style="display:block"><span style="display:block">${t}</span>
+      <span style="display:block;font-family:var(--body);font-weight:400;font-size:14px;opacity:.8;margin-top:3px">${sub}</span></span>`;
+    b.style.minHeight='84px';
+    b.addEventListener('click',()=>{ j.type=t; j.shareVideo = t!=='Domestic'; save(); go('appliances'); });
+    wrap.append(b);
+  });
+  view.append(wrap);
+};
+
+SCREENS.appliances=()=>{
+  const j=job();
+  view.append(el('h1','screen','What’s booked?'));
+  view.append(el('p','help','For your own record only. You’ll still walk every appliance in the kitchen — that’s where the extra work comes from.'));
+  const chips=el('div','chips');
+  APPLIANCE_OPTIONS.forEach(a=>{
+    const c=el('button','chip',a); c.setAttribute('aria-pressed', j.appliances.includes(a));
+    c.addEventListener('click',()=>{ const i=j.appliances.indexOf(a);
+      i<0? j.appliances.push(a) : j.appliances.splice(i,1); save(); render(); });
+    chips.append(c);
+  });
+  view.append(chips);
+  actions([{label:'Start pre-clean check', on:()=>{ S.phase='pre'; S.fam=0; S.qi=0; go('question'); }}]);
+};
+
+/* ---------------- question engine ---------------- */
+function currentQ(){
+  const fams=activeFamilies(S.phase);
+  while(S.fam<fams.length){
+    const f=fams[S.fam]; const qs=famQuestions(f);
+    if(S.qi<qs.length) return {f, q:qs[S.qi], qs, fams};
+    S.fam++; S.qi=0;
+  }
+  return null;
+}
+function advance(){ S.qi++; const nxt=currentQ();
+  if(!nxt){ S.phase==='pre' ? go('presummary') : go('postsummary'); } else render(); }
+
+SCREENS.question=()=>{
+  const ctx=currentQ();
+  if(!ctx){ S.phase==='pre'? go('presummary',false) : go('postsummary',false); return; }
+  const {f,q,qs}=ctx; const j=job();
+  j.stage = S.phase==='pre' ? 'Pre-clean check' : 'Post-clean check';
+
+  const head=el('div'); head.style.display='flex'; head.style.flexDirection='column'; head.style.gap='10px';
+  head.append(el('div','eyebrow',`${esc(f.name)} — ${S.qi+1} of ${qs.length}`));
+  const p=el('div','progress'); p.append(el('i')); p.firstChild.style.width=((S.qi)/qs.length*100)+'%';
+  head.append(p);
+  view.append(head);
+  view.append(el('h2','q',esc(q.q)));
+  if(q.help) view.append(el('p','help',esc(q.help)));
+
+  const ans=el('div','answers');
+  const mk=(label,cls,val)=>{ const b=el('button','btn '+cls,label);
+    b.addEventListener('click',()=>answer(q,val)); return b; };
+  ans.append(mk('Yes','btn--yes','Yes'));
+  ans.append(mk('No','btn--no','No'));
+  view.append(ans);
+  if(q.type==='yes_no_na'){
+    const na=el('button','btn btn--quiet','Not applicable here');
+    na.addEventListener('click',()=>answer(q,'N/A')); view.append(na);
+  }
+  if(S.qi>0 || S.fam>0){
+    const b=el('button','btn btn--quiet','Change my last answer');
+    b.addEventListener('click',()=>{ if(S.qi>0) S.qi--; else { S.fam--; S.qi=Math.max(0,famQuestions(activeFamilies(S.phase)[S.fam]).length-1); } render(); });
+    view.append(b);
+  }
+};
+
+function answer(q,val){
+  const j=job(); j.answers[q.id]=val;
+  const flagged = (q.defect && val===q.defect) || (q.add && val===q.add) || (q.minor && val===q.minor);
+  if(flagged){ S.pendingQ=q.id; go('capture'); }
+  else { advance(); }
+}
+
+SCREENS.capture=()=>{
+  const j=job(); const q=findQ(S.pendingQ);
+  const kind = q.add? 'add' : (q.minor? 'minor' : 'defect');
+  const title = kind==='add' ? 'Additional work' : (kind==='minor' ? 'Put right on the day' : 'Issue found');
+  const stripe = kind==='add' ? 'stripe--add' : (kind==='minor' ? 'stripe--pass' : 'stripe--defect');
+  const s=el('div','stripe '+stripe);
+  s.append(el('div','lbl',title));
+  s.append(el('div','', esc(q.q)));
+  view.append(s);
+
+  const alts = tokens(q.issue).filter(t=>t!=='detail');
+  const picks={};
+  alts.forEach(group=>{
+    picks[group]=[];
+    view.append(el('h2','sec','Which one?'));
+    const chips=el('div','chips');
+    group.split('/').forEach(opt=>{
+      const c=el('button','chip',opt); c.setAttribute('aria-pressed','false');
+      c.addEventListener('click',()=>{
+        const on = c.getAttribute('aria-pressed')==='true';
+        c.setAttribute('aria-pressed', !on);
+        const arr=picks[group]; const i=arr.indexOf(opt);
+        on ? arr.splice(i,1) : arr.push(opt);
+        preview();
+      });
+      chips.append(c);
+    });
+    view.append(chips);
+  });
+
+  let noteEl=null;
+  if(q.note){
+    view.append(el('h2','sec', q.note==='forced' ? 'What did you find?' : 'Anything to add?'));
+    noteEl=el('textarea'); noteEl.placeholder='Plain words — this goes to the customer.';
+    noteEl.addEventListener('input',preview); view.append(noteEl);
+  }
+
+  const photos=[];
+  if(q.photo || kind!=='minor'){
+    view.append(el('h2','sec', q.photo==='forced' ? 'Photo required' : 'Photos'));
+    const thumbs=el('div','thumbs'); view.append(thumbs);
+    const lbl=el('label','filebtn','\u{1F4F7}  Add photo');
+    const inp=el('input'); inp.type='file'; inp.accept='image/*'; inp.setAttribute('capture','environment'); inp.multiple=true;
+    inp.addEventListener('change',()=>{ [...inp.files].forEach(f=>{
+      const url=URL.createObjectURL(f); photos.push(url);
+      const im=el('img','thumb'); im.src=url; im.alt=''; thumbs.append(im); }); check(); });
+    lbl.append(inp); view.append(lbl);
+    view.append(el('p','muted','As many as you need. Full size on the phone, shrunk before sending.'));
+  }
+
+  view.append(el('h2','sec','What the customer will read'));
+  const pv=el('div','note'); view.append(pv);
+  function preview(){ pv.textContent = buildIssue(q, picks, noteEl?noteEl.value:''); check(); }
+  function check(){
+    const needNote = q.note==='forced' && !(noteEl && noteEl.value.trim());
+    const needPhoto = q.photo==='forced' && !photos.length;
+    bar.firstChild.disabled = needNote||needPhoto;
+  }
+  preview();
+
+  actions([{label:'Save & continue', on:()=>{
+    const text = buildIssue(q, picks, noteEl?noteEl.value:'');
+    const rec = { qid:q.id, text, photos:photos.slice(), note:noteEl?noteEl.value.trim():'' };
+    if(kind==='add') j.adds.push(rec); else if(kind==='minor') j.minors.push(rec); else j.issues.push(rec);
+    if(photos.length) j.outbox.push({kind:'photos', n:photos.length});
+    save(); advance();
+  }}]);
+  check();
+};
+function findQ(id){ for(const f of FAMILIES){ const q=f.q.find(x=>x.id===id); if(q) return q;
+  if(f.gate && f.gate.id===id) return {...f.gate,type:'yes_no'}; } return null; }
+
+/* ---------------- pre-clean summary ---------------- */
+SCREENS.presummary=()=>{
+  const j=job();
+  if(!j.issues.length){
+    view.append(el('div','pill pill--pass','✓ Pre-check complete'));
+    view.append(el('h1','screen','Nothing flagged.'));
+    view.append(el('p','lead','Everything checked out. No sign-off needed — crack on.'));
+    if(j.adds.length){
+      view.append(el('h2','sec','Worth mentioning while you’re there'));
+      j.adds.forEach(a=>{ const s=el('div','stripe stripe--add'); s.append(el('div','',esc(a.text))); view.append(s); });
+    }
+    actions([{label:'Start cleaning', cls:'btn--gold', on:()=>{ j.stage='Cleaning'; save(); go('cleaning'); }}]);
+    return;
+  }
+  view.append(el('div','pill pill--defect',`⚠ ${j.issues.length} to show the customer`));
+  view.append(el('h1','screen','Before I start'));
+  view.append(el('p','help','This is what they see. Read it with them, or send it if they’re not here.'));
+  view.append(customerBlock(j, 'pre'));
+  actions([
+    {label:'They’re here — sign now', on:()=>{ S.sigCtx='pre'; go('signature'); }},
+    {label:'Send it to them', cls:'btn--ghost', on:()=>{ S.sendCtx='pre'; go('send'); }},
+  ]);
+};
+
+function customerBlock(j, mode){
+  const box=el('div','customerview');
+  box.append(el('div','brandline','Leicester Oven Cleaning'));
+  const first=(j.name||'').split(/\s+/)[0];
+  if(mode==='pre'){
+    box.append(el('p','lead',`Hi ${esc(first)}, before I start, here’s what I found:`));
+    j.issues.forEach(i=>{
+      const s=el('div','stripe stripe--defect'); s.style.marginTop='14px';
+      s.append(el('div','',esc(i.text)));
+      if(i.photos.length){ const t=el('div','thumbs'); t.style.marginTop='8px';
+        i.photos.forEach(p=>{ const im=el('img','thumb'); im.src=p; im.alt=''; t.append(im); }); s.append(t); }
+      box.append(s);
+    });
+    if(j.adds.length){
+      box.append(el('h2','sec','Anything else I could do while I’m here'));
+      j.adds.forEach(a=>{ const s=el('div','stripe stripe--add'); s.append(el('div','',esc(a.text))); box.append(s); });
+    }
+    box.append(el('p','lead','Happy to go ahead on this basis?'));
+  } else {
+    box.append(el('p','lead',`Hi ${esc(first)}, that’s your ${esc(j.appliances[0]||'appliance')} done.`));
+    if(j.issues.length || j.minors.length){
+      box.append(el('h2','sec','What I noted along the way'));
+      [...j.issues,...j.minors].forEach(i=>{ const s=el('div','stripe stripe--defect');
+        s.append(el('div','',esc(i.text))); box.append(s); });
+    } else {
+      box.append(el('p','',' Nothing came up that you need to worry about.'));
+    }
+    box.append(el('p','lead','Everything look right to you?'));
+  }
+  return box;
+}
+
+/* ---------------- signature ---------------- */
+const SIG_TEXT={
+  pre:'I confirm the above was found before work started, and I’m happy for Chris to go ahead.',
+  proceed:'I’d like Chris to go ahead with the clean, without confirming the details above.',
+  post:'I confirm the work described in this report has been carried out, and that the condition noted before work started is as recorded.',
+  incident:'I’ve been told about the issue above and I’ve decided how the rest of today’s job should go.',
+};
+SCREENS.signature=()=>{
+  const j=job(); const ctx=S.sigCtx||'pre';
+  view.append(el('h1','screen','Sign here'));
+  view.append(el('p','lead',SIG_TEXT[ctx]));
+  const c=el('canvas','sig'); view.append(c);
+  view.append(el('p','muted','Finger is fine. Draw across the box.'));
+  const clear=el('button','btn btn--quiet','Clear and start again'); view.append(clear);
+
+  const dpr=window.devicePixelRatio||1; let drawn=false, drawing=false;
+  requestAnimationFrame(()=>{ c.width=c.clientWidth*dpr; c.height=c.clientHeight*dpr;
+    const x=c.getContext('2d'); x.scale(dpr,dpr); x.lineWidth=2.6; x.lineCap='round'; x.lineJoin='round';
+    x.strokeStyle=getComputedStyle(document.body).color;
+    const pos=e=>{ const r=c.getBoundingClientRect(); return [e.clientX-r.left, e.clientY-r.top]; };
+    c.addEventListener('pointerdown',e=>{ drawing=true; drawn=true; c.setPointerCapture(e.pointerId);
+      x.beginPath(); x.moveTo(...pos(e)); bar.firstChild.disabled=false; });
+    c.addEventListener('pointermove',e=>{ if(!drawing) return; x.lineTo(...pos(e)); x.stroke(); });
+    c.addEventListener('pointerup',()=>drawing=false);
+    clear.addEventListener('click',()=>{ x.clearRect(0,0,c.width,c.height); drawn=false; bar.firstChild.disabled=true; });
+  });
+
+  actions([{label:'Confirm', disabled:true, on:()=>{
+    j.sigs.push({ ctx, at:Date.now(), route:'In person', img:c.toDataURL('image/png') });
+    save();
+    if(ctx==='pre'){ j.stage='Cleaning'; save(); go('cleaning'); }
+    else if(ctx==='post'){ finish(); }
+    else if(ctx==='incident'){ go('cleaning'); }
+  }}]);
+};
+
+/* ---------------- send remotely ---------------- */
+SCREENS.send=()=>{
+  const j=job(); const mode=S.sendCtx||'pre'; const first=(j.name||'').split(/\s+/)[0];
+  view.append(el('h1','screen', mode==='pre' ? 'Send for their OK' : 'Send the proof of work'));
+  const msg = mode==='pre'
+    ? `Hi ${first}, it’s Chris from Leicester Oven Cleaning. I’ve done the pre-clean check and found a couple of things I want you to see before I start — nothing urgent, I just want your OK first. Have a look here: {link}`
+    : `Hi ${first}, it’s Chris from Leicester Oven Cleaning. That’s the clean finished. Here’s the report and a short video of it all working — have a look and tap to confirm you’re happy it’s done: {link}`;
+  view.append(el('h2','sec','What they’ll get'));
+  const t=el('textarea'); t.value=msg; t.style.minHeight='150px'; view.append(t);
+  view.append(el('p','muted','Edit it if you want. The link is private and only works for them.'));
+  actions([
+    {label:'Send on WhatsApp', on:()=>sent('WhatsApp',mode)},
+    {label:'Send by email', cls:'btn--ghost', on:()=>sent('Email',mode)},
+    {label:'Preview what they see', cls:'btn--ghost', on:()=>{ S.remoteMode=mode; go('remote'); }},
+  ]);
+  function sent(ch,m){ const j=job(); j.sentVia=ch; j.sentAt=Date.now(); j.waitingFor=m; save(); go('waiting'); }
+};
+
+SCREENS.remote=()=>{
+  const j=job(); const mode=S.remoteMode||'pre';
+  view.append(el('div','eyebrow','What the customer sees on their own phone'));
+  view.append(customerBlock(j, mode));
+  const b=el('div'); b.style.display='flex'; b.style.flexDirection='column'; b.style.gap='12px'; b.style.marginTop='16px';
+  if(mode==='pre'){
+    b.append(el('button','btn btn--yes','Yes, go ahead'));
+    b.append(el('button','btn btn--no','No, don’t proceed'));
+  } else {
+    b.append(el('button','btn btn--yes','Yes — happy it’s done'));
+    b.append(el('button','btn btn--ghost','Something’s not right'));
+  }
+  view.append(b);
+  view.append(el('p','muted','Not sure this is genuine? Call me on 07710 649 360 and I’ll talk you through it.'));
+  view.append(el('p','muted','This page is only for you. Nothing on it is stored anywhere except with my own records for this job.'));
+  actions([{label:'Back to the job', cls:'btn--ghost', on:back}]);
+};
+
+SCREENS.waiting=()=>{
+  const j=job(); const first=(j.name||'').split(/\s+/)[0];
+  view.append(el('div','pill pill--wait','○ Waiting on them'));
+  view.append(el('h1','screen',`Sent to ${esc(first)}`));
+  view.append(el('p','help',`Via ${esc(j.sentVia)} at ${new Date(j.sentAt).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}. They tap once at their end and it lands back here.`));
+  const acts=[];
+  if(j.waitingFor==='pre'){
+    acts.push({label:'They’ve said yes — carry on', cls:'btn--gold', on:()=>{
+      j.sigs.push({ctx:'pre',at:Date.now(),route:'Confirmed by message'}); j.stage='Cleaning'; save(); go('cleaning'); }});
+  } else {
+    acts.push({label:'They’ve confirmed — finish up', cls:'btn--gold', on:()=>{
+      j.sigs.push({ctx:'post',at:Date.now(),route:'Confirmed by message'}); finish(); }});
+    acts.push({label:'Leave it with them and close the job', cls:'btn--ghost', on:()=>{
+      j.sigs.push({ctx:'post',at:Date.now(),route:'Sent, not yet acknowledged'}); finish(); }});
+  }
+  acts.push({label:'Resend', cls:'btn--ghost', on:()=>go('send')});
+  actions(acts);
+  view.append(el('p','muted','If they never tap it, that’s recorded honestly on the report — sent, not acknowledged.'));
+};
+
+/* ---------------- cleaning + incident ---------------- */
+SCREENS.cleaning=()=>{
+  const j=job(); j.stage='Cleaning'; save();
+  view.append(el('div','pill pill--wait','● Cleaning in progress'));
+  view.append(el('h1','screen','Off you go.'));
+  view.append(el('p','help','Close the app if you want — the job’s held right here. Come back when the appliance is back together.'));
+  if(j.incidents.length){
+    view.append(el('h2','sec','Reported during this job'));
+    j.incidents.forEach(i=>{ const s=el('div','stripe stripe--defect'); s.append(el('div','',esc(i.text))); view.append(s); });
+  }
+  actions([
+    {label:'Start post-clean check', cls:'btn--gold', on:()=>{ S.phase='post'; S.fam=0; S.qi=0; j.stage='Post-clean check'; save(); go('question'); }},
+    {label:'⚠ Report an incident', cls:'btn--ghost', on:()=>go('incident')},
+  ]);
+};
+
+SCREENS.incident=()=>{
+  const j=job(); const first=(j.name||'').split(/\s+/)[0];
+  const s=el('div','stripe stripe--defect');
+  s.append(el('div','lbl','Report an incident'));
+  s.append(el('div','','Isolate it first. This screen is for telling them and getting their decision on the rest of the job.'));
+  view.append(s);
+  view.append(el('h2','sec','What happened?'));
+  const t=el('textarea'); t.placeholder='In your own words.'; view.append(t);
+  view.append(el('h2','sec','Photos'));
+  const thumbs=el('div','thumbs'); view.append(thumbs);
+  const lbl=el('label','filebtn','\u{1F4F7}  Add photo');
+  const inp=el('input'); inp.type='file'; inp.accept='image/*'; inp.setAttribute('capture','environment'); inp.multiple=true;
+  const photos=[];
+  inp.addEventListener('change',()=>{ [...inp.files].forEach(f=>{ const u=URL.createObjectURL(f); photos.push(u);
+    const im=el('img','thumb'); im.src=u; im.alt=''; thumbs.append(im); }); });
+  lbl.append(inp); view.append(lbl);
+
+  view.append(el('h2','sec','What I’ll tell them'));
+  const script=el('textarea'); script.style.minHeight='170px';
+  script.value=`Hi ${first}, the appliance has just tripped the electrics while I was cleaning it. I checked it over properly before I started and didn’t see any damage, and my cleaning method doesn’t get inside the element itself — so this looks like something already going on in there that wouldn’t show from the outside. I’ve isolated it so it’s safe, and it’ll need a repair person to take a proper look.`;
+  view.append(script);
+  view.append(el('p','muted','Edit it to fit what actually happened. [Placeholder: local repair company list to be added.]'));
+
+  actions([{label:'Record it and ask them', on:()=>{
+    j.incidents.push({ text:script.value.trim(), what:t.value.trim(), photos, at:Date.now() });
+    j.issues.push({ qid:'incident', text:script.value.trim(), photos, note:t.value.trim() });
+    save(); S.sigCtx='incident'; go('decision');
+  }}]);
+};
+
+SCREENS.decision=()=>{
+  view.append(el('h1','screen','What do they want to do?'));
+  view.append(el('p','lead','Would you like me to continue with the rest of today’s job, or stop here?'));
+  const a=el('div','answers');
+  const c=el('button','btn btn--yes','Continue with the rest');
+  c.addEventListener('click',()=>{ S.sigCtx='incident'; go('signature'); });
+  const st=el('button','btn btn--no','Stop here today');
+  st.addEventListener('click',()=>{ const j=job(); j.stoppedEarly=true; save(); S.sigCtx='incident'; go('signature'); });
+  a.append(c,st); view.append(a);
+  view.append(el('p','muted','Not there? Send it to them the same way as the pre-check.'));
+  actions([{label:'Send it to them instead', cls:'btn--ghost', on:()=>{ S.sendCtx='pre'; go('send'); }}]);
+};
+
+/* ---------------- video + finish ---------------- */
+SCREENS.postsummary=()=>{
+  const j=job();
+  if(!j.video){ go('video',false); return; }
+  const anyNew = j.issues.length || j.minors.length;
+  view.append(el('div','pill '+(anyNew?'pill--defect':'pill--pass'), anyNew? '⚠ Noted along the way':'✓ All done'));
+  view.append(el('h1','screen', anyNew? 'Before they sign' : 'All done.'));
+  view.append(customerBlock(j,'post'));
+  actions([
+    {label:'They’re here — sign now', on:()=>{ S.sigCtx='post'; go('signature'); }},
+    {label:'Send the report and video', cls:'btn--ghost', on:()=>{ S.sendCtx='post'; go('send'); }},
+    {label:'They’d rather not sign', cls:'btn--quiet', on:()=>{
+      j.sigs.push({ctx:'post',at:Date.now(),route:'Declined to sign'}); finish(); }},
+  ]);
+};
+
+SCREENS.video=()=>{
+  const j=job();
+  view.append(el('h1','screen','Film it working'));
+  view.append(el('p','lead','Keep it under 30 seconds. Show it powering on, the element glowing, the fan running, and the door closing properly.'));
+  const lbl=el('label','filebtn','\u{1F3A5}  Record video');
+  const inp=el('input'); inp.type='file'; inp.accept='video/*'; inp.setAttribute('capture','environment');
+  const holder=el('div');
+  inp.addEventListener('change',()=>{ if(!inp.files[0]) return;
+    j.video={name:inp.files[0].name, size:inp.files[0].size, at:Date.now()};
+    j.outbox.push({kind:'video', n:1}); save(); render(); });
+  lbl.append(inp); view.append(lbl); view.append(holder);
+  if(j.video){
+    const s=el('div','stripe stripe--pass');
+    s.append(el('div','lbl','Recorded'));
+    s.append(el('div','',esc(j.video.name)+' — '+Math.round(j.video.size/1024/1024*10)/10+' MB'));
+    view.append(s);
+    view.append(el('h2','sec','Who gets it'));
+    const wrap=el('div','answers');
+    [['Keep it to myself',false],['Send it to whoever’s paying',true]].forEach(([t,v])=>{
+      const b=el('button','btn '+(j.shareVideo===v?'btn--primary':'btn--ghost'),t);
+      b.addEventListener('click',()=>{ j.shareVideo=v; save(); render(); }); wrap.append(b);
+    });
+    view.append(wrap);
+    view.append(el('p','muted','Videos are deleted automatically after 90 days, and the link expires with them.'));
+  }
+  actions([{label:'Continue', disabled:!j.video, on:()=>go('postsummary')}]);
+};
+
+function finish(){
+  const j=job(); j.done=true; j.stage='Complete'; j.completedAt=Date.now();
+  j.outbox.push({kind:'report', n:1}); save(); go('complete');
+}
+
+SCREENS.complete=()=>{
+  const j=job();
+  view.append(el('div','pill pill--pass','✓ Job complete'));
+  view.append(el('h1','screen',j.id));
+  const t=el('table','tbl');
+  const row=(a,b)=>{ const r=t.insertRow(); r.insertCell().textContent=a; r.insertCell().innerHTML=b; };
+  row('Report to', esc(j.email));
+  row('Your own copy', 'hello@leicesterovencleaning.co.uk');
+  row('Video', j.video ? (j.shareVideo? 'Link sent — expires in 90 days' : 'Kept privately — 90 days') : '—');
+  row('Flagged', j.issues.length ? `<span class="bad">${j.issues.length}</span>` : '<span class="ok">None</span>');
+  row('Extra work offered', j.adds.length || '—');
+  view.append(t);
+  if(j.outbox.length){
+    const s=el('div','stripe stripe--add'); s.append(el('div','lbl','Waiting to send'));
+    s.append(el('div','','Queued until you’ve got decent signal. The video goes last — keep this screen open when it does.'));
+    view.append(s);
+  }
+  actions([
+    {label:'Back to today', on:()=>{ S.history=[]; go('home',false); }},
+    {label:'See the record', cls:'btn--ghost', on:()=>go('record')},
+  ]);
+};
+
+/* ---------------- record + outbox ---------------- */
+SCREENS.record=()=>{
+  const j=job();
+  view.append(el('h1','screen',j.id));
+  view.append(el('p','muted',`${esc(j.name)} · ${esc(j.address||'')} ${esc(j.postcode||'')}`));
+  const summary=el('table','tbl');
+  const sec=(name)=>{ const h=el('h2','sec',name); view.append(h); };
+  sec('Answers');
+  const t=el('table','tbl');
+  FAMILIES.forEach(f=>{
+    const qs=[...(f.gate?[f.gate]:[]), ...f.q];
+    qs.forEach(q=>{ const v=j.answers[q.id]; if(v===undefined) return;
+      const r=t.insertRow(); r.insertCell().textContent=q.q;
+      const c=r.insertCell();
+      const flagged=(q.defect&&v===q.defect)||(q.minor&&v===q.minor);
+      c.innerHTML=`<span class="${flagged?'bad':(v==='N/A'?'na':'ok')}">${v}</span>`;
+    });
+  });
+  view.append(t);
+  if(j.issues.length){ sec('Noted'); j.issues.forEach(i=>{ const s=el('div','stripe stripe--defect');
+    s.append(el('div','',esc(i.text))); view.append(s); }); }
+  if(j.adds.length){ sec('Extra work offered'); j.adds.forEach(i=>{ const s=el('div','stripe stripe--add');
+    s.append(el('div','',esc(i.text))); view.append(s); }); }
+  sec('Signatures');
+  if(!j.sigs.length) view.append(el('p','empty','None taken.'));
+  j.sigs.forEach(s=>{
+    const c=el('div','card'); c.style.marginBottom='8px';
+    c.append(el('div','eyebrow', (s.ctx==='pre'?'Before work':'On completion')+' · '+s.route));
+    c.append(el('div','muted', new Date(s.at).toLocaleString('en-GB')));
+    if(s.img){ const im=el('img'); im.src=s.img; im.alt='Signature'; im.style.width='100%';
+      im.style.maxWidth='260px'; im.style.marginTop='8px'; c.append(im); }
+    view.append(c);
+  });
+  actions([{label:'Back to today', cls:'btn--ghost', on:()=>{ S.history=[]; go('home',false); }}]);
+};
+
+SCREENS.outbox=()=>{
+  view.append(el('h1','screen','Outbox'));
+  const items=[]; S.jobs.forEach(j=> j.outbox.forEach(o=> items.push({j,o})));
+  if(!items.length){ view.append(el('p','empty','Nothing waiting — everything’s sent.'));
+    actions([{label:'Back', cls:'btn--ghost', on:back}]); return; }
+  view.append(el('p','help','These go automatically when you’ve got signal. Video needs this screen open.'));
+  const list=el('div','joblist');
+  items.forEach(({j,o})=>{
+    const r=el('div','jobrow');
+    const label = o.kind==='video'?'Video':(o.kind==='report'?'Report & emails':`${o.n} photo${o.n>1?'s':''}`);
+    r.innerHTML=`<span class="id">${esc(j.id)}</span><span class="nm">${label}</span>
+      <span class="st"><span class="pill pill--wait">Queued</span></span>`;
+    list.append(r);
+  });
+  view.append(list);
+  actions([
+    {label:'Send everything now', cls:'btn--gold', on:()=>{ S.jobs.forEach(j=>j.outbox=[]); save(); render(); }},
+    {label:'Back', cls:'btn--ghost', on:back},
+  ]);
+};
+
+render();
+</script>
