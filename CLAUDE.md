@@ -271,6 +271,10 @@ Chris (the founder) wants his name, face, and personal/employment history kept O
 - No eco-friendly claims; no financial guarantees in copy
 - **Before/after imagery is ALLOWED and encouraged (23 Aug 2026).** The previous ban on dirty-oven before/after shots is revoked. The homepage hero now leads with a real before/after pair from a Birstall job. Use finished-result-only shots where a pairing would not add anything, and check every photo at full size for anything identifying at the edges before publishing. **Reflections in the door glass are NOT a reason to reject a photo (Chris, 30 Aug 2026)** — glass reflects, it cannot be helped, and the earlier instruction to re-take for it is overridden.
 - **Founding Customer Rate:** fully removed (June 2026) — do not reintroduce
+- **`03-Operations/` is INTERNAL. It is not source material for customer copy.** Those files exist so Chris does the job correctly — post-clean fault notes, chemical protocols, the dislodged-thermocouple lesson. Published, they tell a customer to inspect his work for damage they have just been told is possible, and turn a one-off incident into how the job normally goes. Established 10 Sep 2026 after three service pages were drafted straight out of them. **If something from there genuinely belongs on a public page, put it to Chris first — do not publish it and let him find it.**
+- **Never describe a way the cleaning process itself could damage the appliance.** "Ceramic scratches permanently so I use no abrasives" reads as a warning, not a reassurance. Honest-expectations copy about marks that were *already there* is different and stays.
+- **Never publish a limitation Chris intends to lift.** The extractor motor compartment was written up as settled policy on a live-bound page while extractor repair is a service he plans to offer. A boundary that is real *today* is not automatically a boundary worth printing. Genuine legal lines (Gas Safe) are the exception — state them plainly and briefly, without the lecture.
+- **An off-hand remark in a working chat is not a policy statement**, and a knowledge-base file is not a brief.
 
 ---
 
