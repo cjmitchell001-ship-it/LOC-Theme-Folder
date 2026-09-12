@@ -30,6 +30,9 @@ get_header();
 // SINGLE SOURCE OF TRUTH for this page. Mirrors the tracker; regenerate rather
 // than editing by hand. 'square' switches the card to the 700x700 crop.
 $loc_gallery = [
+	[ "slug" => "megan-blaby-single-oven",         "appliance" => "Single oven",          "area" => "Blaby",           "when" => "September 2026" ],
+	[ "slug" => "melissa-scraptoft-single-oven",   "appliance" => "Single oven",          "area" => "Scraptoft",       "when" => "September 2026" ],
+	[ "slug" => "melissa-scraptoft-single-oven-2", "appliance" => "Single oven",          "area" => "Scraptoft",       "when" => "September 2026" ],
 	[ "slug" => "mandy-mountsorrel-oven-exterior",  "appliance" => "Oven exterior",        "area" => "Mountsorrel",     "when" => "September 2026" ],
 	[ "slug" => "nathan-coalville-grill",           "appliance" => "Grill",                "area" => "Coalville",       "when" => "August 2026", "square" => true ],
 	[ "slug" => "janine-lutterworth-single-oven",     "appliance" => "Single oven",          "area" => "Lutterworth",     "when" => "August 2026" ],
@@ -63,6 +66,8 @@ $loc_gallery = [
  * are landscape and would be destroyed by a portrait crop.
  */
 $loc_gallery_singles = [
+	[ "slug" => "cassie-birstall-hob",             "appliance" => "Gas hob",        "area" => "Birstall",        "when" => "September 2026", "w" => 600, "h" => 800 ],
+	[ "slug" => "melissa-scraptoft-oven-exterior", "appliance" => "Oven exterior",  "area" => "Scraptoft",       "when" => "September 2026", "w" => 600, "h" => 800 ],
 	[ "slug" => "mandy-mountsorrel-oven-interior",   "appliance" => "Oven interior",  "area" => "Mountsorrel",     "when" => "September 2026", "w" => 600, "h" => 800 ],
 	[ "slug" => "mandy-mountsorrel-oven-interior-2", "appliance" => "Oven interior",  "area" => "Mountsorrel",     "when" => "September 2026", "w" => 600, "h" => 800 ],
 	[ "slug" => "lin-hamilton-extractor",            "appliance" => "Extractor hood", "area" => "Hamilton",        "when" => "September 2026", "w" => 600, "h" => 445 ],
