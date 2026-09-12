@@ -36,7 +36,8 @@ get_header();
                         <span class="loc-services-card__price">From £55</span>
                     </div>
                     <p class="loc-services-card__desc">A full strip-down clean, done carefully in your kitchen — interior cavity, door glass (both sides), racks, trays, fan housing, and exterior.</p>
-                    <a class="loc-services-card__link" href="/reserve-step-1/?add=Single%20Oven">Reserve this <span aria-hidden="true">&rarr;</span></a>
+                    <a class="loc-services-card__more" href="/services/single-oven/">How I clean it &rarr;</a>
+                        <a class="loc-services-card__link" href="/reserve-step-1/?add=Single%20Oven">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
                 <div class="loc-services-card" id="double-oven">
@@ -91,7 +92,8 @@ get_header();
                         <span class="loc-services-card__price">from £25</span>
                     </div>
                     <p class="loc-services-card__desc">Burner heads, caps, pan supports, and hob surface — all removed, soaked, and cleaned individually.</p>
-                    <a class="loc-services-card__link" href="/reserve-step-1/?add=Gas%20Hob">Reserve this <span aria-hidden="true">&rarr;</span></a>
+                    <a class="loc-services-card__more" href="/services/hob/">How I clean it &rarr;</a>
+                        <a class="loc-services-card__link" href="/reserve-step-1/?add=Gas%20Hob">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
                 <div class="loc-services-card" id="ceramic-induction-hob">
@@ -100,7 +102,8 @@ get_header();
                         <span class="loc-services-card__price">from £25</span>
                     </div>
                     <p class="loc-services-card__desc">A careful surface clean and polish, using a scratch-safe technique throughout.</p>
-                    <a class="loc-services-card__link" href="/reserve-step-1/?add=Ceramic%20%2F%20Induction%20Hob">Reserve this <span aria-hidden="true">&rarr;</span></a>
+                    <a class="loc-services-card__more" href="/services/hob/">How I clean it &rarr;</a>
+                        <a class="loc-services-card__link" href="/reserve-step-1/?add=Ceramic%20%2F%20Induction%20Hob">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
                 <div class="loc-services-card" id="extractor-hood">
@@ -109,7 +112,8 @@ get_header();
                         <span class="loc-services-card__price">from £25</span>
                     </div>
                     <p class="loc-services-card__desc">Grease filters removed, soaked, and degreased — included in the price — with fan housing and exterior surfaces cleaned and polished to finish.</p>
-                    <a class="loc-services-card__link" href="/reserve-step-1/?add=Extractor%20Hood">Reserve this <span aria-hidden="true">&rarr;</span></a>
+                    <a class="loc-services-card__more" href="/services/extractor-hood/">How I clean it &rarr;</a>
+                        <a class="loc-services-card__link" href="/reserve-step-1/?add=Extractor%20Hood">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
 
                 <div class="loc-services-card" id="microwave">

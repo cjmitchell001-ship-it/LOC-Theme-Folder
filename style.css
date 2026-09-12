@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.11.0
+Version:           2.12.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -8741,4 +8741,87 @@ a.loc-funnel-step--complete:hover {
    target card underneath it. */
 .loc-services-card {
     scroll-margin-top: var(--space-25);
+}
+
+/* ==========================================================================
+   SERVICE PAGES (page-service.php)
+   The process list is the reason these pages exist — competitors publish a
+   price and a promise, none of them publish what actually happens to the
+   appliance. It is styled to read as substance, not as a feature list.
+   ========================================================================== */
+
+.loc-service-process {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-6);
+}
+
+.loc-service-process li {
+    position: relative;
+    padding-left: var(--space-8);
+    margin-bottom: var(--space-5);
+    font-size: var(--text-body);
+    color: var(--grey-600);
+    line-height: 1.7;
+}
+
+.loc-service-process li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: var(--space-4);
+    height: 3px;
+    background: var(--gold);
+    border-radius: var(--radius-xs);
+}
+
+.loc-service-process li strong {
+    color: var(--blue);
+    font-weight: 700;
+}
+
+/* The honest caveat inside a process section — the gas flame-safety note, the
+   motor-compartment boundary. Deliberately visually distinct: these are the
+   bits that build trust precisely because a competitor would leave them out. */
+.loc-service-note {
+    border-left: 3px solid var(--gold);
+    background: var(--blue-pale);
+    padding: var(--space-5) var(--space-6);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    font-size: var(--text-body-sm);
+    color: var(--grey-700);
+    line-height: 1.7;
+}
+
+/* "How I clean it" — the link from a services card to its own service page.
+   It sits INSIDE a card whose whole surface is already a link to the funnel,
+   so it needs the same treatment as the description links: raised above the
+   stretched ::after, or the card overlay swallows the tap. */
+
+.loc-services-card__more {
+    position: relative;
+    z-index: var(--z-raised);
+    display: inline-block;
+    margin-top: var(--space-3);
+    margin-right: var(--space-5);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: var(--text-ui);
+    color: var(--blue);
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-underline-offset: 3px;
+}
+
+.loc-services-card__more:hover {
+    color: var(--gold-dark);
+}
+
+@media (max-width: 768px), (hover: none) {
+    .loc-services-card__more {
+        display: block;
+        margin-right: 0;
+        padding: var(--space-3) 0;
+    }
 }
