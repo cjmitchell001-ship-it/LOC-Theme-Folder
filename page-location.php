@@ -217,31 +217,7 @@ function loc_location_cta() {
 		</div>
 	</section>
 
-	<!-- 3. COVERAGE — postcode level. Every page in the teardown did this. -->
-	<section class="loc-location-section loc-location-section--alt">
-		<div class="loc-location-section__inner">
-			<p class="section-eyebrow">Coverage</p>
-			<h2>Where I cover around <?php echo $t['town']; ?></h2>
-			<p><?php echo $t['coverage_lead']; ?></p>
-
-			<div class="loc-location-coverage">
-				<?php foreach ( $t['coverage_groups'] as $group => $places ) : ?>
-					<div class="loc-location-coverage__group">
-						<h3 class="loc-location-coverage__title"><?php echo $group; ?></h3>
-						<ul class="loc-location-coverage__list">
-							<?php foreach ( $places as $p ) : ?>
-								<li><?php echo $p; ?></li>
-							<?php endforeach; ?>
-						</ul>
-					</div>
-				<?php endforeach; ?>
-			</div>
-
-			<p><?php echo $t['coverage_note']; ?></p>
-		</div>
-	</section>
-
-	<!-- 4. PRICES — competitors hide these. I do not. -->
+	<!-- 3. PRICES — competitors hide these. I do not. -->
 	<section class="loc-location-section">
 		<div class="loc-location-section__inner">
 			<p class="section-eyebrow">Prices</p>
@@ -249,12 +225,12 @@ function loc_location_cta() {
 			<p>The same prices in <?php echo $t['town']; ?> as everywhere else I cover &mdash; there is no travel surcharge.</p>
 
 			<div class="loc-location-prices">
-				<div class="loc-location-price"><span><a href="/services/#single-oven">Single oven</a></span><span>From &pound;55</span></div>
+				<div class="loc-location-price"><span><a href="/services/single-oven/">Single oven</a></span><span>From &pound;55</span></div>
 				<div class="loc-location-price"><span><a href="/services/#double-oven">Double oven</a></span><span>From &pound;70</span></div>
 				<div class="loc-location-price"><span><a href="/services/#free-standing-oven">Free-standing cooker</a></span><span>From &pound;55</span></div>
 				<div class="loc-location-price"><span><a href="/services/range-cooker-prices/">Range cooker</a></span><span>from &pound;125</span></div>
-				<div class="loc-location-price"><span><a href="/services/#gas-hob">Gas, ceramic or induction hob</a></span><span>from &pound;25</span></div>
-				<div class="loc-location-price"><span><a href="/services/#extractor-hood">Extractor hood</a></span><span>from &pound;25</span></div>
+				<div class="loc-location-price"><span><a href="/services/hob/">Gas, ceramic or induction hob</a></span><span>from &pound;25</span></div>
+				<div class="loc-location-price"><span><a href="/services/extractor-hood/">Extractor hood</a></span><span>from &pound;25</span></div>
 				<div class="loc-location-price"><span><a href="/services/#microwave">Microwave</a></span><span>&pound;15</span></div>
 				<div class="loc-location-price"><span><a href="/services/#microwave">Combi microwave</a></span><span>&pound;20</span></div>
 			</div>
@@ -267,7 +243,7 @@ function loc_location_cta() {
 		</div>
 	</section>
 
-	<!-- 5. HOUSING STOCK / APPLIANCE MIX — the section that most separates one
+	<!-- 4. HOUSING STOCK / APPLIANCE MIX — the section that most separates one
 	     town page from another. Needs real local knowledge to write. -->
 	<section class="loc-location-section loc-location-section--alt">
 		<div class="loc-location-section__inner">
@@ -278,7 +254,7 @@ function loc_location_cta() {
 		</div>
 	</section>
 
-	<!-- 6. RECENT WORK — real before/after pairs where the town has them,
+	<!-- 5. RECENT WORK — real before/after pairs where the town has them,
 	     finished-result shots otherwise. The old "no dirty-oven imagery" rule
 	     in this comment was REVOKED by Chris on 29 Aug 2026. Before/after is
 	     now the strongest asset the site has, and neither Ovenu nor
@@ -330,7 +306,7 @@ function loc_location_cta() {
 		</div>
 	</section>
 
-	<!-- 7. REVIEWS — real customers from this town, placed BEFORE the honest
+	<!-- 6. REVIEWS — real customers from this town, placed BEFORE the honest
 	     expectations section so the page reads as delight then caveat, rather
 	     than a claim immediately contradicted. -->
 	<section class="loc-location-section">
@@ -349,6 +325,30 @@ function loc_location_cta() {
 				<?php endforeach; ?>
 			</div>
 			<?php loc_location_cta(); ?>
+		</div>
+	</section>
+
+	<!-- 7. COVERAGE — postcode level. Every page in the teardown did this. -->
+	<section class="loc-location-section loc-location-section--alt">
+		<div class="loc-location-section__inner">
+			<p class="section-eyebrow">Coverage</p>
+			<h2>Where I cover around <?php echo $t['town']; ?></h2>
+			<p><?php echo $t['coverage_lead']; ?></p>
+
+			<div class="loc-location-coverage">
+				<?php foreach ( $t['coverage_groups'] as $group => $places ) : ?>
+					<div class="loc-location-coverage__group">
+						<h3 class="loc-location-coverage__title"><?php echo $group; ?></h3>
+						<ul class="loc-location-coverage__list">
+							<?php foreach ( $places as $p ) : ?>
+								<li><?php echo $p; ?></li>
+							<?php endforeach; ?>
+						</ul>
+					</div>
+				<?php endforeach; ?>
+			</div>
+
+			<p><?php echo $t['coverage_note']; ?></p>
 		</div>
 	</section>
 
