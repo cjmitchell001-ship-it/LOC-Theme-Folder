@@ -11,6 +11,15 @@
  * here. If a photo is not in the sheet, it is not approved and will not exist
  * in this array.
  *
+ * BUT A TRACKER ROW IS NOT AN INSTRUCTION TO PUBLISH. The sheet covers the
+ * gallery AND social, so a linked photo may be meant for GBP or Facebook and
+ * not for here. There are always more photos in a job folder than in the
+ * tracker, and more in the tracker than on this page, and both gaps are
+ * deliberate. Do NOT reconcile this array against the full tracker and add
+ * the difference -- that was tried on 12 Sep 2026 and turned up 14 photos
+ * Chris had held back on purpose, three of them "before" shots he did not
+ * want shown. Add what Chris points at, nothing else.
+ *
  * The .webp files in images/gallery/ are generated from the originals in
  * 03-Operations/Job-Photos/. Portraits are cropped to 600x800, the one
  * odd-shaped pair to 700x700. Do NOT hand-edit the images -- regenerate them
