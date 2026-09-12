@@ -24,8 +24,9 @@
  * PHOTOS reuse the .webp already generated for /before-and-after/, so a service
  * page costs no new images. 'pairs' is empty where no photo has been approved
  * in the tracker; the section then does not render at all rather than showing
- * a placeholder. THE HOB PAGE HAS NO APPROVED PHOTO -- see the note on its
- * entry below.
+ * a placeholder. 'singles' does the same job for an appliance where the
+ * tracker has an after shot but no usable before -- a hob is often half
+ * apart before there is any point reaching for a phone.
  */
 
 get_header();
@@ -139,13 +140,12 @@ $loc_services = [
 	],
 
 	/* ---------------------------------------------------------------- */
-	/* HOB. No approved photo exists for this appliance -- the tracker has no
-	 * hob row, so 'pairs' is empty and the Real Work section does not render.
-	 * There IS an unselected candidate at
-	 * 03-Operations/Job-Photos/20-Lin-Hamilton/hob-after.JPEG. If Chris adds it
-	 * to the tracker, generate the .webp and add it here. Until then this page
-	 * stands on its process and FAQ content, which is the SEO substance
-	 * anyway -- it is just weaker without proof. */
+	/* HOB. Two approved afters, no pair. Both are in the tracker; neither job
+	 * has a usable before, which is normal for a hob -- the caps and crowns are
+	 * usually off before there is anything worth photographing. The two are
+	 * deliberately different appliances, a stainless gas hob and a black glass
+	 * one, because "will you wreck my glass hob" is the question this page
+	 * exists to answer. */
 	'hob' => [
 		'name'     => 'Hob',
 		'add'      => '',
@@ -166,7 +166,11 @@ $loc_services = [
 		'price_note' => 'Hobs start at &pound;25 whether they are gas, ceramic or induction. A six-burner range hob with heavy build-up sits above that, and I will confirm before starting.',
 
 		'pairs' => [],
-		'photos_cap' => '',
+		'singles' => [
+			[ 'slug' => 'cassie-birstall-hob', 'label' => 'Birstall',  'w' => 600, 'h' => 800 ],
+			[ 'slug' => 'lin-hamilton-hob',    'label' => 'Hamilton',  'w' => 600, 'h' => 800 ],
+		],
+		'photos_cap' => 'Two gas hobs, finished. Different appliances, same job.',
 
 		'limits' => 'Marks already etched into ceramic glass will not come back &mdash; that is damage in the surface rather than dirt on it. Gas burner caps discolour with heat and stay discoloured however clean they are; that is the enamel changing, not dirt. Pan supports usually clean up very well, but cast iron ones that have started to rust will still be rusty afterwards.',
 
@@ -250,7 +254,7 @@ $loc_gallery_dir = get_stylesheet_directory_uri() . '/images/gallery/';
 		</div>
 	</section>
 
-	<?php if ( ! empty( $s['pairs'] ) ) : ?>
+	<?php if ( ! empty( $s['pairs'] ) || ! empty( $s['singles'] ) ) : ?>
 	<section class="loc-gallery-section loc-gallery-section--alt">
 		<div class="loc-gallery-section__inner">
 			<p class="section-eyebrow">Real Work</p>
@@ -279,6 +283,24 @@ $loc_gallery_dir = get_stylesheet_directory_uri() . '/images/gallery/';
 					</figure>
 				<?php endforeach; ?>
 			</div>
+			<?php if ( ! empty( $s['singles'] ) ) : ?>
+			<div class="loc-gallery-singles">
+				<?php foreach ( $s['singles'] as $p ) : ?>
+					<figure class="loc-gallery-singles__item">
+						<div class="loc-gallery-singles__shot">
+							<img src="<?php echo esc_url( $loc_gallery_dir . $p['slug'] . '.webp' ); ?>"
+							     width="<?php echo (int) $p['w']; ?>" height="<?php echo (int) $p['h']; ?>"
+							     loading="lazy" decoding="async"
+							     alt="<?php echo esc_attr( $s['name'] . ' in ' . $p['label'] . ' after cleaning' ); ?>">
+							<span class="loc-gallery__tag loc-gallery__tag--after">After</span>
+						</div>
+						<figcaption class="loc-gallery__caption">
+							<span class="loc-gallery__what"><?php echo esc_html( $s['name'] ); ?> &mdash; <?php echo esc_html( $p['label'] ); ?></span>
+						</figcaption>
+					</figure>
+				<?php endforeach; ?>
+			</div>
+			<?php endif; ?>
 			<p><a href="/before-and-after/">See more before and afters &rarr;</a></p>
 		</div>
 	</section>
