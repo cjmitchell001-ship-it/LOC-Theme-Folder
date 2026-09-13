@@ -39,6 +39,8 @@ get_header();
 // SINGLE SOURCE OF TRUTH for this page. Mirrors the tracker; regenerate rather
 // than editing by hand. 'square' switches the card to the 700x700 crop.
 $loc_gallery = [
+	[ "slug" => "emily-coalville-double-oven",   "appliance" => "Double oven",          "area" => "Coalville",       "when" => "September 2026" ],
+	[ "slug" => "emily-coalville-grill",         "appliance" => "Grill",                "area" => "Coalville",       "when" => "September 2026" ],
 	[ "slug" => "megan-blaby-single-oven",         "appliance" => "Single oven",          "area" => "Blaby",           "when" => "September 2026" ],
 	[ "slug" => "melissa-scraptoft-single-oven",   "appliance" => "Single oven",          "area" => "Scraptoft",       "when" => "September 2026" ],
 	[ "slug" => "melissa-scraptoft-single-oven-2", "appliance" => "Single oven",          "area" => "Scraptoft",       "when" => "September 2026" ],
