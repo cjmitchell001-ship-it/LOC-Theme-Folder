@@ -71,12 +71,12 @@ get_header();
                     <ul class="loc-step2-area-tags">
                         <li data-postcode="LE2"><a href="/reserve-step-1/">Stoneygate</a> <span>LE2</span></li>
                         <li data-postcode="LE2"><a href="/reserve-step-1/">Clarendon Park</a> <span>LE2</span></li>
-                        <li data-postcode="LE2"><a href="/reserve-step-1/">Oadby</a> <span>LE2</span></li>
+                        <li data-postcode="LE2"><a href="/areas/oadby/">Oadby</a> <span>LE2</span></li>
                         <li data-postcode="LE2"><a href="/reserve-step-1/">Knighton</a> <span>LE2</span></li>
                         <li data-postcode="LE8"><a href="/reserve-step-1/">Blaby</a> <span>LE8</span></li>
                         <li data-postcode="LE8"><a href="/reserve-step-1/">Countesthorpe</a> <span>LE8</span></li>
                         <li data-postcode="LE8"><a href="/reserve-step-1/">Fleckney</a> <span>LE8</span></li>
-                        <li data-postcode="LE18"><a href="/reserve-step-1/">Wigston</a> <span>LE18</span></li>
+                        <li data-postcode="LE18"><a href="/areas/wigston/">Wigston</a> <span>LE18</span></li>
                         <li data-postcode="LE16"><a href="/reserve-step-1/">Market Harborough</a> <span>LE16</span></li>
                         <li data-postcode="LE17"><a href="/reserve-step-1/">Lutterworth</a> <span>LE17</span></li>
                     </ul>

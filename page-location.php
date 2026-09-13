@@ -224,6 +224,97 @@ $loc_towns = [
 			[ 'name' => 'Oven cleaning in Syston',   'url' => '/areas/syston/' ],
 		],
 	],
+	'wigston' => [
+		'town'       => 'Wigston',
+		'postcode'   => 'LE18',
+		'price_from' => '55',
+		'subline'    => 'LE18 &middot; South Leicester &middot; Wigston Magna and South Wigston',
+
+		'intro'   => 'Wigston is a straight run south out of the city and one of the areas I get asked about most. It is really two places sharing a postcode &mdash; Wigston Magna around Bell Street and Leicester Road, and South Wigston down by the station &mdash; and the housing is noticeably different between them.',
+		'intro_2' => 'I have worked both sides of it. The before and after further down this page is a Wigston kitchen, not a stock photo and not a showroom.',
+
+		'coverage_lead'   => 'I cover Wigston and the places that sit immediately around it.',
+		'coverage_groups' => [
+			'Wigston and LE18' => [ 'Wigston Magna', 'South Wigston', 'Little Hill', 'Wigston Fields' ],
+			'Just around'      => [ 'Oadby', 'Glen Parva', 'Blaby', 'Countesthorpe' ],
+		],
+		'coverage_note'   => 'Not sure which side of the line you are on? Put your postcode into the booking page and it will tell you in seconds. There is no travel charge wherever I come to.',
+
+		'kitchens'   => 'Both of my Wigston jobs so far have been single built-in ovens, which fits the housing. A lot of Wigston is post-war semis and 1960s and 70s estates, where the kitchen was built around one oven at eye level or under the counter, and it has stayed that way since. It is the most common appliance I clean and the one I am quickest on.',
+		'kitchens_2' => 'The older terraces down in South Wigston are a different proposition. Kitchens there tend to be smaller and the cooker is more often free-standing than built in, which changes the job: a free-standing cooker gets cleaned all the way round rather than just the front and the cavity, because the sides are on show. It is the same price as a single oven and it usually takes a little longer.',
+
+		'pairs' => [
+			[ 'slug' => 'sunita-wigston-single-oven', 'label' => 'Single oven &mdash; Wigston', 'alt' => 'A single oven in a Wigston kitchen' ],
+		],
+		'photos_cap' => 'A single oven cleaned in Wigston, before and after, shot on my phone on the day.',
+
+		'reviews' => [],
+
+		'faqs' => [
+			[
+				'q' => 'My cooker is free-standing rather than built in. Is that a different price?',
+				'a' => 'No &mdash; a free-standing cooker is priced the same as a single oven, from &pound;55. It does take a little longer, because the sides and the back edge are on show and get cleaned rather than ignored. The hob on top is priced separately if you want that doing as well.',
+			],
+			[
+				'q' => 'Do you need to pull the cooker out?',
+				'a' => 'Only if it is free-standing and you want the sides doing, and only if it comes out easily. If it is wedged in, or the flooring has been laid around it, I will leave it where it is and clean what I can reach rather than force it. I will tell you what I am doing before I do it.',
+			],
+			[
+				'q' => 'How long does a single oven take?',
+				'a' => 'Usually between one and two hours. One that has not been done for years takes longer, and I would rather tell you that on the confirmation call than turn up and surprise you with it.',
+			],
+		],
+
+		'nearby' => [
+			[ 'name' => 'Oven cleaning in Oadby', 'url' => '/areas/oadby/' ],
+		],
+	],
+	'oadby' => [
+		'town'       => 'Oadby',
+		'postcode'   => 'LE2',
+		'price_from' => '55',
+		'subline'    => 'LE2 &middot; South East Leicester &middot; Between the city and Great Glen',
+
+		'intro'   => 'Oadby sits south east of the city, out past Stoneygate and the racecourse, and the kitchens here tend to be bigger than the Leicester average. That shows up in what I get asked to clean.',
+		'intro_2' => 'My Oadby job was a range cooker rather than a built-in oven. A range is a different sort of job, and it is worth understanding what you are booking before you book it.',
+
+		'coverage_lead'   => 'I cover Oadby and the places immediately around it.',
+		'coverage_groups' => [
+			'Oadby and LE2' => [ 'Oadby', 'Brocks Hill', 'Knighton', 'Stoneygate' ],
+			'Just around'   => [ 'Wigston', 'Great Glen', 'Stoughton' ],
+		],
+		'coverage_note'   => 'Not sure whether you fall inside that? Put your postcode into the booking page and it will tell you in seconds. There is no travel charge wherever I come to.',
+
+		'kitchens'   => 'Oadby has more range cookers in it than most of the areas I work, and a range is not simply a big oven. It is several separate cavities behind one front &mdash; a main oven, usually a second smaller one, often a grill compartment, and a hob across the top &mdash; and every one of those has to be stripped and cleaned in its own right.',
+		'kitchens_2' => 'That is why a range is priced by what is actually in it rather than as one flat job, and why the from-price is higher than an ordinary oven. It also means you are not forced into having all of it done. If the main oven is the one bothering you and the rest is fine, that is what I will clean and that is what you will pay for &mdash; a single cavity on its own starts at the same &pound;55 as any other oven.',
+
+		'pairs' => [],
+		'photos' => [
+			[ 'file' => 'images/gallery/saleha-oadby-range.webp', 'alt' => 'A cleaned range cooker in an Oadby kitchen', 'w' => 600, 'h' => 338 ],
+		],
+		'photos_cap' => 'A range cooker finished in Oadby. There is no before shot of this one &mdash; it was already half apart before I thought to reach for my phone.',
+
+		'reviews' => [],
+
+		'faqs' => [
+			[
+				'q' => 'I only want part of my range cleaned. Can I do that?',
+				'a' => 'Yes, and plenty of people do. A range is priced by the cavity, so if it is only the main oven you care about then that is what I clean and that is all you pay for &mdash; from &pound;55, the same as an ordinary single oven. Tell me what you want doing when I call and I will price that, not the whole appliance.',
+			],
+			[
+				'q' => 'How much is a whole range cooker?',
+				'a' => 'From &pound;125, and it genuinely does vary, because no two ranges have the same number of cavities in them. There is a full breakdown of what each part costs on the <a href="/services/range-cooker-prices/">range cooker prices page</a>, so you can work out roughly where yours lands before you speak to me.',
+			],
+			[
+				'q' => 'How long does a range take?',
+				'a' => 'Considerably longer than a single oven &mdash; it is several ovens in one housing. I will give you a realistic window when I ring to confirm, once I know what is actually in yours and roughly what state it is in.',
+			],
+		],
+
+		'nearby' => [
+			[ 'name' => 'Oven cleaning in Wigston', 'url' => '/areas/wigston/' ],
+		],
+	],
 ];
 
 if ( ! isset( $loc_towns[ $slug ] ) ) {
@@ -351,7 +442,8 @@ function loc_location_cta() {
 						<figure class="loc-location-gallery__item">
 							<img src="<?php echo get_stylesheet_directory_uri() . '/' . $ph['file']; ?>"
 							     alt="<?php echo esc_attr( $ph['alt'] ); ?>"
-							     width="900" height="1200" loading="lazy" decoding="async">
+							     width="<?php echo (int) ( $ph['w'] ?? 900 ); ?>" height="<?php echo (int) ( $ph['h'] ?? 1200 ); ?>"
+							     loading="lazy" decoding="async">
 						</figure>
 					<?php endforeach; ?>
 				</div>
@@ -359,6 +451,7 @@ function loc_location_cta() {
 		</div>
 	</section>
 
+	<?php if ( ! empty( $t["reviews"] ) ) : // a town with no review yet skips the block rather than heading an empty one ?>
 	<!-- 6. REVIEWS — real customers from this town, placed BEFORE the honest
 	     expectations section so the page reads as delight then caveat, rather
 	     than a claim immediately contradicted. -->
@@ -380,6 +473,7 @@ function loc_location_cta() {
 			<?php loc_location_cta(); ?>
 		</div>
 	</section>
+	<?php endif; ?>
 
 	<!-- 7. COVERAGE — postcode level. Every page in the teardown did this. -->
 	<section class="loc-location-section loc-location-section--alt">
