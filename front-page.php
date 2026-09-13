@@ -410,7 +410,7 @@ get_header();
                 <li data-postcode="LE12"><a href="/reserve-step-1/">Mountsorrel</a> <span>LE12</span></li>
                 <li data-postcode="LE12"><a href="/reserve-step-1/">Sileby</a> <span>LE12</span></li>
                 <li data-postcode="LE65"><a href="/reserve-step-1/">Ashby-de-la-Zouch</a> <span>LE65</span></li>
-                <li data-postcode="LE67"><a href="/reserve-step-1/">Coalville</a> <span>LE67</span></li>
+                <li data-postcode="LE67"><a href="/areas/coalville/">Coalville</a> <span>LE67</span></li>
             </ul>
         </div>
 
