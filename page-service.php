@@ -41,17 +41,17 @@ $loc_services = [
 		'add'      => 'Single Oven',
 		'h1'       => 'Single Oven Cleaning',
 		'price'    => 'From &pound;55',
-		'subline'  => 'Around two hours &middot; Leicester and Leicestershire',
-		'intro'    => 'The most common job I do, and the one people are most surprised by &mdash; not because of the result, but because of how much comes out of an oven that looked "not that bad" with the door shut.',
+		'subline'  => 'Anywhere between one and two hours &middot; Leicester and Leicestershire',
+		'intro'    => 'The most popular job I do, and always the most transformative. People are surprised less by the result than by how much comes out of an oven that looked "not that bad" with the door shut.',
 		'intro_2'  => 'It is a strip-down clean, and the appliance goes back together before I leave.',
 
 		'process_lead' => 'What actually happens to your oven:',
 		'process' => [
-			'The door comes apart so both faces of the inner glass are cleaned. This is the bit most people have never seen done &mdash; the film between the panes is why an oven still looks dirty after it has been wiped out.',
+			'Dirt builds up between the panes of the door glass, so the door comes apart and the glass is cleaned inside and out. That is the bit most people have never seen done, and it is why an oven can still look dirty after it has been wiped out.',
 			'Racks, runners and trays come out and are soaked separately rather than scrubbed in place.',
 			'The fan housing and the back panel are cleaned behind, not just around.',
-			'Seals, the door frame and the hinge area are cleaned by hand, because they are the parts that hold grease and the parts a spray-and-wipe misses.',
-			'Everything is reassembled and you look at it with me before I pack up.',
+			'Seals, the door frame and the hinge area are degreased and cleaned by hand. Seals tend to be the most heavily burnt, stained and discoloured part of the whole oven, and a spray-and-wipe never reaches them.',
+			'Everything goes back together, the oven is tested and it is ready to cook again. You look at it with me before I pack up.',
 		],
 
 		'price_note' => 'A single oven starts at &pound;55. A heavily built-up oven takes longer, and if that is what I find I will say so and re-quote before I start &mdash; never after I have finished.',
@@ -63,7 +63,7 @@ $loc_services = [
 		],
 		'photos_cap' => 'Three single ovens, before and after. All shot on my phone on the day.',
 
-		'limits' => 'I will get the carbon and grease off, and on most ovens the difference is bigger than people expect. What I will not promise is showroom condition. Discolouration, staining, pitting, scratches and heat damage are marks in the material itself rather than dirt sitting on top of it, and nobody can clean those out. If that is what I think you are looking at, I will tell you before I start.',
+		'limits' => 'I will get the carbon and grease off, and on most ovens the difference is bigger than people expect. What I will not promise is showroom condition. Discolouration, staining, pitting, scratches and heat damage are marks in the material itself rather than dirt sitting on top of it, and nobody can clean those out. Before and during the clean I am looking the appliance over anyway, so if there is wear and tear you would not have spotted, you will hear about it from me.',
 
 		'faqs' => [
 			[
@@ -72,11 +72,11 @@ $loc_services = [
 			],
 			[
 				'q' => 'Can you get the inside of the door glass clean?',
-				'a' => 'Yes &mdash; the door comes apart so both faces get done, and that is included in the price rather than charged as an extra. The exception is glass that is etched or heat-marked rather than dirty, which will not come back however long it is worked on.',
+				'a' => 'Yes &mdash; the door comes apart so both faces get done, and that is included in the price rather than charged as an extra.',
 			],
 			[
 				'q' => 'Do I need to do anything before you arrive?',
-				'a' => 'Take anything out of the oven that you want to keep, and make sure I can get to it. I need power and access to hot water. Beyond that, nothing &mdash; you do not need to pre-clean anything, and please do not run a self-clean cycle first.',
+				'a' => 'Take anything out of the oven that you want to keep, and make sure I can get to it. I need power and access to hot water. Beyond that, nothing &mdash; there is no need to pre-clean anything.',
 			],
 			[
 				'q' => 'Is my oven too old to be worth cleaning?',
@@ -96,9 +96,9 @@ $loc_services = [
 		'add'      => 'Extractor Hood',
 		'h1'       => 'Extractor Hood Cleaning',
 		'price'    => 'From &pound;25',
-		'subline'  => 'Usually added to an oven clean &middot; Leicester and Leicestershire',
-		'intro'    => 'The appliance people forget, and the one that quietly does the most work. An extractor pulls grease out of the air every time you cook, and most of it never leaves &mdash; it collects in the filters and on the underside of the canopy.',
-		'intro_2'  => 'It is also the job with the clearest safety argument. A filter saturated with grease sitting directly above a gas flame is not a cosmetic problem.',
+		'subline'  => 'Leicester and Leicestershire',
+		'intro'    => 'The appliance people forget, and the one that quietly does the most work. A hood can get very greasy, because it pulls grease out of the air every time you cook and most of it never leaves &mdash; it collects in the filters and on the underside of the canopy.',
+		'intro_2'  => 'It is worth doing before the filters get to the point where what they have collected starts finding its way back down into whatever you are cooking.',
 
 		'process_lead' => 'What actually happens to your extractor:',
 		'process' => [
@@ -109,14 +109,14 @@ $loc_services = [
 		],
 
 
-		'price_note' => 'Extractor hoods start at &pound;25 and vary with how much has built up in the filters. Most are done alongside an oven clean in the same visit &mdash; there is no second call-out charge for adding one.',
+		'price_note' => 'Extractor hoods start at &pound;25 and vary with how much has built up in the filters. Most people have theirs done in the same visit as the oven.',
 
 		'pairs' => [
 			[ 'slug' => 'rosemary-birstall-extractor', 'label' => 'Birstall' ],
 		],
 		'photos_cap' => 'An extractor hood in Birstall, before and after.',
 
-		'limits' => 'Filters that have been left long enough will come out clean but not new &mdash; aluminium mesh discolours permanently once grease has been baked into it, and that staining is in the metal rather than on it. If a filter is perished or misshapen, cleaning it will not fix that and a replacement is cheap. I will tell you if that is what I am looking at.',
+		'limits' => 'Metal mesh filters sometimes discolour. They will come back degreased and clean, but where grease has been baked into the mesh over a long time some of that colour stays in the metal. If that bothers you and you are thinking about replacing them, tell me beforehand and we will sort something out between us.',
 
 		'faqs' => [
 			[
@@ -124,12 +124,8 @@ $loc_services = [
 				'a' => 'It depends far more on how you cook than on how long it has been. Frying and roasting load the filters quickly; a household that mostly boils and bakes can go a great deal longer. If you hold a filter up to the light and cannot see through the mesh, it is overdue.',
 			],
 			[
-				'q' => 'Can you clean the ducting or the fan itself?',
-				'a' => 'What I clean is the filters, the canopy and the exterior &mdash; that is where the grease actually collects, and it is what makes the difference to how the hood performs. Ducting and internal parts are a separate job; tell me what the hood is doing and I will let you know whether it is something I can help with.',
-			],
-			[
-				'q' => 'My filters are the paper or carbon type. Can those be cleaned?',
-				'a' => 'Carbon filters cannot be cleaned &mdash; they are consumable and are meant to be replaced, usually every six to twelve months. Only metal mesh filters can be degreased. If yours are carbon I will say so rather than charge you to wash something that needs binning.',
+				'q' => 'What if I have paper or carbon filters rather than metal mesh?',
+				'a' => 'Those ones are not designed to be cleaned &mdash; they are meant to be swapped out, usually every six to twelve months. It is worth knowing which sort you have before I come, so have a look if you can. If they are the paper or carbon type and you think they are due, send me a photo of the hood and the model number when I call and I can have the right ones with me on the day rather than you having to chase them yourself.',
 			],
 		],
 
@@ -152,18 +148,18 @@ $loc_services = [
 		'h1'       => 'Hob Cleaning',
 		'price'    => 'From &pound;25',
 		'subline'  => 'Gas, ceramic or induction &middot; Leicester and Leicestershire',
-		'intro'    => 'Hobs are where burnt-on spills live. Most people keep the surface wiped and assume that is that &mdash; the build-up is underneath the burners, around the seals and in the pan support feet, where a cloth never reaches.',
-		'intro_2'  => 'How a hob is cleaned depends entirely on what sort it is, and getting that wrong causes damage. So it is worth saying what I actually do to each.',
+		'intro'    => 'Hobs get used every day, and most of the build-up ends up underneath the burners and around the edges where wiping the top never reaches.',
+		'intro_2'  => 'Gas, ceramic and induction are each cleaned a bit differently, so here is what happens to yours.',
 
 		'process_lead' => 'What actually happens, by hob type:',
 		'process' => [
 			'<strong>Gas.</strong> Burner caps, crowns and pan supports come off and are soaked, so the carbon on the underside comes away rather than being scrubbed around. The recesses beneath are cleaned by hand.',
-			'<strong>Ceramic and induction.</strong> The glass is cleaned with the right product and a bit of patience, so burnt-on residue lifts away rather than being forced.',
+			'<strong>Ceramic and induction.</strong> The glass is degreased and cleaned, with stubborn marks taken off where possible.',
 			'<strong>All types.</strong> Control knobs, the surround and the seal line where the hob meets the worktop &mdash; the last of these is usually the dirtiest part and almost always the part that has never been cleaned.',
 		],
 
 
-		'price_note' => 'Hobs start at &pound;25 whether they are gas, ceramic or induction. A six-burner range hob with heavy build-up sits above that, and I will confirm before starting.',
+		'price_note' => 'It depends on how many rings you have. A four-ring hob is from &pound;25, five or six rings is &pound;35, and seven or eight rings is &pound;45. Gas, ceramic or induction makes no difference to the price.',
 
 		'pairs' => [],
 		'singles' => [
@@ -172,20 +168,20 @@ $loc_services = [
 		],
 		'photos_cap' => 'Two gas hobs, finished. Different appliances, same job.',
 
-		'limits' => 'Marks already etched into ceramic glass will not come back &mdash; that is damage in the surface rather than dirt on it. Gas burner caps discolour with heat and stay discoloured however clean they are; that is the enamel changing, not dirt. Pan supports usually clean up very well, but cast iron ones that have started to rust will still be rusty afterwards.',
+		'limits' => 'Marks already in the ceramic glass will not come back &mdash; that is in the surface rather than dirt on it. Gas burner caps discolour with heat and stay discoloured however clean they are. Pan supports usually come up very well, but cast iron ones that have started to rust will still be rusty afterwards. I check the hob over before and during the clean, so anything obvious gets passed on to you and we both know where we stand.',
 
 		'faqs' => [
 			[
 				'q' => 'How long does a hob take?',
-				'a' => 'On its own, usually well under an hour. A six-burner gas hob with a lot of build-up around the burners takes longer than a flat ceramic surface. Most hobs are done alongside an oven in the same visit, so it adds time to the appointment rather than making a separate one.',
+				'a' => 'Set an hour aside. It really does depend on the condition &mdash; a six-ring gas hob with a lot around the burners takes longer than a flat ceramic one. Most hobs are done alongside an oven in the same visit, so it adds time to the appointment rather than making a separate one.',
 			],
 			[
 				'q' => 'Can you clean the hob at the same time as the oven?',
-				'a' => 'Yes, and most people do. It is priced per appliance and added up rather than bundled, but it is one visit and there is no second call-out charge.',
+				'a' => 'Yes, and most people do.',
 			],
 			[
 				'q' => 'My gas hob has not been lighting properly. Can you fix that while you are here?',
-				'a' => 'Not gas work, no &mdash; that needs a Gas Safe registered engineer. I will clean the hob and tell you anything I notice while I am there.',
+				'a' => 'I will clean it and get the dirt and debris off, and sometimes that is all it needed. What I will not do is gas work, but if the problem is there to be seen I will help you work out what it is.',
 			],
 		],
 
@@ -213,7 +209,7 @@ $loc_gallery_dir = get_stylesheet_directory_uri() . '/images/gallery/';
 		<div class="loc-page-header__inner">
 			<p class="loc-page-header__eyebrow section-eyebrow">What I Clean</p>
 			<h1><?php echo $s['h1']; ?></h1>
-			<p class="loc-location__price-anchor"><?php echo $s['price']; ?> &middot; no travel charge</p>
+			<p class="loc-location__price-anchor"><?php echo $s['price']; ?></p>
 			<p class="loc-location__subline"><?php echo $s['subline']; ?></p>
 			<a href="<?php echo empty( $s['add'] ) ? '/reserve-step-1/' : '/reserve-step-1/?add=' . rawurlencode( $s['add'] ); ?>" class="btn-primary">Reserve Your Slot &rarr;</a>
 		</div>
