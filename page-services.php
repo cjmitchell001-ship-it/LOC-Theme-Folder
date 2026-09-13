@@ -101,7 +101,7 @@ get_header();
                         <h3 class="loc-services-card__name">Ceramic / Induction Hob</h3>
                         <span class="loc-services-card__price">from £25</span>
                     </div>
-                    <p class="loc-services-card__desc">Degreased and cleaned, with stubborn marks taken off where possible. Four rings from £25, five or six £35, seven or eight £45.</p>
+                    <p class="loc-services-card__desc">Degreased and cleaned, with stubborn marks taken off where possible. Four to six zones from £25, seven or eight £35.</p>
                     <a class="loc-services-card__more" href="/services/hob/">How I clean it &rarr;</a>
                         <a class="loc-services-card__link" href="/reserve-step-1/?add=Ceramic%20%2F%20Induction%20Hob">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>
@@ -111,7 +111,7 @@ get_header();
                         <h3 class="loc-services-card__name">Extractor Hood</h3>
                         <span class="loc-services-card__price">from £25</span>
                     </div>
-                    <p class="loc-services-card__desc">Grease filters removed, soaked, and degreased — included in the price — with fan housing and exterior surfaces cleaned and polished to finish.</p>
+                    <p class="loc-services-card__desc">Grease filters removed, soaked, and degreased — included in the price — with fan housing and exterior surfaces cleaned and polished to finish. A small 600mm hood is from £25, a large 900mm one £35.</p>
                     <a class="loc-services-card__more" href="/services/extractor-hood/">How I clean it &rarr;</a>
                         <a class="loc-services-card__link" href="/reserve-step-1/?add=Extractor%20Hood">Reserve this <span aria-hidden="true">&rarr;</span></a>
                 </div>

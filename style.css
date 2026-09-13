@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.13.0
+Version:           2.14.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -5537,18 +5537,18 @@ a:hover {
    stays a simple list of appliances. The tile says "From £25"; this panel is
    what makes the running total right for a 5+ ring hob. Mirrors
    .loc-aga-options: hidden until .is-visible. */
-.loc-ring-options {
+.loc-card-options {
     display: none;
     margin-top: var(--space-4);
     padding-top: var(--space-4);
     border-top: 1px solid var(--border);
 }
 
-.loc-ring-options.is-visible {
+.loc-card-options.is-visible {
     display: block;
 }
 
-.loc-ring-options__controls {
+.loc-card-options__controls {
     display: flex;
     gap: var(--space-2);
     justify-content: center;
@@ -5556,7 +5556,7 @@ a:hover {
 
 /* 44px min height matches .loc-qty-btn and clears the WCAG 2.2 target size
    guidance. Do not shrink these to fit three across a narrow card. */
-.loc-ring-btn {
+.loc-card-option {
     flex: 1 1 0;
     min-height: 44px;
     padding: var(--space-2) var(--space-1);
@@ -5571,13 +5571,26 @@ a:hover {
     transition: border-color 0.15s, background 0.15s, color 0.15s;
 }
 
-.loc-ring-btn:hover {
+.loc-card-option:hover {
     border-color: var(--blue);
     background: var(--blue-pale);
     color: var(--blue);
 }
 
-.loc-ring-btn.is-active {
+/* Second line on an option button -- the extractor uses Small/Large with the
+   width underneath, because "600mm" alone means nothing to most people. */
+.loc-card-option span {
+    display: block;
+    font-weight: 400;
+    font-size: var(--text-xs);
+    color: var(--grey-500);
+}
+
+.loc-card-option.is-active span {
+    color: var(--white-a85);
+}
+
+.loc-card-option.is-active {
     border-color: var(--blue);
     background: var(--blue);
     color: var(--white);

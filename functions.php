@@ -422,37 +422,39 @@ function loc_step1_script() {
             var name         = card.dataset.name;
             var qty          = 0;
 
-            // Hobs are priced by ring count. The panel only exists on those two
-            // cards, so every other card keeps using its own data-price.
-            var ringPanel    = card.querySelector('.loc-ring-options');
-            var ringBtns     = ringPanel ? ringPanel.querySelectorAll('.loc-ring-btn') : [];
-            var rings        = null;
+            // Some appliances are priced by a variant the customer picks inside the
+            // card -- hob ring count, extractor width. The panel only exists on those
+            // cards; every other card keeps using its own data-price. The label words
+            // live in data-variant ("5-6 rings", "900mm") so this code stays generic.
+            var optPanel    = card.querySelector('.loc-card-options');
+            var optBtns     = optPanel ? optPanel.querySelectorAll('.loc-card-option') : [];
+            var variant      = null;
             var basePrice    = parseInt(card.dataset.price, 10);
 
-            function readRings() {
-                if (!ringPanel) { return; }
-                var active = ringPanel.querySelector('.loc-ring-btn.is-active');
+            function readVariant() {
+                if (!optPanel) { return; }
+                var active = optPanel.querySelector('.loc-card-option.is-active');
                 if (!active) { return; }
-                rings     = active.dataset.rings;
+                variant   = active.dataset.variant;
                 basePrice = parseInt(active.dataset.price, 10);
             }
-            readRings();
+            readVariant();
 
             function updateCard() {
                 if (qty === 0) {
                     delete selections[name];
                     card.classList.remove('is-selected');
                     stepperPanel.classList.remove('is-visible');
-                    if (ringPanel) { ringPanel.classList.remove('is-visible'); }
+                    if (optPanel) { optPanel.classList.remove('is-visible'); }
                     priceEl.innerHTML = priceEl.dataset.origHtml;
                 } else {
                     var total = basePrice * qty;
-                    if (ringPanel) {
+                    if (optPanel) {
                         // Always an object so the ring count survives into Step 3, the
                         // reservation email and the calendar event. The key stays the
                         // plain appliance name, because the duration table is keyed on it.
-                        selections[name] = { price: total, qty: qty, basePrice: basePrice, rings: rings };
-                        ringPanel.classList.add('is-visible');
+                        selections[name] = { price: total, qty: qty, basePrice: basePrice, variant: variant };
+                        optPanel.classList.add('is-visible');
                     } else {
                         selections[name] = qty === 1 ? basePrice : { price: total, qty: qty, basePrice: basePrice };
                     }
@@ -480,15 +482,15 @@ function loc_step1_script() {
                 if (qty > 0) { qty--; updateCard(); }
             });
 
-            // Picking a ring count also selects the card, so tapping straight at
-            // 5-6 does not require tapping the tile as well.
-            Array.prototype.forEach.call(ringBtns, function(btn) {
+            // Picking a variant also selects the card, so tapping straight at an
+            // option does not require tapping the tile as well.
+            Array.prototype.forEach.call(optBtns, function(btn) {
                 btn.addEventListener('click', function(e) {
                     e.stopPropagation();
                     if (isSkipped) { return; }
-                    Array.prototype.forEach.call(ringBtns, function(b) { b.classList.remove('is-active'); });
+                    Array.prototype.forEach.call(optBtns, function(b) { b.classList.remove('is-active'); });
                     btn.classList.add('is-active');
-                    readRings();
+                    readVariant();
                     if (qty === 0) { qty = 1; }
                     updateCard();
                 });
@@ -538,10 +540,10 @@ function loc_step1_script() {
                 var basePrice    = parseInt(c.dataset.price, 10);
                 if (priceEl && basePrice) { priceEl.innerHTML = priceEl.dataset.origHtml; }
                 if (stepperPanel) { stepperPanel.classList.remove('is-visible'); }
-                var ringPanel = c.querySelector('.loc-ring-options');
-                if (ringPanel) {
-                    ringPanel.classList.remove('is-visible');
-                    ringPanel.querySelectorAll('.loc-ring-btn').forEach(function(b, i) {
+                var optPanel = c.querySelector('.loc-card-options');
+                if (optPanel) {
+                    optPanel.classList.remove('is-visible');
+                    optPanel.querySelectorAll('.loc-card-option').forEach(function(b, i) {
                         b.classList.toggle('is-active', i === 0);
                     });
                 }
@@ -648,10 +650,10 @@ function loc_step1_script() {
                     var val = selections[name];
                     if (name === 'AGA / Large Range' || (typeof val === 'object' && val.tbc)) {
                         serialised[name] = 'TBC';
-                    } else if (typeof val === 'object' && val.rings) {
-                        var ringLabel = name + ' (' + val.rings + ' rings)';
-                        if (val.qty > 1) { ringLabel += ' ×' + val.qty; }
-                        serialised[ringLabel] = val.price;
+                    } else if (typeof val === 'object' && val.variant) {
+                        var variantLabel = name + ' (' + val.variant + ')';
+                        if (val.qty > 1) { variantLabel += ' ×' + val.qty; }
+                        serialised[variantLabel] = val.price;
                     } else if (typeof val === 'object' && val.qty) {
                         serialised[name + ' ×' + val.qty] = val.price;
                     } else {

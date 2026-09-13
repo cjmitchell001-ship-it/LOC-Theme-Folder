@@ -109,7 +109,7 @@ $loc_services = [
 		],
 
 
-		'price_note' => 'Extractor hoods start at &pound;25 and vary with how much has built up in the filters. Most people have theirs done in the same visit as the oven.',
+		'price_note' => 'It goes by the size of the hood. A small one, around 600mm and usually two mesh filters, is from &pound;25. A large one, around 900mm with three filters, is &pound;35. Most people have theirs done in the same visit as the oven.',
 
 		'pairs' => [
 			[ 'slug' => 'rosemary-birstall-extractor', 'label' => 'Birstall' ],
@@ -159,7 +159,7 @@ $loc_services = [
 		],
 
 
-		'price_note' => 'It depends on how many rings you have. A four-ring hob is from &pound;25, five or six rings is &pound;35, and seven or eight rings is &pound;45. Gas, ceramic or induction makes no difference to the price.',
+		'price_note' => 'It depends on the hob. A four-ring gas hob is from &pound;25, five or six rings is &pound;35, and seven or eight rings is &pound;45 &mdash; each burner comes apart, so more burners means more parts. Ceramic and induction are one surface rather than a set of parts, so four to six zones is from &pound;25 and seven or eight is &pound;35.',
 
 		'pairs' => [],
 		'singles' => [

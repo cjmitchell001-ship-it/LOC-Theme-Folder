@@ -276,12 +276,12 @@
                     </svg>
                     <p class="loc-appliance-card__name">Gas Hob</p>
                     <p class="loc-appliance-card__price">From £25</p>
-                    <div class="loc-ring-options">
+                    <div class="loc-card-options">
                         <p class="loc-aga-options__label">How many rings?</p>
-                        <div class="loc-ring-options__controls">
-                            <button type="button" class="loc-ring-btn is-active" data-rings="4" data-price="25">4</button>
-                            <button type="button" class="loc-ring-btn" data-rings="5-6" data-price="35">5–6</button>
-                            <button type="button" class="loc-ring-btn" data-rings="7-8" data-price="45">7–8</button>
+                        <div class="loc-card-options__controls">
+                            <button type="button" class="loc-card-option is-active" data-variant="4 rings" data-price="25">4</button>
+                            <button type="button" class="loc-card-option" data-variant="5-6 rings" data-price="35">5–6</button>
+                            <button type="button" class="loc-card-option" data-variant="7-8 rings" data-price="45">7–8</button>
                         </div>
                     </div>
                     <div class="loc-aga-options">
@@ -304,12 +304,11 @@
                     </svg>
                     <p class="loc-appliance-card__name">Ceramic / Induction Hob</p>
                     <p class="loc-appliance-card__price">From £25</p>
-                    <div class="loc-ring-options">
-                        <p class="loc-aga-options__label">How many rings?</p>
-                        <div class="loc-ring-options__controls">
-                            <button type="button" class="loc-ring-btn is-active" data-rings="4" data-price="25">4</button>
-                            <button type="button" class="loc-ring-btn" data-rings="5-6" data-price="35">5–6</button>
-                            <button type="button" class="loc-ring-btn" data-rings="7-8" data-price="45">7–8</button>
+                    <div class="loc-card-options">
+                        <p class="loc-aga-options__label">How many zones?</p>
+                        <div class="loc-card-options__controls">
+                            <button type="button" class="loc-card-option is-active" data-variant="4-6 zones" data-price="25">4–6</button>
+                            <button type="button" class="loc-card-option" data-variant="7-8 zones" data-price="35">7–8</button>
                         </div>
                     </div>
                     <div class="loc-aga-options">
@@ -340,6 +339,13 @@
                     </svg>
                     <p class="loc-appliance-card__name">Extractor Hood</p>
                     <p class="loc-appliance-card__price">From £25</p>
+                    <div class="loc-card-options">
+                        <p class="loc-aga-options__label">What size?</p>
+                        <div class="loc-card-options__controls">
+                            <button type="button" class="loc-card-option is-active" data-variant="600mm" data-price="25">Small<br><span>600mm</span></button>
+                            <button type="button" class="loc-card-option" data-variant="900mm" data-price="35">Large<br><span>900mm</span></button>
+                        </div>
+                    </div>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
                         <div class="loc-qty-stepper__controls">
