@@ -159,7 +159,7 @@ $loc_services = [
 		],
 
 
-		'price_note' => 'It depends on the hob. A four-ring gas hob is from &pound;25, five or six rings is &pound;35, and seven or eight rings is &pound;45 &mdash; each burner comes apart, so more burners means more parts. Ceramic and induction are one surface rather than a set of parts, so four to six zones is from &pound;25 and seven or eight is &pound;35.',
+		'price_note' => 'It depends on the hob. A four-ring gas hob is from &pound;25, five or six rings is &pound;35, and an eight-ring is &pound;45 &mdash; each burner comes apart, so more burners means more parts. Ceramic and induction are one surface rather than a set of parts, so four to six zones is from &pound;25 and eight is &pound;35.',
 
 		'pairs' => [],
 		'singles' => [

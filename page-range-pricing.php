@@ -57,7 +57,7 @@ get_header();
 				<div class="loc-location-price"><span>Grill cavities</span><span>&pound;15</span></div>
 				<div class="loc-location-price"><span>Hob &mdash; 4 rings</span><span>&pound;25</span></div>
 				<div class="loc-location-price"><span>Hob &mdash; 5 or 6 rings</span><span>&pound;35</span></div>
-				<div class="loc-location-price"><span>Hob &mdash; 7 or 8 rings</span><span>&pound;45</span></div>
+				<div class="loc-location-price"><span>Hob &mdash; 8 rings</span><span>&pound;45</span></div>
 			</div>
 
 			<p>The outside of the cooker is included &mdash; door fronts, handles, knobs and pan supports all come as part of whatever you have cleaned. There is no separate charge for it.</p>

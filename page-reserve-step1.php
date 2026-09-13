@@ -281,7 +281,7 @@
                         <div class="loc-card-options__controls">
                             <button type="button" class="loc-card-option is-active" data-variant="4 rings" data-price="25">4</button>
                             <button type="button" class="loc-card-option" data-variant="5-6 rings" data-price="35">5–6</button>
-                            <button type="button" class="loc-card-option" data-variant="7-8 rings" data-price="45">7–8</button>
+                            <button type="button" class="loc-card-option" data-variant="8 rings" data-price="45">8</button>
                         </div>
                     </div>
                     <div class="loc-aga-options">
@@ -308,7 +308,7 @@
                         <p class="loc-aga-options__label">How many zones?</p>
                         <div class="loc-card-options__controls">
                             <button type="button" class="loc-card-option is-active" data-variant="4-6 zones" data-price="25">4–6</button>
-                            <button type="button" class="loc-card-option" data-variant="7-8 zones" data-price="35">7–8</button>
+                            <button type="button" class="loc-card-option" data-variant="8 zones" data-price="35">8</button>
                         </div>
                     </div>
                     <div class="loc-aga-options">
