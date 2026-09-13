@@ -276,6 +276,14 @@
                     </svg>
                     <p class="loc-appliance-card__name">Gas Hob</p>
                     <p class="loc-appliance-card__price">From £25</p>
+                    <div class="loc-ring-options">
+                        <p class="loc-aga-options__label">How many rings?</p>
+                        <div class="loc-ring-options__controls">
+                            <button type="button" class="loc-ring-btn is-active" data-rings="4" data-price="25">4</button>
+                            <button type="button" class="loc-ring-btn" data-rings="5-6" data-price="35">5–6</button>
+                            <button type="button" class="loc-ring-btn" data-rings="7-8" data-price="45">7–8</button>
+                        </div>
+                    </div>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
                         <div class="loc-qty-stepper__controls">
@@ -296,6 +304,14 @@
                     </svg>
                     <p class="loc-appliance-card__name">Ceramic / Induction Hob</p>
                     <p class="loc-appliance-card__price">From £25</p>
+                    <div class="loc-ring-options">
+                        <p class="loc-aga-options__label">How many rings?</p>
+                        <div class="loc-ring-options__controls">
+                            <button type="button" class="loc-ring-btn is-active" data-rings="4" data-price="25">4</button>
+                            <button type="button" class="loc-ring-btn" data-rings="5-6" data-price="35">5–6</button>
+                            <button type="button" class="loc-ring-btn" data-rings="7-8" data-price="45">7–8</button>
+                        </div>
+                    </div>
                     <div class="loc-aga-options">
                         <p class="loc-aga-options__label">Add more</p>
                         <div class="loc-qty-stepper__controls">

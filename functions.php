@@ -419,22 +419,46 @@ function loc_step1_script() {
             var minusBtn     = card.querySelector('.loc-qty-btn--minus');
             var plusBtn      = card.querySelector('.loc-qty-btn--plus');
             var priceEl      = card.querySelector('.loc-appliance-card__price');
-            var basePrice    = parseInt(card.dataset.price, 10);
             var name         = card.dataset.name;
             var qty          = 0;
+
+            // Hobs are priced by ring count. The panel only exists on those two
+            // cards, so every other card keeps using its own data-price.
+            var ringPanel    = card.querySelector('.loc-ring-options');
+            var ringBtns     = ringPanel ? ringPanel.querySelectorAll('.loc-ring-btn') : [];
+            var rings        = null;
+            var basePrice    = parseInt(card.dataset.price, 10);
+
+            function readRings() {
+                if (!ringPanel) { return; }
+                var active = ringPanel.querySelector('.loc-ring-btn.is-active');
+                if (!active) { return; }
+                rings     = active.dataset.rings;
+                basePrice = parseInt(active.dataset.price, 10);
+            }
+            readRings();
 
             function updateCard() {
                 if (qty === 0) {
                     delete selections[name];
                     card.classList.remove('is-selected');
                     stepperPanel.classList.remove('is-visible');
+                    if (ringPanel) { ringPanel.classList.remove('is-visible'); }
                     priceEl.innerHTML = priceEl.dataset.origHtml;
                 } else {
                     var total = basePrice * qty;
-                    selections[name] = qty === 1 ? basePrice : { price: total, qty: qty, basePrice: basePrice };
+                    if (ringPanel) {
+                        // Always an object so the ring count survives into Step 3, the
+                        // reservation email and the calendar event. The key stays the
+                        // plain appliance name, because the duration table is keyed on it.
+                        selections[name] = { price: total, qty: qty, basePrice: basePrice, rings: rings };
+                        ringPanel.classList.add('is-visible');
+                    } else {
+                        selections[name] = qty === 1 ? basePrice : { price: total, qty: qty, basePrice: basePrice };
+                    }
                     card.classList.add('is-selected');
                     stepperPanel.classList.add('is-visible');
-                    priceEl.textContent = '£' + basePrice + ' ×' + qty;
+                    priceEl.textContent = qty === 1 ? '£' + basePrice : '£' + basePrice + ' ×' + qty;
                 }
                 updateSummary();
             }
@@ -454,6 +478,20 @@ function loc_step1_script() {
             minusBtn.addEventListener('click', function(e) {
                 e.stopPropagation();
                 if (qty > 0) { qty--; updateCard(); }
+            });
+
+            // Picking a ring count also selects the card, so tapping straight at
+            // 5-6 does not require tapping the tile as well.
+            Array.prototype.forEach.call(ringBtns, function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (isSkipped) { return; }
+                    Array.prototype.forEach.call(ringBtns, function(b) { b.classList.remove('is-active'); });
+                    btn.classList.add('is-active');
+                    readRings();
+                    if (qty === 0) { qty = 1; }
+                    updateCard();
+                });
             });
         });
 
@@ -500,6 +538,13 @@ function loc_step1_script() {
                 var basePrice    = parseInt(c.dataset.price, 10);
                 if (priceEl && basePrice) { priceEl.innerHTML = priceEl.dataset.origHtml; }
                 if (stepperPanel) { stepperPanel.classList.remove('is-visible'); }
+                var ringPanel = c.querySelector('.loc-ring-options');
+                if (ringPanel) {
+                    ringPanel.classList.remove('is-visible');
+                    ringPanel.querySelectorAll('.loc-ring-btn').forEach(function(b, i) {
+                        b.classList.toggle('is-active', i === 0);
+                    });
+                }
             });
             var stickyTotal  = document.getElementById('loc-step1-sticky-total');
             var stickyBtn    = document.getElementById('loc-step1-sticky-btn');
@@ -603,6 +648,10 @@ function loc_step1_script() {
                     var val = selections[name];
                     if (name === 'AGA / Large Range' || (typeof val === 'object' && val.tbc)) {
                         serialised[name] = 'TBC';
+                    } else if (typeof val === 'object' && val.rings) {
+                        var ringLabel = name + ' (' + val.rings + ' rings)';
+                        if (val.qty > 1) { ringLabel += ' ×' + val.qty; }
+                        serialised[ringLabel] = val.price;
                     } else if (typeof val === 'object' && val.qty) {
                         serialised[name + ' ×' + val.qty] = val.price;
                     } else {
