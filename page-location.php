@@ -171,6 +171,60 @@ $loc_towns = [
 			[ 'name' => 'Oven cleaning in Syston', 'url' => '/areas/syston/' ],
 		],
 	],
+	'coalville' => [
+		'town'       => 'Coalville',
+		'postcode'   => 'LE67',
+		'price_from' => '55',
+		'subline'    => 'LE67 &middot; North West Leicestershire &middot; Whitwick, Hugglescote and the villages around',
+
+		'intro'   => 'Coalville is the furthest I regularly travel, and I go anyway. It is out past Bardon on the A511, thirteen miles or so from the city, and a lot of Leicester cleaners quietly stop somewhere around the M1. I have done three jobs here now and the drive has never been the difficult part.',
+		'intro_2' => 'It is also the town I can show you the most work from. Three of the before and after pairs on this site are Coalville kitchens, from two different jobs &mdash; so you can judge the standard yourself rather than take my word for it.',
+
+		'coverage_lead'   => 'I cover Coalville itself and the LE67 villages around it, out as far as Ashby in one direction and Ibstock in the other.',
+		'coverage_groups' => [
+			'Coalville and around (LE67)' => [ 'Coalville', 'Whitwick', 'Thringstone', 'Hugglescote', 'Greenhill', 'Agar Nook', 'Donington le Heath' ],
+			'The villages'                => [ 'Ibstock', 'Ellistown', 'Ravenstone', 'Swannington', 'Coleorton', 'Bardon' ],
+			'Just beyond (LE65)'          => [ 'Ashby-de-la-Zouch' ],
+		],
+		'coverage_note'   => 'If you are out in one of the smaller villages and assume you are too far &mdash; ask. Put your postcode into the booking page and it tells you in seconds. I reach a good deal further west than most people expect, and there is no travel charge on top wherever you are.',
+
+		'kitchens'   => 'Two of my three Coalville jobs have been double ovens with a separate grill cavity above, and that is the thing worth knowing before you book. A grill cavity is its own oven &mdash; its own roof, its own shelves, its own door &mdash; and it is usually in a worse state than the main oven, because it gets used for quick jobs under a fierce heat and then left. It is not something you can reach into and wipe out.',
+		'kitchens_2' => 'That is why the pricing is per cavity rather than per appliance: the main oven, then the grill above it, added up. You are not paying twice for one job, you are paying for two spaces that each have to be stripped and done properly. If you only want the main oven doing and the grill left alone, that is fine too &mdash; say so on the call and it comes off the price.',
+
+		'pairs' => [
+			[ 'slug' => 'emily-coalville-double-oven', 'label' => 'Double oven &mdash; Coalville', 'alt' => 'A double oven in a Coalville kitchen' ],
+			[ 'slug' => 'emily-coalville-grill',       'label' => 'Grill cavity &mdash; Coalville', 'alt' => 'A grill cavity in a Coalville kitchen' ],
+			[ 'slug' => 'nathan-coalville-grill',      'label' => 'Grill &mdash; Coalville',        'alt' => 'A grill in a Coalville kitchen' ],
+		],
+		'photos_cap' => 'A double oven and the grill cavity above it, cleaned in the same visit in Coalville, and a grill from a second job in the town.',
+
+		'reviews' => [
+			[
+				'quote'  => 'REVIEW QUOTE PENDING &mdash; Nathan M., Coalville. Do not publish until Chris supplies the full wording from the Google review.',
+				'author' => 'Nathan M.',
+			],
+		],
+
+		'faqs' => [
+			[
+				'q' => 'Am I too far out for you to come?',
+				'a' => 'Almost certainly not. I work across Coalville and the LE67 villages regularly, and out to Ashby as well. There is no travel charge wherever you are &mdash; the price is the price. If you are genuinely on the edge, put your postcode into the booking page and it will tell you straight away.',
+			],
+			[
+				'q' => 'My cooker has a grill cavity as well as the main oven. Is that extra?',
+				'a' => 'Yes &mdash; it is priced as its own cavity and added on, because it is genuinely a second oven to strip and clean rather than a shelf. Grill cavities start at &pound;15. You can also leave it out if you would rather only have the main oven done; just tell me when I call.',
+			],
+			[
+				'q' => 'How long will you be in the house?',
+				'a' => 'A single oven is usually between one and two hours. A double with the grill above it takes longer than that, and a cooker nobody has been able to face for a few years takes longer again. I give you a realistic window when I ring to confirm rather than a number that suits my diary.',
+			],
+		],
+
+		'nearby' => [
+			[ 'name' => 'Oven cleaning in Birstall', 'url' => '/areas/birstall/' ],
+			[ 'name' => 'Oven cleaning in Syston',   'url' => '/areas/syston/' ],
+		],
+	],
 ];
 
 if ( ! isset( $loc_towns[ $slug ] ) ) {
