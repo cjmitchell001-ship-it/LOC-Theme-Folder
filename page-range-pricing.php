@@ -55,6 +55,15 @@ get_header();
 				<div class="loc-location-price"><span>Main cavities</span><span>&pound;55</span></div>
 				<div class="loc-location-price"><span>Side cavities</span><span>&pound;35</span></div>
 				<div class="loc-location-price"><span>Grill cavities</span><span>&pound;15</span></div>
+				<!-- HOB ROWS ARE GAS PRICES, DELIBERATELY. Everywhere else on the site a
+				     ceramic or induction hob is priced lower than gas (4-6 zones GBP25,
+				     8 zones GBP35) because it is one sheet of glass rather than a set of
+				     parts that come off and get soaked. This list does not make that
+				     split and it is NOT AN OVERSIGHT -- put to Chris on 13 Sep 2026 and
+				     left as is. Range cookers are overwhelmingly gas, he has never seen
+				     an induction range hob, and he will take the difference off on the
+				     day if one turns up. Adding five rows to cover a case that has not
+				     happened once makes the page worse. Do not "fix" this. -->
 				<div class="loc-location-price"><span>Hob &mdash; 4 rings</span><span>&pound;25</span></div>
 				<div class="loc-location-price"><span>Hob &mdash; 5 or 6 rings</span><span>&pound;35</span></div>
 				<div class="loc-location-price"><span>Hob &mdash; 8 rings</span><span>&pound;45</span></div>
