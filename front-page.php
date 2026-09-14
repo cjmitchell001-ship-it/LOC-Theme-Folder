@@ -317,7 +317,7 @@ get_header();
         <div class="loc-reviews__rating">
             <span class="loc-reviews__rating-score">5.0</span>
             <span class="loc-reviews__rating-stars" aria-hidden="true">★★★★★</span>
-            <span class="loc-reviews__rating-count">from reviews on Google</span>
+            <span class="loc-reviews__rating-count">Rated on Google</span>
         </div>
 
         <div class="loc-reviews__grid">
