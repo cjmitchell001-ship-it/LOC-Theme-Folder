@@ -210,6 +210,8 @@ Set it to `0` for "elapsed windows only"; `1440` removes same-day booking entire
 
 `reservation-handler.php` enforces the same rule at submission, by calling `loc_slot_is_free()` with no events. Step 3 fetches availability once on page load, so a tab left open all day would otherwise submit against stale data. It is **not** a double-booking check — that would need a full calendar fetch per submission, and is still an open hole (see Known Bugs).
 
+**Chris sometimes blocks a day out with dummy bookings rather than an all-day `Unavailable`.** Duplicate `PROVISIONAL: Chris Mitchell` events filling a date's cap are usually **deliberate** — that is him taking the day off, not leftover test data. Confirmed 16 Sep 2026 for 26–27 Sep, after they were flagged as stray test bookings. **Do not delete them and do not report them as a fault.** (An all-day `Unavailable` does the same job and reads unambiguously on the calendar, so it is worth offering — but the dummy-booking method works and the choice is his.)
+
 **Events must be on the Jobs calendar.** A booking added from a phone usually lands on the device's *default* calendar instead, where the availability code never looks. The symptom reads as a phone/desktop sync failure: the event shows on the phone (which merges all calendars) but not on the desktop view (filtered to Jobs) and has no effect on availability. On iOS, set Settings → Calendar → Default Calendar, or change the Calendar field per event.
 
 ## Known Bugs / Open Items
@@ -461,6 +463,18 @@ Chris (the founder) wants his name, face, and personal/employment history kept O
 **Found and deliberately not fixed:** the double-booking race, now in Known Bugs above. **Also cleared:** `isFallbackMode`, the old fail-open switch, hardcoded to false since the fail-closed work and now deleted.
 
 **Not deployed.** Local commits only — `calendar-api.php` and `reservation-handler.php` are live booking logic, so this needs a full funnel run and a test reservation before it goes near the server.
+
+**Step 3 calendar: finding a morning meant clicking every date (2026-09-16).** Theme 2.15.0 → 2.16.0, commit `ceacf44`, same branch. Chris raised this as a UX problem and was right about the shape of it; the measurement is what showed how bad it got.
+
+**The grid painted two states while the data had three.** Available or unavailable on the squares; morning, afternoon or both in `availableLookup` — already loaded, already per-date, and thrown away at paint time. The only way to see the third dimension was to click a date and read the panel below, one date at a time, with an auto-scroll between each probe. Measured against the real calendar for the fortnight from 16 Sep: **an East customer had five clickable dates and had to click all five to learn none of them had a morning.**
+
+**Chris then spotted the worse half himself: the vanishing button.** A window with nothing left was `display: none` — not disabled, never drawn. A customer could not tell "taken" from "not offered" from "broken". Because the standing 07:00–13:00 block takes every weekday morning, **every weekday date showed an Afternoon button on its own**, so the page read as "he doesn't do mornings" with nothing on it to correct that. Both windows now always render; the spent one is dashed, struck through, and carries its reason. **The doubt came from the silence, not from the absence** — worth remembering anywhere else the funnel hides a control.
+
+**Deliberately not built: a filter.** "Show me mornings" sounds like the obvious answer and is the wrong one at this volume — its best case is a shorter list and its worst is an empty calendar, which is exactly what an East customer would have got. **Filters are for abundance; this business has scarcity.** Marking is additive: it never removes an option, it only says what each one is. Revisit only if availability grows a lot.
+
+**Dots over text or bands, decided by looking at 360px rather than by argument.** A comparison bench was built rendering all four options against the real data at true phone and desktop widths. `AM`/`PM` micro-text is clearest for one cell and the messiest to scan a month of — 8px type under a 12px numeral. Split bands on the cell edges survive the phone best but a bar meaning "morning" is a convention nobody arrives knowing. Dots cost 5px of height and a filled circle for "free" is closest to something people already understand.
+
+**Verification worth repeating: the dot classes are built by string concatenation**, so `loc-cal-day__dot--am` never appears as a literal anywhere in the source. A grep for it comes back empty and proves nothing. The generated strings were executed in node and checked against the stylesheet — that class of mistake fails completely silently, since a class with no matching rule just renders nothing.
 
 *Update this log and the sections above whenever significant progress is made or a decision is confirmed.*
 
