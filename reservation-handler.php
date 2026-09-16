@@ -166,22 +166,24 @@ EOT;
 
     $callback_lower = strtolower( $callback_time ?: 'morning' );
 
-    // Next working day we can place the callback (Mon–Thu → tomorrow; Fri/Sat/Sun → Monday)
-    $call_day = new DateTime( 'today', new DateTimeZone( 'Europe/London' ) );
-    $dow      = (int) $call_day->format( 'N' ); // 1=Mon … 7=Sun
-    if ( $dow >= 5 ) {
-        $call_day->modify( 'next Monday' );
-    } else {
-        $call_day->modify( '+1 day' );
-    }
-    $days_to_call = (int) ( new DateTime( 'today', new DateTimeZone( 'Europe/London' ) ) )->diff( $call_day )->days;
-
+    // The confirmation call goes out the next day, WEEKENDS INCLUDED.
+    //
+    // This used to roll Fri/Sat/Sun forward to the following Monday, on the
+    // assumption that no calls happened at a weekend. That promised a Monday
+    // call for a Saturday or Sunday job reserved on the Friday or Saturday —
+    // a call landing after the job had already been done, stated in the email
+    // subject line. Weekends are the high-capacity days (all-day "Open: 2",
+    // both windows open), so it fired often.
+    //
+    // Chris confirmed he calls at weekends, so there is no roll-forward at
+    // all: same-day reservations get a call today, everything else tomorrow.
+    // Because $days_away >= 1 in the else branch, "tomorrow" is always on or
+    // before the appointment date — the promised call can no longer outlive
+    // the booking it is confirming.
     if ( $days_away === 0 ) {
         $call_when = 'later today (' . $callback_lower . ')';
-    } elseif ( $days_to_call <= 1 ) {
-        $call_when = 'tomorrow ' . $callback_lower;
     } else {
-        $call_when = $call_day->format( 'l' ) . ' ' . $callback_lower;
+        $call_when = 'tomorrow ' . $callback_lower;
     }
 
     $confirm_subject = 'Your slot is reserved, ' . $first_name . ' — I\'ll call ' . $call_when;
