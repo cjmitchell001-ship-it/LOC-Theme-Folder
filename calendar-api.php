@@ -18,6 +18,24 @@ $_LOC_CALENDAR_ID      = '514d8e2bd29573d1582ae633e39ee999679bc205ee207a15c019b1
 define( 'LOC_WEEKDAY_JOB_CAP', 1 );
 define( 'LOC_WEEKEND_JOB_CAP', 3 );
 
+// Minimum notice before a slot may be booked. Nothing in the availability
+// rules used to know the time of day — the only clock read was
+// new DateTime('today'), which is date-granular — so a window stayed
+// bookable after it had passed and the booking was written into the past
+// (afternoon always starts the event at 13:00, so a 20:00 reservation for
+// "today, afternoon" landed seven hours earlier).
+//
+// This is measured against the LATEST start that still fits the job inside
+// the window, not the nominal window start, because the 13:00 afternoon
+// start is a convention rather than the real arrival time. A 105-minute job
+// in the 13:00–18:00 window therefore stays offerable until about 13:15 on
+// the day rather than being closed off first thing.
+//
+// Set to 0 for "elapsed windows only"; set to 1440 to remove same-day
+// booking entirely. Note the confirmation email has deliberate same-day
+// copy ("I'll call later today"), so same-day is supported on purpose.
+define( 'LOC_MIN_LEAD_MINUTES', 180 );
+
 
 // ============================================================
 // loc_get_google_client()
@@ -91,6 +109,9 @@ function loc_get_calendar_service() {
 //     shown only to customers whose $zone matches that label.
 //   - Fully booked date (both morning and afternoon taken): hidden for everyone.
 //   - Past dates: always hidden.
+//   - Minimum notice (LOC_MIN_LEAD_MINUTES): a window is only offered while
+//     the job still fits between "now + lead time" and the window end, so a
+//     window that has passed — or is about to — drops off during the day.
 //   - "Open: N" / "Open: N AM" / "Open: N PM" override date (all-day event,
 //     can span multiple days e.g. a holiday): replaces the normal weekday/
 //     weekend job cap with N for that date, and ignores that date's
@@ -377,7 +398,7 @@ function loc_build_calendar_state( $eventItems ) {
 // Returns [ 'cap', 'booked', 'free', 'morning', 'afternoon', 'override' ]
 // ============================================================
 
-function loc_resolve_day( $dateStr, $state, $duration_minutes ) {
+function loc_resolve_day( $dateStr, $state, $duration_minutes, $now_ts = null ) {
     $override = $state['openOverride'][ $dateStr ] ?? null;
 
     // On an override date, the recurring "Unavailable" block is ignored
@@ -386,8 +407,8 @@ function loc_resolve_day( $dateStr, $state, $duration_minutes ) {
     $excludeTitles = $override ? [ 'unavailable' ] : [];
 
     // Check morning (07:00–13:00) and afternoon (13:00–18:00) slots
-    $morning   = loc_slot_is_free( $dateStr, '07:00', '13:00', $duration_minutes, $state['timedByDay'], $excludeTitles );
-    $afternoon = loc_slot_is_free( $dateStr, '13:00', '18:00', $duration_minutes, $state['timedByDay'], $excludeTitles );
+    $morning   = loc_slot_is_free( $dateStr, '07:00', '13:00', $duration_minutes, $state['timedByDay'], $excludeTitles, $now_ts );
+    $afternoon = loc_slot_is_free( $dateStr, '13:00', '18:00', $duration_minutes, $state['timedByDay'], $excludeTitles, $now_ts );
 
     if ( $override ) {
         // AM/PM restricts to a single window; omitting it opens both.
@@ -570,11 +591,27 @@ function loc_get_capacity_overview( $days_ahead = 60, $events = null ) {
 // a slot window (e.g. 07:00-13:00) given existing timed events on that date.
 // $excludeTitles: lowercase event titles to ignore entirely (e.g. the
 // recurring "Unavailable" block, on a date with an "Open: N" override).
-function loc_slot_is_free( $date, $slot_start, $slot_end, $duration_minutes, $timedByDay, $excludeTitles = [] ) {
+// $now_ts: current time, for the minimum-notice clamp below. Defaults to the
+// real clock; passing it explicitly keeps fixture tests deterministic.
+function loc_slot_is_free( $date, $slot_start, $slot_end, $duration_minutes, $timedByDay, $excludeTitles = [], $now_ts = null ) {
     $tz        = new DateTimeZone( 'Europe/London' );
     $windowStart = strtotime( ( new DateTime( $date . ' ' . $slot_start, $tz ) )->format( DateTime::RFC3339 ) );
     $windowEnd   = strtotime( ( new DateTime( $date . ' ' . $slot_end,   $tz ) )->format( DateTime::RFC3339 ) );
     $required    = $duration_minutes * 60;
+
+    // Minimum notice. Pulling the window start forward to "now + lead time"
+    // is all that is needed to handle both an elapsed window and a window
+    // about to start: the gap walk below then measures only the bookable
+    // part of the window, so a slot survives exactly as long as the job
+    // still fits between the clamp and the window end. A past date fails
+    // here too, because the clamp lands beyond its window end.
+    $earliest = ( $now_ts === null ? time() : $now_ts ) + ( LOC_MIN_LEAD_MINUTES * 60 );
+    if ( $windowStart < $earliest ) {
+        $windowStart = $earliest;
+    }
+    if ( $windowStart + $required > $windowEnd ) {
+        return false;
+    }
 
     // Build sorted list of busy periods within this window
     $busy = [];

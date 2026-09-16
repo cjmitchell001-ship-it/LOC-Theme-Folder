@@ -78,6 +78,31 @@ function loc_handle_reservation() {
     }
 
 
+    // ── MINIMUM NOTICE GUARD ───────────────────────────────────────
+    //
+    // Step 3 fetches availability once, on page load. A tab left open since
+    // the morning will still submit happily in the evening against data that
+    // has gone stale, and every check above this point tests only the SHAPE
+    // of the date, never whether it is still reachable.
+    //
+    // Running the submitted slot back through loc_slot_is_free() — the same
+    // function the calendar itself uses — means this can never drift from
+    // what the customer was offered. No events are passed, so it tests just
+    // the minimum-notice clamp and whether the job still fits the window.
+    //
+    // Deliberately NOT a double-booking check: that would need a full
+    // calendar fetch on every submission. This closes one specific hole, a
+    // booking written into the past.
+    $window = ( strtolower( $slot ) === 'afternoon' ) ? [ '13:00', '18:00' ] : [ '07:00', '13:00' ];
+    if ( ! loc_slot_is_free( $date, $window[0], $window[1], $duration_minutes, [] ) ) {
+        echo json_encode( [
+            'success' => false,
+            'error'   => 'That slot is no longer available — it may have passed while this page was open. Please pick another date, or call me on 07710 649 360.',
+        ] );
+        wp_die();
+    }
+
+
     // ── WRITE TO GOOGLE CALENDAR ──────────────────────────────────────────
 
     $booked = loc_create_provisional_booking(
