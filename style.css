@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.15.0
+Version:           2.16.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -6669,8 +6669,9 @@ a:hover {
     flex-shrink: 0;
 }
 
-.loc-step3-legend-dot--available { background: var(--blue); opacity: 0.4; }
-.loc-step3-legend-dot--unavailable { background: #ddd; }
+.loc-step3-legend-dot--am    { background: var(--gold-dark); }
+.loc-step3-legend-dot--pm    { background: var(--blue); }
+.loc-step3-legend-dot--taken { background: var(--grey-200); }
 
 /* CALENDAR NAV */
 .loc-step3-cal-nav {
@@ -6757,6 +6758,36 @@ a:hover {
 
 .loc-cal-day--empty { background: none; border-color: transparent; }
 
+/* Window dots — which of the two slots a date still has. Gold = morning,
+   blue = afternoon, grey = gone. 4px on a 28px phone cell: small, but it is
+   read as texture down a month rather than as an icon, and the same
+   information is on each cell's aria-label for anyone colour-blind or on a
+   screen reader. */
+.loc-cal-day__num { line-height: 1; }
+
+.loc-cal-day__dots {
+    display: flex;
+    gap: var(--space-1);
+    line-height: 0;
+    margin-top: var(--space-1);
+}
+
+.loc-cal-day__dot {
+    display: block;
+    width: var(--space-1);
+    height: var(--space-1);
+    border-radius: var(--radius-full);
+    background: var(--grey-200);
+}
+
+.loc-cal-day__dot--am { background: var(--gold-dark); }
+.loc-cal-day__dot--pm { background: var(--blue); }
+
+/* On the selected (solid blue) cell the light dots would vanish. */
+.loc-cal-day--selected .loc-cal-day__dot { background: var(--white-a35); }
+.loc-cal-day--selected .loc-cal-day__dot--am,
+.loc-cal-day--selected .loc-cal-day__dot--pm { background: var(--white); }
+
 .loc-cal-day--unavailable {
     color: var(--grey-200);
     background: var(--lightgrey);
@@ -6772,7 +6803,7 @@ a:hover {
 }
 
 .loc-cal-day--available:hover {
-    background: #EEF3FA;
+    background: var(--blue-pale);
     border-color: var(--blue);
     transform: translateY(-1px);
     box-shadow: var(--shadow-sm);
@@ -6828,7 +6859,7 @@ a:hover {
 
 .loc-step3-slot-btn:hover {
     border-color: var(--blue);
-    background: #EEF3FA;
+    background: var(--blue-pale);
 }
 
 .loc-step3-slot-btn.is-selected {
@@ -6851,6 +6882,35 @@ a:hover {
     color: var(--grey-500);
     display: block;
 }
+
+/* A window that has gone on this date. Shown rather than hidden: a missing
+   button left the customer unable to tell "taken" from "not offered". */
+.loc-step3-slot-btn--spent {
+    background: var(--lightgrey);
+    border-style: dashed;
+    cursor: not-allowed;
+}
+
+.loc-step3-slot-btn--spent:hover {
+    background: var(--lightgrey);
+    border-color: var(--border);
+}
+
+.loc-step3-slot-btn--spent .loc-step3-slot-btn__label {
+    color: var(--grey-500);
+    text-decoration: line-through;
+}
+
+.loc-step3-slot-btn__why {
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--text-xs);
+    color: var(--grey-500);
+    line-height: 1.4;
+    margin-top: var(--space-2);
+}
+
+.loc-step3-slot-btn__why:empty { display: none; }
 
 .loc-step3-slot-btn.is-selected .loc-step3-slot-btn__label { color: var(--white); }
 .loc-step3-slot-btn.is-selected .loc-step3-slot-btn__time { color: rgba(255,255,255,0.7); }

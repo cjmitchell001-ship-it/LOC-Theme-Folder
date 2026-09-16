@@ -64,12 +64,16 @@
         <!-- LEGEND -->
         <div class="loc-step3-legend">
             <div class="loc-step3-legend-item">
-                <div class="loc-step3-legend-dot loc-step3-legend-dot--available"></div>
-                <span>Available</span>
+                <div class="loc-step3-legend-dot loc-step3-legend-dot--am"></div>
+                <span>Morning free</span>
             </div>
             <div class="loc-step3-legend-item">
-                <div class="loc-step3-legend-dot loc-step3-legend-dot--unavailable"></div>
-                <span>Unavailable</span>
+                <div class="loc-step3-legend-dot loc-step3-legend-dot--pm"></div>
+                <span>Afternoon free</span>
+            </div>
+            <div class="loc-step3-legend-item">
+                <div class="loc-step3-legend-dot loc-step3-legend-dot--taken"></div>
+                <span>Taken</span>
             </div>
         </div>
 
@@ -98,10 +102,12 @@
                 <button class="loc-step3-slot-btn" data-label="Morning" data-time="7am &ndash; 1pm">
                     <span class="loc-step3-slot-btn__label">Morning</span>
                     <span class="loc-step3-slot-btn__time">7am &ndash; 1pm</span>
+                    <span class="loc-step3-slot-btn__why"></span>
                 </button>
                 <button class="loc-step3-slot-btn" data-label="Afternoon" data-time="1pm &ndash; 6pm">
                     <span class="loc-step3-slot-btn__label">Afternoon</span>
                     <span class="loc-step3-slot-btn__time">1pm &ndash; 6pm</span>
+                    <span class="loc-step3-slot-btn__why"></span>
                 </button>
             </div>
         </div>

@@ -1220,7 +1220,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 var dateStr = curYear + '-' + String(curMonth + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
                 var isUnavail = isPast || !availableLookup[dateStr];
                 var cls = isUnavail ? 'unavailable' : 'available';
-                var cell = makeCell(day, cls);
+                var cell = makeCell(day, cls, isUnavail ? null : availableLookup[dateStr]);
                 row.appendChild(cell);
                 count++;
                 day++;
@@ -1238,11 +1238,45 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             if (row.children.length > 0) body.appendChild(row);
         }
 
-        function makeCell(day, cls) {
+        function makeCell(day, cls, slot) {
             var td  = document.createElement('td');
             var div = document.createElement('div');
             div.className = 'loc-cal-day loc-cal-day--' + cls;
-            div.textContent = day || '';
+
+            if (day) {
+                var num = document.createElement('span');
+                num.className = 'loc-cal-day__num';
+                num.textContent = day;
+                div.appendChild(num);
+            }
+
+            // WHICH window is free is what a customer with a time constraint
+            // actually needs, and it used to be discoverable only by clicking
+            // each date in turn and reading the panel below — so finding a
+            // morning meant probing every available date one at a time. Two
+            // dots put it on the grid: gold for morning, blue for afternoon,
+            // grey for the one that has gone.
+            //
+            // The dots carry no text, so selectDate()'s parseInt(el.textContent)
+            // match still reads the day number and nothing else. Keep it that way.
+            if (slot) {
+                var dots = document.createElement('span');
+                dots.className = 'loc-cal-day__dots';
+                dots.setAttribute('aria-hidden', 'true');
+                [['morning', 'am'], ['afternoon', 'pm']].forEach(function(w) {
+                    var dot = document.createElement('i');
+                    dot.className = 'loc-cal-day__dot'
+                        + (slot[w[0]] ? ' loc-cal-day__dot--' + w[1] : '');
+                    dots.appendChild(dot);
+                });
+                div.appendChild(dots);
+
+                // Colour alone must not be the only carrier of this.
+                div.setAttribute('aria-label', day + ' — '
+                    + (slot.morning && slot.afternoon ? 'morning and afternoon available'
+                       : slot.morning ? 'morning available only'
+                       : 'afternoon available only'));
+            }
 
             if (cls !== 'empty' && cls !== 'unavailable' && day) {
                 div.addEventListener('click', function() {
@@ -1251,6 +1285,19 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             }
             td.appendChild(div);
             return td;
+        }
+
+        // Marks a time window as available or spent. Uses the native disabled
+        // state so a spent button cannot be clicked — the click handler below
+        // needs no guard of its own.
+        function setSlotAvailability(btn, isFree, reason) {
+            if (!btn) return;
+            btn.style.display = '';
+            btn.disabled = !isFree;
+            btn.classList.toggle('loc-step3-slot-btn--spent', !isFree);
+            if (!isFree) btn.classList.remove('is-selected');
+            var why = btn.querySelector('.loc-step3-slot-btn__why');
+            if (why) why.textContent = isFree ? '' : reason;
         }
 
         function selectDate(day, cls) {
@@ -1288,13 +1335,16 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             var _dd  = availableLookup[_ds];
             var _mBtn = document.querySelector('.loc-step3-slot-btn[data-label="Morning"]');
             var _aBtn = document.querySelector('.loc-step3-slot-btn[data-label="Afternoon"]');
-            if (_dd) {
-                if (_mBtn) _mBtn.style.display = _dd.morning   ? '' : 'none';
-                if (_aBtn) _aBtn.style.display = _dd.afternoon ? '' : 'none';
-            } else {
-                if (_mBtn) _mBtn.style.display = '';
-                if (_aBtn) _aBtn.style.display = '';
-            }
+            // Hiding a window was ambiguous: a customer could not tell "taken"
+            // from "not offered" from "broken". On a weekday the morning is
+            // always gone (the standing 07:00-13:00 block), so every weekday
+            // date showed an Afternoon button alone and the page read as
+            // "he doesn't do mornings" — with nothing on it to say otherwise.
+            // Both windows now always show; the spent one is visibly spent.
+            setSlotAvailability(_mBtn, !_dd || _dd.morning,
+                'Taken on this date — weekends usually have mornings free');
+            setSlotAvailability(_aBtn, !_dd || _dd.afternoon,
+                'Taken on this date — try another day, or call me and I\'ll sort it');
 
             document.getElementById('loc-time-slots').style.display = 'block';
             document.getElementById('loc-time-slots').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -1375,11 +1425,9 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                     document.getElementById('loc-time-slots').style.display = 'none';
                     clearDateBtn.style.display = 'none';
 
-                    // Reset slot button visibility
-                    var _mb = document.querySelector('.loc-step3-slot-btn[data-label="Morning"]');
-                    var _ab = document.querySelector('.loc-step3-slot-btn[data-label="Afternoon"]');
-                    if (_mb) _mb.style.display = '';
-                    if (_ab) _ab.style.display = '';
+                    // Reset both windows to available for the next date picked
+                    setSlotAvailability(document.querySelector('.loc-step3-slot-btn[data-label="Morning"]'), true, '');
+                    setSlotAvailability(document.querySelector('.loc-step3-slot-btn[data-label="Afternoon"]'), true, '');
 
                     // Reset summary slot
                     document.getElementById('loc-summary-slot').classList.remove('loc-step3-summary__slot--active');
