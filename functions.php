@@ -1189,10 +1189,10 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
         var selCallback  = null;
         var isDateTBC    = false;
 
-        // Availability data — populated via fetch from calendar-ajax.php
+        // Availability data — populated by the fetch below, via
+        // admin-ajax.php?action=loc_calendar_availability.
         var availableDates  = [];
         var availableLookup = {};
-        var isFallbackMode  = false;
 
         var monthNames = ['January','February','March','April','May','June',
                           'July','August','September','October','November','December'];
@@ -1218,7 +1218,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             while (day <= daysInMonth) {
                 var isPast  = new Date(curYear, curMonth, day) < new Date(today.getFullYear(), today.getMonth(), today.getDate());
                 var dateStr = curYear + '-' + String(curMonth + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
-                var isUnavail = isPast || (!isFallbackMode && !availableLookup[dateStr]);
+                var isUnavail = isPast || !availableLookup[dateStr];
                 var cls = isUnavail ? 'unavailable' : 'available';
                 var cell = makeCell(day, cls);
                 row.appendChild(cell);
@@ -1288,7 +1288,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             var _dd  = availableLookup[_ds];
             var _mBtn = document.querySelector('.loc-step3-slot-btn[data-label="Morning"]');
             var _aBtn = document.querySelector('.loc-step3-slot-btn[data-label="Afternoon"]');
-            if (!isFallbackMode && _dd) {
+            if (_dd) {
                 if (_mBtn) _mBtn.style.display = _dd.morning   ? '' : 'none';
                 if (_aBtn) _aBtn.style.display = _dd.afternoon ? '' : 'none';
             } else {

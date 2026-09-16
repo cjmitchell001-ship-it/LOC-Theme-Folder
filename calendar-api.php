@@ -266,7 +266,20 @@ function loc_build_calendar_state( $eventItems ) {
             $title = strtolower( trim( $event->getSummary() ) );
 
             if ( in_array( $title, $knownZones, true ) ) {
-                $zonedDates[ $start->getDate() ] = $title;
+                // Expanded across the full range, like the three branches
+                // below. Zone labels are auto-created one day at a time, so a
+                // multi-day one is rare — but keying off start.date alone is
+                // the exact trap those branches were written to avoid, and a
+                // "North" dragged by hand across a week would otherwise have
+                // applied to the Monday only, silently reopening the rest of
+                // the week to every other zone.
+                $tzL     = new DateTimeZone( 'Europe/London' );
+                $dCursor = new DateTime( $start->getDate(), $tzL );
+                $dEnd    = new DateTime( $end_e->getDate(), $tzL ); // exclusive
+                while ( $dCursor < $dEnd ) {
+                    $zonedDates[ $dCursor->format( 'Y-m-d' ) ] = $title;
+                    $dCursor->modify( '+1 day' );
+                }
             } elseif ( preg_match( '/^open\s*:\s*(\d+)\s*(am|pm)?$/', $title, $om ) ) {
                 $tzL      = new DateTimeZone( 'Europe/London' );
                 $dCursor  = new DateTime( $start->getDate(), $tzL );
