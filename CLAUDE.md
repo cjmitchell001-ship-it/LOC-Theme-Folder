@@ -218,9 +218,15 @@ Set it to `0` for "elapsed windows only"; `1440` removes same-day booking entire
 
 `loc_get_available_slots()` therefore returns `morning_status` / `afternoon_status` / `full` / `bookable` alongside the two original bools, and — importantly — **it now returns dates that cannot be booked**: any date being worked, including one at its cap. **Never treat presence in that list as availability; read `bookable`.** A date with no window offered at all is still left out, because to a customer that is indistinguishable from a day off.
 
-On the grid each date draws two labelled boxes — **A** morning, **P** afternoon — filled blue when open, filled grey when booked, hollow and dashed when not offered; a capped day keeps the worked-day frame and is captioned **FULL**. One consequence worth knowing: **a day Chris blocks out with dummy bookings (see above) now shows publicly as FULL** rather than disappearing. That is intended — silence read as "he doesn't work then".
+On the grid each date draws two labelled boxes — **AM** and **PM** — as two halves of one bar across the foot of the cell. **Only two states are drawn: blue for open, grey for anything unavailable.** `not_offered` and `booked` deliberately look identical to a customer (Chris's call, 17 Sep 2026): either way the window cannot be had, and showing the difference invited a question they could not act on. The status survives in the payload, so the distinction is available if it is ever wanted back — **collapse it in presentation, not in the data.** A capped day keeps the worked-day frame and is captioned **FULL**.
+
+The legend is three items — Open / Booked / Unavailable — and there is **no explainer line above it**: AM and PM name themselves, which was the whole reason for moving off `A`/`P`. Type is Montserrat throughout; mockups supplied for layout are illustration only and their typeface is never copied.
+
+One consequence worth knowing: **a day Chris blocks out with dummy bookings (see above) now shows publicly as FULL** rather than disappearing. That is intended — silence read as "he doesn't work then".
 
 Day numbers are read from `data-day`, not `parseInt(el.textContent)` — the boxes put letters in the cell.
+
+**Sizing constraint:** at 375px a cell is ~44px wide, so each box gets ~18px and `AM` measures 18px in Montserrat 700 at `--text-fine` with `letter-spacing: -0.04em`. It fits exactly. Anything that eats cell width — a wider gap, more padding, a larger font — breaks the labels first, so measure at 375px rather than assuming.
 
 **Events must be on the Jobs calendar.** A booking added from a phone usually lands on the device's *default* calendar instead, where the availability code never looks. The symptom reads as a phone/desktop sync failure: the event shows on the phone (which merges all calendars) but not on the desktop view (filtered to Jobs) and has no effect on availability. On iOS, set Settings → Calendar → Default Calendar, or change the Calendar field per event.
 
@@ -498,6 +504,12 @@ Chris (the founder) wants his name, face, and personal/employment history kept O
 - **The msys shell lies about line endings.** `grep -c $'\r'` matched an empty pattern and reported every file as pure CRLF; `sed` and `perl` both silently translate on read and write under Windows text mode; `tr` and `od` counts contradicted each other. **The only trustworthy check is `git diff --stat`** — a line-ending rewrite shows up as the whole file changing. It stayed at 320 insertions across 4 files, so nothing churned. The 13 Sep note in this file is right: git stores LF, the working tree holds CRLF via `core.autocrlf=true`.
 - **A `sed` aimed at a scratch copy hit the real file too.** It stripped `require_once __DIR__ . '/vendor/autoload.php'` from `calendar-api.php`, and the follow-up grep that appeared to confirm "this file has no requires" was actually reading the damage. It surfaced as a 500 on the availability endpoint. **Check what a loop is iterating over before blaming the code it broke.**
 - **The mockup was right about something not visible in the data:** hiding a spent window reads as breakage. Chris had already made this point about the vanishing slot button on 16 Sep; the same instinct applied to whole days.
+
+**Second pass the same day, from a second mockup — and it was all subtraction (2026-09-17).** Theme 2.17.0 → 2.18.0, commit `9f79aba`. `A`/`P` became **AM**/**PM**, which killed the explainer line above the calendar outright: it existed only to decode the letters. The dashed "not offered" state went too, on Chris's instruction — *"we do not need to confuse people with closed days or not offered days"* — leaving two drawn states, blue and grey. The legend dropped to Open / Booked / Unavailable.
+
+**The reasoning is worth keeping, because it reverses a call made hours earlier.** The first pass treated "booked" and "not offered" as different facts deserving different styling and different prose, and that was right about the data and wrong about the customer: neither one can be booked, so the difference is Chris's problem, not theirs. **The status stays in the payload and is collapsed only at render** — the right shape for this kind of reversal, since nothing has to be rebuilt if it is ever wanted back.
+
+**Also, on mockups:** Chris specified that the supplied image is illustration and the site's own typeface must be kept. Montserrat throughout. Treat any future mockup the same way — layout and states are the instruction, the typeface never is.
 
 **A consequence Chris should know rather than discover:** the days he blocks out with dummy bookings now display publicly as **FULL**. Correct behaviour, and arguably good — a calendar showing booked-out days reads as in demand — but it is newly visible information about how busy he is.
 
