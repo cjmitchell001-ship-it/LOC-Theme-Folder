@@ -1218,9 +1218,15 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             while (day <= daysInMonth) {
                 var isPast  = new Date(curYear, curMonth, day) < new Date(today.getFullYear(), today.getMonth(), today.getDate());
                 var dateStr = curYear + '-' + String(curMonth + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
-                var isUnavail = isPast || !availableLookup[dateStr];
-                var cls = isUnavail ? 'unavailable' : 'available';
-                var cell = makeCell(day, cls, isUnavail ? null : availableLookup[dateStr]);
+                // The lookup now carries dates that cannot be booked — a day
+                // that is full, or whose windows have all gone. Those still
+                // get their boxes drawn (saying "booked" beats saying nothing)
+                // but must not be clickable, so availability and presence are
+                // two separate questions here.
+                var dayData  = isPast ? null : availableLookup[dateStr];
+                var bookable = !!(dayData && dayData.bookable);
+                var cls = bookable ? 'available' : 'unavailable';
+                var cell = makeCell(day, cls, dayData || null);
                 row.appendChild(cell);
                 count++;
                 day++;
@@ -1248,34 +1254,57 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 num.className = 'loc-cal-day__num';
                 num.textContent = day;
                 div.appendChild(num);
+                // The day number is now read from here, not from textContent —
+                // the A/P boxes below put letters in the cell, and parsing the
+                // number back out of "5AP FULL" only ever worked by luck.
+                div.setAttribute('data-day', day);
             }
 
             // WHICH window is free is what a customer with a time constraint
             // actually needs, and it used to be discoverable only by clicking
             // each date in turn and reading the panel below — so finding a
-            // morning meant probing every available date one at a time. Two
-            // dots put it on the grid: gold for morning, blue for afternoon,
-            // grey for the one that has gone.
+            // morning meant probing every available date one at a time.
             //
-            // The dots carry no text, so selectDate()'s parseInt(el.textContent)
-            // match still reads the day number and nothing else. Keep it that way.
+            // Two labelled boxes put it on the grid: A for morning, P for
+            // afternoon. A box says one of three things, and the difference
+            // matters — "you can have this", "someone already has it", and
+            // "I don't offer that window on this date" are three different
+            // answers, and collapsing the last two into one blank space is
+            // what made the calendar feel broken.
             if (slot) {
-                var dots = document.createElement('span');
-                dots.className = 'loc-cal-day__dots';
-                dots.setAttribute('aria-hidden', 'true');
-                [['morning', 'am'], ['afternoon', 'pm']].forEach(function(w) {
-                    var dot = document.createElement('i');
-                    dot.className = 'loc-cal-day__dot'
-                        + (slot[w[0]] ? ' loc-cal-day__dot--' + w[1] : '');
-                    dots.appendChild(dot);
-                });
-                div.appendChild(dots);
+                var boxes = document.createElement('span');
+                boxes.className = 'loc-cal-day__slots';
+                boxes.setAttribute('aria-hidden', 'true');
 
-                // Colour alone must not be the only carrier of this.
-                div.setAttribute('aria-label', day + ' — '
-                    + (slot.morning && slot.afternoon ? 'morning and afternoon available'
-                       : slot.morning ? 'morning available only'
-                       : 'afternoon available only'));
+                var words = { open: 'free', booked: 'booked', not_offered: 'not offered' };
+                var says  = [];
+
+                [['morning', 'A'], ['afternoon', 'P']].forEach(function(w) {
+                    // Fall back to the bool if a status is ever missing, so an
+                    // older payload still renders something sane.
+                    var st = slot[w[0] + '_status'] || (slot[w[0]] ? 'open' : 'booked');
+                    var b  = document.createElement('i');
+                    b.className = 'loc-cal-day__slot loc-cal-day__slot--' + st.replace('_', '-');
+                    b.textContent = w[1];
+                    boxes.appendChild(b);
+                    says.push((w[0] === 'morning' ? 'morning ' : 'afternoon ') + (words[st] || st));
+                });
+                div.appendChild(boxes);
+
+                if (slot.full) {
+                    var f = document.createElement('span');
+                    f.className = 'loc-cal-day__full';
+                    f.textContent = 'FULL';
+                    div.appendChild(f);
+                    says = ['fully booked'];
+                }
+
+                // Colour and shape must not be the only carriers of this.
+                div.setAttribute('aria-label', day + ' — ' + says.join(', '));
+
+                // A day I work but cannot sell: it keeps the worked-day frame
+                // so it doesn't read as a day off, but it isn't clickable.
+                if (cls === 'unavailable') div.classList.add('loc-cal-day--spent');
             }
 
             if (cls !== 'empty' && cls !== 'unavailable' && day) {
@@ -1308,7 +1337,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 el.classList.remove('loc-cal-day--selected');
             });
             document.querySelectorAll('.loc-cal-day').forEach(function(el) {
-                if (parseInt(el.textContent) === day &&
+                if (parseInt(el.getAttribute('data-day'), 10) === day &&
                     !el.classList.contains('loc-cal-day--empty') &&
                     !el.classList.contains('loc-cal-day--unavailable')) {
                     el.classList.add('loc-cal-day--selected');
@@ -1341,10 +1370,20 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             // date showed an Afternoon button alone and the page read as
             // "he doesn't do mornings" — with nothing on it to say otherwise.
             // Both windows now always show; the spent one is visibly spent.
+            // "Booked" and "not offered" are different facts and get different
+            // wording — telling someone a window is taken when I simply don't
+            // work it sends them looking for a gap that was never there.
+            function _why(status, whenBooked, whenNotOffered) {
+                return status === 'not_offered' ? whenNotOffered : whenBooked;
+            }
             setSlotAvailability(_mBtn, !_dd || _dd.morning,
-                'Taken on this date — weekends usually have mornings free');
+                _why(_dd && _dd.morning_status,
+                    'Already booked on this date — weekends usually have mornings free',
+                    'I\'m not out in the morning on this date — weekends usually have mornings free'));
             setSlotAvailability(_aBtn, !_dd || _dd.afternoon,
-                'Taken on this date — try another day, or call me and I\'ll sort it');
+                _why(_dd && _dd.afternoon_status,
+                    'Already booked on this date — try another day, or call me and I\'ll sort it',
+                    'I\'m not out in the afternoon on this date — try another day, or call me and I\'ll sort it'));
 
             document.getElementById('loc-time-slots').style.display = 'block';
             document.getElementById('loc-time-slots').scrollIntoView({ behavior: 'smooth', block: 'nearest' });

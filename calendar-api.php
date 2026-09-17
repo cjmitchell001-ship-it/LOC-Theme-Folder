@@ -119,7 +119,18 @@ function loc_get_calendar_service() {
 //     the whole truth for that date, not layered on top of normal rules.
 //     AM/PM restricts which single window is open; omitting it opens both.
 //
-// Returns array of [ 'date' => 'YYYY-MM-DD', 'morning' => bool, 'afternoon' => bool ]
+// Returns array of:
+//   'date'             'YYYY-MM-DD'
+//   'morning'          bool  - a job still fits the morning window
+//   'afternoon'        bool  - ditto, afternoon
+//   'morning_status'   'open' | 'booked' | 'not_offered'
+//   'afternoon_status' ditto
+//   'full'             bool  - the day has hit its job cap
+//   'bookable'         bool  - morning || afternoon
+//
+// NOTE: this list now includes dates that CANNOT be booked (a full day), so
+// that the grid can say "booked" rather than stay silent. Never treat mere
+// presence in this list as availability — read 'bookable'.
 // ============================================================
 
 // $events: optional pre-fetched event list. Production callers omit it and the
@@ -160,12 +171,25 @@ function loc_get_available_slots( $zone, $duration_minutes, $days_ahead, $events
 
         $day = loc_resolve_day( $dateStr, $state, $duration_minutes );
 
-        // Only include if at least one slot is free
-        if ( $day['morning'] || $day['afternoon'] ) {
+        // Include a date the customer can act on, plus one that is full.
+        // A full day is worth showing — "I'm booked that day" is a real
+        // answer, and silence reads the same as not working at all. A date
+        // with no window offered (both 'not_offered') is left out, because
+        // to a customer that is indistinguishable from a day I don't work.
+        if ( ! $day['closed']
+             && ( $day['morning'] || $day['afternoon']
+                  || $day['morning_status'] === 'booked'
+                  || $day['afternoon_status'] === 'booked' ) ) {
             $slots[] = [
-                'date'      => $dateStr,
-                'morning'   => $day['morning'],
-                'afternoon' => $day['afternoon'],
+                'date'             => $dateStr,
+                'morning'          => $day['morning'],
+                'afternoon'        => $day['afternoon'],
+                'morning_status'   => $day['morning_status'],
+                'afternoon_status' => $day['afternoon_status'],
+                'full'             => $day['full'],
+                // Explicit rather than inferred from the two bools: this
+                // list now carries dates that cannot be booked.
+                'bookable'         => ( $day['morning'] || $day['afternoon'] ),
             ];
         }
 
@@ -419,16 +443,23 @@ function loc_resolve_day( $dateStr, $state, $duration_minutes, $now_ts = null ) 
     // layered on top of the normal weekday/weekend window rules.
     $excludeTitles = $override ? [ 'unavailable' ] : [];
 
-    // Check morning (07:00–13:00) and afternoon (13:00–18:00) slots
-    $morning   = loc_slot_is_free( $dateStr, '07:00', '13:00', $duration_minutes, $state['timedByDay'], $excludeTitles, $now_ts );
-    $afternoon = loc_slot_is_free( $dateStr, '13:00', '18:00', $duration_minutes, $state['timedByDay'], $excludeTitles, $now_ts );
+    // Check morning (07:00–13:00) and afternoon (13:00–18:00) slots.
+    // The status carries the reason; $morning/$afternoon stay the plain
+    // bools every existing caller reads, derived from it.
+    $mStatus = loc_slot_status( $dateStr, '07:00', '13:00', $duration_minutes, $state['timedByDay'], $excludeTitles, $now_ts );
+    $aStatus = loc_slot_status( $dateStr, '13:00', '18:00', $duration_minutes, $state['timedByDay'], $excludeTitles, $now_ts );
+
+    $morning   = ( $mStatus === 'open' );
+    $afternoon = ( $aStatus === 'open' );
 
     if ( $override ) {
         // AM/PM restricts to a single window; omitting it opens both.
         if ( $override['window'] === 'am' ) {
             $afternoon = false;
+            $aStatus   = 'not_offered';
         } elseif ( $override['window'] === 'pm' ) {
             $morning = false;
+            $mStatus = 'not_offered';
         }
     }
 
@@ -440,10 +471,15 @@ function loc_resolve_day( $dateStr, $state, $duration_minutes, $now_ts = null ) 
     $isWeekend = in_array( (int) ( new DateTime( $dateStr, $tz ) )->format( 'N' ), [ 6, 7 ], true );
     $jobCap    = $override ? $override['cap'] : ( $isWeekend ? LOC_WEEKEND_JOB_CAP : LOC_WEEKDAY_JOB_CAP );
     $jobCount  = $state['jobCountByDay'][ $dateStr ] ?? 0;
+    $isFull    = ( $jobCount >= $jobCap );
 
-    if ( $jobCount >= $jobCap ) {
+    if ( $isFull ) {
         $morning   = false;
         $afternoon = false;
+        // The day is taken rather than not worked, so both windows read as
+        // booked regardless of what the window check said on its own.
+        $mStatus   = 'booked';
+        $aStatus   = 'booked';
     }
 
     // An all-day "Unavailable" event shuts the whole date, and deliberately
@@ -453,16 +489,22 @@ function loc_resolve_day( $dateStr, $state, $duration_minutes, $now_ts = null ) 
     if ( $isClosed ) {
         $morning   = false;
         $afternoon = false;
+        $mStatus   = 'closed';
+        $aStatus   = 'closed';
     }
 
     return [
-        'cap'        => $jobCap,
-        'booked'     => $jobCount,
-        'free'       => $isClosed ? 0 : max( 0, $jobCap - $jobCount ),
-        'morning'    => $morning,
-        'afternoon'  => $afternoon,
-        'is_weekend' => $isWeekend,
-        'override'   => $override,
+        'cap'              => $jobCap,
+        'booked'           => $jobCount,
+        'free'             => $isClosed ? 0 : max( 0, $jobCap - $jobCount ),
+        'morning'          => $morning,
+        'afternoon'        => $afternoon,
+        'morning_status'   => $mStatus,
+        'afternoon_status' => $aStatus,
+        'full'             => $isFull && ! $isClosed,
+        'closed'           => $isClosed,
+        'is_weekend'       => $isWeekend,
+        'override'         => $override,
     ];
 }
 
@@ -607,6 +649,24 @@ function loc_get_capacity_overview( $days_ahead = 60, $events = null ) {
 // $now_ts: current time, for the minimum-notice clamp below. Defaults to the
 // real clock; passing it explicitly keeps fixture tests deterministic.
 function loc_slot_is_free( $date, $slot_start, $slot_end, $duration_minutes, $timedByDay, $excludeTitles = [], $now_ts = null ) {
+    return loc_slot_status( $date, $slot_start, $slot_end, $duration_minutes, $timedByDay, $excludeTitles, $now_ts ) === 'open';
+}
+
+
+// Same rules as loc_slot_is_free(), but reports WHY a window is unavailable
+// instead of collapsing it to false. The grid needs that distinction: a window
+// eaten by the standing "Unavailable" block is one I never offer on that date,
+// which is a different message to a window someone has already taken.
+//
+//   'open'        - a job of $duration_minutes still fits
+//   'booked'      - a real booking (PROVISIONAL:/Confirmed:) consumes it
+//   'not_offered' - the window does not exist for that date: the standing
+//                   block covers it, or it has passed / sits inside the
+//                   minimum-notice clamp.
+//
+// loc_slot_is_free() stays a thin wrapper returning exactly the bool it always
+// did, so reservation-handler.php and every other caller are untouched by this.
+function loc_slot_status( $date, $slot_start, $slot_end, $duration_minutes, $timedByDay, $excludeTitles = [], $now_ts = null ) {
     $tz        = new DateTimeZone( 'Europe/London' );
     $windowStart = strtotime( ( new DateTime( $date . ' ' . $slot_start, $tz ) )->format( DateTime::RFC3339 ) );
     $windowEnd   = strtotime( ( new DateTime( $date . ' ' . $slot_end,   $tz ) )->format( DateTime::RFC3339 ) );
@@ -623,20 +683,29 @@ function loc_slot_is_free( $date, $slot_start, $slot_end, $duration_minutes, $ti
         $windowStart = $earliest;
     }
     if ( $windowStart + $required > $windowEnd ) {
-        return false;
+        // Elapsed, inside the notice clamp, or a past date: not a window
+        // anyone could have taken, so it reads as one I am not offering.
+        return 'not_offered';
     }
 
-    // Build sorted list of busy periods within this window
-    $busy = [];
+    // Build sorted list of busy periods within this window, remembering
+    // whether a real booking is among them — that is what separates
+    // "someone has this" from "I don't work then".
+    $busy      = [];
+    $hasBooking = false;
     if ( isset( $timedByDay[ $date ] ) ) {
         foreach ( $timedByDay[ $date ] as $block ) {
-            if ( $excludeTitles && in_array( $block[2] ?? '', $excludeTitles, true ) ) {
+            $title = $block[2] ?? '';
+            if ( $excludeTitles && in_array( $title, $excludeTitles, true ) ) {
                 continue;
             }
             $bs = max( $block[0], $windowStart );
             $be = min( $block[1], $windowEnd );
             if ( $bs < $be ) {
                 $busy[] = [ $bs, $be ];
+                if ( strpos( $title, 'provisional:' ) === 0 || strpos( $title, 'confirmed:' ) === 0 ) {
+                    $hasBooking = true;
+                }
             }
         }
     }
@@ -646,12 +715,18 @@ function loc_slot_is_free( $date, $slot_start, $slot_end, $duration_minutes, $ti
     $cursor = $windowStart;
     foreach ( $busy as $block ) {
         if ( $block[0] - $cursor >= $required ) {
-            return true;
+            return 'open';
         }
         $cursor = max( $cursor, $block[1] );
     }
 
-    return ( $windowEnd - $cursor >= $required );
+    if ( $windowEnd - $cursor >= $required ) {
+        return 'open';
+    }
+
+    // Something consumed the window. A booking overlapping it is the fact
+    // the customer cares about; otherwise it is the standing block.
+    return $hasBooking ? 'booked' : 'not_offered';
 }
 
 

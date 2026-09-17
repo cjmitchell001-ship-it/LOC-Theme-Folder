@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.16.0
+Version:           2.17.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -6662,16 +6662,31 @@ a:hover {
     color: var(--grey-500);
 }
 
-.loc-step3-legend-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: var(--radius-full);
-    flex-shrink: 0;
+/* The legend reuses the grid's own box component, so a legend swatch and a
+   real cell can never drift apart in colour, size or shape. */
+
+/* WHAT THE BOXES MEAN — sits above the legend */
+.loc-step3-cal-hint {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin: 0 0 var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    background: var(--lightgrey);
+    border-radius: var(--radius-md);
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--text-ui);
+    line-height: 1.5;
+    color: var(--grey-600);
 }
 
-.loc-step3-legend-dot--am    { background: var(--gold-dark); }
-.loc-step3-legend-dot--pm    { background: var(--blue); }
-.loc-step3-legend-dot--taken { background: var(--grey-200); }
+.loc-step3-cal-hint strong { color: var(--offblack); font-weight: 600; }
+
+.loc-step3-cal-hint__icon {
+    flex-shrink: 0;
+    color: var(--grey-400);
+    margin-top: 1px;
+}
 
 /* CALENDAR NAV */
 .loc-step3-cal-nav {
@@ -6737,15 +6752,18 @@ a:hover {
     text-align: center;
 }
 
+/* No aspect-ratio: the cell now stacks a numeral, two window boxes and
+   sometimes a FULL caption, so it is sized by its content with a floor that
+   keeps empty and closed cells the same height as the rest of the row. */
 .loc-cal-day {
     width: 100%;
-    aspect-ratio: 1;
     border: 1px solid transparent;
-    border-radius: var(--radius-xs);
+    border-radius: var(--radius-sm);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: var(--space-2) var(--space-1);
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: var(--text-ui);
@@ -6753,40 +6771,97 @@ a:hover {
     transition: all 0.15s;
     position: relative;
     min-width: 32px;
-    min-height: 32px;
+    min-height: 58px;
 }
 
 .loc-cal-day--empty { background: none; border-color: transparent; }
 
-/* Window dots — which of the two slots a date still has. Gold = morning,
-   blue = afternoon, grey = gone. 4px on a 28px phone cell: small, but it is
-   read as texture down a month rather than as an icon, and the same
-   information is on each cell's aria-label for anyone colour-blind or on a
-   screen reader. */
+/* Window boxes — A for morning, P for afternoon, one per window on every
+   date I work. A letter carries its own meaning where a coloured dot needs
+   a legend, and the three states are told apart by fill AND border style,
+   not by colour alone. The same wording is on each cell's aria-label. */
 .loc-cal-day__num { line-height: 1; }
 
-.loc-cal-day__dots {
+.loc-cal-day__slots {
     display: flex;
-    gap: var(--space-1);
-    line-height: 0;
-    margin-top: var(--space-1);
+    gap: 3px;
+    margin-top: 3px;
 }
 
-.loc-cal-day__dot {
-    display: block;
-    width: var(--space-1);
-    height: var(--space-1);
-    border-radius: var(--radius-full);
+.loc-cal-day__slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 17px;
+    height: 15px;
+    border-radius: var(--radius-xs);
+    border: 1px solid transparent;
+    font-family: 'Montserrat', sans-serif;
+    font-size: var(--text-fine);
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: 0;
+}
+
+/* Open — solid brand blue, the only filled-and-coloured state. */
+.loc-cal-day__slot--open {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: var(--white);
+}
+
+/* Booked — filled, but grey and recessive: it exists, someone has it. */
+.loc-cal-day__slot--booked {
     background: var(--grey-200);
+    border-color: var(--grey-200);
+    color: var(--grey-500);
 }
 
-.loc-cal-day__dot--am { background: var(--gold-dark); }
-.loc-cal-day__dot--pm { background: var(--blue); }
+/* Not offered — hollow and dashed, so it reads as absence rather than as
+   something that was taken. The dashed border is what separates this from
+   "booked" without relying on the grey being a different grey. */
+.loc-cal-day__slot--not-offered {
+    background: transparent;
+    border-style: dashed;
+    border-color: var(--grey-200);
+    color: var(--grey-300);
+}
 
-/* On the selected (solid blue) cell the light dots would vanish. */
-.loc-cal-day--selected .loc-cal-day__dot { background: var(--white-a35); }
-.loc-cal-day--selected .loc-cal-day__dot--am,
-.loc-cal-day--selected .loc-cal-day__dot--pm { background: var(--white); }
+/* Day closed — the legend swatch only; closed dates draw no boxes at all. */
+.loc-cal-day__slot--closed {
+    background: var(--grey-50);
+    border-color: var(--grey-100);
+}
+
+/* FULL — the day hit its cap. Says "booked out" rather than leaving a date
+   that looks the same as one I don't work. */
+.loc-cal-day__full {
+    margin-top: 2px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--text-fine);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--grey-400);
+}
+
+/* On the selected (solid blue) cell the boxes would vanish into it. */
+.loc-cal-day--selected .loc-cal-day__slot--open {
+    background: var(--white);
+    border-color: var(--white);
+    color: var(--blue);
+}
+.loc-cal-day--selected .loc-cal-day__slot--booked {
+    background: var(--white-a35);
+    border-color: transparent;
+    color: var(--white);
+}
+.loc-cal-day--selected .loc-cal-day__slot--not-offered {
+    border-color: var(--white-a35);
+    color: var(--white-a60);
+}
+.loc-cal-day--selected .loc-cal-day__full { color: var(--white-a60); }
 
 .loc-cal-day--unavailable {
     color: var(--grey-200);
@@ -6798,8 +6873,19 @@ a:hover {
 .loc-cal-day--available {
     color: var(--blue);
     background: var(--white);
-    border-color: var(--border);
+    border-color: var(--gold);
     cursor: pointer;
+}
+
+/* A day I work, with nothing left on it. Keeps the worked-day frame so it
+   reads as "I was there, it's gone" rather than as a day I don't work —
+   which is the whole point of showing it at all. Not clickable. */
+.loc-cal-day--spent {
+    color: var(--grey-400);
+    background: var(--white);
+    border-color: var(--gold);
+    cursor: not-allowed;
+    font-weight: 600;
 }
 
 .loc-cal-day--available:hover {
@@ -7862,11 +7948,29 @@ a:hover {
     .loc-cal-day {
         font-size: var(--text-xs);
         min-width: 28px;
-        min-height: 28px;
+        min-height: 52px;
+        padding: var(--space-1) 2px;
+    }
+
+    /* The letters are what make these readable, so they do not shrink much —
+       a 15px box holding 11px type is the floor at which A and P still read
+       as letters rather than as marks. */
+    .loc-cal-day__slot {
+        width: 15px;
+        height: 14px;
     }
 
     .loc-step3-cal-grid td {
         padding: var(--space-1);
+    }
+
+    .loc-step3-cal-hint {
+        font-size: var(--text-sm);
+        padding: var(--space-3);
+    }
+
+    .loc-step3-legend {
+        gap: var(--space-3) var(--space-4);
     }
 
     /* STEP 3 STICKY BOTTOM BAR */
