@@ -1375,13 +1375,11 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             // date showed an Afternoon button alone and the page read as
             // "he doesn't do mornings" — with nothing on it to say otherwise.
             // Both windows now always show; the spent one is visibly spent.
-            // One reason per window, not two. Why a window has gone is my
-            // problem — the customer only needs to know it has, and where to
-            // look next.
-            setSlotAvailability(_mBtn, !_dd || _dd.morning,
-                'Not available on this date — weekends usually have mornings free');
-            setSlotAvailability(_aBtn, !_dd || _dd.afternoon,
-                'Not available on this date — try another day, or call me and I\'ll sort it');
+            // One word, and the same word the grid uses. A spent window needs
+            // to be recognised, not explained — the longer line was reading as
+            // an apology for a date the customer had not asked about yet.
+            setSlotAvailability(_mBtn, !_dd || _dd.morning, 'Full');
+            setSlotAvailability(_aBtn, !_dd || _dd.afternoon, 'Full');
 
             document.getElementById('loc-time-slots').style.display = 'block';
             document.getElementById('loc-time-slots').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
