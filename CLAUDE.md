@@ -212,6 +212,16 @@ Set it to `0` for "elapsed windows only"; `1440` removes same-day booking entire
 
 **Chris sometimes blocks a day out with dummy bookings rather than an all-day `Unavailable`.** Duplicate `PROVISIONAL: Chris Mitchell` events filling a date's cap are usually **deliberate** — that is him taking the day off, not leftover test data. Confirmed 16 Sep 2026 for 26–27 Sep, after they were flagged as stray test bookings. **Do not delete them and do not report them as a fault.** (An all-day `Unavailable` does the same job and reads unambiguously on the calendar, so it is worth offering — but the dummy-booking method works and the choice is his.)
 
+### Window status — what Step 3 draws (calendar-api.php)
+
+`loc_slot_status()` reports **why** a window is unavailable rather than collapsing it to `false`: `open`, `booked` (a `PROVISIONAL:`/`Confirmed:` event consumes it) or `not_offered` (the standing block covers it, or it has passed / sits inside the notice clamp). It reads the blocking event's own lowercased title, the same convention the job count uses. **`loc_slot_is_free()` is a thin wrapper over it returning exactly the bool it always did** — keep it that way, because `reservation-handler.php` depends on that contract.
+
+`loc_get_available_slots()` therefore returns `morning_status` / `afternoon_status` / `full` / `bookable` alongside the two original bools, and — importantly — **it now returns dates that cannot be booked**: any date being worked, including one at its cap. **Never treat presence in that list as availability; read `bookable`.** A date with no window offered at all is still left out, because to a customer that is indistinguishable from a day off.
+
+On the grid each date draws two labelled boxes — **A** morning, **P** afternoon — filled blue when open, filled grey when booked, hollow and dashed when not offered; a capped day keeps the worked-day frame and is captioned **FULL**. One consequence worth knowing: **a day Chris blocks out with dummy bookings (see above) now shows publicly as FULL** rather than disappearing. That is intended — silence read as "he doesn't work then".
+
+Day numbers are read from `data-day`, not `parseInt(el.textContent)` — the boxes put letters in the cell.
+
 **Events must be on the Jobs calendar.** A booking added from a phone usually lands on the device's *default* calendar instead, where the availability code never looks. The symptom reads as a phone/desktop sync failure: the event shows on the phone (which merges all calendars) but not on the desktop view (filtered to Jobs) and has no effect on availability. On iOS, set Settings → Calendar → Default Calendar, or change the Calendar field per event.
 
 ## Known Bugs / Open Items
@@ -475,6 +485,23 @@ Chris (the founder) wants his name, face, and personal/employment history kept O
 **Dots over text or bands, decided by looking at 360px rather than by argument.** A comparison bench was built rendering all four options against the real data at true phone and desktop widths. `AM`/`PM` micro-text is clearest for one cell and the messiest to scan a month of — 8px type under a 12px numeral. Split bands on the cell edges survive the phone best but a bar meaning "morning" is a convention nobody arrives knowing. Dots cost 5px of height and a filled circle for "free" is closest to something people already understand.
 
 **Verification worth repeating: the dot classes are built by string concatenation**, so `loc-cal-day__dot--am` never appears as a literal anywhere in the source. A grep for it comes back empty and proves nothing. The generated strings were executed in node and checked against the stylesheet — that class of mistake fails completely silently, since a class with no matching rule just renders nothing.
+
+**A calendar that draws letters instead of dots, and stops hiding the days it has sold (2026-09-17).** Theme 2.16.0 → 2.17.0, commit `11c88bb`, branch `claude/calendar-bug-d8zhg8`. Built from a mockup Chris supplied rather than described — worth noting, because the mockup settled in one picture several things that would have taken a long conversation.
+
+**The dots were only ever half the answer, and the payload was the reason.** They said which window was free but never why the other had gone, because `loc_get_available_slots()` did not know: a morning eaten by the standing 07:00–13:00 block and a morning someone had already booked both arrived as `false`. Worse, **a fully booked day never reached the browser at all**, so "I'm busy that day" and "I don't work that day" rendered identically. See the Window status section above for the mechanism.
+
+**The fix had to be earned in the data layer, not the stylesheet** — which is what made this bigger than it looked. The safety line was keeping `loc_slot_is_free()` byte-identical in behaviour, since `reservation-handler.php` enforces minimum notice through it; the new reason-reporting went into a separate function with the old one as a wrapper.
+
+**Verification, and one lesson from getting it wrong first.** The offline-fixture method in the entry above was reused: 12 fixture calendars × 6 zones × 4 durations, differential against `origin/main`, **288/288 identical on every pre-existing field**. The first run of that suite was worthless and looked fine — the fixture dates sat 40 days out while the scan window was 14, so both sides were comparing empty results. **A green differential test proves nothing until you have confirmed the fixtures actually bite**; the second run was checked for exactly that (mornings dropping to `:01`, capped dates disappearing, AM/PM overrides honoured) before the result was believed.
+
+**Three things this session that each cost real time, all worth carrying forward:**
+- **The msys shell lies about line endings.** `grep -c $'\r'` matched an empty pattern and reported every file as pure CRLF; `sed` and `perl` both silently translate on read and write under Windows text mode; `tr` and `od` counts contradicted each other. **The only trustworthy check is `git diff --stat`** — a line-ending rewrite shows up as the whole file changing. It stayed at 320 insertions across 4 files, so nothing churned. The 13 Sep note in this file is right: git stores LF, the working tree holds CRLF via `core.autocrlf=true`.
+- **A `sed` aimed at a scratch copy hit the real file too.** It stripped `require_once __DIR__ . '/vendor/autoload.php'` from `calendar-api.php`, and the follow-up grep that appeared to confirm "this file has no requires" was actually reading the damage. It surfaced as a 500 on the availability endpoint. **Check what a loop is iterating over before blaming the code it broke.**
+- **The mockup was right about something not visible in the data:** hiding a spent window reads as breakage. Chris had already made this point about the vanishing slot button on 16 Sep; the same instinct applied to whole days.
+
+**A consequence Chris should know rather than discover:** the days he blocks out with dummy bookings now display publicly as **FULL**. Correct behaviour, and arguably good — a calendar showing booked-out days reads as in demand — but it is newly visible information about how busy he is.
+
+**Not deployed.** Local only, on the same branch as the three calendar fixes above, and the same condition applies: `calendar-api.php` and `reservation-handler.php` are live booking logic and need a full funnel run plus a real test reservation before they go near the server. All four funnel routes were re-run locally and all four box states reproduced against the real Jobs calendar; **no test reservation was created**, deliberately, since a local submission writes a real event to the live calendar.
 
 *Update this log and the sections above whenever significant progress is made or a decision is confirmed.*
 
