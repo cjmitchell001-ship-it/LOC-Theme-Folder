@@ -60,7 +60,6 @@
 
         <p class="loc-step3-eyebrow section-eyebrow">Available Slots</p>
         <h2 class="loc-step3-section-heading">Select a date</h2>
-        <p class="loc-step3-weekend-note">I work weekends too — Saturdays and Sundays are often the easiest slots to get.</p>
         <!-- LEGEND — three states, and no explainer above it: the boxes say
              AM and PM themselves, so there is nothing left to spell out. -->
         <div class="loc-step3-legend">
