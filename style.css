@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.17.0
+Version:           2.18.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -6662,31 +6662,20 @@ a:hover {
     color: var(--grey-500);
 }
 
-/* The legend reuses the grid's own box component, so a legend swatch and a
-   real cell can never drift apart in colour, size or shape. */
-
-/* WHAT THE BOXES MEAN — sits above the legend */
-.loc-step3-cal-hint {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-3);
-    margin: 0 0 var(--space-4);
-    padding: var(--space-3) var(--space-4);
-    background: var(--lightgrey);
-    border-radius: var(--radius-md);
-    font-family: 'Open Sans', sans-serif;
-    font-size: var(--text-ui);
-    line-height: 1.5;
-    color: var(--grey-600);
-}
-
-.loc-step3-cal-hint strong { color: var(--offblack); font-weight: 600; }
-
-.loc-step3-cal-hint__icon {
+/* Legend swatches — the same three fills the grid uses, drawn plain. The
+   AM/PM labels on the grid name the windows themselves, so a swatch only
+   has to carry the colour. */
+.loc-step3-legend-swatch {
+    width: 22px;
+    height: 16px;
+    border-radius: var(--radius-xs);
+    border: 1px solid transparent;
     flex-shrink: 0;
-    color: var(--grey-400);
-    margin-top: 1px;
 }
+
+.loc-step3-legend-swatch--open   { background: var(--blue);      border-color: var(--blue); }
+.loc-step3-legend-swatch--booked { background: var(--grey-200);  border-color: var(--grey-200); }
+.loc-step3-legend-swatch--none   { background: var(--lightgrey); border-color: var(--grey-100); }
 
 /* CALENDAR NAV */
 .loc-step3-cal-nav {
@@ -6784,54 +6773,43 @@ a:hover {
 
 .loc-cal-day__slots {
     display: flex;
-    gap: 3px;
-    margin-top: 3px;
+    width: 100%;
+    gap: 2px;
+    margin-top: var(--space-1);
 }
 
+/* Two halves of one bar across the foot of the cell, so the pair reads as
+   a single thing split in two rather than as two loose chips. Montserrat,
+   the site's heading face — the labels are part of the brand, not borrowed
+   from the mockup. */
 .loc-cal-day__slot {
+    flex: 1 1 0;
+    min-width: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 17px;
-    height: 15px;
+    height: 18px;
     border-radius: var(--radius-xs);
-    border: 1px solid transparent;
     font-family: 'Montserrat', sans-serif;
     font-size: var(--text-fine);
     font-weight: 700;
     font-style: normal;
     line-height: 1;
-    letter-spacing: 0;
+    letter-spacing: -0.02em;
 }
 
-/* Open — solid brand blue, the only filled-and-coloured state. */
+/* Open — solid brand blue. */
 .loc-cal-day__slot--open {
     background: var(--blue);
-    border-color: var(--blue);
     color: var(--white);
 }
 
-/* Booked — filled, but grey and recessive: it exists, someone has it. */
+/* Booked — grey and recessive. Deliberately the ONLY unavailable state:
+   whether a window is taken or simply not worked is my problem, and showing
+   the difference only invited a question the customer cannot act on. */
 .loc-cal-day__slot--booked {
     background: var(--grey-200);
-    border-color: var(--grey-200);
     color: var(--grey-500);
-}
-
-/* Not offered — hollow and dashed, so it reads as absence rather than as
-   something that was taken. The dashed border is what separates this from
-   "booked" without relying on the grey being a different grey. */
-.loc-cal-day__slot--not-offered {
-    background: transparent;
-    border-style: dashed;
-    border-color: var(--grey-200);
-    color: var(--grey-300);
-}
-
-/* Day closed — the legend swatch only; closed dates draw no boxes at all. */
-.loc-cal-day__slot--closed {
-    background: var(--grey-50);
-    border-color: var(--grey-100);
 }
 
 /* FULL — the day hit its cap. Says "booked out" rather than leaving a date
@@ -6854,12 +6832,7 @@ a:hover {
 }
 .loc-cal-day--selected .loc-cal-day__slot--booked {
     background: var(--white-a35);
-    border-color: transparent;
     color: var(--white);
-}
-.loc-cal-day--selected .loc-cal-day__slot--not-offered {
-    border-color: var(--white-a35);
-    color: var(--white-a60);
 }
 .loc-cal-day--selected .loc-cal-day__full { color: var(--white-a60); }
 
@@ -7952,21 +7925,15 @@ a:hover {
         padding: var(--space-1) 2px;
     }
 
-    /* The letters are what make these readable, so they do not shrink much —
-       a 15px box holding 11px type is the floor at which A and P still read
-       as letters rather than as marks. */
+    /* AM and PM have to stay readable in roughly 18px of width each, so the
+       boxes keep their height and lose only the side breathing room. */
     .loc-cal-day__slot {
-        width: 15px;
-        height: 14px;
+        height: 16px;
+        letter-spacing: -0.04em;
     }
 
     .loc-step3-cal-grid td {
-        padding: var(--space-1);
-    }
-
-    .loc-step3-cal-hint {
-        font-size: var(--text-sm);
-        padding: var(--space-3);
+        padding: 2px;
     }
 
     .loc-step3-legend {

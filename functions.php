@@ -1276,18 +1276,23 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 boxes.className = 'loc-cal-day__slots';
                 boxes.setAttribute('aria-hidden', 'true');
 
-                var words = { open: 'free', booked: 'booked', not_offered: 'not offered' };
-                var says  = [];
+                var says = [];
 
-                [['morning', 'A'], ['afternoon', 'P']].forEach(function(w) {
+                [['morning', 'AM'], ['afternoon', 'PM']].forEach(function(w) {
                     // Fall back to the bool if a status is ever missing, so an
                     // older payload still renders something sane.
                     var st = slot[w[0] + '_status'] || (slot[w[0]] ? 'open' : 'booked');
-                    var b  = document.createElement('i');
-                    b.className = 'loc-cal-day__slot loc-cal-day__slot--' + st.replace('_', '-');
+                    // Two states on screen, not three. Whether a window is
+                    // taken or simply not worked is my problem, not the
+                    // customer's — either way they cannot have it, and saying
+                    // so twice in two styles only invites the question.
+                    var vis = (st === 'open') ? 'open' : 'booked';
+                    var b   = document.createElement('i');
+                    b.className = 'loc-cal-day__slot loc-cal-day__slot--' + vis;
                     b.textContent = w[1];
                     boxes.appendChild(b);
-                    says.push((w[0] === 'morning' ? 'morning ' : 'afternoon ') + (words[st] || st));
+                    says.push((w[0] === 'morning' ? 'morning ' : 'afternoon ')
+                        + (vis === 'open' ? 'available' : 'not available'));
                 });
                 div.appendChild(boxes);
 
@@ -1370,20 +1375,13 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             // date showed an Afternoon button alone and the page read as
             // "he doesn't do mornings" — with nothing on it to say otherwise.
             // Both windows now always show; the spent one is visibly spent.
-            // "Booked" and "not offered" are different facts and get different
-            // wording — telling someone a window is taken when I simply don't
-            // work it sends them looking for a gap that was never there.
-            function _why(status, whenBooked, whenNotOffered) {
-                return status === 'not_offered' ? whenNotOffered : whenBooked;
-            }
+            // One reason per window, not two. Why a window has gone is my
+            // problem — the customer only needs to know it has, and where to
+            // look next.
             setSlotAvailability(_mBtn, !_dd || _dd.morning,
-                _why(_dd && _dd.morning_status,
-                    'Already booked on this date — weekends usually have mornings free',
-                    'I\'m not out in the morning on this date — weekends usually have mornings free'));
+                'Not available on this date — weekends usually have mornings free');
             setSlotAvailability(_aBtn, !_dd || _dd.afternoon,
-                _why(_dd && _dd.afternoon_status,
-                    'Already booked on this date — try another day, or call me and I\'ll sort it',
-                    'I\'m not out in the afternoon on this date — try another day, or call me and I\'ll sort it'));
+                'Not available on this date — try another day, or call me and I\'ll sort it');
 
             document.getElementById('loc-time-slots').style.display = 'block';
             document.getElementById('loc-time-slots').scrollIntoView({ behavior: 'smooth', block: 'nearest' });

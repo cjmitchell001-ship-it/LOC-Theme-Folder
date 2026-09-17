@@ -61,33 +61,20 @@
         <p class="loc-step3-eyebrow section-eyebrow">Available Slots</p>
         <h2 class="loc-step3-section-heading">Select a date</h2>
         <p class="loc-step3-weekend-note">I work weekends too — Saturdays and Sundays are often the easiest slots to get.</p>
-        <!-- WHAT THE BOXES MEAN -->
-        <p class="loc-step3-cal-hint">
-            <span class="loc-step3-cal-hint__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                    <circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>
-                </svg>
-            </span>
-            <span>Each date shows two boxes — <strong>A for morning</strong>, <strong>P for afternoon</strong>. No need to tap in to check.</span>
-        </p>
-
-        <!-- LEGEND -->
+        <!-- LEGEND — three states, and no explainer above it: the boxes say
+             AM and PM themselves, so there is nothing left to spell out. -->
         <div class="loc-step3-legend">
             <div class="loc-step3-legend-item">
-                <span class="loc-cal-day__slot loc-cal-day__slot--open" aria-hidden="true">A</span>
+                <span class="loc-step3-legend-swatch loc-step3-legend-swatch--open" aria-hidden="true"></span>
                 <span>Open</span>
             </div>
             <div class="loc-step3-legend-item">
-                <span class="loc-cal-day__slot loc-cal-day__slot--booked" aria-hidden="true">A</span>
+                <span class="loc-step3-legend-swatch loc-step3-legend-swatch--booked" aria-hidden="true"></span>
                 <span>Booked</span>
             </div>
             <div class="loc-step3-legend-item">
-                <span class="loc-cal-day__slot loc-cal-day__slot--not-offered" aria-hidden="true">A</span>
-                <span>Not offered</span>
-            </div>
-            <div class="loc-step3-legend-item">
-                <span class="loc-cal-day__slot loc-cal-day__slot--closed" aria-hidden="true"></span>
-                <span>Day closed</span>
+                <span class="loc-step3-legend-swatch loc-step3-legend-swatch--none" aria-hidden="true"></span>
+                <span>Unavailable</span>
             </div>
         </div>
 
