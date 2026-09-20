@@ -994,7 +994,64 @@ function loc_step2_script() {
             });
         }
 
-                function updateInlineSummary() {
+        // ── SKIP BUTTON (inline route) ──
+        //
+        // This button had no click listener at all: isStep2Skipped was declared
+        // and read, but nothing ever set it, so "Discuss on the Call" on Step 2
+        // did nothing and the proceed button stayed disabled. Anyone landing
+        // straight on Step 2 who did not want to list appliances had no way
+        // forward. Step 1's button has always worked; this mirrors it.
+        function setStep2SkipActive() {
+            isStep2Skipped = true;
+            if (step2SkipBtn) {
+                step2SkipBtn.classList.add('is-active');
+                step2SkipBtn.textContent = 'Undo — Select Appliances Instead';
+            }
+            sessionStorage.setItem('loc_skip', 'true');
+
+            // Clear any inline picks — the customer has just said they would
+            // rather talk it through, so the list below must not contradict it.
+            inlineSelections = {};
+            document.querySelectorAll('.loc-appliance-card--inline, #loc-aga-inline-card, #loc-bbq-inline-card').forEach(function(c) {
+                c.classList.remove('is-selected');
+            });
+
+            var itemsEl     = document.getElementById('loc-inline-items');
+            var totalEl     = document.getElementById('loc-inline-total');
+            var proceedBtn  = document.getElementById('loc-inline-proceed-btn');
+            var stickyBar   = document.getElementById('loc-step2-sticky-bottom');
+            var stickyTotal = document.getElementById('loc-step2-sticky-total');
+            var stickyBtn   = document.getElementById('loc-step2-sticky-btn');
+
+            if (itemsEl)     itemsEl.innerHTML = '<p class="loc-step2-inline-summary__empty">Appliances to be discussed on the call</p>';
+            if (totalEl)     totalEl.innerHTML = '<span>£</span>TBC';
+            if (stickyTotal) stickyTotal.innerHTML = '<span>£</span>TBC';
+            if (proceedBtn)  proceedBtn.classList.remove('loc-step2-btn-proceed--disabled');
+            if (stickyBtn)   stickyBtn.classList.remove('loc-step2-sticky-bottom__btn--disabled');
+            if (stickyBar)   stickyBar.classList.add('is-visible');
+        }
+
+        function setStep2SkipInactive() {
+            isStep2Skipped = false;
+            if (step2SkipBtn) {
+                step2SkipBtn.classList.remove('is-active');
+                step2SkipBtn.textContent = 'Discuss on the Call';
+            }
+            sessionStorage.removeItem('loc_skip');
+            updateInlineSummary();
+        }
+
+        if (step2SkipBtn) {
+            step2SkipBtn.addEventListener('click', function() {
+                if (isStep2Skipped) {
+                    setStep2SkipInactive();
+                } else {
+                    setStep2SkipActive();
+                }
+            });
+        }
+
+        function updateInlineSummary() {
             // Reset skip state if user manually selects
             if (isStep2Skipped) {
                 isStep2Skipped = false;
@@ -1004,7 +1061,7 @@ function loc_step2_script() {
                 }
                 sessionStorage.removeItem('loc_skip');
             }
-            // ... rest of function unchanged
+
             var itemsEl    = document.getElementById('loc-inline-items');
             var totalEl    = document.getElementById('loc-inline-total');
             var proceedBtn = document.getElementById('loc-inline-proceed-btn');
@@ -1054,6 +1111,11 @@ function loc_step2_script() {
                 e.preventDefault();
                 return;
             }
+            // On the skip route there is nothing to serialise, and the flag
+            // must survive — Step 3 reads it to show "to be discussed on the
+            // call" and £TBC. Clearing it here would have silently undone the
+            // skip on the way out. The sticky-bar button already guards this.
+            if (isStep2Skipped) return;
             sessionStorage.removeItem('loc_skip');
             var serialised = {};
             Object.keys(inlineSelections).forEach(function(name) {
