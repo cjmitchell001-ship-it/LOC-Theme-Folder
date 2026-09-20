@@ -155,7 +155,7 @@ Bugs were shipped during the token refactor because verification checked the wro
 3. Direct land Step 2 → inline appliances → Step 3 (sticky bar writes storage on click)
 4. Direct land Step 2 → inline discuss → Step 3 (£TBC throughout)
 
-All four routes implemented and tested on mobile (June 2026).
+All four routes implemented and tested on mobile (June 2026). **That sentence was wrong about route 4 for three months** — from `a545ba0` (14 Jun 2026) until 20 Sep 2026, Step 2's "Discuss on the Call" button had no click listener and the route was unusable in production, while this line said it was tested. Fixed and re-driven end to end on local and live. Left here as a standing warning: **re-drive the routes; do not take this note's word for it.**
 
 ## Funnel — Step 3 Mobile Layout Rules
 
@@ -504,6 +504,12 @@ Chris (the founder) wants his name, face, and personal/employment history kept O
 - **The msys shell lies about line endings.** `grep -c $'\r'` matched an empty pattern and reported every file as pure CRLF; `sed` and `perl` both silently translate on read and write under Windows text mode; `tr` and `od` counts contradicted each other. **The only trustworthy check is `git diff --stat`** — a line-ending rewrite shows up as the whole file changing. It stayed at 320 insertions across 4 files, so nothing churned. The 13 Sep note in this file is right: git stores LF, the working tree holds CRLF via `core.autocrlf=true`.
 - **A `sed` aimed at a scratch copy hit the real file too.** It stripped `require_once __DIR__ . '/vendor/autoload.php'` from `calendar-api.php`, and the follow-up grep that appeared to confirm "this file has no requires" was actually reading the damage. It surfaced as a 500 on the availability endpoint. **Check what a loop is iterating over before blaming the code it broke.**
 - **The mockup was right about something not visible in the data:** hiding a spent window reads as breakage. Chris had already made this point about the vanishing slot button on 16 Sep; the same instinct applied to whole days.
+
+**Route 4 had been dead for three months, and the docs said it was tested (2026-09-20).** Commit `2eec6fb`, deployed. Landing straight on Step 2 and choosing "Discuss on the Call" did nothing at all: `isStep2Skipped` was declared and read, the code to undo the skip when an appliance is picked was fully written, but **nothing ever set it — the button had no click listener**. The proceed button stayed disabled, so the only way forward was to pick an appliance the customer had just said they would rather talk through. A `// ... rest of function unchanged` marker sits exactly where the handler belongs, which points at an edit that dropped it rather than code never written; `git log -S` dates it to `a545ba0`, 14 Jun 2026.
+
+**It was two bugs, not one.** Even once the flag was set, the inline proceed button called `sessionStorage.removeItem('loc_skip')` unconditionally and wiped it on the way to Step 3. The sticky-bar button already guarded against that; the inline one did not. Fixing only the listener would have looked right on Step 2 and still failed on Step 3.
+
+**Why it survived so long, and the bit worth keeping:** the July CC-Brief session fixed a `ReferenceError` here by declaring `isStep2Skipped` and `step2SkipBtn`. That stopped the crash and repaired route 3, so the area looked healthy — but the missing handler was never noticed, because the symptom (a button that silently does nothing) produces no error. **A fix that clears the error is not the same as a fix that restores the behaviour.** The "Four User Journey Routes" note above has been annotated rather than corrected, because the claim "all four routes tested" is what stopped anyone looking.
 
 **DEPLOYED to SiteGround, 2026-09-17.** Everything on `claude/calendar-bug-d8zhg8` — the three calendar fixes from the cloud session plus both UX passes — is live. Theme **2.19.0**. Five files: `calendar-api.php`, `functions.php`, `page-reserve-step3.php`, `reservation-handler.php`, `style.css`, each backed up on the server as `.bak-20260917` first. All five MD5-verified against local after upload, `php -l` clean on the server, dynamic cache purged, 12 pages crawled 200, and the live availability endpoint confirmed returning the new `morning_status` / `afternoon_status` / `full` / `bookable` fields.
 
