@@ -146,6 +146,9 @@ function loc_handle_reservation() {
     $date_formatted = $date_obj ? $date_obj->format( 'l j F Y' ) : $date;
 
     $slot_display  = ( $slot === 'Morning' ) ? 'Morning (7am – 1pm)' : 'Afternoon (1pm – 6pm)';
+    // Time only, for running inline in a sentence — "(Afternoon (1pm – 6pm))"
+    // put brackets inside brackets. The full label still heads the summary.
+    $slot_time     = ( $slot === 'Morning' ) ? '7am – 1pm' : '1pm – 6pm';
 
     $total_display = $total > 0 ? 'From £' . $total . ' — I\'ll confirm your exact price on the call' : 'To be discussed on the call';
 
@@ -266,11 +269,11 @@ EOT;
     $confirm_body    = <<<EOT
 Hi {$first_name},
 
-Thank you for reserving with me — your slot on {$date_formatted} ({$slot_display}) is held.
+Thank you for reserving with me — your slot on {$date_formatted}, {$slot_time}, is held.
 
-I'll give you a call {$call_when} to confirm your booking, run through your appliances, and answer anything you're not sure about.{$call_detail} Once I've spoken, I'll arrange a £25 deposit by bank transfer to officially lock it in.
+I'll give you a call {$call_when} to confirm your booking, run through your appliances, and answer anything you're not sure about.{$call_detail} Once we have spoken, I'll arrange a £25 deposit by bank transfer to officially lock it in.
 
-Nothing to do on your end right now — I'll come to you.
+Nothing to do on your end right now — I'll call you.
 
 YOUR RESERVATION
 {$date_formatted} — {$slot_display}
@@ -281,10 +284,11 @@ APPLIANCES
 Total: {$total_display}
 
 WHAT TO HAVE READY ON THE DAY
-- Clear access to the oven(s) — please remove any trays, shelves, or items stored inside before I arrive
-- Access to a cold water tap — and hot water where available
+- Clear access to the oven(s)
+- I clean the original trays, side racks and shelves that came with the oven — please take out any non-original trays or anything else stored inside before I arrive
+- Access to water, which I need to complete the clean
 
-If you need to reach me before I call, you can contact me on 07710 649 360 or hello@leicesterovencleaning.co.uk.
+If for any reason you need to reach me before I call, you can contact me on 07710 649 360 or hello@leicesterovencleaning.co.uk.
 
 Leicester Oven Cleaning
 hello@leicesterovencleaning.co.uk
