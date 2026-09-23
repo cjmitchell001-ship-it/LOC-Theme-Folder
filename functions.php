@@ -1484,10 +1484,26 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
 
             document.getElementById('loc-time-slots').style.display = 'block';
             document.getElementById('loc-time-slots').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            // Nothing to clear on a date that was never taken as a booking.
-            if (clearDateBtn) clearDateBtn.style.display = canBook ? 'block' : 'none';
+            // Clear Date shows whenever the panel is open, including on a date
+            // with nothing left. It is the only way back out, and the tip below
+            // cannot return without it.
+            if (clearDateBtn) clearDateBtn.style.display = 'block';
+
+            // The tip's job is to get someone to open a date in the first
+            // place. Once the panel is open the windows say "Tap for
+            // cancellations" themselves, so repeating it underneath is noise.
+            setTipVisible(false);
+
             updateSummarySlot();
             updateReserveBtn();
+        }
+
+        // The tip is display:flex, so the [hidden] attribute needs the CSS
+        // rule that goes with it — see style.css. Same trap as the prompt
+        // button earlier: a class-level display beats a bare [hidden].
+        function setTipVisible(show) {
+            var tip = document.querySelector('.loc-step3-tip');
+            if (tip) tip.hidden = !show;
         }
 
         // Month nav
@@ -1567,6 +1583,9 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                     // Hide time slot panel and clear button
                     document.getElementById('loc-time-slots').style.display = 'none';
                     clearDateBtn.style.display = 'none';
+
+                    // Back to the grid, so the tip is worth saying again.
+                    setTipVisible(true);
 
                     // Reset both windows to available for the next date picked
                     setSlotAvailability(document.querySelector('.loc-step3-slot-btn[data-label="Morning"]'), true, '');

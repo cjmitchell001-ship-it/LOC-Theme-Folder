@@ -7654,6 +7654,11 @@ a:hover {
     color: var(--blue);
 }
 
+/* display:flex above out-specifies the browser's [hidden] rule, so
+   without this the tip stays on screen when the panel tries to hide it.
+   Same trap as the prompt button in the first attempt. */
+.loc-step3-tip[hidden] { display: none; }
+
 .loc-step3-tip strong { font-weight: 700; }
 
 .loc-step3-tip__icon {
