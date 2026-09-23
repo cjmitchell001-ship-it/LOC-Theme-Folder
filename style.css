@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.20.0
+Version:           2.19.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -72,14 +72,6 @@ ul, ol {
   /* ---- GREY SCALE (grey-100 = current --border, grey-50 = current --lightgrey) ---- */
   --grey-700: #444; --grey-600: #555; --grey-500: #666; --grey-400: #888; --grey-300: #aaa;
   --grey-200: #ccc; --grey-100: #e2e2e2; --grey-50: #F5F5F5;
-
-  /* ---- ERROR ----
-     Both values were already in the sheet as literals on
-     .loc-step3-submit-error. Tokenised rather than duplicated when the
-     waiting-list form needed the same red. */
-  --error:    #c0392b;
-  --error-bg: #fdf2f2;
-  --error-border: #f5c6c6;
 
   /* ---- BLUE TINTS ---- */
   --blue-dark: #122d58;  --blue-darker: #0f2550;  --blue-pale: #eef3fa;
@@ -7438,10 +7430,10 @@ a:hover {
 .loc-step3-btn-submit:disabled { opacity: 0.7; cursor: not-allowed; }
 
 .loc-step3-submit-error {
-    color: var(--error);
+    color: #c0392b;
     font-size: var(--text-ui);
-    background: var(--error-bg);
-    border: 1px solid var(--error-border);
+    background: #fdf2f2;
+    border: 1px solid #f5c6c6;
     border-radius: var(--radius-sm);
     padding: var(--space-3) var(--space-4);
     margin-bottom: var(--space-4);
@@ -7628,124 +7620,6 @@ a:hover {
         margin-right: auto;
         width: 100%;
     }
-}
-
-/* STEP 3 — WAITING LIST (shown only when a window on the date has gone)
-   Deliberately quiet: it sits inside the time-slot panel and must never
-   compete with a bookable slot sitting right next to it. Someone who can
-   take the afternoon should book the afternoon, not join a list. */
-.loc-slot-interest {
-    margin-top: var(--space-4);
-    padding-top: var(--space-4);
-    border-top: 1px solid var(--grey-100);
-}
-
-.loc-slot-interest__open {
-    display: block;
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: none;
-    padding: 0;
-    font-family: 'Open Sans', sans-serif;
-    font-size: var(--text-ui);
-    line-height: 1.5;
-    color: var(--blue);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    cursor: pointer;
-}
-
-.loc-slot-interest__open:hover { color: var(--blue-dark); }
-
-/* display:block above out-specifies the browser's [hidden] rule, so the
-   prompt stayed on screen after the form opened. */
-.loc-slot-interest__open[hidden] { display: none; }
-
-.loc-slot-interest__prompt {
-    margin: 0 0 var(--space-2);
-    font-family: 'Open Sans', sans-serif;
-    font-size: var(--text-sm);
-    color: var(--grey-600);
-}
-
-.loc-slot-interest__windows {
-    display: flex;
-    gap: var(--space-2);
-    margin-bottom: var(--space-3);
-}
-
-.loc-slot-interest__win {
-    flex: 1 1 0;
-    padding: var(--space-2) var(--space-3);
-    border: 1px solid var(--grey-200);
-    border-radius: var(--radius-sm);
-    background: var(--white);
-    font-family: 'Open Sans', sans-serif;
-    font-size: var(--text-ui);
-    color: var(--grey-600);
-    cursor: pointer;
-}
-
-.loc-slot-interest__win.is-selected {
-    border-color: var(--blue);
-    background: var(--blue);
-    color: var(--white);
-    font-weight: 600;
-}
-
-.loc-slot-interest__fields {
-    display: flex;
-    gap: var(--space-2);
-    margin-bottom: var(--space-3);
-}
-
-.loc-slot-interest__input {
-    flex: 1 1 0;
-    min-width: 0;
-    padding: var(--space-3);
-    border: 1px solid var(--grey-200);
-    border-radius: var(--radius-sm);
-    font-family: 'Open Sans', sans-serif;
-    font-size: var(--text-body-sm);
-}
-
-.loc-slot-interest__input:focus {
-    outline: none;
-    border-color: var(--blue);
-}
-
-.loc-slot-interest__submit {
-    width: 100%;
-    padding: var(--space-3) var(--space-4);
-    border: none;
-    border-radius: var(--radius-sm);
-    background: var(--blue);
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-size: var(--text-ui);
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.loc-slot-interest__submit:hover:not(:disabled) { background: var(--blue-dark); }
-.loc-slot-interest__submit:disabled { background: var(--grey-300); cursor: default; }
-
-.loc-slot-interest__note,
-.loc-slot-interest__done,
-.loc-slot-interest__error {
-    margin: var(--space-2) 0 0;
-    font-family: 'Open Sans', sans-serif;
-    font-size: var(--text-sm);
-    line-height: 1.5;
-}
-
-.loc-slot-interest__note  { color: var(--grey-500); }
-.loc-slot-interest__done  { color: var(--blue); font-weight: 600; margin-top: 0; }
-.loc-slot-interest__error { color: var(--error); }
-
-@media (max-width: 480px) {
-    .loc-slot-interest__fields { flex-direction: column; }
 }
 
 /* STEP 3 — DATE ESCAPE HATCH */
