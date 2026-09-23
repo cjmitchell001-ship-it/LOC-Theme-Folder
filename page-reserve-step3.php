@@ -110,6 +110,32 @@
                     <span class="loc-step3-slot-btn__why"></span>
                 </button>
             </div>
+
+            <!-- WAITING LIST — only shown when a window on this date has gone.
+                 Sits here rather than in the escape-hatch box below because
+                 this is the moment someone finds out they cannot have what
+                 they came for. Two fields only; the friction is what loses
+                 the answer. -->
+            <div class="loc-slot-interest" id="loc-slot-interest" hidden>
+                <button type="button" class="loc-slot-interest__open" id="loc-slot-interest-open"></button>
+
+                <div class="loc-slot-interest__form" id="loc-slot-interest-form" hidden>
+                    <p class="loc-slot-interest__prompt">Which would suit you?</p>
+                    <div class="loc-slot-interest__windows" id="loc-slot-interest-windows">
+                        <button type="button" class="loc-slot-interest__win" data-window="Morning">Morning</button>
+                        <button type="button" class="loc-slot-interest__win" data-window="Afternoon">Afternoon</button>
+                    </div>
+                    <div class="loc-slot-interest__fields">
+                        <input type="text" id="loc-interest-name" class="loc-slot-interest__input" placeholder="First name" autocomplete="given-name">
+                        <input type="tel" id="loc-interest-phone" class="loc-slot-interest__input" placeholder="Contact number" autocomplete="tel">
+                    </div>
+                    <button type="button" class="loc-slot-interest__submit" id="loc-interest-submit">Let me know</button>
+                    <p class="loc-slot-interest__note">I'll only use this to tell you about a slot. Nothing is held for you.</p>
+                    <p class="loc-slot-interest__error" id="loc-interest-error" hidden></p>
+                </div>
+
+                <p class="loc-slot-interest__done" id="loc-slot-interest-done" hidden>Thanks &mdash; I'll let you know if something frees up.</p>
+            </div>
         </div>
 
         <!-- ESCAPE HATCH — for users who can't find a suitable date -->

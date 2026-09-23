@@ -8,6 +8,7 @@
 
 require_once get_stylesheet_directory() . '/calendar-api.php';
 require_once get_stylesheet_directory() . '/reservation-handler.php';
+require_once get_stylesheet_directory() . '/slot-interest.php';
 
 /**
  * Register title-tag support.
@@ -50,6 +51,9 @@ function loc_from_price() {
 
 add_action( 'wp_ajax_nopriv_loc_reservation', 'loc_handle_reservation' ); // unauthenticated visitors
 add_action( 'wp_ajax_loc_reservation',        'loc_handle_reservation' ); // logged-in users
+
+add_action( 'wp_ajax_nopriv_loc_slot_interest', 'loc_handle_slot_interest' );
+add_action( 'wp_ajax_loc_slot_interest',        'loc_handle_slot_interest' );
 
 // ============================================================
 // GOOGLE CALENDAR AVAILABILITY — WordPress AJAX endpoint
@@ -1443,6 +1447,8 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             setSlotAvailability(_mBtn, !_dd || _dd.morning, 'Full');
             setSlotAvailability(_aBtn, !_dd || _dd.afternoon, 'Full');
 
+            updateSlotInterest(_ds, _dd);
+
             document.getElementById('loc-time-slots').style.display = 'block';
             document.getElementById('loc-time-slots').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             if (clearDateBtn) clearDateBtn.style.display = 'block';
@@ -1689,6 +1695,137 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
         });
 
         // ── SMART CALLBACK MESSAGE ──
+        // ── WAITING LIST ──────────────────────────────────────────────────
+        //
+        // Shown only when a window on the selected date has gone. The point is
+        // to measure what the calendar cannot: whether thin availability is
+        // costing bookings, or whether demand sits where it can already be
+        // served. Both currently look identical — like silence.
+        //
+        // Every row is a floor, never a total: most people who cannot find a
+        // slot just close the tab.
+        var interestWrap   = document.getElementById('loc-slot-interest');
+        var interestOpen   = document.getElementById('loc-slot-interest-open');
+        var interestForm   = document.getElementById('loc-slot-interest-form');
+        var interestDone   = document.getElementById('loc-slot-interest-done');
+        var interestErr    = document.getElementById('loc-interest-error');
+        var interestWindow = null;
+        var interestDate   = null;
+        var interestSent   = {}; // date -> true, so one date is not asked twice
+
+        function setInterestWindow(w) {
+            interestWindow = w;
+            document.querySelectorAll('.loc-slot-interest__win').forEach(function(b) {
+                b.classList.toggle('is-selected', b.dataset.window === w);
+            });
+        }
+
+        function updateSlotInterest(dateStr, dd) {
+            if (!interestWrap) return;
+            var mGone = dd && !dd.morning;
+            var aGone = dd && !dd.afternoon;
+
+            // Nothing gone on this date, or the date is not one I work at all:
+            // there is no unmet want to record.
+            if (!dd || (!mGone && !aGone)) { interestWrap.hidden = true; return; }
+
+            interestDate = dateStr;
+            interestWrap.hidden = false;
+            interestForm.hidden = true;
+            interestErr.hidden  = true;
+
+            if (interestSent[dateStr]) {
+                interestOpen.hidden = true;
+                interestDone.hidden = false;
+                return;
+            }
+            interestOpen.hidden = false;
+            interestDone.hidden = true;
+
+            // Default to whichever window they just lost; if both have gone,
+            // let them say which one they actually wanted.
+            setInterestWindow(mGone && !aGone ? 'Morning' : (aGone && !mGone ? 'Afternoon' : null));
+
+            interestOpen.textContent = (mGone && aGone)
+                ? 'This day is full — tell me if you want it and I\'ll let you know if it frees up'
+                : 'Want the ' + (mGone ? 'morning' : 'afternoon') + '? I\'ll let you know if it frees up';
+        }
+
+        if (interestOpen) {
+            interestOpen.addEventListener('click', function() {
+                interestOpen.hidden = true;
+                interestForm.hidden = false;
+            });
+        }
+
+        document.querySelectorAll('.loc-slot-interest__win').forEach(function(b) {
+            b.addEventListener('click', function() { setInterestWindow(b.dataset.window); });
+        });
+
+        var interestSubmit = document.getElementById('loc-interest-submit');
+        if (interestSubmit) {
+            interestSubmit.addEventListener('click', function() {
+                var nm = document.getElementById('loc-interest-name').value.trim();
+                var ph = document.getElementById('loc-interest-phone').value.trim();
+                if (!nm || !ph) {
+                    interestErr.textContent = 'Just your first name and a number.';
+                    interestErr.hidden = false;
+                    return;
+                }
+                interestErr.hidden = true;
+                interestSubmit.disabled = true;
+                interestSubmit.textContent = 'Sending…';
+
+                // What the calendar was offering at this moment. Without it a
+                // row cannot be read: asking while six afternoons sit open
+                // means the opposite of asking when nothing is bookable.
+                var openDates = 0, openAm = 0, openPm = 0;
+                Object.keys(availableLookup).forEach(function(k) {
+                    var d = availableLookup[k];
+                    if (!d || !d.bookable) return;
+                    openDates++;
+                    if (d.morning)   openAm++;
+                    if (d.afternoon) openPm++;
+                });
+
+                fetch('/wp-admin/admin-ajax.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({
+                        action:     'loc_slot_interest',
+                        name:       nm,
+                        phone:      ph,
+                        window:     interestWindow || 'Either',
+                        date:       interestDate || '',
+                        zone:       sessionStorage.getItem('loc_zone') || '',
+                        postcode:   sessionStorage.getItem('loc_postcode') || '',
+                        open_dates: openDates,
+                        open_am:    openAm,
+                        open_pm:    openPm
+                    })
+                })
+                .then(function(r) { return r.json(); })
+                .then(function(res) {
+                    if (res && res.success) {
+                        interestSent[interestDate] = true;
+                        interestForm.hidden = true;
+                        interestDone.hidden = false;
+                    } else {
+                        interestErr.textContent = (res && res.error) || 'Something went wrong — give me a ring instead.';
+                        interestErr.hidden = false;
+                        interestSubmit.disabled = false;
+                        interestSubmit.textContent = 'Let me know';
+                    }
+                })
+                .catch(function() {
+                    interestErr.textContent = 'Something went wrong — give me a ring on 07710 649 360.';
+                    interestErr.hidden = false;
+                    interestSubmit.disabled = false;
+                    interestSubmit.textContent = 'Let me know';
+                });
+            });
+        }
+
         // MUST MATCH reservation-handler.php's call-timing block. This is the
         // message on screen, that one is the confirmation email, and a customer
         // sees both \u2014 so the two are driven by the same rule and the same

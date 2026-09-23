@@ -10,3 +10,8 @@ token.json
 vendor/
 composer.phar
 composer-setup.php
+
+# Waiting-list capture — holds names and phone numbers.
+# Normally lives ABOVE the web root; this is insurance in case the path
+# is ever changed to somewhere inside the theme.
+loc-slot-interest.csv
