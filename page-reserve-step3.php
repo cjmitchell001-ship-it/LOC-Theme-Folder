@@ -127,15 +127,12 @@
             <span><strong>Tap any full slot</strong> and I'll let you know if a cancellation comes up.</span>
         </p>
 
-        <!-- ESCAPE HATCH — for users who can't find a suitable date -->
-        <div class="loc-step3-date-escape" id="loc-date-escape">
-            <p class="loc-step3-date-escape__heading">Need a specific date?</p>
-            <p class="loc-step3-date-escape__body">If you need your oven cleaned by a particular date — or you can't see a slot that works for you — just let me know. I'll sort it over the phone.</p>
-            <div class="loc-step3-date-escape__btns">
-                <a href="tel:+447710649360" class="loc-step3-date-escape__btn loc-step3-date-escape__btn--call">Call Me</a>
-                <button class="loc-step3-date-escape__btn loc-step3-date-escape__btn--discuss" id="loc-date-escape-btn">Confirm On Call</button>
-            </div>
-        </div>
+        <!-- The "Need a specific date?" escape hatch was removed on
+             23 Sep 2026: tapping a full window now covers "I can't see a slot
+             that works". NOTE it also carried "Confirm On Call", the only way
+             to start a no-date (isDateTBC) reservation — that route is now
+             unreachable by design, not by accident. The JS behind it is
+             guarded and harmless; restore this block to bring it back. -->
 
     </div><!-- /calendar-col -->
 

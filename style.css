@@ -6932,7 +6932,16 @@ a:hover {
     border-color: var(--gold);
 }
 
-.loc-step3-slot-btn--spent:hover .loc-step3-slot-btn__why { color: var(--gold-dark); }
+/* The invitation, not a footnote: blue and full size, so it reads as the
+   thing to do rather than as small print explaining a refusal. The struck
+   label and dashed box are what say "gone". */
+.loc-step3-slot-btn--spent .loc-step3-slot-btn__why {
+    color: var(--blue);
+    font-size: var(--text-body-sm);
+    font-weight: 600;
+}
+
+.loc-step3-slot-btn--spent:hover .loc-step3-slot-btn__why { color: var(--blue-dark); }
 
 .loc-step3-slot-btn--spent .loc-step3-slot-btn__label {
     color: var(--grey-500);
@@ -7675,78 +7684,6 @@ a:hover {
     font-size: var(--text-body-sm);
     line-height: 1.6;
     color: var(--grey-600);
-}
-
-/* STEP 3 — DATE ESCAPE HATCH */
-.loc-step3-date-escape {
-    margin-top: var(--space-6);
-    border: 2px dashed var(--border);
-    background: var(--lightgrey);
-    padding: var(--space-5) var(--space-6);
-}
-
-.loc-step3-date-escape__heading {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-ui);
-    color: var(--blue);
-    margin-bottom: var(--space-2);
-    line-height: 1.3;
-}
-
-.loc-step3-date-escape__body {
-    font-family: 'Open Sans', sans-serif;
-    font-size: var(--text-sm);
-    color: var(--grey-500);
-    line-height: 1.6;
-    margin-bottom: var(--space-4);
-}
-
-.loc-step3-date-escape__btns {
-    display: flex;
-    gap: var(--space-3);
-}
-
-.loc-step3-date-escape__btn {
-    flex: 1;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-xs);
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    padding: var(--space-4) var(--space-4);
-    border: none;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-    white-space: normal;
-    line-height: 1.3;
-}
-
-.loc-step3-date-escape__btn--call {
-    background: var(--blue);
-    color: var(--white);
-}
-
-.loc-step3-date-escape__btn--call:hover {
-    background: var(--blue-dark);
-}
-
-.loc-step3-date-escape__btn--discuss {
-    background: var(--gold);
-    color: var(--blue-dark);
-}
-
-.loc-step3-date-escape__btn--discuss:hover {
-    background: var(--gold-light);
-}
-
-.loc-step3-date-escape__btn--discuss.is-active {
-    background: var(--blue);
 }
 
 /* ============================================================

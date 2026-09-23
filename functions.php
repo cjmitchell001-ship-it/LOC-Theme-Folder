@@ -1464,8 +1464,10 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             // One word, and the same word the grid uses. A spent window needs
             // to be recognised, not explained — the longer line was reading as
             // an apology for a date the customer had not asked about yet.
-            setSlotAvailability(_mBtn, !_dd || _dd.morning, 'Full — tap for cancellations');
-            setSlotAvailability(_aBtn, !_dd || _dd.afternoon, 'Full — tap for cancellations');
+            // No "Full" — the struck-through label and dashed box already say
+            // that. This line is the invitation, so it only carries the action.
+            setSlotAvailability(_mBtn, !_dd || _dd.morning, 'Tap for cancellations');
+            setSlotAvailability(_aBtn, !_dd || _dd.afternoon, 'Tap for cancellations');
 
             // The panel doubles as the cancellation-list picker, so it has to
             // say which job it is doing. On a day with nothing left, asking
