@@ -8,6 +8,7 @@
 
 require_once get_stylesheet_directory() . '/calendar-api.php';
 require_once get_stylesheet_directory() . '/reservation-handler.php';
+require_once get_stylesheet_directory() . '/slot-interest.php';
 
 /**
  * Register title-tag support.
@@ -50,6 +51,9 @@ function loc_from_price() {
 
 add_action( 'wp_ajax_nopriv_loc_reservation', 'loc_handle_reservation' ); // unauthenticated visitors
 add_action( 'wp_ajax_loc_reservation',        'loc_handle_reservation' ); // logged-in users
+
+add_action( 'wp_ajax_nopriv_loc_slot_interest', 'loc_handle_slot_interest' );
+add_action( 'wp_ajax_loc_slot_interest',        'loc_handle_slot_interest' );
 
 // ============================================================
 // GOOGLE CALENDAR AVAILABILITY — WordPress AJAX endpoint
@@ -1374,7 +1378,13 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 if (cls === 'unavailable') div.classList.add('loc-cal-day--spent');
             }
 
-            if (cls !== 'empty' && cls !== 'unavailable' && day) {
+            // A bookable date opens the window picker. A date I work that has
+            // nothing left opens the same panel so the customer can ask to be
+            // told about a cancellation — it is no longer a dead square. A
+            // date I don't work at all stays inert, because there is nothing
+            // to wait for.
+            var isSpentDay = !!(slot && cls === 'unavailable');
+            if (day && cls !== 'empty' && (cls !== 'unavailable' || isSpentDay)) {
                 div.addEventListener('click', function() {
                     selectDate(day, cls);
                 });
@@ -1383,13 +1393,16 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             return td;
         }
 
-        // Marks a time window as available or spent. Uses the native disabled
-        // state so a spent button cannot be clicked — the click handler below
-        // needs no guard of its own.
+        // Marks a time window as available or spent.
+        //
+        // A spent window is NO LONGER disabled: it is the way onto the
+        // cancellation list, so it has to be clickable and reachable by
+        // keyboard. The click handler below branches on the --spent class
+        // instead, and the button says what tapping it will do.
         function setSlotAvailability(btn, isFree, reason) {
             if (!btn) return;
             btn.style.display = '';
-            btn.disabled = !isFree;
+            btn.disabled = false;
             btn.classList.toggle('loc-step3-slot-btn--spent', !isFree);
             if (!isFree) btn.classList.remove('is-selected');
             var why = btn.querySelector('.loc-step3-slot-btn__why');
@@ -1411,11 +1424,19 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 }
             });
 
-            var dateObj = new Date(curYear, curMonth, day);
-            selDate    = dateObj.toLocaleDateString('en-GB', {
+            var dateObj   = new Date(curYear, curMonth, day);
+            var dateLabel = dateObj.toLocaleDateString('en-GB', {
                 weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
             });
-            selDateISO = curYear + '-' + String(curMonth + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+            var dateISO   = curYear + '-' + String(curMonth + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+            var canBook   = !!(availableLookup[dateISO] && availableLookup[dateISO].bookable);
+
+            // A date with nothing left is opened for the cancellation list, not
+            // for booking, so it must NOT become the reservation's date —
+            // otherwise the summary on the right announces a date the customer
+            // cannot actually have.
+            selDate      = canBook ? dateLabel : null;
+            selDateISO   = canBook ? dateISO   : null;
             selTimeLabel = null;
             selTime = null;
 
@@ -1424,7 +1445,10 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 b.classList.remove('is-selected');
             });
 
-            document.getElementById('loc-selected-date-label').textContent = selDate;
+            // NB: the panel title is set in full further down, which replaces
+            // this element's children. Nothing may hold a reference to a node
+            // inside it across calls — that is exactly how the whole calendar
+            // broke after one click while this was being built.
 
             // Show only the slots available for this specific date
             var _ds  = curYear + '-' + String(curMonth + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
@@ -1440,12 +1464,26 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             // One word, and the same word the grid uses. A spent window needs
             // to be recognised, not explained — the longer line was reading as
             // an apology for a date the customer had not asked about yet.
-            setSlotAvailability(_mBtn, !_dd || _dd.morning, 'Full');
-            setSlotAvailability(_aBtn, !_dd || _dd.afternoon, 'Full');
+            setSlotAvailability(_mBtn, !_dd || _dd.morning, 'Full — tap for cancellations');
+            setSlotAvailability(_aBtn, !_dd || _dd.afternoon, 'Full — tap for cancellations');
+
+            // The panel doubles as the cancellation-list picker, so it has to
+            // say which job it is doing. On a day with nothing left, asking
+            // someone to "choose a time window" would be a lie.
+            panelDateISO   = _ds;
+            panelDateLabel = dateLabel;
+            var _titleEl = document.getElementById('loc-time-slots-title');
+            if (_titleEl) {
+                var _bothGone = _dd && !_dd.morning && !_dd.afternoon;
+                _titleEl.textContent = _bothGone
+                    ? 'Both windows are taken on ' + dateLabel + ' — which would you want?'
+                    : 'Choose a time window for ' + dateLabel;
+            }
 
             document.getElementById('loc-time-slots').style.display = 'block';
             document.getElementById('loc-time-slots').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            if (clearDateBtn) clearDateBtn.style.display = 'block';
+            // Nothing to clear on a date that was never taken as a booking.
+            if (clearDateBtn) clearDateBtn.style.display = canBook ? 'block' : 'none';
             updateSummarySlot();
             updateReserveBtn();
         }
@@ -1486,6 +1524,12 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
         // Time slot buttons
         document.querySelectorAll('.loc-step3-slot-btn').forEach(function(btn) {
             btn.addEventListener('click', function() {
+                // A spent window is a request to be told about a cancellation,
+                // not a selection. It must not touch any booking state.
+                if (btn.classList.contains('loc-step3-slot-btn--spent')) {
+                    openInterestModal(btn.dataset.label, btn.dataset.time);
+                    return;
+                }
                 document.querySelectorAll('.loc-step3-slot-btn').forEach(function(b) {
                     b.classList.remove('is-selected');
                 });
@@ -1689,6 +1733,127 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
         });
 
         // ── SMART CALLBACK MESSAGE ──
+        // ── CANCELLATION LIST ─────────────────────────────────────────────
+        //
+        // Availability is deliberately thin while Chris is still in full-time
+        // work, and customers cannot see that — to them, days and mornings are
+        // simply full. So the calendar cannot tell "nobody wanted that week"
+        // from "three people wanted a morning and gave up". Both look like
+        // silence. Tapping a spent window turns that silence into a number.
+        //
+        // Read every row as a floor, never a total: most people who cannot
+        // find a slot just close the tab.
+        var panelDateISO   = null;
+        var panelDateLabel = null;
+        var interestWindow = null;
+        var interestOverlay = document.getElementById('loc-interest-overlay');
+
+        function openInterestModal(windowLabel, windowTime) {
+            if (!interestOverlay) return;
+            interestWindow = windowLabel;
+
+            document.getElementById('loc-interest-slot-summary').textContent =
+                (panelDateLabel || 'a date') + ' — ' + windowLabel + ' (' + (windowTime || '') + ')';
+
+            document.getElementById('loc-interest-error').style.display = 'none';
+            document.getElementById('loc-interest-done').hidden = true;
+            document.getElementById('loc-interest-submit').style.display = '';
+            document.getElementById('loc-interest-submit').disabled = false;
+            document.getElementById('loc-interest-submit').textContent = 'Let Me Know →';
+            interestOverlay.querySelector('.loc-step3-modal__body').classList.remove('is-done');
+
+            interestOverlay.classList.add('is-visible');
+            document.body.style.overflow = 'hidden';
+            var nameEl = document.getElementById('loc-interest-name');
+            if (nameEl) setTimeout(function() { nameEl.focus(); }, 60);
+        }
+
+        function closeInterestModal() {
+            if (!interestOverlay) return;
+            interestOverlay.classList.remove('is-visible');
+            document.body.style.overflow = '';
+        }
+
+        var interestCloseBtn = document.getElementById('loc-interest-close');
+        if (interestCloseBtn) interestCloseBtn.addEventListener('click', closeInterestModal);
+
+        var interestDoneClose = document.getElementById('loc-interest-done-close');
+        if (interestDoneClose) interestDoneClose.addEventListener('click', closeInterestModal);
+
+        if (interestOverlay) {
+            interestOverlay.addEventListener('click', function(e) {
+                if (e.target === interestOverlay) closeInterestModal();
+            });
+        }
+
+        var interestSubmitBtn = document.getElementById('loc-interest-submit');
+        if (interestSubmitBtn) {
+            interestSubmitBtn.addEventListener('click', function() {
+                var nameEl  = document.getElementById('loc-interest-name');
+                var phoneEl = document.getElementById('loc-interest-phone');
+                var errEl   = document.getElementById('loc-interest-error');
+                var nm = nameEl.value.trim();
+                var ph = phoneEl.value.trim();
+
+                if (!nm || !ph) {
+                    errEl.textContent = 'Just a first name and a number.';
+                    errEl.style.display = 'block';
+                    return;
+                }
+                errEl.style.display = 'none';
+                interestSubmitBtn.disabled = true;
+                interestSubmitBtn.textContent = 'Sending…';
+
+                // What the calendar was offering at this moment. Without it a
+                // row cannot be read: asking while six afternoons sit open
+                // means the opposite of asking when nothing is bookable.
+                var openDates = 0, openAm = 0, openPm = 0;
+                Object.keys(availableLookup).forEach(function(k) {
+                    var d = availableLookup[k];
+                    if (!d || !d.bookable) return;
+                    openDates++;
+                    if (d.morning)   openAm++;
+                    if (d.afternoon) openPm++;
+                });
+
+                fetch('/wp-admin/admin-ajax.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({
+                        action:     'loc_slot_interest',
+                        name:       nm,
+                        phone:      ph,
+                        window:     interestWindow || 'Either',
+                        date:       panelDateISO || '',
+                        zone:       sessionStorage.getItem('loc_zone') || '',
+                        postcode:   sessionStorage.getItem('loc_postcode') || '',
+                        open_dates: openDates,
+                        open_am:    openAm,
+                        open_pm:    openPm
+                    })
+                })
+                .then(function(r) { return r.json(); })
+                .then(function(res) {
+                    if (res && res.success) {
+                        document.getElementById('loc-interest-done').hidden = false;
+                        interestSubmitBtn.style.display = 'none';
+                        interestOverlay.querySelector('.loc-step3-modal__body').classList.add('is-done');
+                    } else {
+                        errEl.textContent = (res && res.error) || 'Something went wrong — give me a ring on 07710 649 360.';
+                        errEl.style.display = 'block';
+                        interestSubmitBtn.disabled = false;
+                        interestSubmitBtn.textContent = 'Let Me Know →';
+                    }
+                })
+                .catch(function() {
+                    errEl.textContent = 'Something went wrong — give me a ring on 07710 649 360.';
+                    errEl.style.display = 'block';
+                    interestSubmitBtn.disabled = false;
+                    interestSubmitBtn.textContent = 'Let Me Know →';
+                });
+            });
+        }
+
         // MUST MATCH reservation-handler.php's call-timing block. This is the
         // message on screen, that one is the confirmation email, and a customer
         // sees both \u2014 so the two are driven by the same rule and the same

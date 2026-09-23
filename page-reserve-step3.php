@@ -97,7 +97,9 @@
 
         <!-- TIME SLOT PICKER — revealed on date select -->
         <div class="loc-step3-time-slots" id="loc-time-slots" style="display:none;">
-            <p class="loc-step3-time-slots__title">Choose a time window for <span id="loc-selected-date-label"></span></p>
+            <!-- Set wholesale from JS: the wording changes when the date has
+                 nothing left. No child element here may be referenced by id. -->
+            <p class="loc-step3-time-slots__title" id="loc-time-slots-title">Choose a time window</p>
             <div class="loc-step3-time-slots__grid">
                 <button class="loc-step3-slot-btn" data-label="Morning" data-time="7am &ndash; 1pm">
                     <span class="loc-step3-slot-btn__label">Morning</span>
@@ -111,6 +113,19 @@
                 </button>
             </div>
         </div>
+
+        <!-- TIP — the greyed-out windows are tappable, which nothing else on
+             the page would tell you. Sits between the window boxes and the
+             escape hatch so it is read in the same breath as the thing it
+             describes. -->
+        <p class="loc-step3-tip">
+            <span class="loc-step3-tip__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"></path>
+                </svg>
+            </span>
+            <span><strong>Tap any full slot</strong> and I'll let you know if a cancellation comes up.</span>
+        </p>
 
         <!-- ESCAPE HATCH — for users who can't find a suitable date -->
         <div class="loc-step3-date-escape" id="loc-date-escape">
@@ -309,6 +324,59 @@
         </div>
     </div>
 </div>
+
+<!-- CANCELLATION NOTICE MODAL
+     Same shell as the reservation modal so it reads as the same product,
+     but two fields only. This is not a booking and must never look like
+     one — nothing is held, and the copy says so. -->
+<div class="loc-step3-modal-overlay" id="loc-interest-overlay">
+    <div class="loc-step3-modal loc-step3-modal--slim">
+
+        <button class="loc-step3-modal__close" id="loc-interest-close">&#10005;</button>
+
+        <div class="loc-step3-modal__header">
+            <h2>I&rsquo;ll let you know</h2>
+            <p>If this slot frees up, I&rsquo;ll give you a ring. Two things is all I need.</p>
+        </div>
+
+        <div class="loc-step3-modal__slot-strip">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="4" width="18" height="18" rx="2" stroke="#C9960C" stroke-width="2"/>
+                <line x1="16" y1="2" x2="16" y2="6" stroke="#C9960C" stroke-width="2" stroke-linecap="round"/>
+                <line x1="8" y1="2" x2="8" y2="6" stroke="#C9960C" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <p>Waiting on: <span id="loc-interest-slot-summary">&mdash;</span></p>
+        </div>
+
+        <div class="loc-step3-modal__body">
+
+            <div class="loc-step3-form-row">
+                <div class="loc-step3-form-group">
+                    <label class="loc-step3-form-label">First Name</label>
+                    <input type="text" class="loc-step3-form-input" id="loc-interest-name" placeholder="Sarah" autocomplete="given-name"/>
+                </div>
+                <div class="loc-step3-form-group">
+                    <label class="loc-step3-form-label">Phone Number</label>
+                    <input type="tel" class="loc-step3-form-input" id="loc-interest-phone" placeholder="07700 000000" autocomplete="tel"/>
+                </div>
+            </div>
+
+            <p class="loc-step3-form-privacy">Used only to tell you about this slot. Nothing is held for you, and you&rsquo;re not booked in. <a href="<?php echo home_url('/privacy-policy'); ?>">Privacy Policy</a>.</p>
+
+            <p class="loc-step3-submit-error" id="loc-interest-error" style="display:none;"></p>
+
+            <button class="loc-step3-btn-submit" id="loc-interest-submit">Let Me Know &rarr;</button>
+
+            <div class="loc-interest-done" id="loc-interest-done" hidden>
+                <p class="loc-interest-done__title">Thanks &mdash; you&rsquo;re on the list.</p>
+                <p class="loc-interest-done__body">If this one frees up you&rsquo;ll get a call. In the meantime you can still book any slot that&rsquo;s open.</p>
+                <button class="loc-step3-btn-submit" id="loc-interest-done-close">Back to the calendar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <!-- MOBILE STICKY BOTTOM BAR — Step 3 -->
 <div class="loc-step3-sticky-bottom" id="loc-step3-sticky-bottom">
     <div class="loc-step3-sticky-bottom__info">

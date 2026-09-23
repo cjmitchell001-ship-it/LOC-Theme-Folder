@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.19.0
+Version:           2.20.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -6918,16 +6918,21 @@ a:hover {
 
 /* A window that has gone on this date. Shown rather than hidden: a missing
    button left the customer unable to tell "taken" from "not offered". */
+/* A spent window still looks spent — dashed, struck through, greyed — but
+   it is now the way onto the cancellation list, so it invites a tap rather
+   than refusing one. */
 .loc-step3-slot-btn--spent {
     background: var(--lightgrey);
     border-style: dashed;
-    cursor: not-allowed;
+    cursor: pointer;
 }
 
 .loc-step3-slot-btn--spent:hover {
-    background: var(--lightgrey);
-    border-color: var(--border);
+    background: var(--white);
+    border-color: var(--gold);
 }
+
+.loc-step3-slot-btn--spent:hover .loc-step3-slot-btn__why { color: var(--gold-dark); }
 
 .loc-step3-slot-btn--spent .loc-step3-slot-btn__label {
     color: var(--grey-500);
@@ -7620,6 +7625,56 @@ a:hover {
         margin-right: auto;
         width: 100%;
     }
+}
+
+/* STEP 3 — TIP
+   Nothing else on the page would tell you the greyed-out windows can be
+   tapped, and a affordance nobody knows about may as well not exist. */
+.loc-step3-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin: var(--space-5) 0 0;
+    padding: var(--space-3) var(--space-4);
+    background: var(--blue-pale);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--radius-sm);
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--text-ui);
+    line-height: 1.5;
+    color: var(--blue);
+}
+
+.loc-step3-tip strong { font-weight: 700; }
+
+.loc-step3-tip__icon {
+    flex-shrink: 0;
+    color: var(--gold-dark);
+    margin-top: 1px;
+}
+
+/* STEP 3 — CANCELLATION LIST MODAL
+   Shares the reservation modal's shell; only narrower, because two fields
+   in a full-width dialog looks like something has failed to load. */
+.loc-step3-modal--slim { max-width: 460px; }
+
+.loc-step3-modal__body.is-done .loc-step3-form-row,
+.loc-step3-modal__body.is-done .loc-step3-form-privacy { display: none; }
+
+.loc-interest-done__title {
+    margin: 0 0 var(--space-2);
+    font-family: 'Montserrat', sans-serif;
+    font-size: var(--text-h4);
+    font-weight: 700;
+    color: var(--blue);
+}
+
+.loc-interest-done__body {
+    margin: 0 0 var(--space-5);
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--text-body-sm);
+    line-height: 1.6;
+    color: var(--grey-600);
 }
 
 /* STEP 3 — DATE ESCAPE HATCH */
