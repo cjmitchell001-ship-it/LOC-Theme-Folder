@@ -1826,16 +1826,37 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 interestSubmitBtn.textContent = 'Sending…';
 
                 // What the calendar was offering at this moment. Without it a
-                // row cannot be read: asking while six afternoons sit open
-                // means the opposite of asking when nothing is bookable.
-                var openDates = 0, openAm = 0, openPm = 0;
+                // row cannot be read: asking for a morning while afternoons
+                // sit open all week means the opposite of asking when nothing
+                // is bookable at all.
+                //
+                // The 14-day count is the one that means anything. Almost
+                // every date in the 180-day lookahead is free, so counting the
+                // whole window said "plenty available" on every row and told
+                // you nothing. People book inside the week; the fortnight is
+                // the horizon they are actually shopping in.
+                //
+                // The full total goes too, purely for the contrast — none in
+                // the fortnight but plenty after it is near-term scarcity,
+                // which is a different problem from being booked solid.
+                var t0 = new Date(); t0.setHours(0, 0, 0, 0);
+                var t14 = new Date(t0.getTime()); t14.setDate(t14.getDate() + 14);
+
+                var o14Dates = 0, o14Am = 0, o14Pm = 0, openTotal = 0;
                 Object.keys(availableLookup).forEach(function(k) {
                     var d = availableLookup[k];
                     if (!d || !d.bookable) return;
-                    openDates++;
-                    if (d.morning)   openAm++;
-                    if (d.afternoon) openPm++;
+                    openTotal++;
+                    var p  = k.split('-');
+                    var dt = new Date(+p[0], +p[1] - 1, +p[2]);
+                    if (dt >= t0 && dt < t14) {
+                        o14Dates++;
+                        if (d.morning)   o14Am++;
+                        if (d.afternoon) o14Pm++;
+                    }
                 });
+
+                var viewingMonth = curYear + '-' + String(curMonth + 1).padStart(2, '0');
 
                 fetch('/wp-admin/admin-ajax.php', {
                     method: 'POST',
@@ -1846,11 +1867,13 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                         phone:      ph,
                         window:     interestWindow || 'Either',
                         date:       panelDateISO || '',
-                        zone:       sessionStorage.getItem('loc_zone') || '',
-                        postcode:   sessionStorage.getItem('loc_postcode') || '',
-                        open_dates: openDates,
-                        open_am:    openAm,
-                        open_pm:    openPm
+                        zone:           sessionStorage.getItem('loc_zone') || '',
+                        postcode:       sessionStorage.getItem('loc_postcode') || '',
+                        viewing_month:  viewingMonth,
+                        open_14d_dates: o14Dates,
+                        open_14d_am:    o14Am,
+                        open_14d_pm:    o14Pm,
+                        open_total:     openTotal
                     })
                 })
                 .then(function(r) { return r.json(); })
