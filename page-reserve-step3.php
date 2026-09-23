@@ -289,9 +289,9 @@
                     <span class="loc-step3-callback-btn__label">Afternoon</span>
                     <span class="loc-step3-callback-btn__time">12pm &ndash; 5pm</span>
                 </button>
-                <button class="loc-step3-callback-btn" data-label="Evening" data-time="5pm &ndash; 8pm">
+                <button class="loc-step3-callback-btn" data-label="Evening" data-time="5pm &ndash; 7pm">
                     <span class="loc-step3-callback-btn__label">Evening</span>
-                    <span class="loc-step3-callback-btn__time">5pm &ndash; 8pm</span>
+                    <span class="loc-step3-callback-btn__time">5pm &ndash; 7pm</span>
                 </button>
             </div>
 

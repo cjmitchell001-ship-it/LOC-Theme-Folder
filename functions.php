@@ -1689,29 +1689,46 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
         });
 
         // ── SMART CALLBACK MESSAGE ──
+        // MUST MATCH reservation-handler.php's call-timing block. This is the
+        // message on screen, that one is the confirmation email, and a customer
+        // sees both \u2014 so the two are driven by the same rule and the same
+        // constants, echoed in below rather than retyped.
+        //
+        // Before Sept 2026 they did NOT match: this function still rolled
+        // weekends and Friday evenings forward to Monday after the email had
+        // stopped doing so, which is how it ended up promising a Monday call
+        // for a Sunday job.
+        var CALL_CUTOFF_HOUR = <?php echo (int) LOC_CALL_CUTOFF_HOUR; ?>;
+        var CALL_FIRST_THING = '<?php echo esc_js( LOC_CALL_FIRST_THING ); ?>';
+
         function getCallbackMessage(label) {
             var now  = new Date();
-            var hour = now.getHours();
-            var day  = now.getDay();
-            var isWeekend = day === 0 || day === 6;
-            var isFriday  = day === 5;
+            var endHour = label === 'Morning' ? 12
+                        : label === 'Afternoon' ? 17
+                        : CALL_CUTOFF_HOUR;
 
-            if (isWeekend) return "I'll call you first thing Monday morning to confirm your reservation.";
+            // How far off is the job? null when the date is being left to the
+            // call, in which case neither job-is-close override can apply.
+            var daysAway = null;
+            if (!isDateTBC && selDateISO) {
+                var parts = selDateISO.split('-');
+                var appt  = new Date(+parts[0], +parts[1] - 1, +parts[2]);
+                var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                daysAway  = Math.round((appt - today) / 86400000);
+            }
 
-            if (label === 'Morning') {
-                if (hour >= 8 && hour < 12) return "I'll aim to call you this morning.";
-                if (isFriday && hour >= 17) return "I'll call you Monday morning \u2014 my first available morning slot.";
-                return "I'll aim to call you tomorrow morning.";
+            var callsToday = now.getHours() < endHour && now.getHours() < CALL_CUTOFF_HOUR;
+
+            if (daysAway === 0) {
+                return "I'll call you within the next couple of hours to confirm.";
             }
-            if (label === 'Afternoon') {
-                if (hour >= 8 && hour < 17) return "I'll aim to call you this afternoon.";
-                return "I'll aim to call you tomorrow afternoon.";
+            if (callsToday) {
+                return "I'll aim to call you this " + label.toLowerCase() + ".";
             }
-            if (label === 'Evening') {
-                if (hour >= 8 && hour < 20) return "I'll aim to call you this evening.";
-                return "I'll aim to call you tomorrow evening.";
+            if (daysAway === 1) {
+                return "Your slot is tomorrow, so I'll ring first thing in the morning \u2014 from around " + CALL_FIRST_THING + ".";
             }
-            return "I'll call you during your preferred callback window.";
+            return "I'll aim to call you tomorrow " + label.toLowerCase() + ".";
         }
 
         // ── SUBMIT ──

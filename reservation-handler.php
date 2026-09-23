@@ -10,6 +10,23 @@
  * No wp-load.php bootstrap needed here.
  */
 
+// ── CALL TIMING ───────────────────────────────────────────────────────────
+//
+// The hour I stop making confirmation calls (24h clock). Agreed 23 Sep 2026.
+// This is ALSO the end of the Evening callback window, so the site never
+// offers a slot I will not ring in — if you move this, move the Evening
+// window shown on Step 3 with it.
+if ( ! defined( 'LOC_CALL_CUTOFF_HOUR' ) ) {
+    define( 'LOC_CALL_CUTOFF_HOUR', 19 ); // 7pm
+}
+
+// The "first thing" call, used when a booking rolls onto the day of the job
+// itself. Deliberately before the 8am start of the Morning window: a morning
+// job can begin at 7am, so this needs to beat the van.
+if ( ! defined( 'LOC_CALL_FIRST_THING' ) ) {
+    define( 'LOC_CALL_FIRST_THING', '7:30am' );
+}
+
 function loc_handle_reservation() {
 
     header( 'Content-Type: application/json' );
@@ -184,29 +201,63 @@ EOT;
 
     // ── CONFIRMATION EMAIL TO CUSTOMER ────────────────────────────────────
 
-    // Work out natural-language call timing
-    $today     = new DateTime( 'today', new DateTimeZone( 'Europe/London' ) );
-    $appt_date = new DateTime( $date, new DateTimeZone( 'Europe/London' ) );
-    $days_away = (int) $today->diff( $appt_date )->days;
-
-    $callback_lower = strtolower( $callback_time ?: 'morning' );
-
-    // The confirmation call goes out the next day, WEEKENDS INCLUDED.
+    // ── WHEN I'LL CALL ────────────────────────────────────────────────────
     //
-    // This used to roll Fri/Sat/Sun forward to the following Monday, on the
-    // assumption that no calls happened at a weekend. That promised a Monday
-    // call for a Saturday or Sunday job reserved on the Friday or Saturday —
-    // a call landing after the job had already been done, stated in the email
-    // subject line. Weekends are the high-capacity days (all-day "Open: 2",
-    // both windows open), so it fired often.
+    // Call at the next occurrence of the window the customer asked for,
+    // counting from NOW rather than from tomorrow. Someone reserving at 9am
+    // who wants a morning call gets one the same morning — waiting a full
+    // day was losing the whole point of a callback preference.
     //
-    // Chris confirmed he calls at weekends, so there is no roll-forward at
-    // all: same-day reservations get a call today, everything else tomorrow.
-    // Because $days_away >= 1 in the else branch, "tomorrow" is always on or
-    // before the appointment date — the promised call can no longer outlive
-    // the booking it is confirming.
+    // Two things override their preference, both because the job is close:
+    //
+    //   1. Job is today        -> within a couple of hours, whatever they picked.
+    //   2. The call would roll -> first thing that morning, whatever they
+    //      onto the job's own      picked, because any later window risks
+    //      day                     ringing after I have already been.
+    //
+    // Rule 2 is what holds the invariant this logic exists to protect: the
+    // promised call can never land after the job it is confirming. The
+    // version before Sept 2026 rolled Fri/Sat/Sun to Monday and broke it.
+    //
+    // Windows: Morning 08:00-12:00, Afternoon 12:00-17:00, Evening 17:00-cutoff.
+    $tz_london = new DateTimeZone( 'Europe/London' );
+    $now       = new DateTime( 'now',   $tz_london );
+    $today     = new DateTime( 'today', $tz_london );
+
+    $callback_label = ucfirst( strtolower( trim( $callback_time ) ) );
+    if ( ! in_array( $callback_label, [ 'Morning', 'Afternoon', 'Evening' ], true ) ) {
+        $callback_label = 'Morning';
+    }
+    $callback_lower = strtolower( $callback_label );
+
+    $window_end_hour = [
+        'Morning'   => 12,
+        'Afternoon' => 17,
+        'Evening'   => LOC_CALL_CUTOFF_HOUR,
+    ][ $callback_label ];
+
+    // A "confirm on the call" booking has no agreed date, so the two
+    // job-is-close overrides cannot apply — fall through to the window rule.
+    $appt_date = DateTime::createFromFormat( 'Y-m-d', $date, $tz_london );
+    $days_away = $appt_date ? (int) $today->diff( $appt_date )->days : null;
+
+    $window_end  = ( clone $today )->setTime( $window_end_hour, 0 );
+    $cutoff      = ( clone $today )->setTime( LOC_CALL_CUTOFF_HOUR, 0 );
+    $calls_today = ( $now < $window_end && $now < $cutoff );
+
+    // $call_when has to read naturally in two places — the email subject
+    // ("I'll call ...") and mid-sentence in the body ("I'll give you a call
+    // ... to confirm") — so it stays a short phrase. Anything extra goes in
+    // $call_detail, which is appended as its own sentence in the body only.
+    $call_detail = '';
+
     if ( $days_away === 0 ) {
-        $call_when = 'later today (' . $callback_lower . ')';
+        $call_when = 'within the next couple of hours';
+    } elseif ( $calls_today ) {
+        $call_when = 'this ' . $callback_lower;
+    } elseif ( $days_away === 1 ) {
+        $call_when   = 'first thing tomorrow morning';
+        $call_detail = ' Your slot is tomorrow, so I\'ll ring early — from around ' . LOC_CALL_FIRST_THING . '.';
     } else {
         $call_when = 'tomorrow ' . $callback_lower;
     }
@@ -217,7 +268,7 @@ Hi {$first_name},
 
 Thank you for reserving with me — your slot on {$date_formatted} ({$slot_display}) is held.
 
-I'll give you a call {$call_when} to confirm your booking, run through your appliances, and answer anything you're not sure about. Once I've spoken, I'll arrange a £25 deposit by bank transfer to officially lock it in.
+I'll give you a call {$call_when} to confirm your booking, run through your appliances, and answer anything you're not sure about.{$call_detail} Once I've spoken, I'll arrange a £25 deposit by bank transfer to officially lock it in.
 
 Nothing to do on your end right now — I'll come to you.
 
