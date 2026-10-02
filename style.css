@@ -6848,14 +6848,25 @@ a:hover {
 }
 
 /* A day I work, with nothing left on it. Keeps the worked-day frame so it
-   reads as "I was there, it's gone" rather than as a day I don't work —
-   which is the whole point of showing it at all. Not clickable. */
+   reads as "I was there, it's gone" rather than as a day I don't work.
+   IT IS CLICKABLE — it opens the cancellation list, which is what the star
+   in the corner is advertising.
+   It carries --unavailable too, so these rules must come after that block
+   to win the cursor. A "not allowed" cursor here told people the opposite
+   of what the star does, which is how it was found. */
 .loc-cal-day--spent {
     color: var(--grey-400);
     background: var(--white);
     border-color: var(--gold);
-    cursor: not-allowed;
+    cursor: pointer;
     font-weight: 600;
+}
+
+/* Enough of a reaction to confirm it is live, without pretending to be a
+   bookable date — those lift and go blue. */
+.loc-cal-day--spent:hover {
+    background: var(--blue-pale);
+    border-color: var(--star);
 }
 
 .loc-cal-day--available:hover {
