@@ -49,6 +49,23 @@ define( 'LOC_JOB_CAP', 4 );
 // window rather than a place Chris has to drive from.
 define( 'LOC_JOB_BUFFER_MINUTES', 30 );
 
+// How far past a window's nominal end a job may run.
+//
+// The rule used to be "a job must finish inside its window", which is
+// stricter than the business: Chris does not stop at 6pm, he stops when the
+// work is done. It was costing real bookings — a full range on an afternoon
+// that already had a single oven needed until 19:15 and was simply refused.
+//
+// A job must still START inside its window; only the finish may overrun.
+// That makes the rule self-limiting, because the bigger the job the earlier
+// it has to begin: with 90 minutes, a 4-hour range cannot start after 15:30,
+// while a single oven could start as late as 17:45.
+//
+// NOTE this governs the SCHEDULED time. Extras are deliberately not counted
+// in scheduling, so the real finish can be later again — which is exactly
+// why a late finish is flagged on the event and in the notification email.
+define( 'LOC_LATE_FINISH_MINUTES', 90 );
+
 // Minimum notice before a slot may be booked. Nothing in the availability
 // rules used to know the time of day — the only clock read was
 // new DateTime('today'), which is date-granular — so a window stayed
@@ -713,11 +730,16 @@ function loc_slot_status( $date, $slot_start, $slot_end, $duration_minutes, $tim
     // part of the window, so a slot survives exactly as long as the job
     // still fits between the clamp and the window end. A past date fails
     // here too, because the clamp lands beyond its window end.
+    // A job must START inside the window but may FINISH past it, by up to
+    // LOC_LATE_FINISH_MINUTES. See the constant for why.
+    $latestStart  = $windowEnd;
+    $latestFinish = $windowEnd + ( LOC_LATE_FINISH_MINUTES * 60 );
+
     $earliest = ( $now_ts === null ? time() : $now_ts ) + ( LOC_MIN_LEAD_MINUTES * 60 );
     if ( $windowStart < $earliest ) {
         $windowStart = $earliest;
     }
-    if ( $windowStart + $required > $windowEnd ) {
+    if ( $windowStart > $latestStart || $windowStart + $required > $latestFinish ) {
         // Elapsed, inside the notice clamp, or a past date: not a window
         // anyone could have taken, so it reads as one I am not offering.
         return 'not_offered';
@@ -738,7 +760,9 @@ function loc_slot_status( $date, $slot_start, $slot_end, $duration_minutes, $tim
             }
             $isJob = ( strpos( $title, 'provisional:' ) === 0 || strpos( $title, 'confirmed:' ) === 0 );
             $bs = max( $block[0], $windowStart );
-            $be = min( $block[1], $windowEnd );
+            // Clipped to the late-finish ceiling, not the nominal end, so a
+            // previous job that already overran is still seen in full.
+            $be = min( $block[1], $latestFinish );
             if ( $bs < $be ) {
                 $busy[] = [ $bs, $be, $isJob ];
                 if ( $isJob ) {
@@ -752,6 +776,10 @@ function loc_slot_status( $date, $slot_start, $slot_end, $duration_minutes, $tim
     // Walk the free gaps. A gap has to hold the job AND the travel out of it
     // when the thing on the far side is another job — otherwise the calendar
     // sells a slot that leaves no way of getting to the next one.
+    //
+    // The late-finish allowance applies ONLY to the final gap. Overrunning
+    // into open evening is Chris's problem to absorb; overrunning into
+    // somebody else's booking is not allowed at all.
     $buffer = LOC_JOB_BUFFER_MINUTES * 60;
     $cursor = $windowStart;
     foreach ( $busy as $block ) {
@@ -762,7 +790,7 @@ function loc_slot_status( $date, $slot_start, $slot_end, $duration_minutes, $tim
         $cursor = max( $cursor, $block[1] + ( $block[2] ? $buffer : 0 ) );
     }
 
-    if ( $windowEnd - $cursor >= $required ) {
+    if ( $cursor <= $latestStart && $cursor + $required <= $latestFinish ) {
         return 'open';
     }
 
@@ -823,11 +851,14 @@ function loc_slot_earliest_start( $date, $slot_start, $slot_end, $duration_minut
     $windowEnd   = strtotime( ( new DateTime( $date . ' ' . $slot_end,   $tz ) )->format( DateTime::RFC3339 ) );
     $required    = $duration_minutes * 60;
 
+    $latestStart  = $windowEnd;
+    $latestFinish = $windowEnd + ( LOC_LATE_FINISH_MINUTES * 60 );
+
     $earliest = ( $now_ts === null ? time() : $now_ts ) + ( LOC_MIN_LEAD_MINUTES * 60 );
     if ( $windowStart < $earliest ) {
         $windowStart = $earliest;
     }
-    if ( $windowStart + $required > $windowEnd ) {
+    if ( $windowStart > $latestStart || $windowStart + $required > $latestFinish ) {
         return false;
     }
 
@@ -840,7 +871,7 @@ function loc_slot_earliest_start( $date, $slot_start, $slot_end, $duration_minut
             }
             $isJob = ( strpos( $title, 'provisional:' ) === 0 || strpos( $title, 'confirmed:' ) === 0 );
             $bs = max( $block[0], $windowStart );
-            $be = min( $block[1], $windowEnd );
+            $be = min( $block[1], $latestFinish );
             if ( $bs < $be ) {
                 $busy[] = [ $bs, $be, $isJob ];
             }
@@ -858,7 +889,7 @@ function loc_slot_earliest_start( $date, $slot_start, $slot_end, $duration_minut
         $cursor = max( $cursor, $block[1] + ( $block[2] ? $buffer : 0 ) );
     }
 
-    return ( $windowEnd - $cursor >= $required ) ? $cursor : false;
+    return ( $cursor <= $latestStart && $cursor + $required <= $latestFinish ) ? $cursor : false;
 }
 
 
@@ -911,6 +942,17 @@ function loc_create_provisional_booking( $date, $slot, $customer_name, $phone, $
     $endDt = clone $startDt;
     $endDt->modify( '+' . intval( $duration_minutes ) . ' minutes' );
 
+    // Will this one run past the end of its window? Measured against the
+    // REALISTIC duration, not the booked one — extras are not scheduled, so
+    // the booked finish flatters the day and is the wrong thing to warn on.
+    $nominalEnd = new DateTime( $date . ' ' . $winEnd, new DateTimeZone( $tz ) );
+    $realEnd    = clone $startDt;
+    $realEnd->modify( '+' . intval( max( $duration_real, $duration_minutes ) ) . ' minutes' );
+    $lateBy     = (int) round( ( $realEnd->getTimestamp() - $nominalEnd->getTimestamp() ) / 60 );
+    $lateNote   = $lateBy > 0
+        ? 'LATE FINISH: about ' . $realEnd->format( 'H:i' ) . ', ' . $lateBy . ' min past the ' . $nominalEnd->format( 'H:i' ) . ' window'
+        : '';
+
     if ( is_array( $appliances ) && ! empty( $appliances ) ) {
         $applianceLines = [];
         foreach ( $appliances as $name => $price ) {
@@ -921,7 +963,7 @@ function loc_create_provisional_booking( $date, $slot, $customer_name, $phone, $
         $applianceBlock = '  To be discussed on the call';
     }
 
-    $description = implode( "\n", [
+    $descLines = [
         'Name:       ' . $customer_name,
         'Phone:      ' . $phone,
         'Email:      ' . $email,
@@ -935,12 +977,21 @@ function loc_create_provisional_booking( $date, $slot, $customer_name, $phone, $
         'Realistic:  ' . ( $duration_real > $duration_minutes
                             ? $duration_real . ' min with extras — allow the difference'
                             : $duration_minutes . ' min' ),
-        'Status:     PROVISIONAL — awaiting confirmation call',
-        'Terms:      ' . ( $terms_accepted ? 'Accepted at reservation' : 'NOT RECORDED' ),
-        '',
-        'Appliances:',
-        $applianceBlock,
-    ] );
+    ];
+
+    // Added only when it applies, so an ordinary booking does not carry a
+    // blank line where the warning would have been.
+    if ( $lateNote !== '' ) {
+        $descLines[] = $lateNote;
+    }
+
+    $descLines[] = 'Status:     PROVISIONAL — awaiting confirmation call';
+    $descLines[] = 'Terms:      ' . ( $terms_accepted ? 'Accepted at reservation' : 'NOT RECORDED' );
+    $descLines[] = '';
+    $descLines[] = 'Appliances:';
+    $descLines[] = $applianceBlock;
+
+    $description = implode( "\n", $descLines );
 
     $event = new Google\Service\Calendar\Event( [
         'summary'     => 'PROVISIONAL: ' . $customer_name,
