@@ -268,7 +268,9 @@ foreach ( $byMonth as $ym => $daysIn ) :
   Free = the day's job cap allows another booking <em>and</em> a
   <?php echo (int) $data['probe']; ?>-minute job still fits in an open window.
   A longer job (double oven 135, range 150) may not fit a partly-booked day.
-  Weekday cap <?php echo LOC_WEEKDAY_JOB_CAP; ?>, weekend cap <?php echo LOC_WEEKEND_JOB_CAP; ?>,
+  Cap <?php echo LOC_JOB_CAP; ?> a day
+  (weekdays before <?php echo LOC_FULLTIME_FROM; ?>: <?php echo LOC_WEEKDAY_JOB_CAP_BEFORE; ?>),
+  with <?php echo LOC_JOB_BUFFER_MINUTES; ?> minutes between jobs,
   unless an <em>Open: N</em> event overrides it.
 </p>
 
