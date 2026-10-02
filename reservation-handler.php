@@ -41,6 +41,10 @@ function loc_handle_reservation() {
     $date             = sanitize_text_field( wp_unslash( $_POST['date']             ?? '' ) ); // YYYY-MM-DD
     $slot             = sanitize_text_field( wp_unslash( $_POST['slot']             ?? '' ) ); // Morning | Afternoon
     $duration_minutes = intval(                          $_POST['duration_minutes'] ?? 0    );
+    // Honest estimate including extras. NOT used for scheduling — the calendar
+    // is booked against base appliances only, deliberately. This is carried
+    // through so the event and the notification can show the real figure.
+    $duration_real    = intval(                          $_POST['duration_real']    ?? 0    );
     $zone             = sanitize_text_field( wp_unslash( $_POST['zone']             ?? '' ) );
     $postcode         = sanitize_text_field( wp_unslash( $_POST['postcode']         ?? '' ) );
     $area_name        = sanitize_text_field( wp_unslash( $_POST['area_name']        ?? '' ) );
@@ -132,7 +136,8 @@ function loc_handle_reservation() {
         $duration_minutes,
         $zone,
         $callback_time,
-        $terms_accepted
+        $terms_accepted,
+        $duration_real
     );
 
     if ( ! $booked ) {
@@ -146,6 +151,12 @@ function loc_handle_reservation() {
     $date_formatted = $date_obj ? $date_obj->format( 'l j F Y' ) : $date;
 
     $slot_display  = ( $slot === 'Morning' ) ? 'Morning (7am – 1pm)' : 'Afternoon (1pm – 6pm)';
+
+    // The gap between these two is time deliberately not booked out, so the
+    // notification spells it out rather than leaving it to be worked out.
+    $duration_display = ( $duration_real > $duration_minutes )
+        ? $duration_real . ' min — ' . ( $duration_real - $duration_minutes ) . ' min of extras on top of the booked time'
+        : $duration_minutes . ' min';
     // Time only, for running inline in a sentence — "(Afternoon (1pm – 6pm))"
     // put brackets inside brackets. The full label still heads the summary.
     $slot_time     = ( $slot === 'Morning' ) ? '7am – 1pm' : '1pm – 6pm';
@@ -189,7 +200,8 @@ Appliances:
 {$appliance_lines}
 
 Total:     {$total_display}
-Duration:  {$duration_minutes} min
+Scheduled: {$duration_minutes} min (oven only — extras not counted)
+Realistic: {$duration_display}
 ----------------------------------
 
 Call to confirm the reservation and arrange the £25 deposit by bank transfer.

@@ -12,11 +12,25 @@ $_LOC_CREDENTIALS_FILE = __DIR__ . '/client_secret_212238838163-k4gs5q3ulqgp15tn
 $_LOC_TOKEN_FILE       = __DIR__ . '/token.json';
 $_LOC_CALENDAR_ID      = '514d8e2bd29573d1582ae633e39ee999679bc205ee207a15c019b1aed196f67d@group.calendar.google.com';
 
-// Day-level job caps. Weekdays: Chris only wants one evening job on a work
-// night. Weekends: three average jobs fit back-to-back in the six-hour
-// Morning window. Adjust here if capacity changes later.
-define( 'LOC_WEEKDAY_JOB_CAP', 1 );
+// Day-level job caps.
+//
+// Weekdays raised 1 -> 4 on 2 Oct 2026, as Chris moves toward going full
+// time. A cap of 1 meant a single booking shut the whole day, which is what
+// he was seeing from 26 Oct once the standing 07:00 blocks stopped: the
+// mornings had opened up but the cap still closed the day on one job.
+//
+// 4 is a BACKSTOP, not a lever. The smallest base job is 105 minutes, so with
+// the travel buffer below only two fit in either window — four a day is the
+// ceiling the clock already imposes, and time, not this number, is what will
+// normally stop a booking. It only really bites on a zero-duration
+// extras-only booking, which is not expected to happen.
+define( 'LOC_WEEKDAY_JOB_CAP', 4 );
 define( 'LOC_WEEKEND_JOB_CAP', 3 );
+
+// Travel and turnaround between consecutive jobs. Applied BETWEEN bookings
+// only — never after the standing "Unavailable" block, which is a closed
+// window rather than a place Chris has to drive from.
+define( 'LOC_JOB_BUFFER_MINUTES', 30 );
 
 // Minimum notice before a slot may be booked. Nothing in the availability
 // rules used to know the time of day — the only clock read was
@@ -688,10 +702,12 @@ function loc_slot_status( $date, $slot_start, $slot_end, $duration_minutes, $tim
         return 'not_offered';
     }
 
-    // Build sorted list of busy periods within this window, remembering
-    // whether a real booking is among them — that is what separates
-    // "someone has this" from "I don't work then".
-    $busy      = [];
+    // Build sorted list of busy periods within this window, remembering for
+    // each whether it is a real booking. Two things hang off that flag: a
+    // booking is what separates "someone has this" from "I don't work then",
+    // and a booking is the only thing Chris has to travel away from, so the
+    // turnaround buffer is applied to those and not to the standing block.
+    $busy       = [];
     $hasBooking = false;
     if ( isset( $timedByDay[ $date ] ) ) {
         foreach ( $timedByDay[ $date ] as $block ) {
@@ -699,11 +715,12 @@ function loc_slot_status( $date, $slot_start, $slot_end, $duration_minutes, $tim
             if ( $excludeTitles && in_array( $title, $excludeTitles, true ) ) {
                 continue;
             }
+            $isJob = ( strpos( $title, 'provisional:' ) === 0 || strpos( $title, 'confirmed:' ) === 0 );
             $bs = max( $block[0], $windowStart );
             $be = min( $block[1], $windowEnd );
             if ( $bs < $be ) {
-                $busy[] = [ $bs, $be ];
-                if ( strpos( $title, 'provisional:' ) === 0 || strpos( $title, 'confirmed:' ) === 0 ) {
+                $busy[] = [ $bs, $be, $isJob ];
+                if ( $isJob ) {
                     $hasBooking = true;
                 }
             }
@@ -711,13 +728,17 @@ function loc_slot_status( $date, $slot_start, $slot_end, $duration_minutes, $tim
     }
     usort( $busy, function( $a, $b ) { return $a[0] - $b[0]; } );
 
-    // Walk free gaps and check if any fits the required duration
+    // Walk the free gaps. A gap has to hold the job AND the travel out of it
+    // when the thing on the far side is another job — otherwise the calendar
+    // sells a slot that leaves no way of getting to the next one.
+    $buffer = LOC_JOB_BUFFER_MINUTES * 60;
     $cursor = $windowStart;
     foreach ( $busy as $block ) {
-        if ( $block[0] - $cursor >= $required ) {
+        $needed = $required + ( $block[2] ? $buffer : 0 );
+        if ( $block[0] - $cursor >= $needed ) {
             return 'open';
         }
-        $cursor = max( $cursor, $block[1] );
+        $cursor = max( $cursor, $block[1] + ( $block[2] ? $buffer : 0 ) );
     }
 
     if ( $windowEnd - $cursor >= $required ) {
@@ -731,6 +752,96 @@ function loc_slot_status( $date, $slot_start, $slot_end, $duration_minutes, $tim
 
 
 // ============================================================
+// loc_slot_earliest_start( ... )
+//
+// WHERE a job goes, as opposed to WHETHER it fits. Returns the first
+// timestamp in the window at which $duration_minutes can start, or false.
+//
+// This is the other half of loc_slot_status() above and walks the window the
+// same way, with the same buffer rule. Before Oct 2026 nothing needed it:
+// the cap was one job a day, so every booking was simply written at the
+// window's start (07:00 or 13:00). With a cap of four, that would have
+// stacked up to four events on top of each other at 07:00 — an unreadable
+// calendar, no real arrival time for anyone, and a gap walk measuring
+// overlapping blocks as one.
+//
+// KEEP THIS IN STEP WITH loc_slot_status(). If one grows a rule the other
+// does not, the calendar will offer slots the booking code cannot place.
+// ============================================================
+
+// Events for ONE date, for placing a booking. Deliberately separate from
+// loc_fetch_calendar_events(), which spans the whole lookahead — this runs
+// inside a customer's submit, so it stays as small as possible.
+// Returns an array, or false if the day could not be read.
+function loc_fetch_calendar_events_for_date( $service, $date ) {
+    global $_LOC_CALENDAR_ID;
+
+    $tz    = new DateTimeZone( 'Europe/London' );
+    $start = new DateTime( $date . ' 00:00:00', $tz );
+    $end   = new DateTime( $date . ' 23:59:59', $tz );
+
+    try {
+        $events = $service->events->listEvents( $_LOC_CALENDAR_ID, [
+            'timeMin'      => $start->format( DateTime::RFC3339 ),
+            'timeMax'      => $end->format( DateTime::RFC3339 ),
+            'singleEvents' => true,
+            'orderBy'      => 'startTime',
+        ] );
+    } catch ( Exception $e ) {
+        error_log( 'LOC calendar: single-date fetch failed — ' . $e->getMessage() );
+        return false;
+    }
+
+    return $events->getItems();
+}
+
+
+function loc_slot_earliest_start( $date, $slot_start, $slot_end, $duration_minutes, $timedByDay, $excludeTitles = [], $now_ts = null ) {
+    $tz          = new DateTimeZone( 'Europe/London' );
+    $windowStart = strtotime( ( new DateTime( $date . ' ' . $slot_start, $tz ) )->format( DateTime::RFC3339 ) );
+    $windowEnd   = strtotime( ( new DateTime( $date . ' ' . $slot_end,   $tz ) )->format( DateTime::RFC3339 ) );
+    $required    = $duration_minutes * 60;
+
+    $earliest = ( $now_ts === null ? time() : $now_ts ) + ( LOC_MIN_LEAD_MINUTES * 60 );
+    if ( $windowStart < $earliest ) {
+        $windowStart = $earliest;
+    }
+    if ( $windowStart + $required > $windowEnd ) {
+        return false;
+    }
+
+    $busy = [];
+    if ( isset( $timedByDay[ $date ] ) ) {
+        foreach ( $timedByDay[ $date ] as $block ) {
+            $title = $block[2] ?? '';
+            if ( $excludeTitles && in_array( $title, $excludeTitles, true ) ) {
+                continue;
+            }
+            $isJob = ( strpos( $title, 'provisional:' ) === 0 || strpos( $title, 'confirmed:' ) === 0 );
+            $bs = max( $block[0], $windowStart );
+            $be = min( $block[1], $windowEnd );
+            if ( $bs < $be ) {
+                $busy[] = [ $bs, $be, $isJob ];
+            }
+        }
+    }
+    usort( $busy, function( $a, $b ) { return $a[0] - $b[0]; } );
+
+    $buffer = LOC_JOB_BUFFER_MINUTES * 60;
+    $cursor = $windowStart;
+    foreach ( $busy as $block ) {
+        $needed = $required + ( $block[2] ? $buffer : 0 );
+        if ( $block[0] - $cursor >= $needed ) {
+            return $cursor;
+        }
+        $cursor = max( $cursor, $block[1] + ( $block[2] ? $buffer : 0 ) );
+    }
+
+    return ( $windowEnd - $cursor >= $required ) ? $cursor : false;
+}
+
+
+// ============================================================
 // loc_create_provisional_booking(
 //     $date, $slot, $customer_name, $phone, $email,
 //     $appliances, $duration_minutes, $zone )
@@ -739,7 +850,7 @@ function loc_slot_status( $date, $slot_start, $slot_end, $duration_minutes, $tim
 // Returns true on success, false on failure.
 // ============================================================
 
-function loc_create_provisional_booking( $date, $slot, $customer_name, $phone, $email, $appliances, $duration_minutes, $zone, $callback_time = '', $terms_accepted = false ) {
+function loc_create_provisional_booking( $date, $slot, $customer_name, $phone, $email, $appliances, $duration_minutes, $zone, $callback_time = '', $terms_accepted = false, $duration_real = 0 ) {
     global $_LOC_CALENDAR_ID;
 
     $service = loc_get_calendar_service();
@@ -747,10 +858,36 @@ function loc_create_provisional_booking( $date, $slot, $customer_name, $phone, $
         return false; // not authorised
     }
 
-    $tz         = 'Europe/London';
-    $startHour  = ( $slot === 'afternoon' ) ? '13:00' : '07:00';
-    $startDt    = new DateTime( $date . ' ' . $startHour, new DateTimeZone( $tz ) );
-    $endDt      = clone $startDt;
+    $tz        = 'Europe/London';
+    $winStart  = ( $slot === 'afternoon' ) ? '13:00' : '07:00';
+    $winEnd    = ( $slot === 'afternoon' ) ? '18:00' : '13:00';
+
+    // Place the job AFTER anything already on that date, not at the window's
+    // start. Up to Oct 2026 the cap was one job a day so the start could be
+    // hardcoded; with four, hardcoding would stack every morning booking on
+    // top of the last at 07:00.
+    //
+    // The day's own events have to be read to know where the gap is, so this
+    // costs one extra API call per booking. Bookings are rare; a calendar
+    // that shows four jobs at the same minute is not worth saving it.
+    $startTs = null;
+    $events  = loc_fetch_calendar_events_for_date( $service, $date );
+    if ( is_array( $events ) ) {
+        $state   = loc_build_calendar_state( $events );
+        $exclude = isset( $state['openOverride'][ $date ] ) ? [ 'unavailable' ] : [];
+        $startTs = loc_slot_earliest_start( $date, $winStart, $winEnd, $duration_minutes, $state['timedByDay'], $exclude );
+    }
+
+    // Fall back to the window start if the day could not be read. Better a
+    // booking written at a slightly wrong time than a booking lost — the
+    // confirmation call settles the real time either way.
+    if ( $startTs === null || $startTs === false ) {
+        $startDt = new DateTime( $date . ' ' . $winStart, new DateTimeZone( $tz ) );
+    } else {
+        $startDt = ( new DateTime( '@' . $startTs ) )->setTimezone( new DateTimeZone( $tz ) );
+    }
+
+    $endDt = clone $startDt;
     $endDt->modify( '+' . intval( $duration_minutes ) . ' minutes' );
 
     if ( is_array( $appliances ) && ! empty( $appliances ) ) {
@@ -769,7 +906,14 @@ function loc_create_provisional_booking( $date, $slot, $customer_name, $phone, $
         'Email:      ' . $email,
         'Zone:       ' . $zone,
         'Callback:   ' . ( $callback_time ?: 'Not specified' ),
-        'Duration:   ' . $duration_minutes . ' min',
+        // Scheduled time is base appliances only — hobs, extractors and
+        // microwaves are deliberately left out of the calendar so they cannot
+        // block the next booking. The realistic figure is the one to plan the
+        // day around; the gap between them is time Chris absorbs on purpose.
+        'Scheduled:  ' . $duration_minutes . ' min (oven only)',
+        'Realistic:  ' . ( $duration_real > $duration_minutes
+                            ? $duration_real . ' min with extras — allow the difference'
+                            : $duration_minutes . ' min' ),
         'Status:     PROVISIONAL — awaiting confirmation call',
         'Terms:      ' . ( $terms_accepted ? 'Accepted at reservation' : 'NOT RECORDED' ),
         '',

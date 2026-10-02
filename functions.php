@@ -646,6 +646,7 @@ function loc_step1_script() {
                 sessionStorage.removeItem('loc_selections');
                 sessionStorage.removeItem('loc_total');
                 sessionStorage.setItem('loc_duration', 0);
+                sessionStorage.setItem('loc_duration_real', 0);
                 sessionStorage.setItem('loc_from_step1', 'true');
             } else {
                 sessionStorage.removeItem('loc_skip');
@@ -683,23 +684,40 @@ function loc_step1_script() {
                     'Microwave':                15,
                     'Combi Microwave':          20
                 };
-                var duration = 0;
-                var hasBase  = false;
-                var hasAga   = selections.hasOwnProperty('AGA / Large Range');
+                // TWO durations, deliberately different.
+                //
+                // loc_duration is what the CALENDAR is booked against, and it
+                // counts base appliances only. Extras are ignored on purpose
+                // (Chris's call, 2 Oct 2026): counting a hob could push a
+                // second job out of the window and lose the booking outright,
+                // and he would rather take the work and run late. The base
+                // figures are conservative enough to absorb some of it.
+                //
+                // loc_duration_real is the honest estimate, carried through to
+                // the calendar event and his notification email so the day can
+                // be planned against the truth rather than the booking figure.
+                var duration     = 0;
+                var durationReal = 0;
+                var hasBase      = false;
+                var hasAga       = selections.hasOwnProperty('AGA / Large Range');
                 if (!hasAga) {
                     Object.keys(selections).forEach(function(name) {
                         var val = selections[name];
                         var qty = (typeof val === 'object' && val.qty) ? val.qty : 1;
                         if (baseDurations.hasOwnProperty(name)) {
-                            duration += baseDurations[name] * qty;
-                            hasBase   = true;
+                            duration     += baseDurations[name] * qty;
+                            durationReal += baseDurations[name] * qty;
+                            hasBase       = true;
                         } else if (extraDurations.hasOwnProperty(name)) {
-                            duration += extraDurations[name] * qty;
+                            durationReal += extraDurations[name] * qty;
                         }
                     });
-                    if (!hasBase) { duration = 0; }
+                    // No oven of any kind: left at zero, as it always was.
+                    // Chris does not expect an extras-only booking.
+                    if (!hasBase) { duration = 0; durationReal = 0; }
                 }
                 sessionStorage.setItem('loc_duration', duration);
+                sessionStorage.setItem('loc_duration_real', durationReal);
 
                 sessionStorage.setItem('loc_from_step1', 'true');
             }
@@ -1947,6 +1965,10 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
             var ssSelections    = sessionStorage.getItem('loc_selections') || '';
             var ssTotal         = parseInt(sessionStorage.getItem('loc_total'), 10) || 0;
             var ssDuration      = parseInt(sessionStorage.getItem('loc_duration'), 10) || 0;
+            // Honest estimate including extras — not used for scheduling, only
+            // carried through so the calendar event and Chris's email can show
+            // what the job will really take.
+            var ssDurationReal  = parseInt(sessionStorage.getItem('loc_duration_real'), 10) || 0;
             var ssZone          = sessionStorage.getItem('loc_zone') || '';
             var ssPostcode      = sessionStorage.getItem('loc_postcode') || '';
             var ssAreaName      = sessionStorage.getItem('loc_area_name') || '';
@@ -2003,6 +2025,7 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
                 date:             selDateISO || '',
                 slot:             selTimeLabel || '',
                 duration_minutes: ssDuration,
+                duration_real:    ssDurationReal,
                 zone:             ssZone,
                 postcode:         ssPostcode,
                 area_name:        ssAreaName,
@@ -2198,6 +2221,7 @@ function loc_range_pricing_script() {
                     sessionStorage.setItem('loc_selections', JSON.stringify(sel));
                     sessionStorage.setItem('loc_total', total);
                     sessionStorage.setItem('loc_duration', mins);
+                    sessionStorage.setItem('loc_duration_real', mins);
                     sessionStorage.setItem('loc_from_step1', 'true');
                 } catch (e) {}
 
