@@ -14,17 +14,27 @@ $_LOC_CALENDAR_ID      = '514d8e2bd29573d1582ae633e39ee999679bc205ee207a15c019b1
 
 // Day-level job caps.
 //
-// Weekdays raised 1 -> 4 on 2 Oct 2026, as Chris moves toward going full
-// time. A cap of 1 meant a single booking shut the whole day, which is what
-// he was seeing from 26 Oct once the standing 07:00 blocks stopped: the
-// mornings had opened up but the cap still closed the day on one job.
+// The weekday cap CHANGES ON A DATE, because Chris's own availability does.
+// Until he is back from holiday he is still in full-time work and can only
+// manage one job on a weekday evening. From the 23rd he is opening the
+// diary up properly.
 //
-// 4 is a BACKSTOP, not a lever. The smallest base job is 105 minutes, so with
-// the travel buffer below only two fit in either window — four a day is the
-// ceiling the clock already imposes, and time, not this number, is what will
-// normally stop a booking. It only really bites on a zero-duration
-// extras-only booking, which is not expected to happen.
+// Scoping this by date is not decoration: raising the cap outright on 2 Oct
+// immediately reopened dates in the fortnight he is still employed — a day
+// that already had its one job started offering a second. Change the date
+// here, not the caps, when the plan moves.
+define( 'LOC_FULLTIME_FROM', '2026-10-23' );
+
+// Before LOC_FULLTIME_FROM: one job on a weekday evening, around the day job.
+define( 'LOC_WEEKDAY_JOB_CAP_BEFORE', 1 );
+
+// From LOC_FULLTIME_FROM. A BACKSTOP, not a lever: the smallest base job is
+// 105 minutes, so with the travel buffer below only two fit in either window
+// — four a day is the ceiling the clock already imposes, and time, not this
+// number, is what will normally stop a booking. It only really bites on a
+// zero-duration extras-only booking, which is not expected to happen.
 define( 'LOC_WEEKDAY_JOB_CAP', 4 );
+
 define( 'LOC_WEEKEND_JOB_CAP', 3 );
 
 // Travel and turnaround between consecutive jobs. Applied BETWEEN bookings
@@ -483,7 +493,10 @@ function loc_resolve_day( $dateStr, $state, $duration_minutes, $now_ts = null ) 
     // own cap instead of the normal weekday/weekend cap.
     $tz        = new DateTimeZone( 'Europe/London' );
     $isWeekend = in_array( (int) ( new DateTime( $dateStr, $tz ) )->format( 'N' ), [ 6, 7 ], true );
-    $jobCap    = $override ? $override['cap'] : ( $isWeekend ? LOC_WEEKEND_JOB_CAP : LOC_WEEKDAY_JOB_CAP );
+    // Weekday capacity steps up on LOC_FULLTIME_FROM. String comparison is
+    // safe and intentional here — both sides are YYYY-MM-DD.
+    $weekdayCap = ( $dateStr >= LOC_FULLTIME_FROM ) ? LOC_WEEKDAY_JOB_CAP : LOC_WEEKDAY_JOB_CAP_BEFORE;
+    $jobCap     = $override ? $override['cap'] : ( $isWeekend ? LOC_WEEKEND_JOB_CAP : $weekdayCap );
     $jobCount  = $state['jobCountByDay'][ $dateStr ] ?? 0;
     $isFull    = ( $jobCount >= $jobCap );
 
