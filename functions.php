@@ -1393,7 +1393,19 @@ total = isSkip ? 0 : (parseInt(sessionStorage.getItem('loc_total'), 10) || 0);
 
                 // A day I work but cannot sell: it keeps the worked-day frame
                 // so it doesn't read as a day off, but it isn't clickable.
-                if (cls === 'unavailable') div.classList.add('loc-cal-day--spent');
+                if (cls === 'unavailable') {
+                    div.classList.add('loc-cal-day--spent');
+
+                    // A red star in the corner, matching the legend and the
+                    // tip below the grid. The point is that a date with
+                    // nothing left is still worth tapping — without it the
+                    // cancellation list is a feature nobody discovers.
+                    var star = document.createElement('span');
+                    star.className = 'loc-cal-day__star';
+                    star.textContent = '★';
+                    star.setAttribute('aria-hidden', 'true');
+                    div.appendChild(star);
+                }
             }
 
             // A bookable date opens the window picker. A date I work that has

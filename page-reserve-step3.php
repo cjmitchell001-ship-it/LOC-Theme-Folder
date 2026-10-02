@@ -75,6 +75,10 @@
                 <span class="loc-step3-legend-swatch loc-step3-legend-swatch--none" aria-hidden="true"></span>
                 <span>Unavailable</span>
             </div>
+            <div class="loc-step3-legend-item">
+                <span class="loc-step3-legend-star" aria-hidden="true">&#9733;</span>
+                <span>Cancellations</span>
+            </div>
         </div>
 
 
@@ -119,11 +123,9 @@
              escape hatch so it is read in the same breath as the thing it
              describes. -->
         <p class="loc-step3-tip">
-            <span class="loc-step3-tip__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"></path>
-                </svg>
-            </span>
+            <!-- The same star that marks the dates, so the tip and the grid
+                 are obviously about the same thing. -->
+            <span class="loc-step3-tip__icon" aria-hidden="true">&#9733;</span>
             <span><strong>Tap any full slot</strong> and I'll let you know if a cancellation comes up.</span>
         </p>
 

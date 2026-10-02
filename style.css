@@ -4,7 +4,7 @@ Theme URI:         https://leicesterovencleaning.co.uk
 Description:       Standalone theme for Leicester Oven Cleaning. No parent theme dependency.
 Author:            Chris
 Author URI:        https://leicesterovencleaning.co.uk
-Version:           2.20.0
+Version:           2.21.0
 License:           GNU General Public License v2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:       leicester-oven-cleaning-child
@@ -72,6 +72,12 @@ ul, ol {
   /* ---- GREY SCALE (grey-100 = current --border, grey-50 = current --lightgrey) ---- */
   --grey-700: #444; --grey-600: #555; --grey-500: #666; --grey-400: #888; --grey-300: #aaa;
   --grey-200: #ccc; --grey-100: #e2e2e2; --grey-50: #F5F5F5;
+
+  /* ---- CANCELLATION STAR ----
+     Marks a fully-booked date as still worth tapping. Deliberately neither
+     blue nor gold: its entire job is to stand out on a grid that is
+     otherwise only blue, gold and grey. */
+  --star: #d92d20;
 
   /* ---- BLUE TINTS ---- */
   --blue-dark: #122d58;  --blue-darker: #0f2550;  --blue-pale: #eef3fa;
@@ -6786,6 +6792,23 @@ a:hover {
     color: var(--grey-500);
 }
 
+/* The cancellation star. Top-right of a date with nothing left, so the eye
+   is drawn to the one thing still available on it: asking to be told if it
+   frees up. U+2605 is a text glyph rather than an emoji, so it takes the
+   colour below instead of rendering as a yellow sticker. */
+.loc-cal-day__star {
+    position: absolute;
+    top: 1px;
+    right: 3px;
+    font-size: 11px;
+    line-height: 1;
+    color: var(--star);
+    pointer-events: none;
+}
+
+/* On the selected (solid blue) cell the red would go muddy. */
+.loc-cal-day--selected .loc-cal-day__star { color: var(--white); }
+
 /* FULL — the day hit its cap. Says "booked out" rather than leaving a date
    that looks the same as one I don't work. */
 .loc-cal-day__full {
@@ -7663,8 +7686,19 @@ a:hover {
 
 .loc-step3-tip__icon {
     flex-shrink: 0;
-    color: var(--gold-dark);
-    margin-top: 1px;
+    color: var(--star);
+    font-size: var(--text-h4);
+    line-height: 1;
+    margin-top: -2px;
+}
+
+/* Legend star — same glyph and colour as the grid, sized to sit level with
+   the box swatches beside it. */
+.loc-step3-legend-star {
+    flex-shrink: 0;
+    color: var(--star);
+    font-size: var(--text-body-lg);
+    line-height: 1;
 }
 
 /* STEP 3 — CANCELLATION LIST MODAL
