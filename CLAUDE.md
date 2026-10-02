@@ -189,12 +189,14 @@ The booking system has no admin UI. Every availability rule is driven by the **t
 | Title | Type | Effect |
 |---|---|---|
 | `North` / `South` / `East` / `West` / `Central` | all-day | Zone label. Cosmetic only — the real restriction comes from each booking's `Zone:` description line, so deleting a label cannot reopen a zoned day. |
-| `Open: N`, `Open: N AM`, `Open: N PM` | all-day | Per-date capacity override, replacing the normal job cap. AM/PM restricts to one window. **Ignores that date's recurring "Unavailable" block entirely** — the override is the whole truth for the date. Case/spacing-insensitive. |
-| `Unavailable` | timed | The standing recurring block: **weekdays 07:00–13:00 only**. Weekends carry no timed block — they are governed by a recurring all-day `Open: 2` instead. (Corrected 16 Sep 2026 against the live calendar. The Aug note claiming weekends were blocked 07:00–18:00 was wrong, and would have meant no weekend was ever bookable.) |
+| `Open: N`, `Open: N AM`, `Open: N PM` | all-day | Per-date capacity override, replacing the normal job cap. AM/PM restricts to one window. **Ignores that date's TIMED "Unavailable" blocks entirely** — the override is the whole truth for the date. Case/spacing-insensitive. **This is a trap: see the warning below.** Also the way to hold an individual day BELOW the normal cap — `Open: 2` on a date keeps it at two jobs without touching code. |
+| `Unavailable` | timed | A block on part of a day. Historically the standing recurring weekday 07:00–13:00 block; Chris stopped adding those from 26 Oct 2026 as he opened the diary up. **A timed block is silently discarded on any date that also carries an `Open: N`** — see below. |
 | `Unavailable` | **all-day** | Closes the whole date. **Deliberately beats `Open: N`** — a date carrying both is being shut after the fact (e.g. a holiday dropped over an open block). |
 | `Any Zone` | all-day | Lifts the zone restriction for those dates: a day already carrying one zone's booking stays bookable by every other zone. Caps, windows and `Unavailable` are unaffected. Matches `any zone` / `Any-Zone` / `ANY ZONE`; extra words break it. |
 | `PROVISIONAL: Name` | timed | A booking. Counts toward the day's job cap. |
 | `Confirmed: Name` | timed | A booking, renamed by hand after the confirmation call. Counts toward the cap. **Any other rename format breaks both the job count and zone detection.** |
+
+**BLOCK A HOLIDAY WITH AN ALL-DAY `Unavailable`, NEVER A TIMED ONE.** An `Open: N` date throws timed `Unavailable` blocks away, so a holiday blocked with timed events stays **bookable** on any date that also carries an `Open: N`. This happened for real: Chris blocked 15–22 Oct 2026 with timed blocks, but weekends carried a recurring `Open: 2`, so **Sat 17 and Sun 18 October sat bookable on the live site mid-holiday** until it was spotted on 2 Oct. Only the all-day form beats an override. The weekday blocks in the same holiday worked fine, which is exactly why it went unnoticed — the gap was two days in the middle.
 
 **Multi-day all-day events** (a holiday block, a week of `Any Zone`) are returned by Google as a *single* item with an exclusive `end.date`, not one per day. Every parser for these must expand the range — keying off `start.date` alone silently applies the setting to the first day only.
 
@@ -211,6 +213,28 @@ Set it to `0` for "elapsed windows only"; `1440` removes same-day booking entire
 `reservation-handler.php` enforces the same rule at submission, by calling `loc_slot_is_free()` with no events. Step 3 fetches availability once on page load, so a tab left open all day would otherwise submit against stale data. It is **not** a double-booking check — that would need a full calendar fetch per submission, and is still an open hole (see Known Bugs).
 
 **Chris sometimes blocks a day out with dummy bookings rather than an all-day `Unavailable`.** Duplicate `PROVISIONAL: Chris Mitchell` events filling a date's cap are usually **deliberate** — that is him taking the day off, not leftover test data. Confirmed 16 Sep 2026 for 26–27 Sep, after they were flagged as stray test bookings. **Do not delete them and do not report them as a fault.** (An all-day `Unavailable` does the same job and reads unambiguously on the calendar, so it is worth offering — but the dummy-booking method works and the choice is his.)
+
+### How many jobs, and where they land (calendar-api.php) — rewritten 2 Oct 2026
+
+Five constants decide this. All at the top of the file.
+
+| Constant | | What it does |
+|---|---|---|
+| `LOC_FULLTIME_FROM` | `2026-10-23` | The date weekday capacity steps up. **Move this date, not the caps.** |
+| `LOC_WEEKDAY_JOB_CAP_BEFORE` | `1` | Weekdays before that date — one evening job around the day job. Weekends never carried this. |
+| `LOC_JOB_CAP` | `4` | Everything else: weekends always, weekdays from the switch. |
+| `LOC_JOB_BUFFER_MINUTES` | `30` | Travel between jobs. Applied **between bookings only** — never after an `Unavailable` block, which is a shut window, not somewhere to drive from. |
+| `LOC_LATE_FINISH_MINUTES` | `90` | How far past a window's end a job may run. |
+
+**The cap is a backstop, not a lever.** The smallest base job is 105 minutes, so with the buffer only two fit in a window — time, not the cap, is normally what stops a booking. It only really bites on a zero-duration extras-only booking. To hold one specific day lower, put an `Open: N` on it rather than changing code.
+
+**Bookings are placed sequentially, not at the window start.** Until Oct 2026 every booking was written at 07:00 or 13:00, which was invisible at a cap of one and would have stacked four events on the same minute at a cap of four. `loc_slot_earliest_start()` finds the first viable start after what is already there. It costs one extra API call per booking (`loc_fetch_calendar_events_for_date`), and falls back to the window start if the day cannot be read — a booking written at a slightly wrong time beats a booking lost.
+
+**`loc_slot_status()` and `loc_slot_earliest_start()` MUST stay in step.** One decides whether a job fits, the other where it goes, and they walk the window identically. If one gains a rule the other lacks, the calendar will sell slots the booking code cannot place.
+
+**A job must START inside its window but may FINISH up to 90 minutes past it.** That is self-limiting — the bigger the job the earlier it must begin. On an empty afternoon a full range must start by 15:30, a double by 17:15, a single by 17:45; nothing finishes after 19:30. The allowance applies to the **final gap only**: overrunning into open evening is Chris's to absorb, overrunning into someone else's booking is still refused. An overrunning morning job correctly pushes the afternoon back (verified: a range to 13:15 puts the next job at 13:45).
+
+**Extras are deliberately NOT counted when scheduling.** Hobs, extractors and microwaves add nothing to the booked duration — Chris's call, 2 Oct 2026. Counting them could push a second job out of the window and lose the booking outright, and he would rather take the work and finish late; the base figures are padded enough to absorb some of it. The honest figure travels as `loc_duration_real` and appears on the calendar event and in his notification as `Scheduled:` vs `Realistic:`. **A late-finish warning is measured against the realistic figure**, because the booked one flatters the day. The customer email is unaffected — it has never shown a duration.
 
 ### Window status — what Step 3 draws (calendar-api.php)
 
@@ -519,7 +543,7 @@ Chris (the founder) wants his name, face, and personal/employment history kept O
 
 **Live test reservation: done by Chris, 20 Sep 2026, and it passed.** The deploy is therefore fully verified end to end, including the calendar write — the one part the automated checks could not prove, because submitting writes a real `PROVISIONAL:` event and sends two emails. Everything up to the submit button had been driven on the live site first (Step 1 → 2 → 3, LE4/North, morning), and server-side it was confirmed that both `wp_ajax` reservation hooks were registered, the minimum-notice guard and callback-timing fix were present in the deployed `reservation-handler.php`, and `loc_create_provisional_booking()` was byte-identical to the pre-deploy copy.
 
-**Standing reminder for any future test booking:** the event counts toward that date's job cap, and **the weekday cap is 1** — so a test event left on a weekday shows that day as FULL to real customers until it is deleted. Delete the test event once the check passes.
+**Standing reminder for any future test booking:** the event counts toward that date's job cap and occupies real time in the window, so it both eats capacity and pushes the next booking later. Delete it once the check passes. (Before 23 Oct 2026 the weekday cap was 1, so a single test event shut the whole day — less brutal now the cap is 4, but still worth clearing.)
 
 **Second pass the same day, from a second mockup — and it was all subtraction (2026-09-17).** Theme 2.17.0 → 2.18.0, commit `9f79aba`. `A`/`P` became **AM**/**PM**, which killed the explainer line above the calendar outright: it existed only to decode the letters. The dashed "not offered" state went too, on Chris's instruction — *"we do not need to confuse people with closed days or not offered days"* — leaving two drawn states, blue and grey. The legend dropped to Open / Booked / Unavailable.
 
@@ -530,6 +554,29 @@ Chris (the founder) wants his name, face, and personal/employment history kept O
 **A consequence Chris should know rather than discover:** the days he blocks out with dummy bookings now display publicly as **FULL**. Correct behaviour, and arguably good — a calendar showing booked-out days reads as in demand — but it is newly visible information about how busy he is.
 
 **Not deployed.** Local only, on the same branch as the three calendar fixes above, and the same condition applies: `calendar-api.php` and `reservation-handler.php` are live booking logic and need a full funnel run plus a real test reservation before they go near the server. All four funnel routes were re-run locally and all four box states reproduced against the real Jobs calendar; **no test reservation was created**, deliberately, since a local submission writes a real event to the live calendar.
+
+**Capacity rebuilt for going full time, and a holiday that was quietly bookable (2026-10-02).** Deployed, tested live by Chris. See the "How many jobs, and where they land" section above for the rules; this is why they changed.
+
+**What he reported:** from 26 Oct he had cleared the standing 07:00 blocks to open the diary up, but any single booking was still shutting the whole day. **He was right, and the cause was that the day cap lived in code, not on the calendar** — `LOC_WEEKDAY_JOB_CAP = 1`. Clearing the calendar opened the mornings; it could never have touched the cap.
+
+**Raising it exposed the real design flaw.** Every booking was written at its window's start — 07:00 or 13:00 — which is invisible at a cap of one and stacks four events on the same minute at a cap of four. So the cap was never a one-line change: it needed sequential placement, which needed a travel buffer, which needed a decision about whether extras count. All four landed together.
+
+**Chris's three calls, each argued and each his:**
+- **Extras do not count toward scheduling.** Counting a hob could push a second job out of the window and lose the booking; he would rather take the work and run late. Raised the exposure in numbers — two doubles with hobs finishing 19:00 rather than 18:00 — and he reaffirmed it. The honest estimate is carried alongside rather than discarded.
+- **Cap 4, not 3.** Correct, and it barely matters: two per window is the ceiling the clock imposes anyway, so 4 is a backstop that will rarely be the thing refusing a booking.
+- **A job may finish 90 minutes past its window.** His own observation, and the better idea of the session: "must finish inside the window" was stricter than the business and was turning away a full range he would happily have done until 19:15.
+
+**Two mistakes worth recording.**
+
+First, **raising the cap applied it to every weekday including the fortnight he is still employed** — days that already had their one evening job started offering a second. He spotted it on 12 Oct. Fixed with `LOC_FULLTIME_FROM`. The lesson is that "from the 26th" was in the conversation from the start and I built a global constant anyway.
+
+Second, and worse because it was live: **Sat 17 and Sun 18 October were bookable in the middle of his holiday.** Not caused by this work — it had been live for some time. His holiday was blocked with *timed* `Unavailable` events, but weekends carried a recurring `Open: 2`, and an override date discards timed blocks. The weekday blocks worked, so the gap was two days in the middle of a shut week and nothing looked wrong. **Found only because the weekend conversation forced a look at how weekends were governed at all.** Full warning in the calendar-conventions section above.
+
+**Also cleared up:** the old `LOC_WEEKEND_JOB_CAP = 3` never did anything, because the recurring `Open: 2` overrode it on every weekend. Weekends and weekdays now share one cap, and Chris keeps 3/4/10/11 Oct at two jobs with the `Open: 2` events he already has — which is the right way to hold a single day below the default.
+
+**Method note:** the booking rules were exercised offline against fixtures throughout — simulated days placing jobs one at a time, and a 44-scenario differential against the previous version where every one of the 14 changed rows was explained before deploying. One fixture bug is worth remembering: hardcoding `+00:00` offsets put every test time an hour out during BST and made the results look wrong when the code was right. Build fixture timestamps with a real `DateTime` in `Europe/London`.
+
+**Still unproven by automated test:** `loc_fetch_calendar_events_for_date()` and the sequential placement have only ever run against fixtures and Chris's own live test. If placement ever fails it fails *quietly* — the booking succeeds and simply lands at the window start, as it used to. Check the calendar, not the confirmation screen.
 
 *Update this log and the sections above whenever significant progress is made or a decision is confirmed.*
 
